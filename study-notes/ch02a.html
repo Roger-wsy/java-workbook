@@ -1,0 +1,419 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Utilizing Java Object-Oriented Approach - Part 2</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch02a"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Utilizing Java Object-Oriented Approach - Part 2<span class="answer-title">Answers & explanations</span></h1><div class="document-meta">Chapter 02 / Answer sheet<span>·</span>20 min read</div><div class="chapter-actions"><a class="" href="ch02.html">Read chapter</a><a href="ch02.html#key-points">Key points</a><a href="ch02-practice.html#book-practice">Book questions</a><a href="ch02-practice.html#chapter-quiz">Extra quiz</a><a class="active" href="ch02a.html">Original answers</a></div></div><article class="prose"><p class="question-review-note">This page preserves the original answer sheet. Reviewed corrections and clarifications appear beside the <a href="ch02-practice.html#book-practice">interactive book questions</a>.</p><h2 id="answers">Answers<a class="heading-anchor" href="#answers" aria-label="Link to Answers">#</a></h2><details class="answer-item" id="answer-1"><summary><span>Question 1</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The code compiles and outputs <code>3</code> followed by <code>1</code>.</p>
+<ul>
+<li>This option is incorrect because, although the code prints <code>3</code> followed by <code>1</code> due to <code>x</code> being in scope, attempting to access <code>y</code> outside of its declaring block (the <code>if</code> block) will cause a compile-time error.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The code compiles and outputs <code>3</code> followed by <code>1</code> and an undefined value for <code>y</code>.</p>
+<ul>
+<li>This option is incorrect because Java does not allow access to local variables (<code>y</code> in this case) outside of their scope. The notion of an &quot;undefined value for <code>y</code>&quot; is not applicable here; the compiler will simply not compile the code.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The code does not compile because <code>y</code> is accessed outside of its scope.</p>
+<ul>
+<li>This is the correct option. Local variable <code>y</code> is declared inside the <code>if</code> block, and thus, it is only accessible within that block. Trying to access it outside of its scope, as done in the last <code>System.out.println(y);</code>, causes a compile-time error, specifically saying that <code>y</code> cannot be found.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The code compiles but throws a runtime exception when trying to print <code>y</code>.</p>
+<ul>
+<li>This option is incorrect because the issue with the code is at compile time, not runtime. The compiler will not allow the code to compile due to the scope violation of the local variable <code>y</code>, hence a runtime exception regarding <code>y</code> is out of the question.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-2"><summary><span>Question 2</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are C and D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>double x, double y;</code></p>
+<ul>
+<li>This option is incorrect because when declaring multiple variables of the same type in a single statement, you do not repeat the type before each variable. The correct syntax would be <code>double x, y;</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>int i = 0, String s = &quot;hello&quot;;</code></p>
+<ul>
+<li>This option is incorrect for the same reason as A; you cannot declare variables of different types (<code>int</code> and <code>String</code> in this case) in a single statement.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>float f1 = 3.14, f2 = 6.28f;</code></p>
+<ul>
+<li>This is correct. You can declare multiple variables of the same type (<code>float</code> in this case) in a single statement, and it&#39;s also fine to initialize them with values in the same statement.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>char a = &#39;A&#39;, b, c = &#39;C&#39;;</code></p>
+<ul>
+<li>This is correct. It&#39;s valid to declare multiple variables of the same type (<code>char</code> in this case), and initialize some, all, or none of them in the same statement.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-3"><summary><span>Question 3</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are B and D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>var</code> can be used to declare both local variables within methods and instance variables within classes.</p>
+<ul>
+<li>This option is incorrect because <code>var</code> cannot be used to declare instance variables. It is specifically restricted to local variables within methods, constructors, or initializer blocks, as using <code>var</code> for fields would reduce the clarity of a class&#39;s public API.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The use of <code>var</code> is restricted to local variables within methods, constructors, or initializer blocks.</p>
+<ul>
+<li>This option is correct. <code>var</code> is intended for local variable type inference, significantly reducing the verbosity of Java code in scenarios where the compiler can easily determine the type of the local variable from its initializer. Its use is restricted to ensure clarity and prevent ambiguity in more complex constructs like class fields or method parameters.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>var</code> can be used to declare method parameters.</p>
+<ul>
+<li>This option is incorrect. The example clearly demonstrates that <code>var</code> cannot be used to declare method parameters. This limitation ensures that method signatures remain explicit in their type requirements, a critical aspect of a class&#39;s contract with its callers.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>var</code> enhances readability by inferring types where it&#39;s clear from the context, but it&#39;s not allowed in method signatures to maintain clarity.</p>
+<ul>
+<li>This option is correct. While <code>var</code> is primarily used to improve code readability by reducing the need for explicit type declarations where the type can be inferred from the context, it is not allowed in method signatures. This restriction ensures that the types of parameters in methods are always explicitly defined, aiding in the readability and maintainability of public APIs.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>var</code> can be used to declare class (static) variables.</p>
+<ul>
+<li>This option is incorrect. Similar to instance variables, <code>var</code> is not permissible for declaring class (<code>static</code>) variables. The rationale behind this restriction aligns with the goal of maintaining explicit type declarations in the class&#39;s structure, ensuring the class&#39;s design remains clear and unambiguous to both the compiler and developers.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-4"><summary><span>Question 4</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are A and C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> Subclasses can directly access the <code>public</code> and <code>protected</code> members of their superclass, and package-private members when they are in the same package.</p>
+<ul>
+<li>This option is correct. A subclass can use the <code>public</code> and <code>protected</code> members of its superclass directly. Package-private members work too, but only when the subclass is in the same package. <code>private</code> members stay off-limits, so the superclass must expose them through accessors.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> In Java, a class can extend multiple classes to achieve multiple inheritance.</p>
+<ul>
+<li>This option is incorrect. Java does not support multiple inheritance for classes. A class in Java can only extend one other class, preventing complications like the diamond problem and the complexity associated with multiple inheritance.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>extends</code> keyword is used in Java to create a subclass that inherits from a superclass.</p>
+<ul>
+<li>This option is correct. <code>extends</code> creates a subclass that inherits the fields and methods of a single superclass, giving an is-a relationship between them.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> A subclass in Java can directly access <code>private</code> members of its superclass.</p>
+<ul>
+<li>This option is incorrect. A subclass cannot directly access <code>private</code> members of its superclass. Instead, it can access them through <code>public</code> or <code>protected</code> accessors provided by the superclass. This encapsulation principle ensures a controlled interaction with the superclass&#39;s state.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-5"><summary><span>Question 5</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are A and C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The code will compile and print <code>&quot;Dog eats&quot;</code> when executed.</p>
+<ul>
+<li>This option is correct. The <code>Dog</code> class has provided an implementation for the <code>eat</code> method, which is abstract in the superclass <code>Animal</code>. Since <code>myAnimal</code> is of type <code>Animal</code> but instantiated as a <code>Dog</code>, it will call the overridden <code>eat</code> method in the <code>Dog</code> class, printing <code>&quot;Dog eats&quot;</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>Animal</code> class can be instantiated.</p>
+<ul>
+<li>This option is incorrect. The <code>Animal</code> class is abstract and cannot be instantiated. Attempting to create an instance of <code>Animal</code> directly (<code>new Animal()</code>) would result in a compilation error.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Removing the <code>eat</code> method from the <code>Dog</code> class will cause a compilation error.</p>
+<ul>
+<li>This option is correct. Since <code>Dog</code> extends the abstract class <code>Animal</code> and <code>Animal</code> has an abstract <code>eat</code> method, <code>Dog</code> must provide an implementation for <code>eat</code>. Failing to do so will prevent the code from compiling because <code>Dog</code> would also be considered abstract.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>Cat</code> class is necessary for the code to compile and run.</p>
+<ul>
+<li>This option is incorrect. The <code>Cat</code> class is not referenced in the <code>main</code> method or anywhere else in the provided code snippet. Thus, it is unnecessary for the compilation and execution of the given code segment.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-6"><summary><span>Question 6</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are B and C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>Person</code> class must override the <code>getSpeed</code> method.</p>
+<ul>
+<li>This option is incorrect. The <code>Person</code> class is not required to override the <code>getSpeed</code> method because it is a default method in the <code>Runnable</code> interface. Default methods provide an implementation that can be used or overridden by implementing classes, but overriding is not mandatory.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>distance</code> variable in the <code>Walkable</code> interface is implicitly <code>public</code>, <code>static</code>, and <code>final</code>. </p>
+<ul>
+<li>This option is correct. In Java, all variables declared in an interface are implicitly <code>public</code>, <code>static</code>, and <code>final</code>. This means the <code>distance</code> variable in the <code>Walkable</code> interface is a constant and must be initialized at the point of declaration. It is accessible with the interface name, like <code>Walkable.distance</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> A <code>Person</code> object can call the <code>getSpeed</code> method without any implementation in the <code>Person</code> class.</p>
+<ul>
+<li>This option is correct. Since the <code>Runnable</code> interface provides a default implementation for the <code>getSpeed</code> method, a <code>Person</code> object can call the <code>getSpeed</code> method without any additional implementation in the <code>Person</code> class itself. The default implementation from the interface will be used.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>Runnable</code> interface causes a compilation error due to a naming conflict with <code>java.lang.Runnable</code>.</p>
+<ul>
+<li>This option is incorrect because Java fully supports namespace resolution. The <code>Runnable</code> interface declared in the code snippet and <code>java.lang.Runnable</code> exist in different packages. There is no compilation error unless there&#39;s an attempt to import both in the same file without using a fully qualified name. Plus, this situation does not directly relate to the functionality or declaration of interfaces per the exam&#39;s focus.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-7"><summary><span>Question 7</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>Shape</code> class is correctly defined as a sealed class, allowing only specified classes to extend it.</p>
+<ul>
+<li>This option is correct. The <code>Shape</code> class is declared as a sealed class, which means it can be extended only by the classes it explicitly permits through the <code>permits</code> clause. In this case, <code>Shape</code> permits <code>Circle</code> and <code>Square</code> to extend it, and both classes are correctly defined as permitted subclasses.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>Square</code> class does not correctly extend the <code>Shape</code> class because it is not marked as <code>final</code>. </p>
+<ul>
+<li>This option is incorrect. There&#39;s no requirement for classes extending a sealed class to be marked as <code>final</code> if they are non-sealed. The keyword <code>non-sealed</code> explicitly allows the <code>Square</code> class to extend the sealed <code>Shape</code> class without being final, indicating it can be further extended.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>Circle</code> class can be further extended by other classes. </p>
+<ul>
+<li>This option is incorrect. The <code>Circle</code> class is declared as <code>final</code>, which means it cannot be extended further and aligning with the constraints of extending a sealed class where the permitted subclass can be final, sealed, or non-sealed.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>area</code> method in the <code>Shape</code> class must provide a default implementation.</p>
+<ul>
+<li>This option is incorrect. Abstract classes like <code>Shape</code> are not required to provide implementations for their abstract methods. The purpose of an abstract class is to define a template that its subclasses will follow, which includes implementing any abstract methods declared in the abstract class.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-8"><summary><span>Question 8</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> A reference to the <code>static</code> context of the class, allowing access to static methods and fields.</p>
+<ul>
+<li>This option is incorrect. The <code>this</code> keyword does not refer to the static context of the class. It specifically refers to the current instance of the class. Static methods and fields belong to the class itself and are not part of any instance, so they cannot be accessed through <code>this</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> A special variable that stores the return value of a method.</p>
+<ul>
+<li>This option is incorrect. The <code>this</code> keyword does not store the return value of a method. It is used within an instance method or a constructor to refer to the current object the method or constructor is being invoked upon.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> An optional keyword that can always be omitted without affecting the functionality of the code.</p>
+<ul>
+<li>This option is incorrect. While it is true that in some cases <code>this</code> can be omitted (for example, when accessing instance fields or methods without any naming conflict), its use is necessary for situations like constructor chaining (<code>this()</code> call) or when the method parameter names shadow the instance field names. In such scenarios, <code>this</code> clarifies to which variable the code is referring.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> A reference to the current object, whose instance variable is being called.</p>
+<ul>
+<li>This option is correct. The <code>this</code> keyword in Java is used to refer to the current object—the object whose instance variable, method, or constructor is being called. You can see its usage in line 5 to call another constructor within the same class, in line 14 to differentiate between the method parameter <code>size</code> and the instance variable <code>size</code>, and in the <code>updateWidget</code> method to access the instance variable <code>size</code>. This usage demonstrates <code>this</code> as a way to refer explicitly to properties or methods of the current object.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-9"><summary><span>Question 9</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are A and B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>super</code> keyword is used in the <code>Dog</code> constructor to call the superclass constructor.</p>
+<ul>
+<li>This option is correct. In the <code>Dog</code> constructor, <code>super(name);</code> is used to call the superclass (<code>Animal</code>) constructor with the <code>name</code> parameter. This is necessary to initialize the <code>name</code> field inherited from the <code>Animal</code> class in the <code>Dog</code> instance.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>eat</code> method in the <code>Dog</code> class uses <code>super</code> to invoke the superclass&#39;s <code>eat</code> method.</p>
+<ul>
+<li>This option is correct. The <code>eat</code> method in the <code>Dog</code> class calls <code>super.eat();</code> to invoke the <code>eat</code> method defined in the superclass (<code>Animal</code>). This allows the <code>Dog</code> class to extend the functionality of the <code>eat</code> method beyond what is defined in the superclass, demonstrating method overriding and use of <code>super</code> to access the overridden method.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Removing the <code>super.eat();</code> call in the <code>Dog</code> class&#39;s <code>eat</code> method will prevent the <code>Dog</code> class from compiling.</p>
+<ul>
+<li>This option is incorrect. Removing the <code>super.eat();</code> call from the <code>Dog</code> class&#39;s <code>eat</code> method would not prevent the class from compiling. It would simply mean that the <code>Dog</code> class&#39;s <code>eat</code> method no longer calls the superclass&#39;s <code>eat</code> method, altering the program&#39;s behavior but not its compilability.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>super</code> keyword can be used inside a <code>static</code> method of the <code>Dog</code> class to access members of <code>Animal</code>.</p>
+<ul>
+<li>This option is incorrect. <code>super</code> refers to the current instance viewed as the superclass type, so it may only appear where <code>this</code> is available. Inside a <code>static</code> method, a <code>static</code> initializer, or any other <code>static</code> context, there is no instance, and any use of <code>super</code> will result in a compile-time error.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-10"><summary><span>Question 10</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> It compiles and prints <code>&quot;Car driving at speed: 60&quot;</code>.</p>
+<ul>
+<li>This option is incorrect because the <code>drive</code> method in the <code>Car</code> class has a different parameter type (<code>long</code>) than the method in the <code>Vehicle</code> class (<code>int</code>). Due to the difference in parameter types, the <code>Car</code> class&#39;s <code>drive</code> method does not override but rather overloads the <code>Vehicle</code> class&#39;s <code>drive</code> method. Since the method is called on a <code>Vehicle</code> reference, the <code>Vehicle</code> class&#39;s <code>drive</code> method is invoked.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> It does not compile because the <code>drive</code> method cannot be called using a <code>Vehicle</code> reference. </p>
+<ul>
+<li>This option is incorrect because <code>Vehicle</code> defines the <code>drive</code> method correctly.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> It does not compile because the <code>drive</code> method in the <code>Car</code> class does not properly override the <code>drive</code> method in the <code>Vehicle</code> class.</p>
+<ul>
+<li>This option is correct. The <code>@Override</code> annotation explicitly tells the compiler that the annotated method is intended to override a method from a superclass. However, the <code>drive</code> method in the <code>Car</code> class has a parameter of type <code>long</code>, while the <code>drive</code> method in the <code>Vehicle</code> class has a parameter of type <code>int</code>. Since the parameter types differ, the <code>Car</code> method does not override the <code>Vehicle</code> method, it&#39;s an overload. The compiler enforces the <code>@Override</code> contract strictly, so it produces an error such as: <code>method does not override or implement a method from a supertype</code>. As a result, the code fails to compile.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> It compiles and prints <code>&quot;Vehicle driving at speed: 60&quot;</code> because the <code>drive</code> method in the <code>Car</code> class is an overload, not an override.</p>
+<ul>
+<li>This option is incorrect. It correctly identifies that the <code>Car</code> method is an overload rather than an override, but it incorrectly concludes that the code compiles. The <code>@Override</code> annotation prevents compilation because the annotated method is not actually overriding anything (see option C). If the <code>@Override</code> annotation were removed, then this option would describe the correct behavior. But with the annotation present, the code does not compile.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-11"><summary><span>Question 11</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is E.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> It compiles and prints <code>&quot;Apple flavor&quot;</code> followed by <code>&quot;Red&quot;</code>.</p>
+<ul>
+<li>This option is incorrect because, while the <code>flavor</code> method will indeed print <code>&quot;Apple flavor&quot;</code> due to polymorphism (the <code>Apple</code> class overrides the <code>flavor</code> method of <code>Fruit</code>), the code will not compile if the <code>color()</code> method is called on a <code>Fruit</code> reference. This is because the <code>color</code> method is not part of the <code>Fruit</code> class&#39;s interface.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> It compiles and prints <code>&quot;Fruit flavor&quot;</code>.</p>
+<ul>
+<li>This option is incorrect for a similar reason to A. The <code>flavor</code> method would print <code>&quot;Apple flavor&quot;</code> because of the overridden method in the <code>Apple</code> class, not <code>&quot;Fruit flavor&quot;</code>. However, the presence of the <code>color()</code> method call would still prevent compilation.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> It compiles but throws a runtime exception when attempting to call <code>color()</code>.</p>
+<ul>
+<li>This option is incorrect because the issue occurs at compile time, not runtime. The Java compiler will not allow a method to be called on a reference type if that method is not defined in the reference type&#39;s class or its superclass hierarchy.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> It does not compile because <code>Apple</code> is not a valid type of <code>Fruit</code>.</p>
+<ul>
+<li>This option is incorrect. <code>Apple</code> is a valid type of <code>Fruit</code> due to inheritance (<code>Apple extends Fruit</code>). This relationship allows an <code>Apple</code> object to be referenced by a <code>Fruit</code> variable.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> It does not compile because the <code>color</code> method is not defined in the <code>Fruit</code> class.</p>
+<ul>
+<li>This option is correct. The <code>color</code> method is only defined in the <code>Apple</code> class and not in the <code>Fruit</code> class. Since the reference type of <code>myFruit</code> is <code>Fruit</code>, which does not have a <code>color</code> method, attempting to call <code>myFruit.color()</code> will result in a compilation error. This illustrates a key principle of polymorphism: the type of the reference (not the object) determines what methods can be called.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-12"><summary><span>Question 12</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are B and D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>((Dog)anotherAnimal).bark();</code></p>
+<ul>
+<li>This option is incorrect because it tries to cast <code>anotherAnimal</code> to <code>Dog</code> without checking its actual type first. Since <code>anotherAnimal</code> is an instance of <code>Animal</code> (not <code>Dog</code>), attempting this cast will compile, but it will cause a <code>ClassCastException</code> at runtime.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>if (anotherAnimal instanceof Dog) ((Dog)anotherAnimal).bark();</code> </p>
+<ul>
+<li>This option is correct. It uses <code>instanceof</code> to check whether <code>anotherAnimal</code> is an instance of <code>Dog</code> before attempting the cast and calling <code>bark()</code>. In this case, since <code>anotherAnimal</code> is not an instance of <code>Dog</code>, the check prevents the cast and method call, avoiding a <code>ClassCastException</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>((Cat)animal).meow();</code></p>
+<ul>
+<li>This option is incorrect because it casts <code>animal</code> to <code>Cat</code> and attempts to call <code>meow()</code>. Since <code>animal</code> is actually an instance of <code>Dog</code>, this cast will compile but will result in a <code>ClassCastException</code> at runtime.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>if (anotherAnimal instanceof Cat) ((Cat)anotherAnimal).meow();</code></p>
+<ul>
+<li>This option is correct. It checks if <code>anotherAnimal</code> is an instance of <code>Cat</code> before casting it to <code>Cat</code> and calling <code>meow()</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-13"><summary><span>Question 13</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> It compiles and prints <code>&quot;String with Java: Hello Java!&quot;</code> followed by <code>&quot;Integer greater than 10: 15&quot;</code>.</p>
+<ul>
+<li>This option is correct. The code snippet effectively demonstrates the use of pattern matching with the <code>instanceof</code> operator for both <code>String</code> and <code>Integer</code> types. The pattern matching feature checks if <code>input</code> is an instance of <code>String</code> or <code>Integer</code> and binds it to a variable (<code>s</code> for <code>String</code> and <code>i</code> for <code>Integer</code>) within the scope of the <code>if</code> and <code>else if</code> blocks. The logical operator <code>&amp;&amp;</code> is correctly used to further conditionally check properties of the variables (<code>s.contains(&quot;Java&quot;)</code> and <code>i &gt; 10</code>). Thus, the method <code>process</code> prints output for inputs that are a <code>String</code> containing <code>&quot;Java&quot;</code> and an <code>Integer</code> greater than <code>10</code>, respectively.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> It compiles but only prints <code>&quot;String with Java: Hello Java!&quot;</code> because integers are not supported with pattern matching.</p>
+<ul>
+<li>This option is incorrect because pattern matching works for any reference type, including <code>Integer</code>. The code does support integers and performs additional checks using pattern matching correctly.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> It does not compile because pattern matching in <code>instanceof</code> cannot be combined with logical operators like <code>&amp;&amp;</code>.</p>
+<ul>
+<li>This option is incorrect. The code will compile and run as expected. Pattern matching in <code>instanceof</code> can indeed be combined with logical operators like <code>&amp;&amp;</code> for additional checks in the same conditional statement, as demonstrated in the code snippet.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> It compiles but prints all four lines due to incorrect use of pattern matching that always evaluates to <code>true</code>.</p>
+<ul>
+<li>This option is incorrect because the use of pattern matching in the provided code is correct and does not always evaluate to <code>true</code>. The code correctly prints specific messages only for the inputs that match the given conditions.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-14"><summary><span>Question 14</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is E.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> Making the <code>setName</code>, <code>setPrice</code>, and <code>setStock</code> methods public would enhance the class&#39;s encapsulation.</p>
+<ul>
+<li>This option is incorrect. Making the setters public would actually reduce the class&#39;s encapsulation by allowing external classes to modify the fields without restriction, potentially bypassing any validation logic contained within the setters.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The class is not encapsulated because the <code>Product</code> class&#39;s fields are <code>private</code>. </p>
+<ul>
+<li>This option is incorrect. The use of <code>private</code> fields is a fundamental aspect of encapsulation. It prevents external classes from directly accessing and modifying the object&#39;s state, thus enforcing encapsulation.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Encapsulation is weakened because the constructor allows direct setting of fields without validation.</p>
+<ul>
+<li>This option is incorrect. The constructor does not weaken encapsulation; instead, it uses <code>private</code> setters that contain validation logic. This ensures that the object&#39;s state is correctly managed and validated upon creation.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>Product</code> class should have package-private getters to improve encapsulation.</p>
+<ul>
+<li>This option is incorrect. Making getters package-private would limit the class&#39;s usability and does not inherently improve encapsulation. Public getters are necessary for external classes to view (but not modify) the object&#39;s state.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> The class is properly encapsulated by providing public getters for all fields and private setters with validation, ensuring control over the state of its objects.</p>
+<ul>
+<li>This option is correct. The <code>Product</code> class demonstrates proper encapsulation practices by making its fields <code>private</code> and controlling access to them through <code>public</code> getters and <code>private</code> setters. The setters include validation logic, ensuring that only valid states are assigned to the fields. This design pattern ensures that the internal state of <code>Product</code> instances is both protected and correctly managed.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-15"><summary><span>Question 15</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are A and E.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>SavingsAccount</code> class cannot access the <code>balance</code> field directly due to its <code>private</code> access modifier in the <code>Account</code> class.</p>
+<ul>
+<li>This option is correct. The design intentionally restricts direct access to the <code>balance</code> field to maintain encapsulation.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>getBalance</code> method should be <code>public</code> to allow <code>SavingsAccount</code> to access the account balance.</p>
+<ul>
+<li>This option is incorrect. Making <code>getBalance</code> <code>public</code> would increase its visibility unnecessarily. <code>protected</code> is sufficient for subclass access, and this change is not required for <code>SavingsAccount</code> to function correctly, making this statement incorrect.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>deposit</code> method in the <code>Account</code> class should be marked as <code>final</code> to prevent overriding.</p>
+<ul>
+<li>This option is incorrect. Marking <code>deposit</code> as <code>final</code> would prevent it from being overridden in subclasses, which is not a requirement or suggestion indicated by the given code. The decision to make a method <code>final</code> should be based on the specific design needs rather than a general principle of encapsulation.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>interestRate</code> field in the <code>SavingsAccount</code> class violates encapsulation principles by being <code>private</code>.</p>
+<ul>
+<li>This option is incorrect. Using a <code>private</code> access modifier for <code>interestRate</code> in <code>SavingsAccount</code> is an example of proper encapsulation. It restricts access to the field from outside the class, which is aligned with encapsulation principles, making this option incorrect.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> The <code>Account</code> class correctly encapsulates the <code>balance</code> field, and <code>SavingsAccount</code> adheres to encapsulation by accessing <code>balance</code> through <code>getBalance</code> and <code>deposit</code>.</p>
+<ul>
+<li>This option is correct. The <code>Account</code> class uses <code>private</code> access for the <code>balance</code> field to encapsulate its state, providing <code>protected</code> and package-private methods (<code>getBalance</code> and <code>deposit</code>) for controlled access and modification. <code>SavingsAccount</code> respects this encapsulation by using these methods to interact with the <code>balance</code> field, demonstrating a proper understanding and application of encapsulation principles. This design allows <code>SavingsAccount</code> to leverage functionality provided by <code>Account</code> without breaking encapsulation, which is a key objective in object-oriented design.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-16"><summary><span>Question 16</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>Contact</code> object is mutable because the <code>Address</code> class is not <code>final</code>.</p>
+<ul>
+<li>This option is incorrect because the <code>Address</code> class does not directly impact the immutability of the <code>Contact</code> object. The <code>Contact</code> class ensures its immutability by not providing setters and by making deep copies of mutable objects, such as <code>Address</code>, both in the constructor and the getter.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>Contact</code> object is immutable, but only because it does not provide setters.</p>
+<ul>
+<li>This option is incorrect. While it&#39;s true that it does not provide setters, this option does not fully capture the essence of immutability. Thus, it doesn&#39;t highlight the fact that all fields in <code>Contact</code> are <code>final</code> and the defensive copying strategy.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>Contact</code> object is immutable, and it properly prevents leakage of mutable internal state through defensive copying.</p>
+<ul>
+<li>This is the correct option. The <code>Contact</code> class is immutable because it meets all criteria for immutability: the class is declared as <code>final</code> (preventing subclassing), all its fields are <code>private</code> and <code>final</code>, and it does not provide any setters. Also, it implements defensive copying for the mutable <code>Address</code> field to ensure that the internal state cannot be altered by external changes to <code>Address</code> objects passed in or returned. This prevents the leakage of its mutable internal state.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>Contact</code> object is mutable because the <code>Address</code> object can be changed via the <code>getAddress</code> method. </p>
+<ul>
+<li>This option is incorrect because the <code>Contact</code> object&#39;s immutability is maintained through defensive copying. The <code>getAddress</code> method returns a new <code>Address</code> instance each time it is called, ensuring that the original <code>Address</code> object&#39;s state cannot be altered from outside the <code>Contact</code> object.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> The <code>Contact</code> object is immutable but fails to prevent access to its mutable internal state.</p>
+<ul>
+<li>This option is incorrect because the <code>Contact</code> object does implement a strategy to prevent access to its mutable internal state: it uses defensive copying for the <code>Address</code> object in both the constructor and the getter method, which ensures that the internal state remains unchanged from outside modifications.</li>
+</ul>
+</li>
+</ul>
+</div></details></article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this answer sheet.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch02.html"><small>Previous</small>Utilizing Java Object-Oriented Approach - Part 2</a><a href="ch02-practice.html"><small>Next chapter</small>Chapter 2.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#answers">Answers</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

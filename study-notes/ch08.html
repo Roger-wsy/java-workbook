@@ -1,0 +1,907 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Functional Interfaces and Lambda Expressions</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch08"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch08.html" aria-current="page" data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Functional Interfaces and Lambda Expressions</h1><div class="document-meta">Chapter 08<span>·</span>35 min read</div><div class="chapter-actions"><a class="active" href="ch08.html">Read chapter</a><a href="ch08.html#key-points">Key points</a><a href="ch08-practice.html#book-practice">Book questions</a><a href="ch08-practice.html#chapter-quiz">Extra quiz</a><a class="" href="ch08a.html">Original answers</a></div></div><details class="objectives" open><summary>Exam objectives</summary><ul><li>Use Java object and primitive Streams, including lambda expressions implementing functional interfaces, to create, filter, transform, process, and sort data.</li></ul></details><article class="prose"><h2 id="functional-interfaces">Functional Interfaces<a class="heading-anchor" href="#functional-interfaces" aria-label="Link to Functional Interfaces">#</a></h2><p>Java 8 brought us lambda expressions, a new feature that aims to simplify development by taking a more functional programming approach. But for this to work, Java also introduced the concept of functional interfaces.</p>
+<p>A functional interface is an interface that contains only one abstract method. They may contain one or more default methods or static methods, but there can be only one abstract method.</p>
+<p>At first glance, you might think that using functional interfaces is not much different than using regular classes and objects. After all, we&#39;ve been able to define interfaces with a single method for a long time. But the key difference is how they enable the use of lambda expressions.</p>
+<p>Lambda expressions let you treat functionality as method arguments, or code as data. Instead of defining a class that implements a single-method interface, you can directly pass a lambda expression as an instance of a functional interface, allowing for cleaner and more concise code.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyInterface</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">myMethod</span><span class="hljs-params">()</span>;
+}
+
+<span class="hljs-type">MyInterface</span> <span class="hljs-variable">ref</span> <span class="hljs-operator">=</span> () -&gt; System.out.println(<span class="hljs-string">&quot;Hello World!&quot;</span>); </code></pre></div><p>In this example, the lambda expression <code>() -&gt; System.out.println(&quot;Hello World!&quot;)</code> is treated as an instance of the <code>MyInterface</code> functional interface. We&#39;re assigning a block of code to the variable <code>ref</code>.</p>
+<h3 id="the-functionalinterface-annotation">The <code>@FunctionalInterface</code> Annotation<a class="heading-anchor" href="#the-functionalinterface-annotation" aria-label="Link to The @FunctionalInterface Annotation">#</a></h3><p>Java 8 also introduced the <code>@FunctionalInterface</code> annotation, which is used to indicate that an interface is intended to be a functional interface. It&#39;s a kind of <em>hint</em> to the compiler that you intend for this interface to adhere to the rules of a functional interface:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyInterface</span> {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">myMethod</span><span class="hljs-params">()</span>;
+}</code></pre></div><p>However, the <code>@FunctionalInterface</code> annotation is not required. If an interface meets the criteria of a functional interface (it has only one abstract method), it&#39;s a functional interface whether or not it has the <code>@FunctionalInterface</code> annotation.</p>
+<p>So why use it? </p>
+<p>There are a couple of reasons:</p>
+<ol>
+<li><p>It makes your intent clear. By using <code>@FunctionalInterface</code>, you&#39;re signaling to other developers (and to your future self) that this interface is meant to be used with lambda expressions.</p>
+</li>
+<li><p>It enables compiler checks. If you annotate an interface with <code>@FunctionalInterface</code> and then try to add a second abstract method to it, the compiler will throw an error. This can help prevent accidental violations of the functional interface contract.</p>
+</li>
+</ol>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyInterface</span> {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">myMethod</span><span class="hljs-params">()</span>;
+    <span class="hljs-type">void</span> <span class="hljs-title function_">myOtherMethod</span><span class="hljs-params">()</span>;  <span class="hljs-comment">// This will cause a compiler error</span>
+}</code></pre></div><p>However, the annotation does not become part of the generated bytecode. It&#39;s purely for compile-time checks and for developer clarity.</p>
+<p>Also, note that if an interface is annotated with <code>@FunctionalInterface</code>, but does not actually meet the criteria (for example, if it has no abstract methods at all), the compiler will raise an error:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">NonFunctionalInterface</span> {
+    <span class="hljs-comment">// No abstract methods</span>
+}  <span class="hljs-comment">// This will cause a compiler error</span></code></pre></div><h3 id="rules-for-defining-a-functional-interface">Rules for Defining a Functional Interface<a class="heading-anchor" href="#rules-for-defining-a-functional-interface" aria-label="Link to Rules for Defining a Functional Interface">#</a></h3><p>Functional interfaces do not limit what you can do. You can still define as many default and static methods on the interface as you&#39;d like. </p>
+<p>Default methods enable you to add new functionality to the interfaces of your libraries and ensure binary compatibility with code written for older versions of those interfaces. Static methods in interfaces are used for providing utility methods, like <code>null</code>-checking for example.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyInterface</span> {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">abstractMethod</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span>;  
+    <span class="hljs-keyword">default</span> <span class="hljs-type">void</span> <span class="hljs-title function_">defaultMethod</span><span class="hljs-params">()</span> { }        
+    <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">staticMethod</span><span class="hljs-params">()</span> { }  
+}</code></pre></div><p>Only the <code>abstractMethod</code> counts toward the single abstract method test for a functional interface.</p>
+<p>It&#39;s also important to note that if an interface declares an abstract method overriding one of the public methods of <code>java.lang.Object</code>, that also does not count toward the interface&#39;s abstract method count since any implementation of the interface will have an implementation from <code>java.lang.Object</code> or elsewhere. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyInterface</span> {
+    <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object obj)</span>; 
+    <span class="hljs-comment">// Other methods</span>
+}</code></pre></div><p>In this case, <code>MyInterface</code> is still a functional interface since <code>equals</code> is a public method in <code>Object</code>.</p>
+<p>Using lambda expressions with functional interfaces is simply a new option in our coding toolbox. You can still use anonymous inner classes or implement the interface the old-fashioned way:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">MyInterface</span> <span class="hljs-variable">ref</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyInterface</span>() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">myMethod</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+    }
+};
+
+<span class="hljs-comment">// Implementing the interface in a separate class</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">MyInterface</span> {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">myMethod</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+    }
+}
+<span class="hljs-type">MyInterface</span> <span class="hljs-variable">ref</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();</code></pre></div><p>Also, a class or lambda expression can implement multiple functional interfaces if they&#39;re compatible. For example, if two interfaces have identical abstract methods, they&#39;re effectively the same functional interface:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Interface1</span> {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">method</span><span class="hljs-params">()</span>;
+}
+
+<span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Interface2</span> {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">method</span><span class="hljs-params">()</span>;
+}
+
+<span class="hljs-comment">// Implementing multiple compatible interfaces in a class</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Interface1</span>, Interface2 {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">method</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+    }
+}
+
+<span class="hljs-comment">// Using a lambda expression </span>
+<span class="hljs-type">Interface1</span> <span class="hljs-variable">ref1</span> <span class="hljs-operator">=</span> () -&gt; System.out.println(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+<span class="hljs-type">Interface2</span> <span class="hljs-variable">ref2</span> <span class="hljs-operator">=</span> () -&gt; System.out.println(<span class="hljs-string">&quot;Hello World!&quot;</span>);</code></pre></div><p>And if the built-in functional interfaces like <code>Runnable</code> or <code>Comparator</code> don&#39;t meet your needs, you can easily define your own. Just remember the single abstract method rule.</p>
+<h2 id="lambda-expressions">Lambda Expressions<a class="heading-anchor" href="#lambda-expressions" aria-label="Link to Lambda Expressions">#</a></h2><p>Lambda expressions allow you to treat functionality as a method argument or code as data, enabling a more functional programming style. For example, they enable you to write code like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">List</span>&lt;Car&gt; <span class="hljs-variable">compactCars</span> <span class="hljs-operator">=</span> findCars(cars,
+     (Car c) -&gt;
+        c.getType().equals(CarTypes.COMPACT)
+);</code></pre></div><p>Instead of:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">List</span>&lt;Car&gt; <span class="hljs-variable">compactCars</span> <span class="hljs-operator">=</span> findCars(cars,
+     <span class="hljs-keyword">new</span> <span class="hljs-title class_">Searchable</span>() {
+        <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">test</span><span class="hljs-params">(Car car)</span> {
+           <span class="hljs-keyword">return</span> car.getType().equals(
+                     CarTypes.COMPACT);
+        }
+});</code></pre></div><p>In essence, a lambda expression is a concise way to represent a function. The term lambda expression comes from lambda calculus, written as λ-calculus, where λ is the Greek letter lambda. This form of calculus deals with defining and applying functions.</p>
+<p>Functional interfaces are the foundation upon which lambda expressions are built. For example, consider the following functional interface:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyFunction</span> {
+    <span class="hljs-type">int</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span>;
+}</code></pre></div><p>You can use a lambda expression wherever an instance of this interface is expected:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">MyFunction</span> <span class="hljs-variable">doubler</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span> a) -&gt; a * <span class="hljs-number">2</span>;</code></pre></div><p>The lambda expression <code>a -&gt; a * 2</code> conforms to the signature of the <code>apply</code> method in <code>MyFunction</code>.</p>
+<h3 id="syntax-of-a-lambda-expression">Syntax of a Lambda Expression<a class="heading-anchor" href="#syntax-of-a-lambda-expression" aria-label="Link to Syntax of a Lambda Expression">#</a></h3><p>A lambda expression has three parts: a list of parameters, an arrow token (-&gt;), and a function body. </p>
+<p>Here&#39;s the basic syntax:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">(parameters) -&gt; expression
+<span class="hljs-comment">// or </span>
+(parameters) -&gt; { statements; }</code></pre></div><p>For example, consider this functional interface:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyFunction</span> {
+    <span class="hljs-type">int</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span>;
+}</code></pre></div><p>And this lambda expression that takes two integers and returns their sum:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">MyFunction</span> <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b) -&gt; a + b</code></pre></div><p>You can use the <code>var</code> keyword in the parameter list of a lambda expression. This allows the type of the parameter to be inferred by the compiler:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">MyFunction</span> <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> (<span class="hljs-keyword">var</span> a, <span class="hljs-keyword">var</span> b) -&gt; a + b</code></pre></div><p>You can omit the parameter types, the compiler can also infer them from the context:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">MyFunction</span> <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> (a, b) -&gt; a + b</code></pre></div><p>If the lambda expression only takes one parameter, you can even omit the parentheses:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyFunction</span> {
+    <span class="hljs-type">int</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span>;
+}
+
+<span class="hljs-comment">//...</span>
+
+<span class="hljs-type">MyFunction</span> <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> a -&gt; a * <span class="hljs-number">2</span></code></pre></div><p>You can also use the <code>var</code> keyword to declare a variable without specifying its type only when the compiler can infer the type from the context. </p>
+<p>For example, taking into account the <code>MyFunction</code> interface of the previous example and just the following expression:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> a -&gt; a * <span class="hljs-number">2</span>;</code></pre></div><p>You&#39;d get a compile-time error with the following message: &quot;Cannot infer type: lambda expression requires an explicit target type.&quot;</p>
+<p>You cannot use <code>var</code> directly with a lambda expression like <code>var f = (var a) -&gt; a * 2;</code> because the lambda needs a target type that <code>var</code> cannot provide.</p>
+<p>However, in this case:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">MyInterface</span> <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> (a) -&gt; a * <span class="hljs-number">2</span>; <span class="hljs-comment">// Lambda assigned to functional interface</span>
+<span class="hljs-type">var</span> <span class="hljs-variable">fVar</span> <span class="hljs-operator">=</span> f; <span class="hljs-comment">// `var` infers type MyInterface</span>
+System.out.println(fVar.apply(<span class="hljs-number">5</span>)); <span class="hljs-comment">// Outputs 10</span></code></pre></div><p>You can use <code>var</code> because you are assigning a lambda to a previously defined functional interface, where the type can be inferred from the context.</p>
+<p>The contexts where the target type (the functional interface) of a lambda expression can be inferred include:</p>
+<ul>
+<li>A variable declaration</li>
+<li>An assignment</li>
+<li>A return statement</li>
+<li>An array initializer</li>
+<li>Method or constructor arguments</li>
+<li>A ternary conditional expression</li>
+<li>A cast expression</li>
+</ul>
+<p>If you understand the concept, you don&#39;t need to memorize this list.</p>
+<h3 id="lambda-expressions-and-anonymous-classes">Lambda Expressions and Anonymous Classes<a class="heading-anchor" href="#lambda-expressions-and-anonymous-classes" aria-label="Link to Lambda Expressions and Anonymous Classes">#</a></h3><p>Prior to Java 8, anonymous classes were the primary way to represent a one-off piece of functionality. With the introduction of lambda expressions in Java 8, we now have a more concise way to write certain types of anonymous classes.</p>
+<p>Consider this anonymous class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Runnable</span> <span class="hljs-variable">r1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Runnable</span>() {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Hello!&quot;</span>);
+    }
+};</code></pre></div><p>This can be replaced with a lambda expression:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Runnable</span> <span class="hljs-variable">r2</span> <span class="hljs-operator">=</span> () -&gt; System.out.println(<span class="hljs-string">&quot;Hello!&quot;</span>);</code></pre></div><p>However, while lambda expressions and anonymous classes share some similarities, they also have significant differences:</p>
+<p><strong>Similarities:</strong></p>
+<ul>
+<li>Local variables can only be used if they are declared final or are effectively final.</li>
+<li>You can access instance or static variables of the enclosing class.</li>
+<li>They must not throw more checked exceptions than specified in the throws clause of the functional interface method.</li>
+</ul>
+<p><strong>Differences:</strong></p>
+<ul>
+<li>In an anonymous class, <code>this</code> refers to the instance of the anonymous class itself. In a lambda expression, <code>this</code> refers to the enclosing class instance.</li>
+<li>Default methods of a functional interface cannot be accessed from within lambda expressions, but they can be accessed from anonymous classes.</li>
+<li>Lambda expressions allow you to omit the types of the parameters in the parameter list, which is not possible with anonymous classes.</li>
+<li>If you reference an instance variable inside a lambda expression, you&#39;re referencing the variable from the enclosing instance. In an anonymous class, you would be referencing a separate copy of the variable.</li>
+</ul>
+<p>Here&#39;s an example about using local variables inside the body of a lambda:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LambdaExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">testLambda</span><span class="hljs-params">()</span> {
+        <span class="hljs-type">int</span> <span class="hljs-variable">localVariable</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+        <span class="hljs-type">Runnable</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> () -&gt; {
+            System.out.println(<span class="hljs-string">&quot;Lambda: &quot;</span> + localVariable);
+        };
+        r.run();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">testAnonymous</span><span class="hljs-params">()</span> {
+        <span class="hljs-type">int</span> <span class="hljs-variable">localVariable</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+        <span class="hljs-type">Runnable</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Runnable</span>() {
+            <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> {
+                System.out.println(<span class="hljs-string">&quot;Anonymous: &quot;</span> + localVariable);
+            }
+        };
+        r.run();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">LambdaExample</span> <span class="hljs-variable">example</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LambdaExample</span>();
+        example.testLambda();
+        example.testAnonymous();
+    }
+}</code></pre></div><p>This is the output:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Lambda: 10
+Anonymous: 10</code></pre></div><p>In this example, both the lambda expression and the anonymous class are able to access the <code>localVariable</code> defined in their respective methods. However, if we try to modify the <code>localVariable</code> after it has been used in the lambda expression or anonymous class, we will get a compilation error:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">testLambda</span><span class="hljs-params">()</span> {
+    <span class="hljs-type">int</span> <span class="hljs-variable">localVariable</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+    <span class="hljs-type">Runnable</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> () -&gt; {
+        System.out.println(<span class="hljs-string">&quot;Lambda: &quot;</span> + localVariable); <span class="hljs-comment">// Compilation error</span>
+    };
+    localVariable = <span class="hljs-number">20</span>;  <span class="hljs-comment">// Because of this</span>
+    r.run();
+}</code></pre></div><p>This is because the <code>localVariable</code> must be effectively final (its value doesn&#39;t change after initialization) in order to be used inside the lambda expression or anonymous class.</p>
+<p>Local variables have to be final because of the way they are implemented in Java. Instance variables are stored on the heap, while local variables live on the stack. Variables on the heap are shared across threads, but variables on the stack are confined to the thread they&#39;re in.</p>
+<p>When you create an instance of an anonymous inner class or a lambda expression, the values of local variables are copied. This prevents thread-related problems and ensures that you are working with a consistent value, as the variable cannot be modified after initialization.</p>
+<p>By requiring final (or effectively final) variables, Java ensures thread safety and consistency, as the value cannot be changed, eliminating visibility issues and potential thread problems.</p>
+<h2 id="java-built-in-lambda-interfaces">Java Built-In Lambda Interfaces<a class="heading-anchor" href="#java-built-in-lambda-interfaces" aria-label="Link to Java Built-In Lambda Interfaces">#</a></h2><p>In the previous section, we used functional interfaces like the following:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">interface</span> <span class="hljs-title class_">MyFunction</span> {
+    <span class="hljs-type">int</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span>;
+}</code></pre></div><p>However, you don&#39;t have to write an interface like that in each program that uses it (or link a library that contains it). An interface that does the same but accepts any object type already exists in the language.</p>
+<p>Java provides functional interfaces for common use cases in the <code>java.util.function</code> package.</p>
+<p>These are the main five:</p>
+<ul>
+<li><code>Predicate&lt;T&gt;</code></li>
+<li><code>Consumer&lt;T&gt;</code></li>
+<li><code>Function&lt;T, R&gt;</code></li>
+<li><code>Supplier&lt;T&gt;</code></li>
+<li><code>UnaryOperator&lt;T&gt;</code></li>
+</ul>
+<p>Where <code>T</code> and <code>R</code> represent generic types (<code>T</code> represents a parameter type and <code>R</code> the return type).</p>
+<p>They also have specializations for cases where the input parameter is a primitive type (specifically for <code>int</code>, <code>long</code>, <code>double</code>, and <code>boolean</code> for <code>Supplier</code>), for example:</p>
+<ul>
+<li><code>IntPredicate</code></li>
+<li><code>LongConsumer</code></li>
+<li><code>BooleanSupplier</code></li>
+</ul>
+<p>Where the name is preceded by the appropriate primitive type.</p>
+<p>Additionally, four of them have binary versions, which means they take two parameters instead of one:</p>
+<ul>
+<li><code>BiPredicate&lt;L, R&gt;</code></li>
+<li><code>BiConsumer&lt;T, U&gt;</code></li>
+<li><code>BiFunction&lt;T, U, R&gt;</code></li>
+<li><code>BinaryOperator&lt;T&gt;</code></li>
+</ul>
+<p>Where <code>T</code>, <code>U</code>, and <code>R</code> represent generic types (<code>T</code> and <code>U</code> represent parameter types and <code>R</code> the return type).</p>
+<p>The following tables show the complete list of interfaces. You don&#39;t have to memorize them, just try to understand them.</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Functional Interface</th><th>Primitive Versions</th></tr></thead><tbody><tr><td><code>Predicate&lt;T&gt;</code></td><td><code>IntPredicate</code><br/> <code>LongPredicate</code><br/> <code>DoublePredicate</code></td></tr><tr><td><code>Consumer&lt;T&gt;</code></td><td><code>IntConsumer</code><br/> <code>LongConsumer</code><br/> <code>DoubleConsumer</code></td></tr><tr><td><code>Function&lt;T, R&gt;</code></td><td><code>IntFunction&lt;R&gt;</code><br/> <code>IntToDoubleFunction</code><br/> <code>IntToLongFunction</code><br/> <code>LongFunction&lt;R&gt;</code><br/> <code>LongToDoubleFunction</code><br/> <code>LongToIntFunction</code><br/> <code>DoubleFunction&lt;R&gt;</code><br/> <code>DoubleToIntFunction</code><br/> <code>DoubleToLongFunction</code><br/> <code>ToIntFunction&lt;T&gt;</code><br/> <code>ToDoubleFunction&lt;T&gt;</code><br/> <code>ToLongFunction&lt;T&gt;</code></td></tr><tr><td><code>Supplier&lt;T&gt;</code></td><td><code>BooleanSupplier</code><br/> <code>IntSupplier</code><br/> <code>LongSupplier</code><br/> <code>DoubleSupplier</code></td></tr><tr><td><code>UnaryOperator&lt;T&gt;</code></td><td><code>IntUnaryOperator</code><br/> <code>LongUnaryOperator</code><br/> <code>DoubleUnaryOperator</code></td></tr></tbody></table></div><div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Functional Interface</th><th>Primitive Versions</th></tr></thead><tbody><tr><td><code>BiPredicate&lt;L, R&gt;</code></td><td></td></tr><tr><td><code>BiConsumer&lt;T, U&gt;</code></td><td><code>ObjIntConsumer&lt;T&gt;</code><br/> <code>ObjLongConsumer&lt;T&gt;</code><br/> <code>ObjDoubleConsumer&lt;T&gt;</code></td></tr><tr><td><code>BiFunction&lt;T, U, R&gt;</code></td><td><code>ToIntBiFunction&lt;T, U&gt;</code><br/> <code>ToLongBiFunction&lt;T, U&gt;</code><br/> <code>ToDoubleBiFunction&lt;T, U&gt;</code></td></tr><tr><td><code>BinaryOperator&lt;T&gt;</code></td><td><code>IntBinaryOperator</code><br/> <code>LongBinaryOperator</code><br/> <code>DoubleBinaryOperator</code></td></tr></tbody></table></div><h3 id="predicate"><code>Predicate</code><a class="heading-anchor" href="#predicate" aria-label="Link to Predicate">#</a></h3><p>A predicate is a statement that may be <code>true</code> or <code>false</code> depending on the values of its variables.</p>
+<p>This functional interface can be used anywhere you need to evaluate a <code>boolean</code> condition.</p>
+<p>This is how the interface is defined:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Predicate</span>&lt;T&gt; {
+    <span class="hljs-type">boolean</span> <span class="hljs-title function_">test</span><span class="hljs-params">(T t)</span>;
+    <span class="hljs-comment">// Other default and static methods</span>
+    <span class="hljs-comment">// ...</span>
+}</code></pre></div><p>The functional descriptor (method signature) is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">Predicate&lt;T&gt;</code></pre></div><p>Here&#39;s an example using an anonymous class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Predicate</span>&lt;String&gt; <span class="hljs-variable">startsWithA</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Predicate</span>&lt;String&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">test</span><span class="hljs-params">(String t)</span> {
+        <span class="hljs-keyword">return</span> t.startsWith(<span class="hljs-string">&quot;A&quot;</span>);
+    }
+};
+<span class="hljs-type">boolean</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> startsWithA.test(<span class="hljs-string">&quot;Arthur&quot;</span>);</code></pre></div><p>And with a lambda expression:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Predicate</span>&lt;String&gt; <span class="hljs-variable">startsWithA</span> <span class="hljs-operator">=</span> t -&gt; t.startsWith(<span class="hljs-string">&quot;A&quot;</span>);
+<span class="hljs-type">boolean</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> startsWithA.test(<span class="hljs-string">&quot;Arthur&quot;</span>);</code></pre></div><p>This interface also has the following default methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">default</span> <span class="hljs-type">Predicate</span>&lt;T&gt; <span class="hljs-title function_">and</span><span class="hljs-params">(Predicate&lt;? <span class="hljs-built_in">super</span> T&gt; other)</span>
+<span class="hljs-keyword">default</span> <span class="hljs-type">Predicate</span>&lt;T&gt; <span class="hljs-title function_">or</span><span class="hljs-params">(Predicate&lt;? <span class="hljs-built_in">super</span> T&gt; other)</span>
+<span class="hljs-keyword">default</span> <span class="hljs-type">Predicate</span>&lt;T&gt; <span class="hljs-title function_">negate</span><span class="hljs-params">()</span></code></pre></div><p>These methods return a composed <code>Predicate</code> that represents a short-circuiting logical <strong>AND</strong> and <strong>OR</strong> of this predicate and another and its logical negation.</p>
+<p>Short-circuiting means that the other predicate won&#39;t be evaluated if the value of the first predicate can predict the result of the operation (if the first predicate returns false in the case of <strong>AND</strong> or if it returns true in the case of <strong>OR</strong>).</p>
+<p>These methods are useful to combine predicates and make the code more readable, for example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Predicate</span>&lt;String&gt; <span class="hljs-variable">startsWithA</span> <span class="hljs-operator">=</span> t -&gt; t.startsWith(<span class="hljs-string">&quot;A&quot;</span>);
+<span class="hljs-type">Predicate</span>&lt;String&gt; <span class="hljs-variable">endsWithA</span> <span class="hljs-operator">=</span> t -&gt; t.endsWith(<span class="hljs-string">&quot;A&quot;</span>);
+<span class="hljs-type">boolean</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> startsWithA.and(endsWithA).test(<span class="hljs-string">&quot;Hi&quot;</span>);</code></pre></div><p>Also, there&#39;s a <code>static</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-type">Predicate</span>&lt;T&gt; <span class="hljs-title function_">isEqual</span><span class="hljs-params">(Object targetRef)</span></code></pre></div><p>That returns a <code>Predicate</code> that tests if two arguments are equal according to <code>Objects.equals(Object, Object)</code>.</p>
+<p>There are also primitive versions for <code>int</code>, <code>long</code>, and <code>double</code>. They don&#39;t extend from <code>Predicate</code>.</p>
+<p>For example, here&#39;s the definition of <code>IntPredicate</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">IntPredicate</span> {
+    <span class="hljs-type">boolean</span> <span class="hljs-title function_">test</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span>;
+    <span class="hljs-comment">// And the default methods: and, or, negate</span>
+}</code></pre></div><p>So instead of using:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Predicate</span>&lt;Integer&gt; <span class="hljs-variable">even</span> <span class="hljs-operator">=</span> t -&gt; t % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>;
+<span class="hljs-type">boolean</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> even.test(<span class="hljs-number">5</span>);</code></pre></div><p>You can use:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">IntPredicate</span> <span class="hljs-variable">even</span> <span class="hljs-operator">=</span> t -&gt; t % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>;
+<span class="hljs-type">boolean</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> even.test(<span class="hljs-number">5</span>);</code></pre></div><p>Why?</p>
+<p>Just to avoid the conversion from <code>Integer</code> to <code>int</code> and work directly with primitive types.</p>
+<p>Notice that these primitive versions don&#39;t have a generic type. Due to the way generics are implemented, parameters of the functional interfaces can be bound only to object types.</p>
+<p>Since the conversion from the wrapper type (<code>Integer</code>) to the primitive type (<code>int</code>) uses more memory and comes with a performance cost, Java provides these versions to avoid autoboxing operations when inputs or outputs are primitives.</p>
+<p>Here’s the corrected text:</p>
+<h3 id="consumer"><code>Consumer</code><a class="heading-anchor" href="#consumer" aria-label="Link to Consumer">#</a></h3><p><code>Consumer</code> represents an operation that accepts a single input argument and returns no result, it just executes some operations on the argument.</p>
+<p>This is how the interface is defined:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Consumer</span>&lt;T&gt; {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">accept</span><span class="hljs-params">(T t)</span>;
+    <span class="hljs-comment">// And a default method</span>
+    <span class="hljs-comment">// ...</span>
+}</code></pre></div><p>The functional descriptor (method signature) is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">T -&gt; <span class="hljs-keyword">void</span></code></pre></div><p>Here&#39;s an example using an anonymous class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Consumer</span>&lt;String&gt; <span class="hljs-variable">consumeStr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Consumer</span>&lt;String&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">accept</span><span class="hljs-params">(String t)</span> {
+        System.out.println(t);
+    }
+};
+consumeStr.accept(<span class="hljs-string">&quot;Hi&quot;</span>);</code></pre></div><p>And with a lambda expression:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Consumer</span>&lt;String&gt; <span class="hljs-variable">consumeStr</span> <span class="hljs-operator">=</span> t -&gt; System.out.println(t);
+consumeStr.accept(<span class="hljs-string">&quot;Hi&quot;</span>);</code></pre></div><p>This interface also has the following default method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">default</span> <span class="hljs-type">Consumer</span>&lt;T&gt; <span class="hljs-title function_">andThen</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-built_in">super</span> T&gt; after)</span></code></pre></div><p>This method returns a composed <code>Consumer</code> that performs, in sequence, the operation of the consumer followed by the operation of the parameter.</p>
+<p>These methods are useful to combine <code>Consumer</code>s and make the code more readable, for example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Consumer</span>&lt;String&gt; <span class="hljs-variable">first</span> <span class="hljs-operator">=</span> t -&gt;
+    System.out.println(<span class="hljs-string">&quot;First:&quot;</span> + t);
+<span class="hljs-type">Consumer</span>&lt;String&gt; <span class="hljs-variable">second</span> <span class="hljs-operator">=</span> t -&gt;
+    System.out.println(<span class="hljs-string">&quot;Second:&quot;</span> + t);
+first.andThen(second).accept(<span class="hljs-string">&quot;Hi&quot;</span>);</code></pre></div><p>The output is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">First: Hi
+Second: Hi</code></pre></div><p>Look how both <code>Consumer</code>s take the same argument and the order of execution.</p>
+<p>There are also primitive versions for <code>int</code>, <code>long</code>, and <code>double</code>. They don&#39;t extend from <code>Consumer</code>.</p>
+<p>For example, here&#39;s the definition of <code>IntConsumer</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">IntConsumer</span> {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">accept</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span>;
+    <span class="hljs-keyword">default</span> <span class="hljs-type">IntConsumer</span> <span class="hljs-title function_">andThen</span><span class="hljs-params">(IntConsumer after)</span> {
+        <span class="hljs-comment">// ...</span>
+    }
+}</code></pre></div><p>So instead of using:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> { <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span> };
+printList(a, t -&gt; System.out.println(t));
+<span class="hljs-comment">//...</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">printList</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, Consumer&lt;Integer&gt; c)</span> {
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i : a) {
+        c.accept(i);
+    }
+}</code></pre></div><p>You can use:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> { <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span> };
+printList(a, (IntConsumer) t -&gt; System.out.println(t));
+<span class="hljs-comment">//...</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">printList</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, IntConsumer c)</span> {
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i : a) {
+        c.accept(i);
+    }
+}</code></pre></div><h3 id="function"><code>Function</code><a class="heading-anchor" href="#function" aria-label="Link to Function">#</a></h3><p><code>Function</code> represents an operation that takes an input argument of a certain type and produces a result of another type.</p>
+<p>A common use is to convert or transform from one object to another.</p>
+<p>This is how the interface is defined:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Function</span>&lt;T, R&gt; {
+    <span class="hljs-type">R</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(T t)</span>;
+    <span class="hljs-comment">// Other default and static methods</span>
+    <span class="hljs-comment">// ...</span>
+}</code></pre></div><p>The functional descriptor (method signature) is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">T -&gt; R</code></pre></div><p>Assuming a method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">void</span> <span class="hljs-title function_">round</span><span class="hljs-params">(<span class="hljs-type">double</span> d, Function&lt;Double, Long&gt; f)</span> {
+    <span class="hljs-type">long</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> f.apply(d);
+    System.out.println(result);
+}</code></pre></div><p>Here&#39;s an example using an anonymous class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">round(<span class="hljs-number">5.4</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Function</span>&lt;Double, Long&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">Long</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(Double d)</span> {
+        <span class="hljs-keyword">return</span> Math.round(d);
+    }
+});</code></pre></div><p>And with a lambda expression:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">round(<span class="hljs-number">5.4</span>, d -&gt; Math.round(d));</code></pre></div><p>This interface also has the following default methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">default</span> &lt;V&gt; <span class="hljs-type">Function</span>&lt;V,R&gt; <span class="hljs-title function_">compose</span><span class="hljs-params">(
+    Function&lt;? <span class="hljs-built_in">super</span> V,? extends T&gt; before)</span>
+<span class="hljs-keyword">default</span> &lt;V&gt; <span class="hljs-type">Function</span>&lt;T,V&gt; <span class="hljs-title function_">andThen</span><span class="hljs-params">(
+    Function&lt;? <span class="hljs-built_in">super</span> R,? extends V&gt; after)</span></code></pre></div><p>The difference between these methods is that <code>compose</code> applies the function represented by the parameter first, and its result serves as the input to the other function. <code>andThen</code> first applies the function that calls the method, and its result acts as the input of the function represented by the parameter.</p>
+<p>For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Function</span>&lt;String, String&gt; <span class="hljs-variable">f1</span> <span class="hljs-operator">=</span> s -&gt; s.toUpperCase();
+<span class="hljs-type">Function</span>&lt;String, String&gt; <span class="hljs-variable">f2</span> <span class="hljs-operator">=</span> s -&gt; s.toLowerCase();
+System.out.println(f1.compose(f2).apply(<span class="hljs-string">&quot;Compose&quot;</span>));
+System.out.println(f1.andThen(f2).apply(<span class="hljs-string">&quot;AndThen&quot;</span>));</code></pre></div><p>The output is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">COMPOSE
+andthen</code></pre></div><p>In the first case, <code>f2</code> is the first function to be applied. In the second case, <code>f2</code> is the last function to be applied.</p>
+<p>Also, there&#39;s a <code>static</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-type">Function</span>&lt;T, T&gt; <span class="hljs-title function_">identity</span><span class="hljs-params">()</span></code></pre></div><p>That returns a function that always returns its input argument.</p>
+<p>In the case of primitive versions, they also apply to <code>int</code>, <code>long</code>, and <code>double</code>, but there are more combinations than the previous interfaces:</p>
+<ul>
+<li><p>To indicate that the function returns a generic type and takes a primitive argument, the interface is named <strong>XXXFunction</strong>, for example, <code>IntFunction</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">IntFunction</span>&lt;R&gt; {
+    <span class="hljs-type">R</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span>;
+}</code></pre></div></li>
+<li><p>To indicate that the function returns a primitive type and takes a generic argument, the interface is named <strong>ToXXXFunction</strong>, for example, <code>ToIntFunction</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ToIntFunction</span>&lt;T&gt; {
+    <span class="hljs-type">int</span> <span class="hljs-title function_">applyAsInt</span><span class="hljs-params">(T value)</span>;
+}</code></pre></div></li>
+<li><p>To indicate that the function takes a primitive argument and returns another primitive type, the interface is named <strong>XXXToYYYFunction</strong>, where <strong>XXX</strong> is the argument type and <strong>YYY</strong> is the return type, for example, <code>IntToDoubleFunction</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">IntToDoubleFunction</span> {
+    <span class="hljs-type">double</span> <span class="hljs-title function_">applyAsDouble</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span>;
+}</code></pre></div></li>
+</ul>
+<p>Remember that these interfaces are for convenience, to work directly with primitives, for example:</p>
+<p><code>DoubleFunction&lt;R&gt;</code> instead of <code>Function&lt;Double, R&gt;</code><br><code>ToLongFunction&lt;T&gt;</code> instead of <code>Function&lt;T, Long&gt;</code><br><code>IntToLongFunction</code> instead of <code>Function&lt;Integer, Long&gt;</code></p>
+<h3 id="supplier"><code>Supplier</code><a class="heading-anchor" href="#supplier" aria-label="Link to Supplier">#</a></h3><p><code>Supplier</code> is the opposite of <code>Consumer</code>. It takes no arguments and only returns some value.</p>
+<p>This is how the interface is defined:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Supplier</span>&lt;T&gt; {
+    <span class="hljs-type">T</span> <span class="hljs-title function_">get</span><span class="hljs-params">()</span>;
+}</code></pre></div><p>The functional descriptor (method signature) is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">() -&gt; T</code></pre></div><p>Here&#39;s an example using an anonymous class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;One&quot;</span>;
+<span class="hljs-type">Supplier</span>&lt;String&gt; <span class="hljs-variable">supplierStr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Supplier</span>&lt;String&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">String</span> <span class="hljs-title function_">get</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> t.toUpperCase();
+    }
+};
+System.out.println(supplierStr.get());</code></pre></div><p>And with a lambda expression:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;One&quot;</span>;
+<span class="hljs-type">Supplier</span>&lt;String&gt; <span class="hljs-variable">supplierStr</span> <span class="hljs-operator">=</span> () -&gt; t.toUpperCase();
+System.out.println(supplierStr.get());</code></pre></div><p>This interface doesn&#39;t define default methods.</p>
+<p>There are also primitive versions for <code>int</code>, <code>long</code>, <code>double</code>, and <code>boolean</code>, but they don&#39;t extend from <code>Supplier</code>.</p>
+<p>For example, here&#39;s the definition of <code>BooleanSupplier</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">BooleanSupplier</span> {
+    <span class="hljs-type">boolean</span> <span class="hljs-title function_">getAsBoolean</span><span class="hljs-params">()</span>;
+}</code></pre></div><p>These primitive versions are used instead of <code>Supplier</code> for their respective types.</p>
+<h3 id="unaryoperator"><code>UnaryOperator</code><a class="heading-anchor" href="#unaryoperator" aria-label="Link to UnaryOperator">#</a></h3><p><code>UnaryOperator</code> is just a specialization of the <code>Function</code> interface (in fact, this interface extends from it) for when the argument and the result are of the same type.</p>
+<p>This is how the interface is defined:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UnaryOperator</span>&lt;T&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Function</span>&lt;T, T&gt; {
+    <span class="hljs-comment">// Just the identity</span>
+    <span class="hljs-comment">// method is defined</span>
+}</code></pre></div><p>The functional descriptor (method signature) is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">T -&gt; T</code></pre></div><p>Here&#39;s an example using an anonymous class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">UnaryOperator</span>&lt;String&gt; <span class="hljs-variable">uOp</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">UnaryOperator</span>&lt;String&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">String</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(String t)</span> {
+        <span class="hljs-keyword">return</span> t.substring(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>);
+    }
+};
+System.out.println(uOp.apply(<span class="hljs-string">&quot;Hello&quot;</span>));</code></pre></div><p>And with a lambda expression:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">UnaryOperator</span>&lt;String&gt; <span class="hljs-variable">uOp</span> <span class="hljs-operator">=</span> t -&gt; t.substring(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>);
+System.out.println(uOp.apply(<span class="hljs-string">&quot;Hello&quot;</span>));</code></pre></div><p>This interface inherits the default methods of the <code>Function</code> interface:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">default</span> &lt;V&gt; <span class="hljs-type">Function</span>&lt;V, T&gt; <span class="hljs-title function_">compose</span><span class="hljs-params">(
+    Function&lt;? <span class="hljs-built_in">super</span> V, ? extends T&gt; before)</span>
+<span class="hljs-keyword">default</span> &lt;V&gt; <span class="hljs-type">Function</span>&lt;T, V&gt; <span class="hljs-title function_">andThen</span><span class="hljs-params">(
+    Function&lt;? <span class="hljs-built_in">super</span> T, ? extends V&gt; after)</span></code></pre></div><p>And just defines the <code>static</code> method <code>identity()</code> for this interface (since <code>static</code> methods are not inherited):</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-type">UnaryOperator</span>&lt;T&gt; <span class="hljs-title function_">identity</span><span class="hljs-params">()</span></code></pre></div><p>That returns a <code>UnaryOperator</code> that always returns its input argument.</p>
+<p>There are also primitive versions for <code>int</code>, <code>long</code>, and <code>double</code>. They don&#39;t extend from <code>UnaryOperator</code>.</p>
+<p>For example, here&#39;s the definition of <code>IntUnaryOperator</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">IntUnaryOperator</span> {
+    <span class="hljs-type">int</span> <span class="hljs-title function_">applyAsInt</span><span class="hljs-params">(<span class="hljs-type">int</span> operand)</span>;
+    <span class="hljs-comment">// Definitions for compose, andThen, and identity</span>
+}</code></pre></div><p>So instead of using:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>};
+<span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> sumNumbers(a, t -&gt; t * <span class="hljs-number">2</span>);
+<span class="hljs-comment">//...</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">sumNumbers</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, UnaryOperator&lt;Integer&gt; unary)</span> {
+    <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i : a) {
+        sum += unary.apply(i);
+    }
+    <span class="hljs-keyword">return</span> sum;
+}</code></pre></div><p>You can use:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>};
+<span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> sumNumbers(a, t -&gt; t * <span class="hljs-number">2</span>);
+<span class="hljs-comment">//...</span>
+<span class="hljs-type">int</span> <span class="hljs-title function_">sumNumbers</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, IntUnaryOperator unary)</span> {
+    <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i : a) {
+        sum += unary.applyAsInt(i);
+    }
+    <span class="hljs-keyword">return</span> sum;
+}</code></pre></div><h3 id="bipredicate"><code>BiPredicate</code><a class="heading-anchor" href="#bipredicate" aria-label="Link to BiPredicate">#</a></h3><p>This interface represents a predicate that takes two arguments.</p>
+<p>It is defined as follows:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">BiPredicate</span>&lt;T, U&gt; {
+    <span class="hljs-type">boolean</span> <span class="hljs-title function_">test</span><span class="hljs-params">(T t, U u)</span>;
+    <span class="hljs-comment">// Default methods are also defined</span>
+}</code></pre></div><p>The functional descriptor (method signature) is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">(T, U) -&gt; <span class="hljs-type">boolean</span></code></pre></div><p>Here&#39;s an example using an anonymous class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BiPredicate</span>&lt;Integer, Integer&gt; <span class="hljs-variable">divisible</span> <span class="hljs-operator">=</span>
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">BiPredicate</span>&lt;Integer, Integer&gt;() {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">test</span><span class="hljs-params">(Integer t, Integer u)</span> {
+            <span class="hljs-keyword">return</span> t % u == <span class="hljs-number">0</span>;
+        }
+    };
+<span class="hljs-type">boolean</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> divisible.test(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>);</code></pre></div><p>And with a lambda expression:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BiPredicate</span>&lt;Integer, Integer&gt; <span class="hljs-variable">divisible</span> <span class="hljs-operator">=</span>
+    (t, u) -&gt; t % u == <span class="hljs-number">0</span>;
+<span class="hljs-type">boolean</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> divisible.test(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>);</code></pre></div><p>This interface defines the same default methods as the <code>Predicate</code> interface, but with two arguments:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">default</span> <span class="hljs-type">BiPredicate</span>&lt;T, U&gt; <span class="hljs-title function_">and</span><span class="hljs-params">(
+    BiPredicate&lt;? <span class="hljs-built_in">super</span> T, ? <span class="hljs-built_in">super</span> U&gt; other)</span> {
+    <span class="hljs-keyword">return</span> (t, u) -&gt; test(t, u) &amp;&amp; other.test(t, u);
+}
+
+<span class="hljs-keyword">default</span> <span class="hljs-type">BiPredicate</span>&lt;T, U&gt; <span class="hljs-title function_">or</span><span class="hljs-params">(
+    BiPredicate&lt;? <span class="hljs-built_in">super</span> T, ? <span class="hljs-built_in">super</span> U&gt; other)</span> {
+    <span class="hljs-keyword">return</span> (t, u) -&gt; test(t, u) || other.test(t, u);
+}
+
+<span class="hljs-keyword">default</span> <span class="hljs-type">BiPredicate</span>&lt;T, U&gt; <span class="hljs-title function_">negate</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">return</span> (t, u) -&gt; !test(t, u);
+}</code></pre></div><p>This interface doesn&#39;t have primitive versions.</p>
+<h3 id="biconsumer"><code>BiConsumer</code><a class="heading-anchor" href="#biconsumer" aria-label="Link to BiConsumer">#</a></h3><p>This interface represents a consumer that takes two arguments (and doesn&#39;t return a result).</p>
+<p>This is how it is defined:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">BiConsumer</span>&lt;T, U&gt; {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">accept</span><span class="hljs-params">(T t, U u)</span>;
+    <span class="hljs-comment">// andThen default method is defined</span>
+}</code></pre></div><p>The functional descriptor (method signature) is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">(T, U) -&gt; <span class="hljs-keyword">void</span></code></pre></div><p>Here&#39;s an example using an anonymous class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BiConsumer</span>&lt;String, String&gt; <span class="hljs-variable">consumeStr</span> <span class="hljs-operator">=</span>
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">BiConsumer</span>&lt;String, String&gt;() {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">accept</span><span class="hljs-params">(String t, String u)</span> {
+            System.out.println(t + <span class="hljs-string">&quot; &quot;</span> + u);
+        }
+    };
+consumeStr.accept(<span class="hljs-string">&quot;Hi&quot;</span>, <span class="hljs-string">&quot;there&quot;</span>);</code></pre></div><p>And with a lambda expression:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BiConsumer</span>&lt;String, String&gt; <span class="hljs-variable">consumeStr</span> <span class="hljs-operator">=</span>
+    (t, u) -&gt; System.out.println(t + <span class="hljs-string">&quot; &quot;</span> + u);
+consumeStr.accept(<span class="hljs-string">&quot;Hi&quot;</span>, <span class="hljs-string">&quot;there&quot;</span>);</code></pre></div><p>This interface also has the following default method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">default</span> <span class="hljs-type">BiConsumer</span>&lt;T, U&gt; <span class="hljs-title function_">andThen</span><span class="hljs-params">(
+    BiConsumer&lt;? <span class="hljs-built_in">super</span> T, ? <span class="hljs-built_in">super</span> U&gt; after)</span></code></pre></div><p>This method returns a composed <code>BiConsumer</code> that performs, in sequence, the operation of the consumer followed by the operation of the parameter. It will throw <code>NullPointerException</code> if the <code>after</code> parameter is <code>null</code>.</p>
+<p>As in the case of a <code>Consumer</code>, these methods are useful to combine <code>BiConsumer</code>s and make the code more readable, for example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BiConsumer</span>&lt;String, String&gt; <span class="hljs-variable">first</span> <span class="hljs-operator">=</span> (t, u) -&gt; System.out.println(t.toUpperCase() + u.toUpperCase());
+<span class="hljs-type">BiConsumer</span>&lt;String, String&gt; <span class="hljs-variable">second</span> <span class="hljs-operator">=</span> (t, u) -&gt; System.out.println(t.toLowerCase() + u.toLowerCase());
+first.andThen(second).accept(<span class="hljs-string">&quot;Again&quot;</span>, <span class="hljs-string">&quot; and again&quot;</span>);</code></pre></div><p>The output is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">AGAIN AND AGAIN
+again and again</code></pre></div><p>There are also primitive specialization versions for <code>int</code>, <code>long</code>, and <code>double</code>. They don&#39;t extend from <code>BiConsumer</code>, and instead of taking two <code>int</code>s, for example, they take one object and a primitive value as a second argument. So the naming convention changes to <strong>ObjXXXConsumer</strong>, where <strong>XXX</strong> is the primitive type. For example, here&#39;s the definition of <code>ObjIntConsumer</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ObjIntConsumer</span>&lt;T&gt; {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">accept</span><span class="hljs-params">(T t, <span class="hljs-type">int</span> value)</span>;
+}</code></pre></div><p>So instead of using:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>};
+printList(a, (t, i) -&gt; System.out.println(t + i));
+<span class="hljs-comment">//...</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">printList</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, BiConsumer&lt;String, Integer&gt; c)</span> {
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i : a) {
+        c.accept(<span class="hljs-string">&quot;Number:&quot;</span>, i);
+    }
+}</code></pre></div><p>You can use:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>};
+printList(a, (t, i) -&gt; System.out.println(t + i));
+<span class="hljs-comment">//...</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">printList</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, ObjIntConsumer&lt;String&gt; c)</span> {
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i : a) {
+        c.accept(<span class="hljs-string">&quot;Number:&quot;</span>, i);
+    }
+}</code></pre></div><h3 id="bifunction"><code>BiFunction</code><a class="heading-anchor" href="#bifunction" aria-label="Link to BiFunction">#</a></h3><p>This interface represents a function that takes two arguments of different types and produces a result of another type.</p>
+<p>This is how it is defined:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">BiFunction</span>&lt;T, U, R&gt; {
+    <span class="hljs-type">R</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(T t, U u)</span>;
+    <span class="hljs-comment">// Other default and static methods</span>
+    <span class="hljs-comment">// ...</span>
+}</code></pre></div><p>The functional descriptor (method signature) is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">(T, U) -&gt; R</code></pre></div><p>Assuming a method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">void</span> <span class="hljs-title function_">round</span><span class="hljs-params">(<span class="hljs-type">double</span> d1, <span class="hljs-type">double</span> d2, BiFunction&lt;Double, Double, Long&gt; f)</span> {
+    <span class="hljs-type">long</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> f.apply(d1, d2);
+    System.out.println(result);
+}</code></pre></div><p>Here&#39;s an example using an anonymous class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">round(<span class="hljs-number">5.4</span>, <span class="hljs-number">3.8</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">BiFunction</span>&lt;Double, Double, Long&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">Long</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(Double d1, Double d2)</span> {
+        <span class="hljs-keyword">return</span> Math.round(d1 + d2);
+    }
+});</code></pre></div><p>And with a lambda expression:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">round(<span class="hljs-number">5.4</span>, <span class="hljs-number">3.8</span>, (d1, d2) -&gt; Math.round(d1 + d2));</code></pre></div><p>This interface, unlike <code>Function</code>, has only one default method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">default</span> &lt;V&gt; <span class="hljs-type">BiFunction</span>&lt;T, U, V&gt; <span class="hljs-title function_">andThen</span><span class="hljs-params">(Function&lt;? <span class="hljs-built_in">super</span> R, ? extends V&gt; after)</span></code></pre></div><p>That returns a composed function that first applies the function that calls <code>andThen</code> to its input, and then applies the function represented by the argument to the result.</p>
+<p>This interface also has fewer primitive versions than <code>Function</code>. It only has the versions that take generic types as arguments and return <code>int</code>, <code>long</code> and <code>double</code> primitive types, with the naming convention <strong>ToXXXBiFunction</strong>, where XXX is the primitive type.</p>
+<p>For example, here&#39;s the definition of <code>ToIntBiFunction</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ToIntBiFunction</span>&lt;T, U&gt; {
+    <span class="hljs-type">int</span> <span class="hljs-title function_">applyAsInt</span><span class="hljs-params">(T t, U u)</span>;
+}</code></pre></div><p>This replaces <code>BiFunction</code>.</p>
+<h3 id="binaryoperator"><code>BinaryOperator</code><a class="heading-anchor" href="#binaryoperator" aria-label="Link to BinaryOperator">#</a></h3><p>This interface is a specialization of the <code>BiFunction</code> interface (in fact, this interface extends it) for when the arguments and the result are of the same type.</p>
+<p>This is how the interface is defined:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">BinaryOperator</span>&lt;T&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BiFunction</span>&lt;T, T, T&gt; {
+    <span class="hljs-comment">// Two static methods are defined</span>
+}</code></pre></div><p>The functional descriptor (method signature) is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">(T, T) -&gt; T</code></pre></div><p>Here&#39;s an example using an anonymous class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BinaryOperator</span>&lt;String&gt; <span class="hljs-variable">binOp</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BinaryOperator</span>&lt;String&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">String</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(String t, String u)</span> {
+        <span class="hljs-keyword">return</span> t.concat(u);
+    }
+};
+System.out.println(binOp.apply(<span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-string">&quot; there&quot;</span>));</code></pre></div><p>And with a lambda expression:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BinaryOperator</span>&lt;String&gt; <span class="hljs-variable">binOp</span> <span class="hljs-operator">=</span> (t, u) -&gt; t.concat(u);
+System.out.println(binOp.apply(<span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-string">&quot; there&quot;</span>));</code></pre></div><p>This interface inherits the default method of the <code>BiFunction</code> interface:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">default</span> &lt;V&gt; <span class="hljs-type">BiFunction</span>&lt;T, T, V&gt; <span class="hljs-title function_">andThen</span><span class="hljs-params">(Function&lt;? <span class="hljs-built_in">super</span> T, ? extends V&gt; after)</span></code></pre></div><p>And defines two new <code>static</code> methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-type">BinaryOperator</span>&lt;T&gt; <span class="hljs-title function_">minBy</span><span class="hljs-params">(Comparator&lt;? <span class="hljs-built_in">super</span> T&gt; comparator)</span>
+<span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-type">BinaryOperator</span>&lt;T&gt; <span class="hljs-title function_">maxBy</span><span class="hljs-params">(Comparator&lt;? <span class="hljs-built_in">super</span> T&gt; comparator)</span></code></pre></div><p>That return a <code>BinaryOperator</code>, which returns the lesser or greater of two elements according to the specified <code>Comparator</code>.</p>
+<p>Here&#39;s a simple example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BinaryOperator</span>&lt;Integer&gt; <span class="hljs-variable">biOp</span> <span class="hljs-operator">=</span> BinaryOperator.maxBy(Comparator.naturalOrder());
+System.out.println(biOp.apply(<span class="hljs-number">28</span>, <span class="hljs-number">8</span>));</code></pre></div><p>As you can see, these methods are just a wrapper to execute a <code>Comparator</code>.</p>
+<p><code>Comparator.naturalOrder()</code> returns a <code>Comparator</code> that compares <code>Comparable</code> objects in natural order. To execute it, we just call the <code>apply()</code> method with the two arguments needed by the <code>BinaryOperator</code>. Unsurprisingly, the output is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-number">28</span></code></pre></div><p>There are also primitive versions for <code>int</code>, <code>long</code>, and <code>double</code>, where the two arguments and the return type are of the same primitive type. They don&#39;t extend <code>BinaryOperator</code> or <code>BiFunction</code>.</p>
+<p>For example, here&#39;s the definition of <code>IntBinaryOperator</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">IntBinaryOperator</span> {
+    <span class="hljs-type">int</span> <span class="hljs-title function_">applyAsInt</span><span class="hljs-params">(<span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right)</span>;
+}</code></pre></div><p>That you can use instead of <code>BinaryOperator</code>.</p>
+<h3 id="primitive-specific-functional-interfaces">Primitive-specific Functional Interfaces<a class="heading-anchor" href="#primitive-specific-functional-interfaces" aria-label="Link to Primitive-specific Functional Interfaces">#</a></h3><p>There&#39;s also a set of functional interfaces that are specifically designed to work with primitive types. These interfaces can provide better performance than their generic counterparts when working with primitives, as they avoid the overhead of boxing and unboxing.</p>
+<p>There are several categories of primitive-specific functional interfaces:</p>
+<ol>
+<li><code>ToDoubleFunction&lt;T&gt;</code>, <code>ToIntFunction&lt;T&gt;</code>, <code>ToLongFunction&lt;T&gt;</code>: These interfaces represent functions that accept an object of type <code>T</code> and return a primitive <code>double</code>, <code>int</code>, or <code>long</code>, respectively. For example, this is how <code>ToIntFunction&lt;T&gt;</code> is defined:</li>
+</ol>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ToIntFunction</span>&lt;T&gt; {
+    <span class="hljs-type">int</span> <span class="hljs-title function_">applyAsInt</span><span class="hljs-params">(T value)</span>;
+}</code></pre></div><p>And here&#39;s an example of how to use it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ToIntFunction</span>&lt;String&gt; <span class="hljs-variable">stringToInt</span> <span class="hljs-operator">=</span> Integer::parseInt;
+<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> stringToInt.applyAsInt(<span class="hljs-string">&quot;123&quot;</span>);  <span class="hljs-comment">// 123</span></code></pre></div><ol start="2">
+<li><code>ToDoubleBiFunction&lt;T, U&gt;</code>, <code>ToIntBiFunction&lt;T, U&gt;</code>, <code>ToLongBiFunction&lt;T, U&gt;</code>: These interfaces represent functions that accept two objects of types <code>T</code> and <code>U</code> and return a primitive <code>double</code>, <code>int</code>, or <code>long</code>, respectively. For example, this is how <code>ToIntBiFunction&lt;T, U&gt;</code> is defined:</li>
+</ol>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ToIntBiFunction</span>&lt;T, U&gt; {
+    <span class="hljs-type">int</span> <span class="hljs-title function_">applyAsInt</span><span class="hljs-params">(T t, U u)</span>;
+}</code></pre></div><p>And here&#39;s an example of how to use it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ToIntBiFunction</span>&lt;String, String&gt; <span class="hljs-variable">comparator</span> <span class="hljs-operator">=</span> String::compareTo;
+<span class="hljs-type">int</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> comparator.applyAsInt(<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;def&quot;</span>);  <span class="hljs-comment">// a negative value</span></code></pre></div><ol start="3">
+<li><code>DoubleToIntFunction</code>, <code>DoubleToLongFunction</code>, <code>IntToDoubleFunction</code>, <code>IntToLongFunction</code>, <code>LongToDoubleFunction</code>, <code>LongToIntFunction</code>: These interfaces represent functions that accept one primitive type and return another primitive type. For example, this is how <code>DoubleToIntFunction</code> is defined:</li>
+</ol>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">DoubleToIntFunction</span> {
+    <span class="hljs-type">int</span> <span class="hljs-title function_">applyAsInt</span><span class="hljs-params">(<span class="hljs-type">double</span> value)</span>;
+}</code></pre></div><p>And here&#39;s an example of how to use it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">DoubleToIntFunction</span> <span class="hljs-variable">roundDown</span> <span class="hljs-operator">=</span> d -&gt; (<span class="hljs-type">int</span>) d;
+<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> roundDown.applyAsInt(<span class="hljs-number">9.9</span>);  <span class="hljs-comment">// 9</span></code></pre></div><ol start="4">
+<li><code>ObjDoubleConsumer&lt;T&gt;</code>, <code>ObjIntConsumer&lt;T&gt;</code>, <code>ObjLongConsumer&lt;T&gt;</code>: These interfaces represent functions that accept an object of type <code>T</code> and a primitive <code>double</code>, <code>int</code>, or <code>long</code>, and return <code>void</code>. For example, this is how <code>ObjIntConsumer&lt;T&gt;</code> is defined:</li>
+</ol>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ObjIntConsumer</span>&lt;T&gt; {
+
+    <span class="hljs-comment">/**
+     * Performs this operation on the given arguments.
+     *
+     * <span class="hljs-doctag">@param</span> t the first input argument
+     * <span class="hljs-doctag">@param</span> value the second input argument
+     */</span>
+    <span class="hljs-type">void</span> <span class="hljs-title function_">accept</span><span class="hljs-params">(T t, <span class="hljs-type">int</span> value)</span>;
+}</code></pre></div><p>And here&#39;s an example of how to use it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ObjIntConsumer</span>&lt;List&lt;Integer&gt;&gt; <span class="hljs-variable">listAddInt</span> <span class="hljs-operator">=</span> List::add;
+<span class="hljs-type">List</span>&lt;Integer&gt; <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
+listAddInt.accept(list, <span class="hljs-number">1</span>);  <span class="hljs-comment">// [1]</span></code></pre></div><p>These interfaces differ from <code>DoubleFunction&lt;R&gt;</code>, <code>IntFunction&lt;R&gt;</code>, <code>LongFunction&lt;R&gt;</code>, etc., in that the latter accept a primitive and return an object. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">IntFunction</span>&lt;String&gt; <span class="hljs-variable">intToString</span> <span class="hljs-operator">=</span> Integer::toString;
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> intToString.apply(<span class="hljs-number">123</span>);  <span class="hljs-comment">// &quot;123&quot;</span></code></pre></div><p>The choice of which interface to use depends on your specific needs. If you&#39;re working primarily with primitives and want to avoid the overhead of autoboxing and unboxing, the primitive-specific interfaces are a good choice. However, if you need to work with objects, or if the boxing overhead is not a concern, the generic interfaces like <code>Function&lt;T, R&gt;</code> and <code>BiFunction&lt;T, U, R&gt;</code> are often more convenient.</p>
+<h2 id="method-references">Method References<a class="heading-anchor" href="#method-references" aria-label="Link to Method References">#</a></h2><p>As you know, in Java we can use references to objects, either by creating new objects:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">List</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();
+store(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>());</code></pre></div><p>Or by using existing objects:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">List</span> <span class="hljs-variable">list2</span> <span class="hljs-operator">=</span> list;
+isFull(list2);</code></pre></div><p>But what about a reference to a <em>method</em>?</p>
+<p>If we only use a method of an object in another method, we still have to pass the full object as an argument. Wouldn&#39;t it be more practical to just pass the method as an argument? Like this for example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">isFull(list.size);</code></pre></div><p>Thanks to lambda expressions, we can do something like that. We can use methods as if they were objects or primitive values.</p>
+<p>And that&#39;s because a method reference is the shorthand syntax for a lambda expression that executes just <strong>one</strong> method.</p>
+<p>Here&#39;s the syntax for a method reference:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">Object :: methodName</code></pre></div><p>You can use lambda expressions instead of using an anonymous class, but sometimes, the lambda expression is really just a call to some method. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Consumer</span>&lt;String&gt; <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> s -&gt; System.out.println(s);</code></pre></div><p>To make the code clearer, you can turn that lambda expression into a method reference:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Consumer</span>&lt;String&gt; <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> System.out::println;</code></pre></div><p>In a method reference, you place the object (or class) that contains the method before the <code>::</code> operator and the name of the method after it without arguments.</p>
+<p>But you may be thinking:</p>
+<ul>
+<li>How is this clearer?</li>
+<li>What happens to the arguments?</li>
+<li>How can this be a valid expression?</li>
+<li>I don&#39;t understand how to construct a valid method reference</li>
+</ul>
+<p>First of all, a method reference can&#39;t be used for any method. They can be used only to replace a single-method lambda expression.</p>
+<p>So to use a method reference you first need a lambda expression with one method. And to use a lambda expression you first need a functional interface, an interface with just one abstract method.</p>
+<p>In other words:</p>
+<p>Instead of using</p>
+<p><strong>AN ANONYMOUS CLASS</strong></p>
+<p>you can use</p>
+<p><strong>A LAMBDA EXPRESSION</strong></p>
+<p>And if this just calls one method, you can use</p>
+<p><strong>A METHOD REFERENCE</strong></p>
+<p>There are four types of method references:</p>
+<ul>
+<li>A method reference to a <em>static method</em></li>
+<li>A method reference to an <em>instance method of an object of a particular type</em></li>
+<li>A method reference to an <em>instance method of an existing object</em></li>
+<li>A method reference to a <em>constructor</em></li>
+</ul>
+<p>Let&#39;s begin by explaining the most natural case, a <em>static method</em>.</p>
+<h3 id="static-methods">Static Methods<a class="heading-anchor" href="#static-methods" aria-label="Link to Static Methods">#</a></h3><p>In this case, we have a lambda expression like the following:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">(args) -&gt; Class.staticMethod(args)</code></pre></div><p>That can be turned into the following method reference:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">Class::staticMethod</code></pre></div><p>Notice that between a static method and a static method reference instead of the <code>.</code> operator, we use the <code>::</code> operator, and that we don&#39;t pass arguments to the method reference.</p>
+<p>In general, we don&#39;t have to pass arguments to method references. However, arguments are treated depending on the type of method reference.</p>
+<p>In this case, any arguments (if any) taken by the method are passed automatically behind the curtains.</p>
+<p>Wherever we can pass a lambda expression that just calls a static method, we can use a method reference. For example, assuming this class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Numbers</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isMoreThanFifty</span><span class="hljs-params">(<span class="hljs-type">int</span> n1, <span class="hljs-type">int</span> n2)</span> {
+        <span class="hljs-keyword">return</span> (n1 + n2) &gt; <span class="hljs-number">50</span>;
+    }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">List</span>&lt;Integer&gt; <span class="hljs-title function_">findNumbers</span><span class="hljs-params">(
+        List&lt;Integer&gt; l, BiPredicate&lt;Integer, Integer&gt; p)</span> {
+        <span class="hljs-type">List</span>&lt;Integer&gt; <span class="hljs-variable">newList</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
+        <span class="hljs-keyword">for</span> (Integer i : l) {
+            <span class="hljs-keyword">if</span> (p.test(i, i + <span class="hljs-number">10</span>)) {
+                newList.add(i);
+            }
+        }
+        <span class="hljs-keyword">return</span> newList;
+    }
+}</code></pre></div><p>We can call the <code>findNumbers()</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">List</span>&lt;Integer&gt; <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-number">12</span>, <span class="hljs-number">5</span>, <span class="hljs-number">45</span>, <span class="hljs-number">18</span>, <span class="hljs-number">33</span>, <span class="hljs-number">24</span>, <span class="hljs-number">40</span>);
+
+<span class="hljs-comment">// Using an anonymous class</span>
+findNumbers(list, <span class="hljs-keyword">new</span> <span class="hljs-title class_">BiPredicate</span>&lt;Integer, Integer&gt;() {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">test</span><span class="hljs-params">(Integer i1, Integer i2)</span> {
+        <span class="hljs-keyword">return</span> Numbers.isMoreThanFifty(i1, i2);
+    }
+});
+
+<span class="hljs-comment">// Using a lambda expression</span>
+findNumbers(list, (i1, i2) -&gt; Numbers.isMoreThanFifty(i1, i2));
+
+<span class="hljs-comment">// Using a method reference</span>
+findNumbers(list, Numbers::isMoreThanFifty);</code></pre></div><h3 id="instance-method-of-an-object-of-a-particular-type">Instance Method of An Object of A Particular Type<a class="heading-anchor" href="#instance-method-of-an-object-of-a-particular-type" aria-label="Link to Instance Method of An Object of A Particular Type">#</a></h3><p>In this case, we have a lambda expression like the following:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">(obj, args) -&gt; obj.instanceMethod(args)</code></pre></div><p>Where an instance of an object is passed, and one of its methods is executed with some optional parameters.</p>
+<p>That can be turned into the following method reference:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">ObjectType::instanceMethod</code></pre></div><p>This time, the conversion is not that straightforward. First, in the method reference, we don&#39;t use the instance itself. We use its type.</p>
+<p>Second, the other argument of the lambda expression, if any, is not used in the method reference, but it&#39;s passed behind the curtains like in the static method case.</p>
+<p>For example, assuming this class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Shipment</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">calculateWeight</span><span class="hljs-params">()</span> {
+        <span class="hljs-type">double</span> <span class="hljs-variable">weight</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+        <span class="hljs-comment">// Calculate weight</span>
+        <span class="hljs-keyword">return</span> weight;
+    }
+}</code></pre></div><p>And this method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-type">List</span>&lt;Double&gt; <span class="hljs-title function_">calculateOnShipments</span><span class="hljs-params">(
+    List&lt;Shipment&gt; l, Function&lt;Shipment, Double&gt; f)</span> {
+    <span class="hljs-type">List</span>&lt;Double&gt; <span class="hljs-variable">results</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
+    <span class="hljs-keyword">for</span> (Shipment s : l) {
+        results.add(f.apply(s));
+    }
+    <span class="hljs-keyword">return</span> results;
+}</code></pre></div><p>We can call that method using:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">List</span>&lt;Shipment&gt; <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Shipment&gt;();
+
+<span class="hljs-comment">// Using an anonymous class</span>
+calculateOnShipments(l, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Function</span>&lt;Shipment, Double&gt;() {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">Double</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(Shipment s)</span> { <span class="hljs-comment">// The object</span>
+        <span class="hljs-keyword">return</span> s.calculateWeight(); <span class="hljs-comment">// The method</span>
+    }
+});
+
+<span class="hljs-comment">// Using a lambda expression</span>
+calculateOnShipments(l, s -&gt; s.calculateWeight());
+
+<span class="hljs-comment">// Using a method reference</span>
+calculateOnShipments(l, Shipment::calculateWeight);</code></pre></div><p>In this example, we don&#39;t pass any arguments to the method. The key point here is that an instance of the object is the parameter of the lambda expression, and we form the reference to the instance method with the type of the instance.</p>
+<p>Here&#39;s another example where we pass two arguments to the method reference.</p>
+<p>Java has a <code>Function</code> interface that takes one parameter, a <code>BiFunction</code> that takes two parameters, but there&#39;s no <code>TriFunction</code> that takes three parameters, so let&#39;s make one:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">TriFunction</span>&lt;T, U, V, R&gt; {
+    <span class="hljs-type">R</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(T t, U u, V v)</span>;
+}</code></pre></div><p>Now assume a class with a method that takes two parameters and returns a result, like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Sum</span> {
+    <span class="hljs-type">Integer</span> <span class="hljs-title function_">doSum</span><span class="hljs-params">(String s1, String s2)</span> {
+        <span class="hljs-keyword">return</span> Integer.parseInt(s1) + Integer.parseInt(s2);
+    }
+}</code></pre></div><p>We can wrap the <code>doSum()</code> method within a <code>TriFunction</code> implementation using an anonymous class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">TriFunction</span>&lt;Sum, String, String, Integer&gt; <span class="hljs-variable">anon</span> <span class="hljs-operator">=</span>
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">TriFunction</span>&lt;Sum, String, String, Integer&gt;() {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-type">Integer</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(Sum s, String arg1, String arg2)</span> {
+            <span class="hljs-keyword">return</span> s.doSum(arg1, arg2);
+        }
+    };
+System.out.println(anon.apply(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Sum</span>(), <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;4&quot;</span>));</code></pre></div><p>Or using a lambda expression:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">TriFunction</span>&lt;Sum, String, String, Integer&gt; <span class="hljs-variable">lambda</span> <span class="hljs-operator">=</span>
+    (Sum s, String arg1, String arg2) -&gt; s.doSum(arg1, arg2);
+System.out.println(lambda.apply(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Sum</span>(), <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;4&quot;</span>));</code></pre></div><p>Or just using a method reference:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">TriFunction</span>&lt;Sum, String, String, Integer&gt; <span class="hljs-variable">mRef</span> <span class="hljs-operator">=</span> Sum::doSum;
+System.out.println(mRef.apply(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Sum</span>(), <span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;4&quot;</span>));</code></pre></div><p>Here:</p>
+<ul>
+<li>The first type parameter of <code>TriFunction</code> is the object type that contains the method to execute.</li>
+<li>The second type parameter of <code>TriFunction</code> is the type of the first parameter.</li>
+<li>The third type parameter of <code>TriFunction</code> is the type of the second parameter.</li>
+<li>The last type parameter of <code>TriFunction</code> is the return type of the method to execute. Notice how this is omitted (inferred) in the lambda expression and the method reference.</li>
+</ul>
+<p>It may seem odd to just see the interface, the class, and how they are used with a method reference, but this becomes more evident when you see the anonymous class or even the lambda version.</p>
+<p>From:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">(Sum s, String arg1, String arg2) -&gt; s.doSum(arg1, arg2)</code></pre></div><p>To</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">Sum::doSum</code></pre></div><h3 id="instance-method-of-an-existing-object">Instance Method of An Existing Object<a class="heading-anchor" href="#instance-method-of-an-existing-object" aria-label="Link to Instance Method of An Existing Object">#</a></h3><p>In this case, we have a lambda expression like the following:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">(args) -&gt; obj.instanceMethod(args)</code></pre></div><p>That can be turned into the following method reference:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">obj::instanceMethod</code></pre></div><p>This time, an instance defined elsewhere is used, and the arguments (if any) are passed behind the scenes like in the static method case.</p>
+<p>For example, assuming these classes:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Car</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> id;
+    <span class="hljs-keyword">private</span> String color;
+    <span class="hljs-comment">// More properties</span>
+    <span class="hljs-comment">// And getters and setters</span>
+}
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Mechanic</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">fix</span><span class="hljs-params">(Car c)</span> {
+        System.out.println(<span class="hljs-string">&quot;Fixing car &quot;</span> + c.getId());
+    }
+}</code></pre></div><p>And</p>
+<p> this method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">execute</span><span class="hljs-params">(Car car, Consumer&lt;Car&gt; c)</span> {
+    c.accept(car);
+}</code></pre></div><p>We can call the above method using:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">final</span> <span class="hljs-type">Mechanic</span> <span class="hljs-variable">mechanic</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Mechanic</span>();
+<span class="hljs-type">Car</span> <span class="hljs-variable">car</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Car</span>();
+
+<span class="hljs-comment">// Using an anonymous class</span>
+execute(car, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Consumer</span>&lt;Car&gt;() {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">accept</span><span class="hljs-params">(Car c)</span> {
+        mechanic.fix(c);
+    }
+});
+
+<span class="hljs-comment">// Using a lambda expression</span>
+execute(car, c -&gt; mechanic.fix(c));
+
+<span class="hljs-comment">// Using a method reference</span>
+execute(car, mechanic::fix);</code></pre></div><p>The key in this case is to use any object visible by an anonymous class/lambda expression and pass some arguments to an instance method of that object.</p>
+<p>Here&#39;s another quick example using another <code>Consumer</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Consumer</span>&lt;String&gt; <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> System.out::println;
+c.accept(<span class="hljs-string">&quot;Hello&quot;</span>);</code></pre></div><h2 id="constructor">Constructor<a class="heading-anchor" href="#constructor" aria-label="Link to Constructor">#</a></h2><p>In this case, we have a lambda expression like the following:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">(args) -&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClassName</span>(args)</code></pre></div><p>That can be turned into the following method reference:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">ClassName::<span class="hljs-keyword">new</span></code></pre></div><p>The only thing this lambda expression does is to create a new object, so we just reference a constructor of the class with the keyword <code>new</code>. As in the other cases, arguments (if any) are not passed in the method reference.</p>
+<p>Most of the time, we can use this syntax with two (or three) interfaces from the <code>java.util.function</code> package.</p>
+<p>If the constructor takes no arguments, a <code>Supplier</code> will do the job:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Using an anonymous class</span>
+<span class="hljs-type">Supplier</span>&lt;List&lt;String&gt;&gt; <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Supplier</span>&lt;List&lt;String&gt;&gt;() {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-title function_">get</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;String&gt;();
+    }
+};
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> s.get();
+
+<span class="hljs-comment">// Using a lambda expression</span>
+<span class="hljs-type">Supplier</span>&lt;List&lt;String&gt;&gt; <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> () -&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;String&gt;();
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> s.get();
+
+<span class="hljs-comment">// Using a method reference</span>
+<span class="hljs-type">Supplier</span>&lt;List&lt;String&gt;&gt; <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> ArrayList::<span class="hljs-keyword">new</span>;
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> s.get();</code></pre></div><p>If the constructor takes an argument, we can use the <code>Function</code> interface. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Using an anonymous class</span>
+<span class="hljs-type">Function</span>&lt;String, Integer&gt; <span class="hljs-variable">f</span> <span class="hljs-operator">=</span>
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">Function</span>&lt;String, Integer&gt;() {
+        <span class="hljs-keyword">public</span> <span class="hljs-type">Integer</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(String s)</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Integer</span>(s);
+        }
+    };
+<span class="hljs-type">Integer</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> f.apply(<span class="hljs-string">&quot;100&quot;</span>);
+
+<span class="hljs-comment">// Using a lambda expression</span>
+<span class="hljs-type">Function</span>&lt;String, Integer&gt; <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> s -&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Integer</span>(s);
+<span class="hljs-type">Integer</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> f.apply(<span class="hljs-string">&quot;100&quot;</span>);
+
+<span class="hljs-comment">// Using a method reference</span>
+<span class="hljs-type">Function</span>&lt;String, Integer&gt; <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> Integer::<span class="hljs-keyword">new</span>;
+<span class="hljs-type">Integer</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> f.apply(<span class="hljs-string">&quot;100&quot;</span>);</code></pre></div><p>If the constructor takes two arguments, we use the <code>BiFunction</code> interface:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Using an anonymous class</span>
+<span class="hljs-type">BiFunction</span>&lt;String, String, Locale&gt; <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BiFunction</span>&lt;String, String, Locale&gt;() {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">Locale</span> <span class="hljs-title function_">apply</span><span class="hljs-params">(String lang, String country)</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Locale</span>(lang, country);
+    }
+};
+<span class="hljs-type">Locale</span> <span class="hljs-variable">loc</span> <span class="hljs-operator">=</span> f.apply(<span class="hljs-string">&quot;en&quot;</span>, <span class="hljs-string">&quot;UK&quot;</span>);
+
+<span class="hljs-comment">// Using a lambda expression</span>
+<span class="hljs-type">BiFunction</span>&lt;String, String, Locale&gt; <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> (lang, country) -&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Locale</span>(lang, country);
+<span class="hljs-type">Locale</span> <span class="hljs-variable">loc</span> <span class="hljs-operator">=</span> f.apply(<span class="hljs-string">&quot;en&quot;</span>, <span class="hljs-string">&quot;UK&quot;</span>);
+
+<span class="hljs-comment">// Using a method reference</span>
+<span class="hljs-type">BiFunction</span>&lt;String, String, Locale&gt; <span class="hljs-variable">f</span> <span class="hljs-operator">=</span> Locale::<span class="hljs-keyword">new</span>;
+<span class="hljs-type">Locale</span> <span class="hljs-variable">loc</span> <span class="hljs-operator">=</span> f.apply(<span class="hljs-string">&quot;en&quot;</span>, <span class="hljs-string">&quot;UK&quot;</span>);</code></pre></div><p>If you have a constructor with three or more arguments, you would have to create your own functional interface.</p>
+<p>You can see that referencing a constructor is very similar to referencing a static method. The difference is that the constructor&#39;s <em>method name</em> is <code>new</code>.</p>
+<p>Many of the examples of this chapter are very simple and probably don&#39;t justify the use of lambda expressions or method references.</p>
+<p>As mentioned at the beginning of the chapter, use method references if they make your code clearer.</p>
+<p>You can avoid the one method restriction by grouping all your code in a static method, for example, and create a reference to that method instead of using a class or a lambda expression with many lines.</p>
+<p>But the real power of lambda expressions and method references comes when they are combined with another feature of Java: streams.</p>
+<p>That will be the topic of the next chapter.</p>
+<h2 id="key-points">Key Points<a class="heading-anchor" href="#key-points" aria-label="Link to Key Points">#</a></h2><ul>
+<li><p>A functional interface is an interface that contains only one abstract method. It may contain default or static methods.</p>
+</li>
+<li><p>The <code>@FunctionalInterface</code> annotation is used to indicate an interface is intended to be a functional interface. It enables compiler checks but is not required if the interface meets the functional interface criteria.</p>
+</li>
+<li><p>If an interface declares an abstract method overriding a public method in <code>java.lang.Object</code>, it doesn&#39;t count toward the interface&#39;s abstract method count.</p>
+</li>
+<li><p>Lambda expressions enable you to treat functionality as a method argument or code as data.</p>
+</li>
+<li><p>The syntax of a lambda is: <code>(parameters) -&gt; expression</code> or <code>(parameters) -&gt; { statements; }</code>.</p>
+</li>
+<li><p>You can use <code>var</code> in the parameter list of a lambda expression to allow type inference.</p>
+</li>
+<li><p>The target type of a lambda expression can be inferred in contexts like variable declarations, assignments, return statements, array initializers, method/constructor arguments, ternary expressions, and cast expressions.</p>
+</li>
+<li><p>Lambda expressions are similar to anonymous classes in some ways, like the use of local variables, but differ in their treatment of <code>this</code>, default methods, parameter lists, and instance variables.</p>
+</li>
+<li><p>Local variables used in a lambda expression or anonymous class must be final or effectively final (not modified after initialization) for thread safety and consistency.</p>
+</li>
+<li><p>Java provides built-in functional interfaces in the <code>java.util.function</code> package for common use cases. The main ones are <code>Predicate&lt;T&gt;</code>, <code>Consumer&lt;T&gt;</code>, <code>Function&lt;T, R&gt;</code>, <code>Supplier&lt;T&gt;</code>, and <code>UnaryOperator&lt;T&gt;</code>.</p>
+</li>
+<li><p>These interfaces also have primitive specializations (like <code>IntPredicate</code>, <code>LongConsumer</code>, etc.) to avoid autoboxing overhead when working with primitives.</p>
+</li>
+<li><p>There are also binary versions of some of these interfaces that accept two parameters, like <code>BiPredicate&lt;L, R&gt;</code>, <code>BiConsumer&lt;T, U&gt;</code>, <code>BiFunction&lt;T, U, R&gt;</code>, and <code>BinaryOperator&lt;T&gt;</code>.</p>
+</li>
+<li><p><code>Predicate&lt;T&gt;</code> represents a boolean-valued function that takes an object of type <code>T </code>as input. It has <code>and</code>, <code>or</code>, and <code>negate</code> default methods for combining predicates.</p>
+</li>
+<li><p><code>Consumer&lt;T&gt;</code> represents an operation that accepts a single input argument and returns no result. It has an <code>andThen</code> default method for chaining consumers. </p>
+</li>
+<li><p><code>Function&lt;T, R&gt;</code> represents a function that accepts one argument and returns a result. It has <code>compose</code> and <code>andThen</code> default methods for combining functions.</p>
+</li>
+<li><p><code>Supplier&lt;T&gt;</code> represents a supplier of results, it takes no arguments and returns a result.</p>
+</li>
+<li><p><code>UnaryOperator&lt;T&gt;</code> represents an operation on a single operand that produces a result of the same type as its operand. It&#39;s a specialization of <code>Function</code> where the argument and result types are the same.</p>
+</li>
+<li><p>Method references provide a way to refer to a method without invoking it, using the <code>::</code> operator. They can be used where a lambda expression is expected.</p>
+</li>
+<li><p>There are four kinds of method references: to a static method, to an instance method of an object of a particular type, to an instance method of an existing object, and to a constructor.</p>
+</li>
+</ul>
+<h2 id="practice-questions">Practice Questions<a class="heading-anchor" href="#practice-questions" aria-label="Link to Practice Questions">#</a></h2><p><a href="ch08-practice.html#book-practice">Open the interactive book questions on the Chapter 8.1 Practice page</a>.</p>
+</article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this chapter.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><div class="finish-chapter"><button class="primary-button" id="complete-chapter" data-id="ch08" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg><span>Mark chapter complete</span></button><a href="ch08a.html">Review the answers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch07-practice.html"><small>Previous</small>Chapter 7.1 Practice</a><a href="ch08-practice.html"><small>Next chapter</small>Chapter 8.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#functional-interfaces">Functional Interfaces</a><a class="toc-link" href="#lambda-expressions">Lambda Expressions</a><a class="toc-link" href="#java-built-in-lambda-interfaces">Java Built-In Lambda Interfaces</a><a class="toc-link" href="#method-references">Method References</a><a class="toc-link" href="#constructor">Constructor</a><a class="toc-link" href="#key-points">Key Points</a><a class="toc-link" href="#practice-questions">Practice Questions</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

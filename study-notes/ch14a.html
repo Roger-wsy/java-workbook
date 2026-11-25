@@ -1,0 +1,275 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Localization</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch14a"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Localization<span class="answer-title">Answers & explanations</span></h1><div class="document-meta">Chapter 14 / Answer sheet<span>·</span>8 min read</div><div class="chapter-actions"><a class="" href="ch14.html">Read chapter</a><a href="ch14.html#key-points">Key points</a><a href="ch14-practice.html#book-practice">Book questions</a><a href="ch14-practice.html#chapter-quiz">Extra quiz</a><a class="active" href="ch14a.html">Original answers</a></div></div><article class="prose"><h2 id="answers">Answers<a class="heading-anchor" href="#answers" aria-label="Link to Answers">#</a></h2><details class="answer-item" id="answer-1"><summary><span>Question 1</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">true
+true
+true
+French (Canada)
+French (Canada)
+French (Canada)</code></pre></div><ul>
+<li><p>This option is incorrect because it doesn&#39;t account for the differences caused by the variant in <code>locale2</code>.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">false
+true
+false
+French (Canada)
+French (Canada, UNIX2024)
+French (Canada)</code></pre></div><ul>
+<li><p>This option is incorrect because it doesn&#39;t correctly represent the display name for <code>Locale.CANADA_FRENCH</code>.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">false
+true
+false
+French (Canada)
+French (Canada, UNIX2024)
+Canadian French</code></pre></div><ul>
+<li><p>This option is correct. Let&#39;s break it down:</p>
+<ol>
+<li><code>locale1.equals(locale2)</code> is <code>false</code> because <code>locale2</code> has a variant (<code>&quot;UNIX2024&quot;</code>) while <code>locale1</code> doesn&#39;t.</li>
+<li><code>locale1.equals(locale3)</code> is <code>true</code> because <code>Locale.CANADA_FRENCH</code> is equivalent to <code>new Locale(&quot;fr&quot;, &quot;CA&quot;)</code>.</li>
+<li><code>locale2.equals(locale3)</code> is <code>false</code> because <code>locale2</code> has a variant while <code>locale3</code> doesn&#39;t.</li>
+<li><code>locale1.getDisplayName(Locale.ENGLISH)</code> returns <code>&quot;French (Canada)&quot;</code>.</li>
+<li><code>locale2.getDisplayName(Locale.ENGLISH)</code> returns <code>&quot;French (Canada, UNIX2024)&quot;</code>, including the variant.</li>
+<li><code>locale3.getDisplayName(Locale.ENGLISH)</code> returns <code>&quot;Canadian French&quot;</code>, which is the special display name for this constant.</li>
+</ol>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">false
+false
+false
+French (Canada)
+French (Canada, UNIX2024)
+Canadian French</code></pre></div><ul>
+<li><p>This option is incorrect because it suggests that <code>locale1</code> and <code>locale3</code> are not equal, which they are.</p>
+</li>
+<li><p><strong>E)</strong> The code will throw a <code>IllegalArgumentException</code> because <code>UNIX2024</code> is not a valid variant.</p>
+<ul>
+<li>This option is incorrect. While <code>UNIX2024</code> is not a standard ISO 639 variant code, the <code>Locale</code> constructor accepts any string as a variant without throwing an exception.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-2"><summary><span>Question 2</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>Locale.Category</code> enum has three values: <code>DISPLAY</code>, <code>FORMAT</code>, and <code>LANGUAGE</code>.</p>
+<ul>
+<li>This option is incorrect. The <code>Locale.Category</code> enum has only two values: <code>DISPLAY</code> and <code>FORMAT</code>. There is no <code>LANGUAGE</code> category.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>Locale.setDefault(Locale.Category, Locale)</code> method can only set the default locale for the <code>FORMAT</code> category.</p>
+<ul>
+<li>This option is incorrect. The <code>Locale.setDefault(Locale.Category, Locale)</code> method can set the default locale for both the <code>DISPLAY</code> and <code>FORMAT</code> categories, not just <code>FORMAT</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Using <code>Locale.getDefault(Locale.Category)</code> always returns the same locale regardless of the category specified.</p>
+<ul>
+<li>This option is incorrect. <code>Locale.getDefault(Locale.Category)</code> can return different locales depending on the category specified. The <code>DISPLAY</code> and <code>FORMAT</code> categories can have different default locales.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>DISPLAY</code> category affects the language used for displaying user interface elements, while the <code>FORMAT</code> category affects the formatting of numbers, dates, and currencies.</p>
+<ul>
+<li>This option is correct. The <code>DISPLAY</code> category indeed affects the language used for displaying user interface elements (like error messages or GUI labels), while the <code>FORMAT</code> category affects how numbers, dates, currencies, and other locale-sensitive data are formatted.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> Locale categories were introduced in Java 8 to replace the older <code>Locale</code> methods.</p>
+<ul>
+<li>This option is incorrect. Locale categories were added to provide more granular control over localization aspects, complementing (not replacing) the existing <code>Locale</code> methods.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-3"><summary><span>Question 3</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> Resource bundles can only be stored in <code>.properties</code> files.</p>
+<ul>
+<li>This option is incorrect. While <code>.properties</code> files are commonly used for resource bundles, Java also supports class-based resource bundles. These are Java classes that extend <code>ResourceBundle</code> and provide localized resources programmatically.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>ResourceBundle.getBundle()</code> method always throws a <code>MissingResourceException</code> if the requested bundle is not found.</p>
+<ul>
+<li>This option is incorrect. The <code>ResourceBundle.getBundle()</code> method does not always throw a <code>MissingResourceException</code> if the requested bundle is not found. It follows a fallback mechanism, trying to find the most specific bundle, then falling back to more general bundles, and finally to the default bundle.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> When searching for a resource bundle, Java only considers the specified locale and its language.</p>
+<ul>
+<li>This option is incorrect. When searching for a resource bundle, Java considers not only the specified locale and its language but also the country, variant, and even the default locale. It follows a well-defined lookup procedure to find the most appropriate bundle.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> If a key is not found in a specific locale&#39;s resource bundle, Java will look for it in the parent locale&#39;s bundle.</p>
+<ul>
+<li>This option is correct. Java implements a parent chain fallback mechanism for resource bundles. If a key is not found in the specific locale&#39;s bundle, it will look in the parent locale&#39;s bundle. For example, if a key is not found in a <code>fr_FR</code> (French France) bundle, it will look in the <code>fr</code> (French) bundle, and then in the default bundle.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> Resource bundles are loaded dynamically at runtime, so changes to <code>.properties</code> files are immediately reflected in the running application.</p>
+<ul>
+<li>This option is incorrect. Resource bundles are typically loaded when <code>ResourceBundle.getBundle()</code> is called and then cached. Changes to .properties files are not immediately reflected in a running application. The application usually needs to be restarted or the resource bundle cache cleared for changes to take effect.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-4"><summary><span>Question 4</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">red
+blue</code></pre></div><ul>
+<li><p>This option is correct. Let&#39;s break down the code execution:</p>
+<ol>
+<li>Properties are set and stored in the <code>config.properties</code> file.</li>
+<li><code>props.clear()</code> removes all properties from the <code>props</code> object.</li>
+<li><code>System.out.println(props.getProperty(&quot;color&quot;, &quot;red&quot;))</code> prints <code>red</code> because the properties have been cleared, so it uses the default value.</li>
+<li>The properties are loaded from the file.</li>
+<li><code>System.out.println(props.getProperty(&quot;color&quot;, &quot;red&quot;))</code> now prints <code>blue</code> because it&#39;s loaded from the file.</li>
+</ol>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">blue
+blue</code></pre></div><ul>
+<li><p>This option is incorrect. It doesn&#39;t account for the <code>clear()</code> method call which empties the properties before the first print statement.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">red
+red</code></pre></div><ul>
+<li><p>This option is incorrect. It doesn&#39;t account for the successful loading of properties from the file before the second print statement.</p>
+</li>
+<li><p><strong>D)</strong> The code will throw a <code>FileNotFoundException</code>.</p>
+<ul>
+<li>This option is incorrect. The code creates the file in the first <code>try-with-resources</code> block, so it should exist for the second block to read from.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">null
+blue</code></pre></div><ul>
+<li>This option is incorrect. <code>getProperty()</code> returns the default value <code>red</code> when the property is not found, not <code>null</code>.</li>
+</ul>
+</div></details><details class="answer-item" id="answer-5"><summary><span>Question 5</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The code will throw a <code>IllegalArgumentException</code> because the date format is invalid. </p>
+<ul>
+<li>This option is incorrect. The date format <code>&quot;long&quot;</code> is valid in <code>MessageFormat</code> and will not throw an exception.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The output will include the date in long format, the name <code>&quot;Alice&quot;</code>, the number 3, the word <code>&quot;apples&quot;</code>, and the price in US currency format.</p>
+<ul>
+<li>This option is correct. The <code>MessageFormat</code> will correctly format each parameter according to the specified pattern:</li>
+<li><code>{0, date, long}</code> will format the <code>Date</code> in long format (<code>&quot;June 1, 2023&quot;</code>)</li>
+<li><code>{1}</code> will simply insert <code>&quot;Alice&quot;</code></li>
+<li><code>{2,number,integer}</code> will format 3 as an integer</li>
+<li><code>{3}</code> will insert &quot;apples&quot;</li>
+<li><code>{4,number,currency}</code> will format 19.99 as currency according to the US locale (<code>&quot;$19.99&quot;</code>)</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>{2,number,integer}</code> format will display 3 as <code>&quot;3.0&quot;</code>.</p>
+<ul>
+<li>This option is incorrect. The <code>{2,number,integer}</code> format will display 3 as <code>&quot;3&quot;</code>, not <code>&quot;3.0&quot;</code>. The integer format doesn&#39;t include decimal places.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The code will not compile because <code>MessageFormat</code> doesn&#39;t accept a <code>Locale</code> in its constructor.</p>
+<ul>
+<li>This option is incorrect. <code>MessageFormat</code> does have a constructor that accepts a <code>Locale</code>. The code will compile successfully.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> The <code>{4,number,currency}</code> format will always display the price in USD, regardless of the <code>Locale</code>.</p>
+<ul>
+<li>This option is incorrect. The currency format will use the locale specified in the <code>MessageFormat</code> constructor, which in this case is <code>Locale.US</code>. If a different locale were used, the currency symbol and formatting could change.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-6"><summary><span>Question 6</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>NumberFormat.getCurrencyInstance()</code> method returns a formatter that can format monetary amounts according to the specified locale&#39;s conventions.</p>
+<ul>
+<li>This option is correct. The <code>getCurrencyInstance()</code> method of <code>NumberFormat</code> returns a currency formatter for the specified locale (or the default locale if none is specified). This formatter applies the appropriate currency symbol, digit grouping, and decimal separator according to the locale&#39;s conventions.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>NumberFormat</code> is a concrete class that can be instantiated directly using its constructor.</p>
+<ul>
+<li>This option is incorrect. <code>NumberFormat</code> is an abstract class and cannot be instantiated directly. Instead, you obtain instances through its static factory methods like <code>getInstance()</code>, <code>getCurrencyInstance()</code>, or <code>getPercentInstance()</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>setMaximumFractionDigits()</code> method in <code>NumberFormat</code> can only accept values between 0 and 3.</p>
+<ul>
+<li>This option is incorrect. The <code>setMaximumFractionDigits()</code> method is not limited to the range of 0 to 3.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> When parsing strings, <code>NumberFormat</code> always throws a <code>ParseException</code> if the input doesn&#39;t exactly match the expected format.</p>
+<ul>
+<li>This option is incorrect. <code>NumberFormat</code> is generally lenient when parsing. It will attempt to parse as much of the string as it can recognize as a number, and will only throw a <code>ParseException</code> if it can&#39;t parse any part of the string as a number.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> The <code>NumberFormat</code> class can only format and parse integer values, not floating-point numbers.</p>
+<ul>
+<li>This option is incorrect. <code>NumberFormat</code> can format and parse both integer and floating-point numbers. It provides methods like <code>setMaximumFractionDigits()</code> and <code>setMinimumFractionDigits()</code> specifically for handling decimal places in floating-point numbers.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-7"><summary><span>Question 7</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">2023-06-15 10:30 EDT America/New_York
+2023-06-15 23:30 JST Asia/Tokyo</code></pre></div><ul>
+<li><p>This option is correct. Let&#39;s break down the formatter pattern:</p>
+<ul>
+<li><code>&quot;yyyy-MM-dd HH:mm&quot;</code> formats the date and time</li>
+<li><code>&quot;z&quot;</code> outputs the short name of the zone, like EDT or JST</li>
+<li><code>&quot;VV&quot;</code> outputs the full time zone ID, like <code>America/New_York</code> or <code>Asia/Tokyo</code>
+   The second line shows the correct time in Tokyo, which is 13 hours ahead of New York.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">2023-06-15 10:30 EDT New_York
+2023-06-15 23:30 JST Tokyo</code></pre></div><ul>
+<li><p>This option is incorrect. The <code>&quot;VV&quot;</code> pattern outputs the full time zone ID, not just the city name.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">2023-06-15 10:30 -04:00 America/New_York
+2023-06-15 23:30 +09:00 Asia/Tokyo</code></pre></div><ul>
+<li><p>This option is incorrect. The <code>&quot;z&quot;</code> pattern outputs the short name of the zone (EDT, JST), not the offset.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">2023-06-15 10:30 America/New_York
+2023-06-15 23:30 Asia/Tokyo</code></pre></div><ul>
+<li><p>This option is incorrect. It&#39;s missing the short zone names (EDT, JST) that the <code>&quot;z&quot;</code> pattern should output.</p>
+</li>
+<li><p><strong>E)</strong> The code will throw a <code>DateTimeException</code> because the formatter pattern is invalid.</p>
+<ul>
+<li>This option is incorrect. The formatter pattern is valid and will not throw an exception.</li>
+</ul>
+</li>
+</ul>
+</div></details></article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this answer sheet.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch14.html"><small>Previous</small>Localization</a><a href="ch14-practice.html"><small>Next chapter</small>Chapter 14.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#answers">Answers</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

@@ -1,0 +1,21 @@
+{
+  "name": "java-21-study-notes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs",
+    "check:sidebar": "node scripts/check-sidebar.mjs",
+    "check:practice": "node scripts/check-practice.mjs"
+  },
+  "dependencies": {
+    "@fontsource/source-sans-3": "^5.3.1",
+    "highlight.js": "^11.11.1",
+    "marked": "^16.4.2",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.1"
+  }
+}

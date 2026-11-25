@@ -1,0 +1,1268 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · The Java Platform Module System</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch13"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch13.html" aria-current="page" data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>The Java Platform Module System</h1><div class="document-meta">Chapter 13<span>·</span>57 min read</div><div class="chapter-actions"><a class="active" href="ch13.html">Read chapter</a><a href="ch13.html#key-points">Key points</a><a href="ch13-practice.html#book-practice">Book questions</a><a href="ch13-practice.html#chapter-quiz">Extra quiz</a><a class="" href="ch13a.html">Original answers</a></div></div><details class="objectives" open><summary>Exam objectives</summary><ul><li>Define modules and expose module content, including that by reflection, and declare module dependencies, define services, providers, and consumers.</li><li>Compile Java code, create modular and non-modular jars, runtime images, and implement migration to modules using unnamed and automatic modules.</li></ul></details><article class="prose"><h2 id="introduction">Introduction<a class="heading-anchor" href="#introduction" aria-label="Link to Introduction">#</a></h2><p>One of the most significant changes introduced in Java 9 was the Java Platform Module System (JPMS). But what exactly is JPMS, and why should we care about it?</p>
+<p>Let&#39;s start by understanding what a module is in this context.</p>
+<p>A module in Java is like a section in a well-organized library. Each module has a clear label (its name) and contains specific books (Java packages). However, you can&#39;t access any book without a library card (a dependency declaration) for that specific section.</p>
+<p>In this example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.myapp.core {
+    <span class="hljs-keyword">requires</span> java.base;
+    <span class="hljs-keyword">exports</span> com.myapp.core.api;
+}</code></pre></div><p>We&#39;re declaring a module named <code>com.myapp.core</code>. It requires the <code>java.base</code> module (like having a library card for the basic Java section) and exports the <code>com.myapp.core.api</code> package (making some of its books available to other modules).</p>
+<p>While packages group related classes, modules take this concept further by grouping related packages and explicitly declaring their dependencies and exposed APIs.</p>
+<p>Consider the benefits of using JPMS:</p>
+<ul>
+<li><strong>Improved encapsulation:</strong> Modules allow you to hide implementation details more effectively than packages alone, reducing the risk of unintended usage of internal APIs.</li>
+<li><strong>Clearer dependencies:</strong> Modules explicitly state dependencies, making the system&#39;s structure more apparent and helping prevent <em>JAR hell</em> of conflicting dependencies.</li>
+<li><strong>Improved performance:</strong> The JVM can optimize startup time and memory usage because it knows exactly what code is needed.</li>
+<li><strong>Better security:</strong> By controlling access, you can reduce the attack surface of your application.</li>
+</ul>
+<p>JPMS includes:</p>
+<ul>
+<li>The <code>module-info.java</code> file: Defines your module, its dependencies, and what it exports.</li>
+<li>New keywords: <code>module</code>, <code>requires</code>, <code>exports</code>, <code>opens</code>, <code>uses</code>, and <code>provides</code>.</li>
+<li>Tools for working with modules: Like <code>jlink</code>, for creating custom runtime images.</li>
+</ul>
+<p>Here&#39;s a more complex sample <code>module-info.java</code> file:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.myapp.core {
+    <span class="hljs-keyword">requires</span> java.base;
+    <span class="hljs-keyword">requires</span> java.sql;
+    
+    <span class="hljs-keyword">exports</span> com.myapp.core.api;
+    <span class="hljs-keyword">exports</span> com.myapp.core.util to com.myapp.plugin;
+    
+    opens com.myapp.core.model;
+    
+    uses com.myapp.core.spi.Plugin;
+    provides com.myapp.core.spi.Logger 
+        with com.myapp.core.logging.FileLogger;
+}</code></pre></div><p>This module declaration shows:</p>
+<ul>
+<li>Multiple required modules.</li>
+<li>Exporting one package to all modules and another only to a specific module.</li>
+<li>Opening a package for reflection.</li>
+<li>Using a service interface and providing an implementation.</li>
+</ul>
+<p>While you can still use the classpath, you&#39;d miss out on the benefits of JPMS. The classpath is like a big, unorganized pile of books, while the module path is a well-organized library with controlled access and clear dependencies.</p>
+<p>Even in small projects, modules can improve encapsulation and maintainability. Consider this small example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// In module com.myapp.core</span>
+<span class="hljs-keyword">module</span> com.myapp.core {
+    <span class="hljs-keyword">exports</span> com.myapp.core.api;
+}
+
+<span class="hljs-keyword">package</span> com.myapp.core.api;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserService</span> {
+    <span class="hljs-type">User</span> <span class="hljs-title function_">getUser</span><span class="hljs-params">(String id)</span>;
+}
+
+<span class="hljs-keyword">package</span> com.myapp.core.internal;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserService</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">User</span> <span class="hljs-title function_">getUser</span><span class="hljs-params">(String id)</span> {
+        <span class="hljs-comment">// Implementation</span>
+    }
+}
+
+<span class="hljs-comment">// In module com.myapp.web</span>
+<span class="hljs-keyword">module</span> com.myapp.web {
+    <span class="hljs-keyword">requires</span> com.myapp.core;
+}
+
+<span class="hljs-keyword">package</span> com.myapp.web;
+<span class="hljs-keyword">import</span> com.myapp.core.api.UserService;
+<span class="hljs-comment">// import com.myapp.core.internal.UserServiceImpl; // This would cause a compile-time error</span>
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserController</span> {
+    <span class="hljs-keyword">private</span> UserService userService;
+    <span class="hljs-comment">// ...</span>
+}</code></pre></div><p>In this example, the <code>web</code> module can only access the <code>api</code> package of the <code>core</code> module, not its internal implementation.</p>
+<p>Modules provide tools to enforce and express the architecture of your system at the language and JVM level.</p>
+<p>Consider this: Would you rather have a big box of unsorted LEGO bricks or neatly organized sets with clear instructions? Both approaches can build amazing things, but one makes the process much smoother and less error-prone.</p>
+<h2 id="types-of-modules">Types of Modules<a class="heading-anchor" href="#types-of-modules" aria-label="Link to Types of Modules">#</a></h2><p>Now that we&#39;ve got a grasp on what modules are and why they&#39;re useful, let&#39;s dive into the different types of modules in JPMS. Just like how not all books in a library are created equal, not all modules are the same either. JPMS introduces three types of modules: </p>
+<ul>
+<li>Named modules</li>
+<li>Automatic modules</li>
+<li>Unnamed modules</li>
+</ul>
+<h3 id="named-modules">Named Modules<a class="heading-anchor" href="#named-modules" aria-label="Link to Named Modules">#</a></h3><p>Named modules are like the properly cataloged books in our library, with a clear title, author information, and a spot on the shelf. In Java terms, a named module is defined by a <code>module-info.java</code> file at the root of your module.</p>
+<p>Here&#39;s an example of the content of this file:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.myapp.core {
+    <span class="hljs-keyword">requires</span> java.base;
+    <span class="hljs-keyword">exports</span> com.myapp.core.api;
+}</code></pre></div><p>This <code>module-info.java</code> file is the ID card of your module. It gives your module a name (<code>com.myapp.core</code> in this case), lists its dependencies (<code>requires java.base</code>), and declares what parts of itself it&#39;s willing to share with other modules (<code>exports com.myapp.core.api</code>).</p>
+<p>Named modules are the most powerful and flexible type of module. They give you full control over your module&#39;s dependencies and what it exposes to the outside world. If you&#39;re starting a new project or refactoring an existing one to use JPMS, named modules are what you&#39;ll be working with most of the time.</p>
+<h3 id="automatic-modules">Automatic Modules<a class="heading-anchor" href="#automatic-modules" aria-label="Link to Automatic Modules">#</a></h3><p>But what about all those third-party libraries that haven&#39;t been modularized? This is where automatic modules come in. They&#39;re like the books in our library that don&#39;t have a proper catalog entry yet, but we still want to be able to check them out.</p>
+<p>When you put a non-modular JAR file on the module path, the Java runtime automatically treats it as a module. This module is called an automatic module.</p>
+<p>In this example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.myapp.core {
+    <span class="hljs-keyword">requires</span> java.base;
+    <span class="hljs-keyword">requires</span> commons.lang; <span class="hljs-comment">// This is an automatic module</span>
+    <span class="hljs-keyword">exports</span> com.myapp.core.api;
+}</code></pre></div><p><code>commons.lang</code> is an automatic module. We can require it just like we would a named module, even though it doesn&#39;t have a <code>module-info.java</code> file.</p>
+<p>But how does Java determine the name of an automatic module? Well, the process goes something like this:</p>
+<ol>
+<li>First, it looks for the <code>Automatic-Module-Name</code> entry in the JAR&#39;s <code>MANIFEST.MF</code> file. If it&#39;s there, that&#39;s the module name.</li>
+<li>If that&#39;s not present, it derives the name from the JAR filename. It removes the file extension and version number, and replaces non-alphanumeric characters with dots.</li>
+</ol>
+<p>For example:</p>
+<ul>
+<li><code>commons-lang3-3.14.jar</code> becomes the automatic module <code>commons.lang3</code></li>
+<li><code>guava-33.2.1-jre.jar</code> becomes <code>guava</code></li>
+</ul>
+<p>You can see this in action using the <code>jar</code> command:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">$ jar --describe-module --file=guava-28.0-jre.jar
+No module descriptor found. Derived automatic module.
+
+Automatic module name: guava
+...</code></pre></div><h3 id="unnamed-modules">Unnamed Modules<a class="heading-anchor" href="#unnamed-modules" aria-label="Link to Unnamed Modules">#</a></h3><p>Last but not least, we have unnamed modules. These are like a miscellaneous box in the library where all loose papers and bookmarks that don’t fit anywhere else are stored.</p>
+<p>When you run your application on the classpath (not the module path), all the code that is not part of a named module or automatic module ends up in one big unnamed module. This unnamed module reads all other modules, which means it can access all packages exported by all other modules.</p>
+<p>In this command:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">java -cp app.jar:lib/* com.myapp.Main</code></pre></div><p><code>app.jar</code> and everything in the <code>lib</code> directory will be part of the unnamed module.</p>
+<p>The unnamed module is important for backward compatibility, allowing existing Java code to run without modification on Java 9 and later versions. However, code in the unnamed module doesn&#39;t get the benefits of strong encapsulation that named modules provide.</p>
+<p>Here&#39;s a quick comparison:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Module Type</th><th>Has module-info.java</th><th>On Module Path</th><th>On Classpath</th></tr></thead><tbody><tr><td>Named</td><td>Yes</td><td>Yes</td><td>No</td></tr><tr><td>Automatic</td><td>No</td><td>Yes</td><td>No</td></tr><tr><td>Unnamed</td><td>No</td><td>No</td><td>Yes</td></tr></tbody></table></div><p>Understanding these different types of modules is key to working effectively with JPMS. Named modules give you the most control and benefits, automatic modules help you integrate non-modular libraries, and unnamed modules ensure your existing code keeps running.</p>
+<p>Here&#39;s a diagram that summarizes the types of modules:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">┌─────────────────────────────────────────────────────────┐
+│                   Java Module Types                     │
+│                                                         │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
+│  │   Named     │    │  Automatic  │    │   Unnamed   │  │
+│  │   Module    │    │   Module    │    │   Module    │  │
+│  ├─────────────┤    ├─────────────┤    ├─────────────┤  │
+│  │ - Explicit  │    │ - No module-│    │ - No module-│  │
+│  │   module-   │    │   info.java │    │   info.java │  │
+│  │   info.java │    │ - On module │    │ - Not on    │  │
+│  │ - Defined   │    │   path      │    │   module    │  │
+│  │   exports   │    │ - Name      │    │   path      │  │
+│  │ - Defined   │    │   derived   │    │ - Implicitly│  │
+│  │   requires  │    │   from JAR  │    │   exports   │  │
+│  │             │    │   filename  │    │   all pkgs  │  │
+│  └─────────────┘    └─────────────┘    └─────────────┘  │
+│                                                         │
+│  Use for:           Use for:           Use for:         │
+│  - New Java 9+      - Legacy JARs      - Class path     │
+│    projects         - Transition       - Compatibility  │
+│  - Full module      - Third-party      - Non-modular    │
+│    control            libraries          code           │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+Key Points:
+- Named modules offer full control over exports and requires
+- Automatic modules bridge between modular and non-modular code
+- Unnamed modules provide backwards compatibility</code></pre></div><h2 id="creating-a-module">Creating a Module<a class="heading-anchor" href="#creating-a-module" aria-label="Link to Creating a Module">#</a></h2><p>Now that we&#39;ve explored the types of modules, let&#39;s create one ourselves. Creating a module is like setting up a new section in your library. We need to decide on its structure, what books (classes) it will contain, and what rules (<code>module-info.java</code>) will govern its use.</p>
+<h3 id="directory-structure">Directory Structure<a class="heading-anchor" href="#directory-structure" aria-label="Link to Directory Structure">#</a></h3><p>The directory structure for a module is straightforward, but it&#39;s important to get it right. Here&#39;s a typical layout:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">mymodule/
+├── src/
+│   ├── module-info.java
+│   ├── com/
+│   │   └── mycompany/
+│   │       └── mymodule/
+│   │           ├── MyClass.java
+│   │           └── AnotherClass.java
+│   └── resources/
+│       └── config.properties</code></pre></div><p>Let&#39;s break it down:</p>
+<ul>
+<li>The top-level directory (<code>mymodule/</code>) is typically named after your module.</li>
+<li>Inside, we have a <code>src/</code> directory. This is where all our source files live.</li>
+<li>The <code>module-info.java</code> file sits directly under <code>src/</code>. This is important, it defines our module.</li>
+<li>Our actual Java package structure (<code>com.mycompany.mymodule</code>) is represented by nested directories under <code>src/</code>.</li>
+<li>Resources (non-Java files) can be included in a separate directory</li>
+</ul>
+<p>This structure might look familiar, it&#39;s very similar to how we organized non-modular Java projects. The key difference is the presence of the <code>module-info.java</code> file.</p>
+<h3 id="the-class-files">The Class Files<a class="heading-anchor" href="#the-class-files" aria-label="Link to The Class Files">#</a></h3><p>Now, let&#39;s look at what goes inside our Java files. Here&#39;s an example of what <code>MyClass.java</code> might look like:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">package</span> com.mycompany.mymodule;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">doSomething</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;MyClass is doing something!&quot;</span>);
+    }
+}</code></pre></div><p>This is just a regular Java class. However, the <code>package</code> declaration at the top is important, as it determines where this class fits in our module&#39;s structure.</p>
+<p>Here&#39;s <code>AnotherClass.java</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">package</span> com.mycompany.mymodule;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AnotherClass</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-type">MyClass</span> <span class="hljs-variable">myClass</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">doSomethingElse</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;AnotherClass is doing something else!&quot;</span>);
+        myClass.doSomething();
+    }
+}</code></pre></div><p>Again, this is a standard Java class. Notice how it can use <code>MyClass</code> without any special import because they&#39;re in the same package.</p>
+<h3 id="the-module-infojava-file">The <code>module-info.java</code> File<a class="heading-anchor" href="#the-module-infojava-file" aria-label="Link to The module-info.java File">#</a></h3><p>This file is what turns our collection of packages into a proper module. It&#39;s like the card catalog for our library section, defining what&#39;s available and what&#39;s needed.</p>
+<p>Here&#39;s what a basic <code>module-info.java</code> might look like:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.mymodule {
+    <span class="hljs-keyword">exports</span> com.mycompany.mymodule;
+    <span class="hljs-keyword">requires</span> java.base;
+}</code></pre></div><p>Let&#39;s break this down:</p>
+<ul>
+<li><code>module com.mycompany.mymodule</code>: This declares our module name. By convention, this often matches our root package name.</li>
+<li><code>exports com.mycompany.mymodule</code>: This line makes our package accessible to other modules. Without this, our classes would be hidden from the outside world.</li>
+<li><code>requires java.base</code>: This declares a dependency on the base Java module. Actually, this line is optional, all modules implicitly require <code>java.base</code>.</li>
+</ul>
+<p>But we can get more sophisticated. Let&#39;s say we want to use a logging framework and provide a service:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.mymodule {
+    <span class="hljs-keyword">exports</span> com.mycompany.mymodule;
+    <span class="hljs-keyword">requires</span> java.base;
+    <span class="hljs-keyword">requires</span> org.apache.logging.log4j;
+    
+    provides com.mycompany.service.MyService 
+        with com.mycompany.mymodule.MyServiceImpl;
+    
+    uses com.mycompany.service.AnotherService;
+}</code></pre></div><p>Here, we&#39;re requiring the Log4j module, providing an implementation of <code>MyService</code>, and declaring that we&#39;ll be using <code>AnotherService</code> (which will be provided by some other module).</p>
+<p>Isn&#39;t this <code>module-info.java</code> file a bit like the nutrition label on a food package? It tells you what&#39;s inside (exports), what it needs (requires), what it can do for you (provides), and what it expects to use (uses).</p>
+<p>One thing to watch out for: if you&#39;re using an IDE, make sure it&#39;s set up to work with Java modules. Some IDEs might create a <code>module-info.java</code> file automatically when you create a new module, while others might require you to create it manually.</p>
+<p>For example, assuming there&#39;s a <code>Main</code> class like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">package</span> com.mycompany.mymodule;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        System.out.println(<span class="hljs-string">&quot;Main class is running!&quot;</span>);
+        
+        <span class="hljs-type">MyClass</span> <span class="hljs-variable">myClass</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
+        myClass.doSomething();
+        
+        <span class="hljs-type">AnotherClass</span> <span class="hljs-variable">anotherClass</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AnotherClass</span>();
+        anotherClass.doSomethingElse();
+    }
+}
+</code></pre></div><p>Here&#39;s how you might compile and run this module from the command line:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">javac -d mods/com.mycompany.mymodule 
+    src/module-info.java 
+    src/com/mycompany/mymodule/*.java
+
+java --module-path mods -m com.mycompany.mymodule/com.mycompany.mymodule.Main</code></pre></div><p>The first command compiles our module, and the second runs it. Notice how we specify the module path (<code>--module-path mods</code>) and the main class (<code>-m com.mycompany.mymodule/com.mycompany.mymodule.Main</code>). Also, for both <code>javac</code> and <code>java</code> commands, you can use the shorter <code>-p</code> option instead of <code>--module-path</code>.</p>
+<h2 id="module-declaration">Module Declaration<a class="heading-anchor" href="#module-declaration" aria-label="Link to Module Declaration">#</a></h2><p>Now that we&#39;ve set up our module&#39;s structure, let&#39;s review the module declaration itself in the <code>module-info.java</code> file.</p>
+<h3 id="exporting-a-package">Exporting a Package<a class="heading-anchor" href="#exporting-a-package" aria-label="Link to Exporting a Package">#</a></h3><p>The <code>exports</code> keyword is used to make our module&#39;s packages accessible to other modules. Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.mymodule {
+    <span class="hljs-keyword">exports</span> com.mycompany.mymodule.api;
+}</code></pre></div><p>In this example, we&#39;re making the <code>com.mycompany.mymodule.api</code> package available for other modules to use. Any public types in this package can now be accessed by other modules that require it.</p>
+<p>But what if we want to be more selective? Java modules allow for that too:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.mymodule {
+    <span class="hljs-keyword">exports</span> com.mycompany.mymodule.api to com.mycompany.anothermodule, com.mycompany.yetanothermodule;
+}</code></pre></div><p>This declaration exports the package, but only to the specified modules. It&#39;s a way to control access to your module&#39;s internals.</p>
+<h3 id="access-control-with-modules">Access Control with Modules<a class="heading-anchor" href="#access-control-with-modules" aria-label="Link to Access Control with Modules">#</a></h3><p>Modules add an extra layer of access control on top of Java&#39;s existing <code>public</code>, <code>protected</code>, package-private, and <code>private</code> modifiers. Here&#39;s how it works:</p>
+<ol>
+<li>Public types in exported packages are accessible to other modules.</li>
+<li>Public types in non-exported packages are only accessible within the module.</li>
+<li>Protected members in exported packages are accessible in subclasses within other modules.</li>
+<li>All other access rules (<code>protected</code>, package-private, <code>private</code>) still apply as usual.</li>
+</ol>
+<p>Let&#39;s see this in action:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// In module com.mycompany.mymodule</span>
+<span class="hljs-keyword">module</span> com.mycompany.mymodule {
+    <span class="hljs-keyword">exports</span> com.mycompany.mymodule.api;
+}
+
+<span class="hljs-comment">// In package com.mycompany.mymodule.api</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PublicAPI</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">doSomething</span><span class="hljs-params">()</span> { ... }
+}
+
+<span class="hljs-comment">// In package com.mycompany.mymodule.internal</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">InternalClass</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">doSomethingElse</span><span class="hljs-params">()</span> { ... }
+}
+
+<span class="hljs-comment">// In another module</span>
+<span class="hljs-keyword">import</span> com.mycompany.mymodule.api.PublicAPI; <span class="hljs-comment">// This works</span>
+<span class="hljs-keyword">import</span> com.mycompany.mymodule.internal.InternalClass; <span class="hljs-comment">// This fails!</span></code></pre></div><p>Even though <code>InternalClass</code> is public, it can&#39;t be accessed from outside the module because its package is not exported. It&#39;s like having a public reading room that&#39;s only accessible to staff members.</p>
+<h3 id="requiring-a-module">Requiring a Module<a class="heading-anchor" href="#requiring-a-module" aria-label="Link to Requiring a Module">#</a></h3><p>The <code>requires</code> keyword is how we declare dependencies on other modules. Consider this example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.mymodule {
+    <span class="hljs-keyword">requires</span> java.sql;
+}</code></pre></div><p>This tells the Java runtime that our module depends on the <code>java.sql</code> module.</p>
+<p>But what if we&#39;re building on top of another module and want to expose its functionality through our module? That&#39;s where <code>requires transitive</code> comes in:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.mymodule {
+    <span class="hljs-keyword">requires</span> transitive java.sql;
+}</code></pre></div><p>Now, any module that requires our module will automatically require <code>java.sql</code> too. It&#39;s like saying &quot;if you&#39;re checking out books from our section, you&#39;ll also get a library card for the SQL section.&quot;</p>
+<p>This is particularly useful when you&#39;re creating an API that builds on another module. Your users don&#39;t need to know about the underlying dependencies, they just require your module, and everything else comes along.</p>
+<h3 id="opening-a-package">Opening a Package<a class="heading-anchor" href="#opening-a-package" aria-label="Link to Opening a Package">#</a></h3><p>Sometimes, we need to allow reflective access to a package at runtime, even if it&#39;s not exported. This is where the <code>opens</code> keyword comes in handy. Consider this example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.mymodule {
+    opens com.mycompany.mymodule.internal;
+}</code></pre></div><p>This allows reflective access to all types of the package at runtime, but doesn&#39;t allow compile-time access from other modules.</p>
+<p>You can also open a package to specific modules:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.mymodule {
+    opens com.mycompany.mymodule.internal to com.mycompany.testmodule;
+}</code></pre></div><p>This is particularly useful for testing frameworks or dependency injection libraries that need to access your module&#39;s internals.</p>
+<p>If you need to open all packages in your module for reflection, you can use the <code>open</code> keyword on the module declaration itself:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">open <span class="hljs-keyword">module</span> com.mycompany.mymodule {
+    <span class="hljs-comment">// module declarations</span>
+}</code></pre></div><p>Isn&#39;t this module system a bit like setting up security clearances in a classified library? You have public sections (exported packages), restricted sections (non-exported packages), special access privileges (opens), and even transitive security clearances (requires transitive). It gives you fine-grained control over who can access what in your codebase.</p>
+<p>Here&#39;s a more complex example putting it all together:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.mymodule {
+    <span class="hljs-keyword">exports</span> com.mycompany.mymodule.api;
+    <span class="hljs-keyword">exports</span> com.mycompany.mymodule.util to com.mycompany.partnermodule;
+    
+    <span class="hljs-keyword">requires</span> java.base; <span class="hljs-comment">// This is implicit</span>
+    <span class="hljs-keyword">requires</span> transitive com.mycompany.commonmodule;
+    <span class="hljs-keyword">requires</span> org.apache.logging.log4j;
+    
+    opens com.mycompany.mymodule.internal to org.junit.jupiter.api;
+}</code></pre></div><p>This module exports one package globally and another to a specific module, requires several modules (one transitively), and opens a package for testing.</p>
+<h2 id="built-in-modules">Built-in Modules<a class="heading-anchor" href="#built-in-modules" aria-label="Link to Built-in Modules">#</a></h2><p>Now that we&#39;ve explored creating our own modules and services, let&#39;s look at the modules that come built into the Java platform. These built-in modules provide essential services and resources for everything else to build upon.</p>
+<h3 id="core-java-modules">Core Java Modules<a class="heading-anchor" href="#core-java-modules" aria-label="Link to Core Java Modules">#</a></h3><p>Modules that start with <code>java</code> are the core modules of the Java SE Platform. These modules contain the fundamental APIs that most Java applications rely on.</p>
+<p>Here are some of the most commonly used <code>java</code> modules:</p>
+<ol>
+<li><p><code>java.base</code>: This is the foundational module of the Java SE Platform. It&#39;s automatically required by all other modules, just like how every section of a library relies on basic organizational principles.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// You don&#x27;t need to explicitly require java.base</span>
+<span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-comment">// java.base is implicitly required</span>
+}</code></pre></div></li>
+<li><p><code>java.sql</code>: Provides the API for accessing and processing data stored in a data source (usually a relational database) using the Java programming language.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-keyword">requires</span> java.sql;
+}</code></pre></div></li>
+<li><p><code>java.xml</code>: Contains the APIs for processing XML.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-keyword">requires</span> java.xml;
+}</code></pre></div></li>
+<li><p><code>java.desktop</code>: Defines the APIs for creating rich desktop applications, including AWT and Swing.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-keyword">requires</span> java.desktop;
+}</code></pre></div></li>
+<li><p><code>java.logging</code>: Provides the classes and interfaces of the Java Logging API.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-keyword">requires</span> java.logging;
+}</code></pre></div></li>
+</ol>
+<p>These <code>java</code> modules provide the core functionality that most Java applications rely on. They&#39;re stable, well-documented, and form the backbone of the Java ecosystem.</p>
+<h3 id="jdk-modules">JDK Modules<a class="heading-anchor" href="#jdk-modules" aria-label="Link to JDK Modules">#</a></h3><p>Modules that start with <code>jdk</code> are also part of the Java Development Kit, but they&#39;re not considered part of the core Java SE Platform specification. They provide additional tools and APIs that are useful for certain types of systems but aren&#39;t necessary for every application.</p>
+<p>Here are some examples of <code>jdk</code> modules:</p>
+<ol>
+<li><p><code>jdk.httpserver</code>: Provides a simple HTTP server API.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-keyword">requires</span> jdk.httpserver;
+}</code></pre></div></li>
+<li><p><code>jdk.jshell</code>: Contains the JShell API, which allows you to create an interactive Java shell.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-keyword">requires</span> jdk.jshell;
+}</code></pre></div></li>
+<li><p><code>jdk.security.auth</code>: Provides implementations of the javax.security.auth.* interfaces.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-keyword">requires</span> jdk.security.auth;
+}</code></pre></div></li>
+</ol>
+<p>It&#39;s important to note that while <code>java</code> modules are guaranteed to be available in all Java SE implementations, <code>jdk</code> modules might not be available. They&#39;re part of the JDK but not part of the Java SE specification. This means that if you&#39;re using a <code>jdk</code> module, your code might not be portable across all Java SE implementations.</p>
+<p>Here&#39;s an example of how you might use both types of modules:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-keyword">requires</span> java.base;  <span class="hljs-comment">// This is implicit</span>
+    <span class="hljs-keyword">requires</span> java.sql;   <span class="hljs-comment">// For database operations</span>
+    <span class="hljs-keyword">requires</span> java.logging;  <span class="hljs-comment">// For logging</span>
+    <span class="hljs-keyword">requires</span> jdk.httpserver;  <span class="hljs-comment">// To create a simple HTTP server</span>
+    
+    <span class="hljs-keyword">exports</span> com.mycompany.app.api;
+}</code></pre></div><p>In this module declaration, we&#39;re using both <code>java</code> and <code>jdk</code> modules. We&#39;re relying on core Java functionality for database operations and logging, but we&#39;re also using the JDK&#39;s simple HTTP server for some additional functionality.</p>
+<h2 id="using-the-command-line">Using the Command Line<a class="heading-anchor" href="#using-the-command-line" aria-label="Link to Using the Command Line">#</a></h2><p>While IDEs are great for productivity, understanding how to use <code>javac</code> and <code>java</code> commands is important. It&#39;s like knowing how to cook a meal from scratch instead of just reheating pre-made dishes.</p>
+<p>There are several good reasons to learn how to compile and run Java code from the command line:</p>
+<ul>
+<li>Understanding what&#39;s happening under the hood.</li>
+<li>Troubleshooting build issues.</li>
+<li>Writing build scripts or setting up CI/CD pipelines.</li>
+<li>Working in environments where IDEs aren&#39;t available.</li>
+</ul>
+<p>Think of it as learning to change a tire. You might not need to do it often, but when you do, you&#39;ll be glad you know how.</p>
+<h3 id="compiling-classes-with-javac">Compiling Classes with <code>javac</code><a class="heading-anchor" href="#compiling-classes-with-javac" aria-label="Link to Compiling Classes with javac">#</a></h3><p>Let&#39;s start with the basics. Here&#39;s how you compile a simple Java file:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">javac MyClass.java</code></pre></div><p>This compiles <code>MyClass.java</code> in the default package. But what about when you have packages?</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">javac com/mycompany/myapp/MyClass.java</code></pre></div><p>This compiles <code>MyClass.java</code> in the <code>com.mycompany.myapp</code> package.</p>
+<p>Typing out every file name can get tedious. Thankfully, you can use wildcards:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">javac com/mycompany/myapp/*.java</code></pre></div><p>This compiles all <code>.java</code> files in the <code>com/mycompany/myapp</code> directory.</p>
+<p>Often, we want to keep our source files separate from our compiled classes. The <code>-d</code> option lets us specify an output directory:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">javac -d bin com/mycompany/myapp/*.java</code></pre></div><p>This compiles all <code>.java</code> files and puts the resulting <code>.class</code> files in the <code>bin</code> directory, maintaining the package structure.</p>
+<p>When our code depends on external libraries, we need to tell the compiler where to find them. That&#39;s where the classpath option comes in:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">javac -cp lib/dependency.jar com/mycompany/myapp/*.java</code></pre></div><p>This tells the compiler to look for classes in <code>dependency.jar</code> while compiling our code. You can specify multiple JAR files or directories by separating them with a colon (<code>:</code>) on Unix-like systems or a semicolon (<code>;</code>) on Windows.</p>
+<p>Speaking of JAR files, here&#39;s how you compile against multiple JARs:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">javac -cp lib/dependency1.jar:lib/dependency2.jar com/mycompany/myapp/*.java</code></pre></div><p>This compiles our code using classes from both <code>dependency1.jar</code> and <code>dependency2.jar</code>.</p>
+<p>When working with modules, we need to specify the module path:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">javac --module-path mods -d out src/module-info.java src/com/mycompany/myapp/*.java</code></pre></div><p>This compiles our module, looking for dependencies in the <code>mods</code> directory and outputting to the <code>out</code> directory.</p>
+<h3 id="running-classes-with-java">Running Classes with <code>java</code><a class="heading-anchor" href="#running-classes-with-java" aria-label="Link to Running Classes with java">#</a></h3><p>Once you&#39;ve compiled a class, you can run it with:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">java com.mycompany.myapp.MyClass</code></pre></div><p>This runs <code>MyClass</code> in the <code>com.mycompany.myapp</code> package. Note that we don&#39;t include the <code>.class</code> extension.</p>
+<p>Just like with compilation, we might need to specify a classpath when running our code:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">java -cp bin:lib/dependency.jar com.mycompany.myapp.MyClass</code></pre></div><p>This runs <code>MyClass</code>, looking for classes in both the <code>bin</code> directory and <code>dependency.jar</code>.</p>
+<p>To run a modular application, we use the <code>--module-path</code> and <code>-m</code> options:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">java --module-path out:mods -m com.mycompany.myapp/com.mycompany.myapp.MyClass</code></pre></div><p>This runs <code>MyClass</code> from the <code>com.mycompany.myapp</code> module, looking for modules in the <code>out</code> and <code>mods</code> directories.</p>
+<h3 id="packaging-with-jar">Packaging with <code>jar</code><a class="heading-anchor" href="#packaging-with-jar" aria-label="Link to Packaging with jar">#</a></h3><p>Often, you&#39;ll want to package your application into a JAR file. The <code>jar</code> command helps you do this:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jar -cvf myapp.jar -C bin .</code></pre></div><p>Let&#39;s break this down:</p>
+<ul>
+<li><code>-c</code> or <code>--create</code>: Create a new archive</li>
+<li><code>-v</code> or <code>--verbose</code>: Generate verbose output</li>
+<li><code>-f</code> or <code>--file</code>: Specify the archive file name</li>
+<li><code>-C bin</code>: Change to the <code>bin</code> directory before adding files</li>
+<li><code>.</code>: Add all files in the current directory (which is now <code>bin</code>)</li>
+</ul>
+<p>With a modular application, you can package your module into a modular JAR:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jar --create --file mods/com.mycompany.myapp.jar --main-class com.mycompany.myapp.MyClass -C out .</code></pre></div><p>This creates a modular JAR file, optionally specifying <code>MyClass</code> as the main class.</p>
+<p>Here&#39;s a more complex example that ties it all together:</p>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-bash"><span class="hljs-comment"># Compile the module</span>
+javac --module-path mods -d out \
+    src/module-info.java \
+    src/com/mycompany/myapp/*.java
+
+<span class="hljs-comment"># Package the module</span>
+jar --create --file mods/com.mycompany.myapp.jar \
+    --main-class com.mycompany.myapp.MyClass \
+    -C out .
+
+<span class="hljs-comment"># Run the module</span>
+java --module-path mods \
+    -m com.mycompany.myapp/com.mycompany.myapp.MyClass</code></pre></div><p>This sequence compiles the module, packages it into a JAR, and then runs it.</p>
+<p>By convention, we store the compiled modules in a <code>mods</code> directory. When we use <code>--module-path mods</code> in our Java commands, we&#39;re telling Java to look for modules in this <code>mods</code> directory.</p>
+<h2 id="multiple-modules">Multiple Modules<a class="heading-anchor" href="#multiple-modules" aria-label="Link to Multiple Modules">#</a></h2><p>Up until now, we&#39;ve been working with a single module, which is like organizing a single shelf in our library. But real-world applications often require multiple modules working together, more akin to organizing an entire library with multiple sections. </p>
+<h3 id="designing-a-multi-module-application">Designing a Multi-Module Application<a class="heading-anchor" href="#designing-a-multi-module-application" aria-label="Link to Designing a Multi-Module Application">#</a></h3><p>Designing a multi-module application is like planning the layout of a large library. You need to think about how different sections (modules) will interact, what resources they&#39;ll share, and how to organize them for easy navigation and maintenance.</p>
+<p>Here&#39;s a simple example of a multi-module application structure:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">myapp/
+├── core/
+│   └── src/
+│       ├── main/
+│       │   └── java/
+│       │       ├── module-info.java
+│       │       └── com/mycompany/core/
+│       └── test/
+├── api/
+│   └── src/
+│       ├── main/
+│       │   └── java/
+│       │       ├── module-info.java
+│       │       └── com/mycompany/api/
+│       └── test/
+└── app/
+    └── src/
+        ├── main/
+        │   └── java/
+        │       ├── module-info.java
+        │       └── com/mycompany/app/
+        └── test/</code></pre></div><p>In this structure:</p>
+<ul>
+<li><code>core</code> contains the core functionality and domain logic</li>
+<li><code>api</code> defines the public interfaces for your application</li>
+<li><code>app</code> is the main application that ties everything together</li>
+</ul>
+<p>When working with multiple modules, it&#39;s important to understand the dependencies between them.</p>
+<p>Let&#39;s look at how we might define the dependencies for our example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// core/src/main/java/module-info.java</span>
+<span class="hljs-keyword">module</span> com.mycompany.core {
+    <span class="hljs-keyword">exports</span> com.mycompany.core;
+}
+
+<span class="hljs-comment">// api/src/main/java/module-info.java</span>
+<span class="hljs-keyword">module</span> com.mycompany.api {
+    <span class="hljs-keyword">requires</span> com.mycompany.core;
+    <span class="hljs-keyword">exports</span> com.mycompany.api;
+}
+
+<span class="hljs-comment">// app/src/main/java/module-info.java</span>
+<span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-keyword">requires</span> com.mycompany.core;
+    <span class="hljs-keyword">requires</span> com.mycompany.api;
+}</code></pre></div><p>In this setup, both <code>api</code> and <code>app</code> depend on <code>core</code>, and <code>app</code> also depends on <code>api</code>. This creates a hierarchy of dependencies that impacts how you develop and maintain your application:</p>
+<ul>
+<li>Changes in <code>core</code> can affect both <code>api</code> and <code>app</code>.</li>
+<li>Changes in <code>api</code> can affect <code>app</code>, but not <code>core</code>.</li>
+<li>Changes in <code>app</code> don&#39;t directly affect the other modules.</li>
+</ul>
+<p>However, this dependency structure helps enforce a clean architecture, preventing lower-level modules from depending on higher-level ones. </p>
+<p>When organizing code across modules, think about separation of concerns and information hiding. Each module should have a clear, focused purpose, and should only expose what&#39;s necessary for other modules to use.</p>
+<p>Here&#39;s an example of how you might organize some classes:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// In core module</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> { ... }
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> { ... }
+
+<span class="hljs-comment">// In api module</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserAPI</span> { ... }
+
+<span class="hljs-comment">// In app module</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserController</span> { ... }</code></pre></div><p>The <code>core</code> module defines the fundamental domain objects and services. The <code>api</code> module defines the public interfaces that other parts of the application (or external systems) will use. The <code>app</code> module contains the application-specific logic that ties everything together.</p>
+<p>This organization allows you to change the internals of the <code>core</code> module without affecting clients of the <code>api</code>, as long as the <code>api</code> remains stable.</p>
+<p>That said, deciding on the right level of granularity for your modules can be challenging. Too few modules and you lose the benefits of modularization; too many and you introduce unnecessary complexity. Here are some best practices:</p>
+<ol>
+<li><p><strong>Single Responsibility Principle:</strong> Each module should have one, and only one, reason to change. </p>
+</li>
+<li><p><strong>Encapsulation:</strong> Modules should hide their internals and expose only what&#39;s necessary. </p>
+</li>
+<li><p><strong>Stable Dependencies:</strong> Modules should depend on modules that are more stable than they are. </p>
+</li>
+<li><p><strong>Reusability:</strong> If a set of functionality might be useful in other contexts, consider making it a separate module. </p>
+</li>
+<li><p><strong>Size:</strong> While there&#39;s no hard and fast rule, modules that are too large become unwieldy, while modules that are too small can lead to <em>dependency hell</em>. Aim for modules that can be reasonably understood and maintained by a small team.</p>
+</li>
+</ol>
+<p>Here&#39;s an example of refactoring our earlier structure, using another approach to improve granularity:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">myapp/
+├── core/
+│   ├── domain/
+│   └── services/
+├── api/
+│   ├── internal/
+│   └── public/
+├── infrastructure/
+│   ├── persistence/
+│   └── messaging/
+└── app/
+    ├── web/
+    └── cli/</code></pre></div><p>In this refactored structure:</p>
+<ul>
+<li>We&#39;ve split <code>core</code> into <code>domain</code> and <code>services</code> to separate entities from business logic.</li>
+<li><code>api</code> is divided into <code>internal</code> (for use within the application) and <code>public</code> (for external consumers).</li>
+<li>We&#39;ve added an <code>infrastructure</code> module to handle cross-cutting concerns.</li>
+<li><code>app</code> is split into <code>web</code> and <code>cli</code> for different user interfaces.</li>
+</ul>
+<p>This granularity allows for more focused modules, each with a clear responsibility, while still maintaining a manageable overall structure.</p>
+<h3 id="inter-module-communication">Inter-module Communication<a class="heading-anchor" href="#inter-module-communication" aria-label="Link to Inter-module Communication">#</a></h3><p>When working with multiple modules, communication between them becomes important. In Java, inter-module communication typically happens through well-defined APIs. </p>
+<p>Here&#39;s how you might set this up:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// In api module</span>
+<span class="hljs-keyword">module</span> com.mycompany.api {
+    <span class="hljs-keyword">exports</span> com.mycompany.api;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserService</span> {
+    <span class="hljs-type">User</span> <span class="hljs-title function_">getUser</span><span class="hljs-params">(String id)</span>;
+    <span class="hljs-type">void</span> <span class="hljs-title function_">updateUser</span><span class="hljs-params">(User user)</span>;
+}
+
+<span class="hljs-comment">// In core module</span>
+<span class="hljs-keyword">module</span> com.mycompany.core {
+    <span class="hljs-keyword">requires</span> com.mycompany.api;
+    provides com.mycompany.api.UserService 
+        with com.mycompany.core.UserServiceImpl;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserService</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">User</span> <span class="hljs-title function_">getUser</span><span class="hljs-params">(String id)</span> { ... }
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">updateUser</span><span class="hljs-params">(User user)</span> { ... }
+}
+
+<span class="hljs-comment">// In app module</span>
+<span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-keyword">requires</span> com.mycompany.api;
+    uses com.mycompany.api.UserService;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserController</span> {
+    <span class="hljs-meta">@Inject</span>
+    <span class="hljs-keyword">private</span> UserService userService;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">handleUserUpdate</span><span class="hljs-params">(String id, UserUpdateRequest request)</span> {
+        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userService.getUser(id);
+        <span class="hljs-comment">// Update user based on request</span>
+        userService.updateUser(user);
+    }
+}</code></pre></div><p>In this setup:</p>
+<ul>
+<li>The <code>api</code> module defines the <code>UserService</code> interface.</li>
+<li>The <code>core</code> module provides an implementation of <code>UserService</code>.</li>
+<li>The <code>app</code> module uses the <code>UserService</code> without knowing about its implementation.</li>
+</ul>
+<p>This approach allows modules to communicate through well-defined interfaces, promoting loose coupling and making it easier to change implementations without affecting other modules.</p>
+<h3 id="resolving-conflicts-between-modules">Resolving Conflicts Between Modules<a class="heading-anchor" href="#resolving-conflicts-between-modules" aria-label="Link to Resolving Conflicts Between Modules">#</a></h3><p>As your application grows, you might encounter conflicts between modules. Here are some common conflicts and how to resolve them:</p>
+<ol>
+<li><p><strong>Version Conflicts:</strong> When two modules require different versions of the same dependency.
+<strong>Solution:</strong> Use the <code>requires</code> directive with a specific version, or use build tools like Maven or Gradle to manage versions.</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">module com.mycompany.moduleA {
+    requires com.fasterxml.jackson.databind;
+}
+
+module com.mycompany.moduleB {
+    requires com.fasterxml.jackson.databind@2.11.0;
+}</code></pre></div></li>
+<li><p><strong>Split Packages:</strong> When classes in the same package are spread across multiple modules.
+<strong>Solution:</strong> Refactor your code to ensure each package is contained within a single module.</p>
+</li>
+<li><p><strong>Naming Conflicts:</strong> When two modules export the same package name.
+<strong>Solution:</strong> Rename one of the packages to ensure uniqueness across your application.</p>
+</li>
+<li><p><strong>Cyclic Dependencies:</strong> When modules depend on each other in a circular manner.
+<strong>Solution:</strong> Introduce a new module that both can depend on, or use the Service Provider Interface (SPI) pattern.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Before (cyclic dependency)</span>
+<span class="hljs-keyword">module</span> com.mycompany.moduleA {
+    <span class="hljs-keyword">requires</span> com.mycompany.moduleB;
+}
+<span class="hljs-keyword">module</span> com.mycompany.moduleB {
+    <span class="hljs-keyword">requires</span> com.mycompany.moduleA;
+}
+
+<span class="hljs-comment">// After (using SPI)</span>
+<span class="hljs-keyword">module</span> com.mycompany.api {
+    <span class="hljs-keyword">exports</span> com.mycompany.api;
+}
+<span class="hljs-keyword">module</span> com.mycompany.moduleA {
+    <span class="hljs-keyword">requires</span> com.mycompany.api;
+    provides com.mycompany.api.ServiceA with com.mycompany.moduleA.ServiceAImpl;
+}
+<span class="hljs-keyword">module</span> com.mycompany.moduleB {
+    <span class="hljs-keyword">requires</span> com.mycompany.api;
+    uses com.mycompany.api.ServiceA;
+}</code></pre></div></li>
+</ol>
+<p>To better understand the solution, let&#39;s review services in more detail.</p>
+<h2 id="creating-a-service">Creating a Service<a class="heading-anchor" href="#creating-a-service" aria-label="Link to Creating a Service">#</a></h2><p>Let&#39;s dive into one of the most powerful features of the Java Module System: services. Services allow us to create flexible, extensible applications by decoupling interfaces from their implementations.</p>
+<p>In the context of the Java Module System, a service is a well-defined set of programming interfaces and classes that provide access to some specific application functionality or feature. It&#39;s like a specialized department in our library that provides a specific service, say, book restoration.</p>
+<p>The service model consists of three main components:</p>
+<ol>
+<li><strong>The Service Provider Interface (SPI):</strong> This is the contract that defines what the service does.</li>
+<li><strong>The Service Provider:</strong> This is the implementation of the SPI.</li>
+<li><strong>The Service Consumer:</strong> This is the code that uses the service.</li>
+</ol>
+<p>This separation allows for loose coupling between modules. The consumer doesn&#39;t need to know about the specific implementation of the service, just the interface it uses.</p>
+<p>Let&#39;s start by declaring our Service Provider Interface. We&#39;ll use the <code>UserService</code> from the previous section as our sample service:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// In the api module</span>
+<span class="hljs-keyword">module</span> com.mycompany.api {
+    <span class="hljs-keyword">exports</span> com.mycompany.api;
+}
+
+<span class="hljs-keyword">package</span> com.mycompany.api;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserService</span> {
+    <span class="hljs-type">User</span> <span class="hljs-title function_">getUser</span><span class="hljs-params">(String id)</span>;
+    <span class="hljs-type">void</span> <span class="hljs-title function_">updateUser</span><span class="hljs-params">(User user)</span>;
+}</code></pre></div><p>This <code>UserService</code> interface defines the contract for the user management service. Any module that implements this interface can provide user management functionality.</p>
+<p>Now that we have our Service Provider Interface, we need a way to discover and load implementations of this service. This is where a Service Locator comes in. In Java 9 and above, we can use the <code>ServiceLoader</code> class for this purpose.</p>
+<p>Here&#39;s how we might create a <code>UserServiceLocator</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// In the app module</span>
+<span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-keyword">requires</span> com.mycompany.api;
+    uses com.mycompany.api.UserService;
+}
+
+<span class="hljs-keyword">package</span> com.mycompany.app;
+
+<span class="hljs-keyword">import</span> com.mycompany.api.UserService;
+<span class="hljs-keyword">import</span> java.util.ServiceLoader;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceLocator</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">ServiceLoader</span>&lt;UserService&gt; <span class="hljs-variable">loader</span> <span class="hljs-operator">=</span> ServiceLoader.load(UserService.class);
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">UserService</span> <span class="hljs-title function_">getUserService</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> loader.findFirst().orElseThrow(() -&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalStateException</span>(<span class="hljs-string">&quot;No UserService implementation found&quot;</span>));
+    }
+}</code></pre></div><p>Let&#39;s break this down:</p>
+<ul>
+<li>We use the <code>ServiceLoader.load()</code> method to create a <code>ServiceLoader</code> for our <code>UserService</code> interface.</li>
+<li>The <code>getUserService()</code> method uses <code>findFirst()</code> to get the first available implementation of <code>UserService</code>.</li>
+<li>If no implementation is found, we throw an <code>IllegalStateException</code>.</li>
+</ul>
+<p>Note the <code>uses</code> directive in the module declaration. This tells the module system that this module will be using the <code>UserService</code> service.</p>
+<p>This approach provides several benefits:</p>
+<ul>
+<li><strong>Loose coupling:</strong> The <code>app</code> module doesn&#39;t need to know about the specific implementation of <code>UserService</code>.</li>
+<li><strong>Flexibility:</strong> We can easily swap out different implementations of <code>UserService</code> without changing the consuming code.</li>
+<li><strong>Extensibility:</strong> Third-party modules can provide their own implementations of <code>UserService</code>, extending the functionality of our application.</li>
+</ul>
+<p>Here&#39;s how we might use this in our <code>UserController</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">package</span> com.mycompany.app;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserController</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> UserService userService;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">UserController</span><span class="hljs-params">()</span> {
+        <span class="hljs-built_in">this</span>.userService = UserServiceLocator.getUserService();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">handleUserUpdate</span><span class="hljs-params">(String id, UserUpdateRequest request)</span> {
+        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userService.getUser(id);
+        <span class="hljs-comment">// Update user based on request</span>
+        userService.updateUser(user);
+    }
+}</code></pre></div><p>In this setup, <code>UserController</code> doesn&#39;t need to know anything about how <code>UserService</code> is implemented or where it comes from. It just uses the service locator to get an instance and then uses it.</p>
+<p>However, we haven&#39;t actually provided an implementation yet. Let&#39;s do that now.</p>
+<p>First, we&#39;ll create an implementation of our <code>UserService</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// In the core module</span>
+<span class="hljs-keyword">package</span> com.mycompany.core;
+
+<span class="hljs-keyword">import</span> com.mycompany.api.User;
+<span class="hljs-keyword">import</span> com.mycompany.api.UserService;
+<span class="hljs-keyword">import</span> java.util.HashMap;
+<span class="hljs-keyword">import</span> java.util.Map;
+<span class="hljs-keyword">import</span> java.util.UUID;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserService</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Map</span>&lt;String, User&gt; <span class="hljs-variable">users</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">User</span> <span class="hljs-title function_">getUser</span><span class="hljs-params">(String id)</span> {
+        <span class="hljs-keyword">return</span> users.get(id);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">updateUser</span><span class="hljs-params">(User user)</span> {
+        <span class="hljs-keyword">if</span> (user.getId() == <span class="hljs-literal">null</span>) {
+            user.setId(UUID.randomUUID().toString());
+        }
+        users.put(user.getId(), user);
+    }
+}</code></pre></div><p>Now, we need to tell the module system that this implementation provides the <code>UserService</code>. We do this in the <code>module-info.java</code> file of the core module:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.core {
+    <span class="hljs-keyword">requires</span> com.mycompany.api;
+    provides com.mycompany.api.UserService with com.mycompany.core.UserServiceImpl;
+}</code></pre></div><p>The <code>provides ... with</code> clause tells the module system that this module provides an implementation of <code>UserService</code> using the <code>UserServiceImpl</code> class.</p>
+<p>Now, when the <code>ServiceLoader</code> in our <code>UserServiceLocator</code> looks for implementations of <code>UserService</code>, it will find and use this <code>UserServiceImpl</code>.</p>
+<p>This separation of interface and implementation gives us incredible flexibility. We could easily swap out our <code>UserServiceImpl</code> for a different implementation without having to change any of the consuming code. Maybe one that uses a database instead of an in-memory map:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// In the core module</span>
+<span class="hljs-keyword">package</span> com.mycompany.core;
+
+<span class="hljs-keyword">import</span> com.mycompany.api.User;
+<span class="hljs-keyword">import</span> com.mycompany.api.UserService;
+<span class="hljs-keyword">import</span> java.sql.*;
+<span class="hljs-keyword">import</span> java.util.UUID;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DatabaseUserServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserService</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DB_URL</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;jdbc:sqlite:users.db&quot;</span>;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">User</span> <span class="hljs-title function_">getUser</span><span class="hljs-params">(String id)</span> {
+        <span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;SELECT * FROM users WHERE id = ?&quot;</span>;
+        <span class="hljs-comment">// ...</span>
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">updateUser</span><span class="hljs-params">(User user)</span> {
+        <span class="hljs-type">String</span> <span class="hljs-variable">sql</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;INSERT OR REPLACE INTO users(id, username, email, active) VALUES(?,?,?,?)&quot;</span>;
+        <span class="hljs-comment">// ...</span>
+    }
+}</code></pre></div><p>Now, to use this new implementation, we only need to change the <code>provides</code> clause in our <code>module-info.java</code> file:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.mycompany.core {
+    <span class="hljs-keyword">requires</span> com.mycompany.api;
+    <span class="hljs-keyword">requires</span> java.sql;  <span class="hljs-comment">// We need this for JDBC</span>
+    provides com.mycompany.api.UserService with com.mycompany.core.DatabaseUserServiceImpl;
+}</code></pre></div><p>That&#39;s it! We&#39;ve now swapped out our in-memory implementation for a database-backed one. The beauty of this approach is that we didn&#39;t have to change any code in the <code>UserController</code> or any other consuming classes. They&#39;re still working with the <code>UserService</code> interface, unaware that the underlying implementation has changed.</p>
+<p>To add another implementation of the <code>UserService</code> without replacing the existing one, we&#39;ll first modify the core module to include both implementations:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// In the core module</span>
+<span class="hljs-keyword">module</span> com.mycompany.core {
+    <span class="hljs-keyword">requires</span> com.mycompany.api;
+    <span class="hljs-keyword">requires</span> java.sql;  <span class="hljs-comment">// We need this for JDBC</span>
+
+    provides com.mycompany.api.UserService with 
+        com.mycompany.core.UserServiceImpl,
+        com.mycompany.core.DatabaseUserServiceImpl;
+}</code></pre></div><p>Now, the module system knows that there are two providers for <code>UserService</code>.</p>
+<p>Next, we can update the <code>UserServiceLocator</code> to return all available implementations:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// In the app module</span>
+<span class="hljs-keyword">module</span> com.mycompany.app {
+    <span class="hljs-keyword">requires</span> com.mycompany.api;
+    uses com.mycompany.api.UserService;
+}
+
+<span class="hljs-keyword">package</span> com.mycompany.app;
+
+<span class="hljs-keyword">import</span> com.mycompany.api.UserService;
+<span class="hljs-keyword">import</span> java.util.ServiceLoader;
+<span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.stream.Collectors;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceLocator</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">ServiceLoader</span>&lt;UserService&gt; <span class="hljs-variable">loader</span> <span class="hljs-operator">=</span> ServiceLoader.load(UserService.class);
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">List</span>&lt;UserService&gt; <span class="hljs-title function_">getUserServices</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> loader.stream()
+                     .map(ServiceLoader.Provider::get)
+                     .collect(Collectors.toList());
+    }
+}</code></pre></div><p>This method returns a list of all available <code>UserService</code> implementations. </p>
+<p>Now, we can update the <code>UserController</code> to use, for example, all available services:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">package</span> com.mycompany.app;
+
+<span class="hljs-keyword">import</span> com.mycompany.api.User;
+<span class="hljs-keyword">import</span> com.mycompany.api.UserService;
+
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserController</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> List&lt;UserService&gt; userServices;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">UserController</span><span class="hljs-params">()</span> {
+        <span class="hljs-built_in">this</span>.userServices = UserServiceLocator.getUserServices();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">handleUserUpdate</span><span class="hljs-params">(String id, UserUpdateRequest request)</span> {
+        <span class="hljs-keyword">for</span> (UserService userService : userServices) {
+            <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userService.getUser(id);
+            <span class="hljs-comment">// Update user based on request</span>
+            userService.updateUser(user);
+        }
+    }
+}</code></pre></div><p>In this setup, <code>UserController</code> will iterate through all available <code>UserService</code> implementations and call the <code>getUser</code> and <code>updateUser</code> methods on each.</p>
+<p>This service-oriented approach allows us to build more modular, flexible applications. A well-designed application using the Java Module System&#39;s service feature can easily extend and modify its functionality over time.</p>
+<h2 id="getting-module-details">Getting Module Details<a class="heading-anchor" href="#getting-module-details" aria-label="Link to Getting Module Details">#</a></h2><p>As your modular application grows, you might need to inspect your modules to understand their structure, dependencies, and how they&#39;re being resolved. Java provides several command-line tools to help with this.</p>
+<h3 id="describing-a-module">Describing a Module<a class="heading-anchor" href="#describing-a-module" aria-label="Link to Describing a Module">#</a></h3><p>Let&#39;s start with describing a module. The <code>java</code> command with the <code>--describe-module</code> (or <code>-d</code>) option allows us to see details about a specific module:</p>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-bash">java --describe-module java.sql</code></pre></div><p>This might output something like:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">java.sql@18.0.3
+exports java.sql
+exports javax.sql
+requires java.logging transitive
+requires java.transaction.xa transitive
+requires java.base mandated
+requires java.xml transitive
+uses java.sql.Driver</code></pre></div><p>This tells us what packages the module exports, what other modules it requires, and what services it uses. It&#39;s a quick way to get an overview of a module&#39;s structure and dependencies.</p>
+<p>You can also describe modules that aren&#39;t part of the Java runtime. For example, if you have a <code>com.mycompany.core</code> module in a JAR file:</p>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-bash">java --module-path mods --describe-module com.mycompany.core</code></pre></div><p>This might output:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">com.mycompany.core@1.0
+requires java.base mandated
+requires com.mycompany.api
+provides com.mycompany.api.UserService with com.mycompany.core.DatabaseUserServiceImpl</code></pre></div><h3 id="listing-available-modules">Listing Available Modules<a class="heading-anchor" href="#listing-available-modules" aria-label="Link to Listing Available Modules">#</a></h3><p>Sometimes, you might want to see all the modules available to your application. You can do this with the <code>--list-modules</code> option:</p>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-bash">java --list-modules</code></pre></div><p>This will list all modules in the Java runtime. If you want to include your own modules, you can use:</p>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-bash">java --module-path mods --list-modules</code></pre></div><p>This will list both the Java runtime modules and any modules in the <code>mods</code> directory (by convention, the directory where you store the compiled modules).</p>
+<h3 id="module-resolution">Module Resolution<a class="heading-anchor" href="#module-resolution" aria-label="Link to Module Resolution">#</a></h3><p>When you&#39;re dealing with complex module dependencies, it can be helpful to see how the module system resolves these dependencies. You can do this with the <code>--show-module-resolution</code> option:</p>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-bash">java --show-module-resolution --module-path mods -m com.mycompany.app/com.mycompany.app.Main</code></pre></div><p>This will show detailed information about how each module is resolved as the application starts up. It&#39;s particularly useful for debugging issues with module dependencies.</p>
+<h3 id="using-the-jar-command">Using the <code>jar</code> Command<a class="heading-anchor" href="#using-the-jar-command" aria-label="Link to Using the jar Command">#</a></h3><p>While the <code>java</code> command is great for describing modules at runtime, sometimes you&#39;ll want to inspect a module without running it. The <code>jar</code> command can help with this:</p>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-bash">jar --describe-module --file mods/com.mycompany.core.jar</code></pre></div><p>This might output something like:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">com.mycompany.core jar:file:///.../mods/com.mycompany.core.jar/!module-info.class
+requires java.base mandated
+requires com.mycompany.api
+provides com.mycompany.api.UserService with com.mycompany.core.DatabaseUserServiceImpl</code></pre></div><p>This provides similar information to the <code>java --describe-module</code> command, but it works directly on the JAR file without needing to set up the module path.</p>
+<p>Here&#39;s a more complex example. Let&#39;s say we have a multi-module application and want to understand how all the pieces fit together:</p>
+<div class="code-block"><div class="code-toolbar"><span>bash</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-bash"><span class="hljs-comment"># List all modules</span>
+java --module-path mods --list-modules
+
+<span class="hljs-comment"># Describe each of our modules</span>
+java --module-path mods --describe-module com.mycompany.api
+java --module-path mods --describe-module com.mycompany.core
+java --module-path mods --describe-module com.mycompany.app
+
+<span class="hljs-comment"># Show module resolution for our main application</span>
+java --show-module-resolution --module-path mods -m com.mycompany.app/com.mycompany.app.Main
+
+<span class="hljs-comment"># Describe our core module JAR file</span>
+jar --describe-module --file mods/com.mycompany.core.jar</code></pre></div><p>By running these commands, you can get a comprehensive view of your application&#39;s module structure, from the high-level list of all modules, through the details of each module, to the step-by-step resolution process when you run your application.</p>
+<h2 id="analyzing-dependencies-with-jdeps">Analyzing Dependencies With <code>jdeps</code><a class="heading-anchor" href="#analyzing-dependencies-with-jdeps" aria-label="Link to Analyzing Dependencies With jdeps">#</a></h2><p><code>jdeps</code> is a tool that provides powerful capabilities for analyzing and visualizing dependencies at both the module and class level. It allows you to examine the relationships between modules, packages, and classes, enabling you to make informed decisions about the structure and organization of your codebase.</p>
+<p>To get started with <code>jdeps</code>, let&#39;s explore its basic syntax and common options. The general format for running <code>jdeps</code> is as follows:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jdeps [options] path</code></pre></div><p>Here, <code>path</code> represents the location of the Java class files, JAR files, or directories you want to analyze. The <code>options</code> allow you to customize the behavior of jdeps according to your specific needs.</p>
+<p>These are some of the most important general options:</p>
+<ul>
+<li><code>-dotoutput dir or --dot-output dir</code>: Specifies the destination directory for DOT file output. If this option is specified, then the <code>jdeps</code> command generates one .dot file for each analyzed archive named <code>archive-file-name.dot</code> that lists the dependencies, and also a summary file named <code>summary.dot</code> that lists the dependencies among the archive files.</li>
+<li><code>-s or -summary</code>: Prints a dependency summary only.</li>
+<li><code>-v or -verbose</code>: Prints all class-level dependencies. This is equivalent to <code>-verbose:class -filter:none</code></li>
+<li><code>-verbose:package</code>: Prints package-level dependencies excluding, by default, dependences within the same package.</li>
+<li><code>-verbose:class</code>: Prints class-level dependencies excluding, by default, dependencies within the same archive.</li>
+<li><code>-apionly or --api-only</code>: Restricts the analysis to APIs, for example, dependences from the signature of public and protected members of public classes including field type, method parameter types, returned type, and checked exception types.</li>
+<li><code>-jdkinternals or --jdk-internals</code>: Finds class-level dependences in the JDK internal APIs. By default, this option analyzes all classes specified in the <code>--classpath</code> option and input files unless you specified the <code>-include</code> option. You can&#39;t use this option with the <code>-p</code>, <code>-e</code>, and <code>-s</code> options.</li>
+<li><code>-cp path, -classpath path, or --class-path path</code>: Specifies where to find class files.</li>
+<li><code>--module-path module-path</code>: Specifies the module path.</li>
+<li><code>--add-modules module-name[, module-name...]</code>: Adds modules to the root set for analysis.</li>
+<li><code>-q or -quiet</code>: Doesn&#39;t show missing dependencies from <code>-generate-module-info</code> output.</li>
+</ul>
+<p>These are the module dependence analysis options:</p>
+<ul>
+<li><code>-m module-name or --module module-name</code>: Specifies the root module for analysis.</li>
+<li><code>--generate-module-info dir</code>: Generates <code>module-info.java</code> under the specified directory. The specified JAR files will be analyzed. This option cannot be used with --dot-output or <code>--class-path</code> options. Use the <code>--generate-open-module</code> option for open modules.</li>
+<li><code>--generate-open-module dir</code>: Generates <code>module-info.java</code> for the specified JAR files under the specified directory as open modules. This option cannot be used with the <code>--dot-output</code> or <code>--class-path</code> options.</li>
+<li><code>--check module-name [, module-name...]</code>: Analyzes the dependence of the specified modules. It prints the module descriptor, the resulting module dependences after analysis and the graph after transition reduction. It also identifies any unused qualified exports.</li>
+<li><code>--list-deps</code>: Lists the module dependences and also the package names of JDK internal APIs (if referenced). This option transitively analyzes libraries on class path and module path if referenced. Use <code>--no-recursive</code> option for non-transitive dependency analysis.</li>
+<li><code>--list-reduced-deps</code>: Same as <code>--list-deps</code> without listing the implied reads edges from the module graph. If module M1 reads M2, and M2 requires transitive on M3, then M1 reading M3 is implied and is not shown in the graph.</li>
+<li><code>--print-module-deps</code>: Same as --list-reduced-deps with printing a comma-separated list of module dependences. The output can be used by jlink --add-modules to create a custom image that contains those modules and their transitive dependences.</li>
+<li><code>--ignore-missing-deps</code>: Ignore missing dependences.</li>
+</ul>
+<p>These are the options to filter dependences:</p>
+<ul>
+<li><code>-p pkg_name, -package pkg_name, or --package pkg_name</code>: Finds dependences matching the specified package name. You can specify this option multiple times for different packages. The <code>-p</code> and <code>-e</code> options are mutually exclusive.</li>
+<li><code>-e regex, -regex regex, or --regex regex</code>: Finds dependences matching the specified pattern. The <code>-p</code> and <code>-e</code> options are mutually exclusive.</li>
+<li><code>--require module-name</code>: Finds dependences matching the given module name (may be given multiple times). The <code>--package</code>, <code>--regex</code>, and <code>--require</code> options are mutually exclusive.</li>
+<li><code>-f regex or -filter regex</code>: Filters dependences matching the given pattern. If give multiple times, the last one will be selected.</li>
+<li><code>-filter:package</code>: Filters dependences within the same package. This is the default.</li>
+<li><code>-filter:archive</code>: Filters dependences within the same archive.</li>
+<li><code>-filter:module</code>: Filters dependences within the same module.</li>
+<li><code>-filter:none</code>: No <code>-filter:package</code> and <code>-filter:archive</code> filtering. Filtering specified via the <code>-filter</code> option still applies.</li>
+<li><code>--missing-deps</code>: Finds missing dependences. This option cannot be used with <code>-p</code>, <code>-e</code> and <code>-s</code> options.</li>
+</ul>
+<p>And these are the options to filter classes to be analyzed:</p>
+<ul>
+<li><code>-include regex</code>: Restricts analysis to the classes matching pattern. This option filters the list of classes to be analyzed. It can be used together with <code>-p</code> and <code>-e</code>, which apply the pattern to the dependencies.</li>
+<li><code>-P or -profile</code>: Shows the profile containing a package.</li>
+<li><code>-R or --recursive</code>: Recursively traverses all run-time dependences. The <code>-R</code> option implies <code>-filter:none</code>. If <code>-p</code>, <code>-e</code>, or <code>-f</code> options are specified, only the matching dependences are analyzed.</li>
+<li><code>--no-recursive</code>: Do not recursively traverse dependences.
+-- <code>I or --inverse</code>: Analyzes the dependences per other given options and then finds all artifacts that directly and indirectly depend on the matching nodes. This is equivalent to the inverse of the compile-time view analysis and the print dependency summary. This option must be used with the <code>--require</code>, <code>--package</code>, or <code>--regex</code> options.</li>
+<li><code>--compile-time</code>: Analyzes the compile-time view of transitive dependencies, such as the compile-time view of the <code>-R</code> option. Analyzes the dependences per other specified options. If a dependency is found from a directory, a JAR file or a module, all classes in that containing archive are analyzed.</li>
+</ul>
+<p>One of the primary use cases of <code>jdeps</code> is analyzing module dependencies. By running <code>jdeps</code> on a module, you can obtain a detailed report of the modules it depends on and the packages it uses from each module:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jdeps --module-path mods --add-modules com.example.myapp mymodule.jar</code></pre></div><p>In this example, we specify the module path using the <code>--module-path</code> option, which points to the directory containing the module definitions. The <code>--add-modules</code> option is used to specify the main module of our application. Finally, we provide the path to the JAR file representing our module.</p>
+<p><code>jdeps</code> will analyze the dependencies and generate a report that looks something like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">mymodule.jar -&gt; java.base
+   com.example.myapp                         -&gt; java.io
+   com.example.myapp                         -&gt; java.lang
+   com.example.myapp                         -&gt; java.util
+mymodule.jar -&gt; java.desktop
+   com.example.myapp                         -&gt; java.awt
+   com.example.myapp                         -&gt; javax.swing</code></pre></div><p>This report shows the dependencies of <code>mymodule.jar</code> on other modules, such as <code>java.base</code> and <code>java.desktop</code>. It also lists the specific packages within <code>mymodule.jar</code> that depend on packages from those modules.</p>
+<p>In addition to module-level analysis, <code>jdeps</code> allows you to examine dependencies at the class level. By running <code>jdeps</code> on individual class files or directories containing class files, you can gain insights into the relationships between classes and packages.</p>
+<p>Consider this example:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jdeps --verbose --class-path lib/* com/example/MyClass.class</code></pre></div><p>Here, we use the <code>--class-path</code> option to specify the classpath containing the required dependencies. The <code>--verbose</code> flag provides more detailed output, showing the specific classes and members being used.</p>
+<p>The class-level dependency report generated by <code>jdeps</code> will include information like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">com.example.MyClass -&gt; java.lang.Object
+com.example.MyClass -&gt; java.lang.String
+com.example.MyClass -&gt; java.util.ArrayList
+com.example.MyClass -&gt; java.util.List
+com.example.MyClass -&gt; com.example.HelperClass</code></pre></div><p>This report indicates that <code>MyClass</code> depends on classes from the <code>java.lang</code> and <code>java.util</code> packages, as well as another class named <code>HelperClass</code> from the same package.</p>
+<p><code>jdeps</code> also provides the ability to generate comprehensive dependency reports in various formats. By using the <code>--dot-output</code> option, you can generate a DOT file that visualizes the dependencies as a graph. This graphical representation can be extremely helpful in understanding complex dependency structures and identifying potential issues.</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jdeps --dot-output docs --module-path mods --add-modules com.example.myapp mymodule.jar</code></pre></div><p>In this example, <code>jdeps</code> will generate a DOT file named after the module in the <code>docs</code> directory. You can then use tools like <a href="https://graphviz.org">Graphviz</a> to render the DOT file into a visual graph.</p>
+<p>Another useful feature of <code>jdeps</code> is its ability to identify usage of internal APIs. The <code>--jdk-internals</code> flag helps you detect and analyze the use of internal JDK APIs within your code. This is important because relying on internal APIs can lead to compatibility issues and unexpected behavior when upgrading to newer Java versions.</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jdeps --jdk-internals --class-path lib/* com/example/MyClass.class</code></pre></div><p>If <code>MyClass</code> uses any internal JDK APIs, <code>jdeps</code> will report them in the output, allowing you to take necessary actions to refactor or remove the dependencies on internal APIs.</p>
+<p>If you provide the path to a JAR file or directory, <code>jdeps</code> will recursively analyze all the classes within it and generate a comprehensive dependency report.</p>
+<p>Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jdeps --recursive lib/myapp.jar</code></pre></div><p>The <code>--recursive</code> option ensures that <code>jdeps</code> traverses all the classes and nested directories within the specified JAR file or directory, providing a complete picture of the dependencies.</p>
+<p><code>jdeps</code> also offers a feature called recursive dependency analysis, which allows you to understand the transitive dependencies of your code. By analyzing not only the direct dependencies but also the dependencies of those dependencies, <code>jdeps</code> helps you identify potential issues and conflicts.</p>
+<p>Consider this example:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jdeps --recursive --module-path mods --add-modules com.example.myapp mymodule.jar</code></pre></div><p>With the <code>--recursive</code> flag, <code>jdeps</code> will traverse the entire dependency graph, starting from the specified module or JAR file. It will generate a report that includes all the transitive dependencies, giving you a comprehensive view of your project&#39;s dependency structure.</p>
+<h2 id="using-module-files-with-jmod">Using Module Files with <code>jmod</code><a class="heading-anchor" href="#using-module-files-with-jmod" aria-label="Link to Using Module Files with jmod">#</a></h2><p><code>jmod</code> is a command-line tool that operates on a file format called JMOD. JMOD files are similar to JAR files in the way that they package Java classes, resources, and metadata. However, JMOD files are specifically designed to work with the module system and offer additional capabilities compared to traditional JAR files.</p>
+<h3 id="the-jmod-file-format">The JMOD File Format<a class="heading-anchor" href="#the-jmod-file-format" aria-label="Link to The JMOD File Format">#</a></h3><p>The JMOD file format is optimized for the JPMS and serves as a container for modular content. It encapsulates not only the compiled Java classes and resources but also includes module descriptors, native libraries, and other module-specific information. JMOD files have the <code>.jmod</code> file extension and follow a specific directory structure to organize their contents.</p>
+<p>JMOD files do not replace JAR files.</p>
+<p>JAR (Java Archive) files are the most common and widely used format for packaging Java classes and resources. They are essentially zip files that contain compiled Java classes, metadata, and resources. Additionally, JAR files can be placed on the classpath for easy access by Java programs.</p>
+<p>There are some key differences between JAR and JMOD files:</p>
+<ul>
+<li><p><strong>Modularity:</strong> JMOD files are primarily used for modular Java development, whereas JAR files are used for both modular and non-modular code.</p>
+</li>
+<li><p><strong>Native code:</strong> JMOD files can include native libraries and executables, which is not possible with JAR files.</p>
+</li>
+<li><p><strong>Versioning:</strong> JMOD files support module versioning through the <code>--module-version</code> option, allowing for better version management.</p>
+</li>
+<li><p><strong>Optimization:</strong> JMOD files are optimized for the module system and provide better performance and encapsulation compared to JAR files.</p>
+</li>
+<li><p><strong>Usage:</strong> JAR files are widely used for distributing libraries and applications, while JMOD files are mainly used for creating and packaging modules.</p>
+</li>
+</ul>
+<p>So, when should you use JMOD files instead of JAR files? Here are some guidelines:</p>
+<ul>
+<li><p>If you are developing a modular Java application using the JPMS, JMOD files are the recommended format for packaging your modules.</p>
+</li>
+<li><p>If your module requires native libraries or executables, JMOD files provide a convenient way to include them alongside your Java code.</p>
+</li>
+<li><p>If you need to create a custom runtime image or a JRE (Java Runtime Environment) specific to your application, JMOD files are used as the input to the <code>jlink</code> tool for creating optimized runtime images.</p>
+</li>
+</ul>
+<p>However, if you are developing a non-modular Java application or a library that needs to be compatible with older versions of Java, JAR files are still the preferred choice.</p>
+<p>One of the key advantages of JMOD files is their ability to include native libraries and executables. This is particularly useful for modules that have platform-specific dependencies or require native code integration. By packaging native libraries within the JMOD file, the module can be easily distributed and deployed across different platforms.</p>
+<p>JMOD files also support versioning, allowing modules to specify their version information. This is important for managing dependencies and ensuring compatibility between various versions of modules. The module descriptor in the <code>module-info.class</code> file can include version-related annotations to provide version metadata.</p>
+<h3 id="operation-modes">Operation Modes<a class="heading-anchor" href="#operation-modes" aria-label="Link to Operation Modes">#</a></h3><p>This is the basic syntax of the <code>jmod</code> command:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jmod (create|extract|list|describe|hash) [options] jmod-file</code></pre></div><p>The main operation modes are:</p>
+<ul>
+<li><code>create</code>: Creates a new JMOD archive file.</li>
+<li><code>extract</code>: Extracts all the files from the JMOD archive file.</li>
+<li><code>list</code>: Prints the names of all the entries.</li>
+<li><code>describe</code>: Prints the module details.</li>
+<li><code>hash</code>: Determines leaf modules and records the hashes of the dependencies that directly and indirectly require them.</li>
+</ul>
+<p>These are the most important options:</p>
+<ul>
+<li><code>--class-path path</code>: Specifies the location of application JAR files or a directory containing classes to copy into the resulting JMOD file.</li>
+<li><code>--cmds path</code>: Specifies the location of native commands to copy into the resulting JMOD file.</li>
+<li><code>--config path</code>: Specifies the location of user-editable configuration files to copy into the resulting JMOD file.</li>
+<li><code>--dir path</code>: Specifies the location where jmod puts extracted files from the specified JMOD archive.</li>
+<li><code>--dry-run</code>: Performs a dry run of hash mode. It identifies leaf modules and their required modules without recording any hash values.</li>
+<li><code>--hash-modules regex-pattern</code>: Determines the leaf modules and records the hashes of the dependencies directly and indirectly requiring them, based on the module graph of the modules matching the given regex-pattern. The hashes are recorded in the JMOD archive file being created, or a JMOD archive or modular JAR on the module path specified by the <code>jmod hash</code> command.</li>
+<li><code>--help or -h</code>: Prints a usage message.</li>
+<li><code>--libs path</code>: Specifies location of native libraries to copy into the resulting JMOD file.</li>
+<li><code>--main-class class-name</code>: Specifies main class to record in the <code>module-info.class</code> file.</li>
+<li><code>--module-version ersion</code>: Specifies the module version to record in the <code>module-info.class</code> file.</li>
+<li><code>--module-path path or -p path</code>: Specifies the module path. This option is required if you also specify <code>--hash-modules</code>.</li>
+<li><code>--target-platform platform</code>: Specifies the target platform.</li>
+<li><code>--version</code>: Prints version information of the <code>jmod</code> command.</li>
+</ul>
+<p>Here are some examples that demonstrate the basic usage of each operation mode:</p>
+<ol>
+<li><p><strong>Create mode:</strong></p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jmod create \
+    --class-path classes \
+    --main-class com.example.Main \
+    --module-version 1.0 \
+    --module-path lib \
+    mymodule.jmod</code></pre></div><p> This command creates a new JMOD archive file named <code>mymodule.jmod</code>. It includes classes from the <code>classes</code> directory, sets the main class to <code>com.example.Main</code>, specifies the module version as 1.0, and uses the <code>lib</code> directory as the module path.</p>
+</li>
+<li><p><strong>Extract mode:</strong></p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jmod extract --dir extracted_files mymodule.jmod</code></pre></div><p> This command extracts all files from <code>mymodule.jmod</code> into a directory named <code>extracted_files</code>.</p>
+</li>
+<li><p><strong>List mode:</strong></p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jmod list mymodule.jmod</code></pre></div><p> This command prints the names of all entries in <code>mymodule.jmod</code>.</p>
+</li>
+<li><p><strong>Describe mode:</strong></p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jmod describe mymodule.jmod</code></pre></div><p> This command prints the module details of <code>mymodule.jmod</code>.</p>
+</li>
+<li><p><strong>Hash mode:</strong></p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jmod hash --module-path lib \
+    --hash-modules java.base \
+    mymodule.jmod</code></pre></div><p> This command determines leaf modules and records the hashes of dependencies that directly and indirectly require them. It uses the <code>lib</code> directory as the module path and considers modules matching the pattern <code>java.base</code>.</p>
+</li>
+</ol>
+<h3 id="best-practices-and-limitations">Best Practices and Limitations<a class="heading-anchor" href="#best-practices-and-limitations" aria-label="Link to Best Practices and Limitations">#</a></h3><p>When working with JMOD files, there are some best practices to keep in mind:</p>
+<ul>
+<li><p>Use descriptive and meaningful names for your JMOD files, following the naming conventions for modules.</p>
+</li>
+<li><p>Include a <code>module-info.java</code> file in your module&#39;s source code to define the module&#39;s name, dependencies, and exported packages.</p>
+</li>
+<li><p>Organize your module&#39;s classes, resources, and native libraries in the appropriate directories within the JMOD file.</p>
+</li>
+<li><p>Use the <code>--module-version</code> option when creating JMOD files to specify the version of your module.</p>
+</li>
+<li><p>Store JMOD files in a separate directory structure, separate from your source code and other project artifacts.</p>
+</li>
+<li><p>Use the jmod tool to create, extract, and manipulate JMOD files as needed.</p>
+</li>
+<li><p>When distributing your modular application, consider using <code>jlink</code> to create optimized runtime images that include only the necessary modules.</p>
+</li>
+</ul>
+<p>While JMOD files offer many benefits for modular Java development, there are some limitations and considerations to keep in mind:</p>
+<ul>
+<li><p>JMOD files are specific to the Java Platform Module System and are not backward compatible with older versions of Java.</p>
+</li>
+<li><p>Not all Java libraries and frameworks are modularized or provide JMOD files. You may need to rely on traditional JAR files for dependencies that are not yet modularized.</p>
+</li>
+<li><p>The tooling and build systems for modular Java development are still evolving, and there may be some learning curve and configuration required to fully utilize JMOD files in your project.</p>
+</li>
+<li><p>JMOD files are not intended to be used as a distribution format for end-users. They are typically used as an intermediate format for creating runtime images or integrating with build tools.</p>
+</li>
+</ul>
+<h2 id="creating-runtime-images-with-jlink">Creating Runtime Images with <code>jlink</code><a class="heading-anchor" href="#creating-runtime-images-with-jlink" aria-label="Link to Creating Runtime Images with jlink">#</a></h2><p>Traditionally, Java applications have relied on the Java Runtime Environment (JRE) to execute. The JRE includes a wide range of modules and libraries, many of which may not be necessary for a particular application. This can lead to larger distribution sizes and potentially unnecessary dependencies.</p>
+<p>With <code>jlink</code>, we can create custom runtime images that include only the modules required by our application. These custom runtime images are self-contained and can be distributed as standalone executables. They provide several benefits, such as reducing distribution size, improving startup time, and enhancing security by minimizing the attack surface.</p>
+<h3 id="syntax-and-options-of-jlink">Syntax and Options of <code>jlink</code><a class="heading-anchor" href="#syntax-and-options-of-jlink" aria-label="Link to Syntax and Options of jlink">#</a></h3><p>To create a custom runtime image using <code>jlink</code>, we use the following basic syntax:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jlink [options] --module-path &lt;modulepath&gt; --add-modules &lt;modules&gt;</code></pre></div><p>Let&#39;s break down the key components of the <code>jlink</code> command:</p>
+<ul>
+<li><code>[options]</code>: Additional options to configure the behavior of <code>jlink</code>, such as compression, debugging, and more.</li>
+<li><code>--module-path &lt;modulepath&gt;</code>: Specifies the module path where the required modules can be found. This includes the application modules and any dependencies.</li>
+<li><code>--add-modules &lt;modules&gt;</code>: Specifies the modules to be included in the runtime image. This can be a comma-separated list of module names or the keyword <code>ALL-MODULE-PATH</code> to include all modules found on the module path.</li>
+</ul>
+<p>One of the primary goals of creating custom runtime images is to minimize the size and include only the necessary modules. <code>jlink</code> provides options to create a minimal runtime that includes only the essential modules required for our application to run.</p>
+<p>Here are some of the most important options:</p>
+<ul>
+<li><code>--add-modules mod [, mod...]</code>: Adds the named modules, <code>mod</code>, to the default set of root modules. The default set of root modules is empty.</li>
+<li><code>--bind-services</code>: Link service provider modules and their dependencies.</li>
+<li><code>-c ={0|1|2} or --compress={0|1|2}</code>: Enable compression of resources.</li>
+<li><code> --disable-plugin pluginname</code>: Disables the specified plug-in.</li>
+<li><code>--endian {little|big}</code>: Specifies the byte order of the generated image. The default value is the format of your system&#39;s architecture.</li>
+<li><code>-h or --help</code>: Prints the help message.</li>
+<li><code>--ignore-signing-information</code>: Suppresses a fatal error when signed modular JARs are linked in the runtime image. The signature-related files of the signed modular JARs aren&#39;t copied to the runtime image.</li>
+<li><code>--launcher command=module or --launcher command=module/main</code>: Specifies the launcher command name for the module or the command name for the module and main class (the module and the main class names are separated by a slash character).</li>
+<li><code>--limit-modules mod [, mod...]</code>: Limits the universe of observable modules to those in the transitive closure of the named modules, mod, plus the main module, if any, plus any further modules specified in the <code>--add-modules</code> option.</li>
+<li><code>--list-plugins</code>: Lists available plug-ins, which you can access through command-line options.</li>
+<li><code>-p or --module-path modulepath</code>: Specifies the module path. If this option is not specified, then the default module path is <code>$JAVA_HOME/jmods</code>. This directory contains the <code>java.base</code> module and the other standard and JDK modules. If this option is specified but the <code>java.base</code> module cannot be resolved from it, then the jlink command appends <code>$JAVA_HOME/jmods</code> to the module path.</li>
+<li><code>--output path</code>: Specifies the location of the generated runtime image.</li>
+<li><code>--suggest-providers [name, ...]</code>: Suggest providers that implement the given service types from the module path.</li>
+<li><code>--version</code>: Prints version information.</li>
+</ul>
+<p>To create a minimal runtime, we can use the following command:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jlink --module-path &lt;modulepath&gt; \
+      --add-modules &lt;modules&gt; \
+      --compress 2 \
+      --strip-debug \
+      --no-header-files \
+      --no-man-pages \
+      --output &lt;path&gt;</code></pre></div><p>In this command, we use several options to optimize the runtime image:</p>
+<ul>
+<li><code>--compress 2</code>: Enables compression of the generated runtime image, reducing its size.</li>
+<li><code>--strip-debug</code>: Removes debug information from the runtime image, further reducing its size.</li>
+<li><code>--no-header-files</code>: Excludes header files from the runtime image.</li>
+<li><code>--no-man-pages</code>: Excludes manual pages from the runtime image.</li>
+</ul>
+<p>By specifying only the necessary modules with <code>--add-modules</code> and using these optimization options, we can create a minimal runtime image that is tailored to our application&#39;s specific requirements.</p>
+<p><code>jlink</code> also allows us to explicitly include or exclude modules from the runtime image. This gives us fine-grained control over the modules that are packaged into the image.</p>
+<p>To include specific modules, we can use the <code>--add-modules</code> option followed by a comma-separated list of module names. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jlink --module-path &lt;modulepath&gt; \
+      --add-modules module1,module2,module3 \
+      --output &lt;path&gt;</code></pre></div><p>This command will create a runtime image that includes only <code>module1</code>, <code>module2</code>, and <code>module3</code>, along with their transitive dependencies.</p>
+<p>On the other hand, if we want to exclude certain modules from the runtime image, we can use the <code>--exclude-modules</code> option followed by a comma-separated list of module names. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jlink --module-path &lt;modulepath&gt; \
+      --add-modules ALL-MODULE-PATH \
+      --exclude-modules module4,module5 \
+      --output &lt;path&gt;</code></pre></div><p>In this case, jlink will include all modules found on the module path except for <code>module4</code> and <code>module5</code>.</p>
+<h3 id="plugins">Plugins<a class="heading-anchor" href="#plugins" aria-label="Link to Plugins">#</a></h3><p>Plugins are additional components that extend the functionality of the <code>jlink</code> tool. They allow developers to customize the creation of runtime images in various ways, such as optimizing the generated image, adding or removing resources, and configuring how the image is laid out.</p>
+<p>If you execute:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jlink --list-plugins</code></pre></div><p>You&#39;ll get the list of all available plugins. For example:</p>
+<ul>
+<li><code>--add-options &lt;options&gt;</code>: Prepend the specified <code>&lt;options&gt;</code> string, which may include whitespace, before any other options when invoking the virtual machine in the resulting image.</li>
+<li><code>--compress &lt;compress&gt;</code>: Compression to use in compressing resources. Accepted values are <code>zip-[0-9]</code>, where <code>zip-0</code> provides no compression, and <code>zip-9</code> provides the best compression. Default is <code>zip-6</code>.</li>
+<li><code>--exclude-files &lt;pattern-list&gt;</code>: Specify files to exclude. For example: <code>**.java</code>, <code>glob:/java.base/lib/client/**</code></li>
+<li><code>--exclude-jmod-section &lt;section-name&gt;</code>: Specify a JMOD section to exclude. Where <code>&lt;section-name&gt;</code> is <code>man</code> or <code>headers</code>.</li>
+<li><code>--exclude-resources &lt;pattern-list&gt;</code>: Specify resources to exclude. For example: <code>**.jcov</code>, <code>glob:**/META-INF/**</code></li>
+<li><code>--include-locales &lt;langtag&gt;[,&lt;langtag&gt;]*</code>: BCP 47 language tags separated by a comma, allowing locale matching defined in RFC 4647. For example: <code>en</code>, <code>ja</code>, <code>*-IN</code></li>
+<li><code>--strip-debug</code>: Strip debug information from the output image</li>
+<li><code>--strip-java-debug-attributes</code>: Strip Java debug attributes from classes in the output image</li>
+<li><code>--strip-native-commands</code>: Exclude native commands (such as <code>java/java.exe</code>) from the image.</li>
+<li><code>--vm &lt;client|server|minimal|all&gt;</code>: Select the HotSpot VM in the output image. Default is <code>all</code>.</li>
+</ul>
+<p>Here are some examples of how you might use these plugins with the <code>jlink</code> command:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text"># Create a runtime image with maximum compression,
+# exclude specific files, and strip debug information
+jlink --module-path $JAVA_HOME/jmods \
+      --add-modules java.base \
+      --compress zip-9 \
+      --exclude-files &quot;**.java,glob:/java.base/lib/client/**&quot; \
+      --strip-debug \
+      --output custom-runtime-image
+
+# Create a runtime image that includes only the
+# specified locales and uses the server VM
+jlink --module-path $JAVA_HOME/jmods \
+      --add-modules java.base \
+      --include-locales en,ja \
+      --vm server \
+      --output custom-runtime-image</code></pre></div><h3 id="optimizing-runtime-images">Optimizing Runtime Images<a class="heading-anchor" href="#optimizing-runtime-images" aria-label="Link to Optimizing Runtime Images">#</a></h3><p>In addition to creating a minimal runtime image, <code>jlink</code> provides options to further optimize the generated runtime. These optimizations can help reduce the size of the runtime image and improve its performance.</p>
+<p>One important optimization is compression. By default, <code>jlink</code> does not compress the generated runtime image. However, we can enable compression using the <code>--compress</code> option followed by a compression level. The compression level can be set to 0 (no compression), 1 (constant string sharing), or 2 (ZIP compression). For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jlink --module-path &lt;modulepath&gt; 
+      --add-modules &lt;modules&gt; \
+      --compress 2 \
+      --output &lt;path&gt;</code></pre></div><p>Using <code>--compress 2</code> applies ZIP compression to the generated runtime image, significantly reducing its size.</p>
+<p>Another optimization is to strip debug information from the runtime image. Debug information is useful during development but is not necessary for production deployments. We can remove debug information using the <code>--strip-debug</code> option:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jlink --module-path &lt;modulepath&gt; 
+      --add-modules &lt;modules&gt; \
+      --strip-debug \
+      --output &lt;path&gt;</code></pre></div><p>This way, we can further reduce the size of the runtime image.</p>
+<h2 id="migrating-an-application">Migrating an Application<a class="heading-anchor" href="#migrating-an-application" aria-label="Link to Migrating an Application">#</a></h2><p>Migrating an existing application to use modules can be a challenging task. It&#39;s doable, but requires careful planning and execution. </p>
+<p>Before embarking on the migration process, it&#39;s important to understand how the packages and libraries in the existing application are structured. This involves analyzing the codebase and identifying the dependencies between different parts of the application.</p>
+<p>One approach to gain insights into the application structure is to use <code>jdeps</code>. By running <code>jdeps</code> on the application&#39;s JAR files or class files, we can generate a dependency report that provides valuable information about the relationships between packages and classes.</p>
+<p>Here&#39;s an example of running <code>jdeps</code> on an application JAR file:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jdeps -s -recursive application.jar</code></pre></div><p>The <code>-s</code> option generates a summary output, and the <code>-recursive</code> option analyzes all dependent JAR files as well.</p>
+<p>The output of jdeps will give us an overview of the packages and their dependencies. It will highlight any dependencies on JDK internal APIs, which is important to note as these APIs may not be accessible in future Java versions.</p>
+<p>If you want more detail, you can use the <code>-verbose</code> option:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">jdeps -verbose application.jar</code></pre></div><p>The output will show the dependencies between packages and classes, as well as the dependencies on external libraries.</p>
+<p>It&#39;s important to identify and resolve any circular dependencies or unnecessary dependencies at this stage. Circular dependencies can cause issues when modularizing the application, as modules cannot have cyclic dependencies. Unnecessary dependencies can bloat the application and make it harder to modularize effectively.</p>
+<p>Now that we have a map of the application dependencies, it&#39;s time to start planning our migration. One common strategy is to split our big project into smaller, more manageable modules. This process involves identifying logical boundaries within the application and separating the code into distinct modules based on functionality and dependencies.</p>
+<p>JPMS gives us a few tools to ease this transition: unnamed modules and automatic modules.</p>
+<p>Let&#39;s say we have a big monolithic application called <code>BigApp</code>. We might start by running it the traditional way on the classpath:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">java -cp BigApp.jar:lib/* com.example.MainClass</code></pre></div><p>This puts <code>BigApp</code> and all its dependencies into the <strong>unnamed module</strong>. This is how pre-JPMS applications run, everything on the classpath becomes part of the unnamed module.</p>
+<p>As a first step toward modularization, we can move <code>BigApp</code> to the module path without defining a <code>module-info.java</code> file:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">java --module-path BigApp.jar 
+     --add-modules ALL-MODULE-PATH
+     com.example.MainClass</code></pre></div><p>This turns <code>BigApp</code> into an <strong>automatic module</strong>. It&#39;s not a proper JPMS module yet, but it&#39;s a start, it now has a module name (derived from the JAR name) and can require other modules.</p>
+<p>For third-party libraries that aren&#39;t yet modularized, we can use automatic modules. Let&#39;s say we&#39;re using a library named <code>CoolLib</code>. We can put it on the module path alongside our application:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">java --module-path BigApp.jar:CoolLib.jar 
+     --add-modules ALL-MODULE-PATH
+     com.example.MainClass</code></pre></div><p>Now both <code>BigApp</code> and <code>CoolLib</code> become automatic modules. The module system derives their names from the JAR filenames, and they export all their packages. But remember, these are temporary solutions. Our end goal is to have proper, explicit modules with <code>module-info.java</code> files for everything.</p>
+<p>When splitting the project into modules, it&#39;s important to consider the dependencies between the modules. Aim to minimize the coupling between modules and promote loose coupling with well-defined interfaces and APIs.</p>
+<p>Here are some strategies for properly splitting a big project into modules:</p>
+<ol>
+<li><p><strong>Package-based splitting:</strong> One approach is to create modules based on the existing package structure. Each package or a group of related packages can be converted into a separate module. This helps in maintaining a clear separation of concerns and encapsulation.</p>
+</li>
+<li><p><strong>Layered architecture:</strong> If the application follows a layered architecture (presentation layer, business logic layer, data access layer), each layer can be split into its own module. This allows for better modularity and easier maintenance of each layer independently.</p>
+</li>
+<li><p><strong>Feature-based splitting:</strong> Another approach is to split the application based on its features or functional areas. Each major feature or functionality can be encapsulated within its own module, promoting reusability and maintainability.</p>
+</li>
+<li><p><strong>Dependency-based splitting:</strong> Analyzing the dependencies between different parts of the application can help identify natural module boundaries. Strongly coupled components can be grouped together into a module, while loosely coupled components can be split into separate modules.</p>
+</li>
+</ol>
+<p>But you might be wondering what strategies can we take for the migration in general. Here are a few approaches:</p>
+<ol>
+<li><p><strong>Incremental migration:</strong> In this approach, the migration is done gradually, one module at a time. Start by identifying a suitable module to migrate first, typically one with minimal dependencies on other parts of the application. Once the module is successfully migrated, move on to the next module, and so on.</p>
+</li>
+<li><p><strong>Bottom-up migration:</strong> This strategy involves starting the migration from the lowest-level modules and gradually moving up the dependency hierarchy. Begin by modularizing the modules that have no dependencies on other modules, and then proceed to modules that depend on already modularized modules.</p>
+</li>
+<li><p><strong>Top-down migration:</strong> In contrast to the bottom-up approach, the top-down migration starts with the high-level modules and works its way down the dependency chain. This strategy is useful when the high-level modules have a clear separation of concerns and can be easily modularized.</p>
+</li>
+<li><p><strong>Parallel development:</strong> If time and resources permit, parallel development can be employed. In this approach, a separate branch or codebase is created for the modularized version of the application, while the existing non-modularized version continues to be maintained. Development can proceed simultaneously on both versions, gradually migrating modules to the modularized branch.</p>
+</li>
+</ol>
+<p>For example, we might start modularizing a part of our application using a bottom-up approach:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">module</span> com.myapp.core {
+    <span class="hljs-keyword">requires</span> java.base;
+    <span class="hljs-keyword">requires</span> com.coollib;  <span class="hljs-comment">// This is our automatic module</span>
+    <span class="hljs-keyword">exports</span> com.myapp.core.api;
+}</code></pre></div><p>This <code>module-info.java</code> file defines a new module <code>com.myapp.core</code>. We&#39;re starting with a core module that likely has fewer dependencies, which is characteristic of the bottom-up approach. It requires the <code>java.base</code> module (which is implicit but we&#39;re being explicit here) and <code>CoolLib</code>, which is an automatic module. It also exports a package <code>com.myapp.core.api</code> for other modules to use.</p>
+<p>As we create more modules, we&#39;ll need to think carefully about our module boundaries. </p>
+<p>One important thing to keep in mind is that while we&#39;re in this phase, we might need to open up more than we&#39;d like. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">open <span class="hljs-keyword">module</span> com.myapp.core {
+    <span class="hljs-keyword">requires</span> java.base;
+    <span class="hljs-keyword">requires</span> com.coollib;
+    <span class="hljs-keyword">exports</span> com.myapp.core.api;
+}</code></pre></div><p>By making this an open module, we allow deep reflection into all its packages. It&#39;s not ideal for security, but it might be necessary during the migration to keep things working. As we progress in our migration, we&#39;ll want to tighten these permissions, exporting and opening only what&#39;s necessary.</p>
+<p>Remember, migration is a process. It&#39;s okay to use unnamed and automatic modules as stepping stones. The key is to have a clear migration plan and to move steadily towards a fully modularized system. Breaking down the migration process into smaller, manageable tasks helps in tracking progress and identifying any challenges or roadblocks along the way.</p>
+<h2 id="key-points">Key Points<a class="heading-anchor" href="#key-points" aria-label="Link to Key Points">#</a></h2><ul>
+<li><p>A module in Java is a named, self-describing collection of code and data. It&#39;s defined in a <code>module-info.java</code> file.</p>
+</li>
+<li><p>The main components of a module declaration are:</p>
+<ul>
+<li><code>module</code>: Declares the module name</li>
+<li><code>requires</code>: Specifies module dependencies</li>
+<li><code>exports</code>: Makes packages accessible to other modules</li>
+<li><code>provides</code>: Declares service implementations</li>
+<li><code>uses</code>: Indicates that a module uses a service</li>
+</ul>
+</li>
+<li><p>There are three types of modules:</p>
+<ol>
+<li>Named modules: Explicitly defined with a <code>module-info.java</code> file</li>
+<li>Automatic modules: Created from JAR files placed on the module path</li>
+<li>Unnamed module: Contains all classes on the classpath</li>
+</ol>
+</li>
+<li><p>Key benefits of JPMS include improved encapsulation, clearer dependencies, better performance, and enhanced security.</p>
+</li>
+<li><p>The <code>exports</code> keyword controls which packages are accessible to other modules. You can also use <code>exports...to</code> to limit access to specific modules.</p>
+</li>
+<li><p>The <code>requires</code> keyword declares module dependencies. Use <code>requires transitive</code> to make a module&#39;s dependencies available to modules that depend on it.</p>
+</li>
+<li><p>The <code>opens</code> keyword allows reflective access to a package at runtime.</p>
+</li>
+<li><p>Services in JPMS consist of:</p>
+<ol>
+<li>Service Provider Interface (SPI): Defines the service contract</li>
+<li>Service Provider: Implements the SPI</li>
+<li>Service Consumer: Uses the service</li>
+</ol>
+</li>
+<li><p>The <code>provides...with</code> clause in a module declaration specifies that a module provides a service implementation.</p>
+</li>
+<li><p>The <code>uses</code> clause indicates that a module consumes a service.</p>
+</li>
+<li><p><code>ServiceLoader</code> is used to discover and load service implementations at runtime.</p>
+</li>
+<li><p>Built-in Java modules start with <code>java</code> (core SE Platform) or <code>jdk</code> (additional JDK-specific APIs).</p>
+</li>
+<li><p>When designing multi-module applications, consider separation of concerns, encapsulation, stable dependencies, reusability, and appropriate module size.</p>
+</li>
+<li><p>Compile modules using <code>javac</code> with the <code>--module-path</code> option. Run modular applications using <code>java</code> with <code>--module-path</code> and <code>-m</code> options.</p>
+</li>
+<li><p>Use the <code>jar</code> command to package modules into modular JAR files.</p>
+</li>
+<li><p>Resolve conflicts between modules by managing versions, avoiding split packages, ensuring unique package names across modules, and breaking cyclic dependencies.</p>
+</li>
+<li><p>The <code>java</code> command with <code>--describe-module</code> option provides details about a specific module, including exports, requirements, and services.</p>
+</li>
+<li><p><code>--list-modules</code> option lists all available modules in the Java runtime and custom modules.</p>
+</li>
+<li><p><code>--show-module-resolution</code> option helps debug complex module dependencies by showing how each module is resolved.</p>
+</li>
+<li><p>The <code>jar</code> command can be used to inspect modules without running them, using <code>--describe-module</code> option.</p>
+</li>
+<li><p><code>jdeps</code> is a tool for analyzing and visualizing dependencies at both module and class levels.</p>
+</li>
+<li><p>This is its basic syntax: <code>jdeps [options] path</code>. Here are some of its most important options:</p>
+<ul>
+<li><code>--dot-output</code> option generates a DOT file for visualizing dependency graphs.</li>
+<li><code>--jdk-internals</code> flag helps identify usage of internal JDK APIs.</li>
+<li><code>--recursive</code> option provides transitive dependency analysis.</li>
+</ul>
+</li>
+<li><p>JMOD files are designed for the Java Platform Module System (JPMS) and have a <code>.jmod</code> extension.</p>
+</li>
+<li><p>JMOD files can include compiled classes, resources, native libraries, and module descriptors.</p>
+</li>
+<li><p><code>jmod</code> has several modes: create, extract, describe, list, and hash.</p>
+</li>
+<li><p>Best practices include using descriptive names, including <code>module-info.java</code>, and organizing module contents properly.</p>
+</li>
+<li><p><code>jlink</code> creates custom runtime images that include only required modules.</p>
+</li>
+<li><p>This is the basic syntax of <code>jlink</code>: <code>jlink [options] --module-path &lt;modulepath&gt; --add-modules &lt;modules&gt;</code></p>
+</li>
+<li><p>Plugins can extend <code>jlink</code> functionality for additional optimizations or customizations.</p>
+</li>
+<li><p>Options like <code>--compress</code>, <code>--strip-debug</code>, <code>--no-header-files</code>, and <code>--no-man-pages</code> help optimize the runtime image.</p>
+</li>
+<li><p>To migrate an application to using modules:</p>
+<ul>
+<li><p>Use <code>jdeps</code> to analyze existing application structure and dependencies before migration.</p>
+</li>
+<li><p>Strategies for splitting projects into modules: package-based, layered architecture, feature-based, and dependency-based.</p>
+</li>
+<li><p>Migration approaches: incremental, bottom-up, top-down, and parallel development.</p>
+</li>
+<li><p>Unnamed modules and automatic modules can be used as temporary solutions during migration.</p>
+</li>
+<li><p>Consider using open modules during migration to allow reflection, but aim to tighten permissions as the migration progresses.</p>
+</li>
+<li><p>Migration is a process; it&#39;s okay to use unnamed and automatic modules as stepping stones towards full modularization.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="practice-questions">Practice Questions<a class="heading-anchor" href="#practice-questions" aria-label="Link to Practice Questions">#</a></h2><p><a href="ch13-practice.html#book-practice">Open the interactive book questions on the Chapter 13.1 Practice page</a>.</p>
+</article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this chapter.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><div class="finish-chapter"><button class="primary-button" id="complete-chapter" data-id="ch13" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg><span>Mark chapter complete</span></button><a href="ch13a.html">Review the answers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch12-practice.html"><small>Previous</small>Chapter 12.1 Practice</a><a href="ch13-practice.html"><small>Next chapter</small>Chapter 13.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#introduction">Introduction</a><a class="toc-link" href="#types-of-modules">Types of Modules</a><a class="toc-link" href="#creating-a-module">Creating a Module</a><a class="toc-link" href="#module-declaration">Module Declaration</a><a class="toc-link" href="#built-in-modules">Built-in Modules</a><a class="toc-link" href="#using-the-command-line">Using the Command Line</a><a class="toc-link" href="#multiple-modules">Multiple Modules</a><a class="toc-link" href="#creating-a-service">Creating a Service</a><a class="toc-link" href="#getting-module-details">Getting Module Details</a><a class="toc-link" href="#analyzing-dependencies-with-jdeps">Analyzing Dependencies With jdeps</a><a class="toc-link" href="#using-module-files-with-jmod">Using Module Files with jmod</a><a class="toc-link" href="#creating-runtime-images-with-jlink">Creating Runtime Images with jlink</a><a class="toc-link" href="#migrating-an-application">Migrating an Application</a><a class="toc-link" href="#key-points">Key Points</a><a class="toc-link" href="#practice-questions">Practice Questions</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

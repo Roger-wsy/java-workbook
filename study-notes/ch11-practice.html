@@ -1,0 +1,622 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Chapter 11.1 Practice</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch11-practice"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link selected" href="ch11-practice.html" aria-current="page"><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Chapter 11.1 Practice</h1><p class="practice-subtitle">The Date/Time API</p><div class="document-meta">15 book questions <span>·</span> 11 extra quiz questions</div><div class="chapter-actions"><a href="ch11.html">Read chapter 11</a><a class="active" aria-current="page" href="ch11-practice.html">Practice 11.1</a><a href="ch11a.html">Original answers</a></div></div><nav class="practice-section-nav" aria-label="Practice sections"><a href="#book-practice">Book questions</a><a href="#chapter-quiz">Extra quiz</a><button type="button" class="reset-all-quizzes">Reset all questions</button></nav><article class="prose practice-prose"><section class="chapter-quiz book-practice" id="book-practice" aria-labelledby="book-practice-title">
+    <h2 id="book-practice-title">Book practice questions</h2>
+    <p class="quiz-intro">15 questions from the chapter, with the book’s explanations. Single-answer questions show immediate feedback. For checkbox questions, select your answers, then choose Check answer. Reviewed corrections and clarifications are identified beside the question.</p>
+    <form class="quiz-form" data-quiz="book-ch11"><p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="book-q1" data-answer="3" aria-describedby="book-q1-feedback">
+          <legend>Question 1</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following are valid ways to create a <code>LocalDate</code> object?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q1-option-0" type="radio" name="book-q1" value="0" aria-labelledby="book-q1-option-0-letter book-q1-option-0-text"><span class="option-letter" id="book-q1-option-0-letter">A</span><div class="quiz-option-content" id="book-q1-option-0-text"><p><code>LocalDate.of(2014);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-1" type="radio" name="book-q1" value="1" aria-labelledby="book-q1-option-1-letter book-q1-option-1-text"><span class="option-letter" id="book-q1-option-1-letter">B</span><div class="quiz-option-content" id="book-q1-option-1-text"><p><code>LocalDate.with(2014, 1, 30);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-2" type="radio" name="book-q1" value="2" aria-labelledby="book-q1-option-2-letter book-q1-option-2-text"><span class="option-letter" id="book-q1-option-2-letter">C</span><div class="quiz-option-content" id="book-q1-option-2-text"><p><code>LocalDate.of(2014, 0, 30);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-3" type="radio" name="book-q1" value="3" aria-labelledby="book-q1-option-3-letter book-q1-option-3-text"><span class="option-letter" id="book-q1-option-3-letter">D</span><div class="quiz-option-content" id="book-q1-option-3-text"><p><code>LocalDate.now().plusDays(5);</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>LocalDate.of(2014);</code> </p>
+<ul>
+<li>This option is incorrect. The <code>LocalDate.of()</code> method requires a year, month, and day to be specified. Providing only a year will result in a compilation error.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>LocalDate.with(2014, 1, 30);</code></p>
+<ul>
+<li>This option is incorrect. The <code>LocalDate</code> class does not have a <code>with()</code> method that takes three int arguments for year, month, and day. The correct method to use is <code>LocalDate.of(int year, int month, int dayOfMonth)</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>LocalDate.of(2014, 0, 30);</code></p>
+<ul>
+<li>This option is incorrect. The month value is 0, but months in the <code>LocalDate</code> class are indexed starting from 1. Valid month values are from 1 to 12, so using 0 will throw a <code>DateTimeException</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>LocalDate.now().plusDays(5);</code></p>
+<ul>
+<li>This option is correct. It accurately obtains the current date using <code>LocalDate.now()</code> and then adds 5 days to it using the <code>plusDays()</code> method. This will create a new <code>LocalDate</code> object representing the date 5 days from now.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q2" data-answer="2" aria-describedby="book-q2-feedback">
+          <legend>Question 2</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following options is the result of executing this line?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs">LocalDate.of(<span class="hljs-number">2014</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>).atTime(<span class="hljs-number">14</span>, <span class="hljs-number">30</span>, <span class="hljs-number">59</span>, <span class="hljs-number">999999</span>)</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q2-option-0" type="radio" name="book-q2" value="0" aria-labelledby="book-q2-option-0-letter book-q2-option-0-text"><span class="option-letter" id="book-q2-option-0-letter">A</span><div class="quiz-option-content" id="book-q2-option-0-text"><p>A <code>LocalDate</code> instance representing <code>2014-01-02</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-1" type="radio" name="book-q2" value="1" aria-labelledby="book-q2-option-1-letter book-q2-option-1-text"><span class="option-letter" id="book-q2-option-1-letter">B</span><div class="quiz-option-content" id="book-q2-option-1-text"><p>A <code>LocalTime</code> instance representing <code>14:30:59:999999</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-2" type="radio" name="book-q2" value="2" aria-labelledby="book-q2-option-2-letter book-q2-option-2-text"><span class="option-letter" id="book-q2-option-2-letter">C</span><div class="quiz-option-content" id="book-q2-option-2-text"><p>A <code>LocalDateTime</code> instance representing <code>2014-01-02 14:30:59:999999</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-3" type="radio" name="book-q2" value="3" aria-labelledby="book-q2-option-3-letter book-q2-option-3-text"><span class="option-letter" id="book-q2-option-3-letter">D</span><div class="quiz-option-content" id="book-q2-option-3-text"><p>An exception is thrown</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> A <code>LocalDate</code> instance representing <code>2014-01-02</code> </p>
+<ul>
+<li>This option is incorrect. The <code>atTime</code> method does not return a <code>LocalDate</code>, but rather combines the <code>LocalDate</code> with the provided time parameters to create a <code>LocalDateTime</code> object.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> A <code>LocalTime</code> instance representing <code>14:30:59:999999</code></p>
+<ul>
+<li>This option is incorrect. The <code>atTime</code> method does not return a <code>LocalTime</code>, but rather combines the <code>LocalDate</code> with the provided time parameters to create a <code>LocalDateTime</code> object. Additionally, <code>LocalTime</code> does not have nanosecond precision, so <code>999999</code> nanoseconds would be an invalid <code>LocalTime</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> A <code>LocalDateTime</code> instance representing <code>2014-01-02 14:30:59:999999</code> </p>
+<ul>
+<li>This option is correct. The <code>atTime</code> method takes a <code>LocalDate</code> and combines it with the provided hour, minute, second, and nanosecond parameters to create a <code>LocalDateTime</code> object representing that date and time. The resulting <code>LocalDateTime</code> will be <code>2014-01-02 14:30:59:999999</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> An exception is thrown</p>
+<ul>
+<li>This option is incorrect. The provided parameters of 14 for hour, 30 for minute, 59 for second, and 999999 for nanosecond are all valid values for their respective fields, so combining them with the <code>LocalDate</code> will not throw an exception.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q3" data-answer="1,3" aria-describedby="book-q3-feedback">
+          <legend>Question 3</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Which of the following are valid <code>ChronoUnit</code> values for <code>LocalTime</code>? (Choose all that apply)</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q3-option-0" type="checkbox" name="book-q3" value="0" aria-labelledby="book-q3-option-0-letter book-q3-option-0-text"><span class="option-letter" id="book-q3-option-0-letter">A</span><div class="quiz-option-content" id="book-q3-option-0-text"><p><code>YEAR</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-1" type="checkbox" name="book-q3" value="1" aria-labelledby="book-q3-option-1-letter book-q3-option-1-text"><span class="option-letter" id="book-q3-option-1-letter">B</span><div class="quiz-option-content" id="book-q3-option-1-text"><p><code>NANOS</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-2" type="checkbox" name="book-q3" value="2" aria-labelledby="book-q3-option-2-letter book-q3-option-2-text"><span class="option-letter" id="book-q3-option-2-letter">C</span><div class="quiz-option-content" id="book-q3-option-2-text"><p><code>DAY</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-3" type="checkbox" name="book-q3" value="3" aria-labelledby="book-q3-option-3-letter book-q3-option-3-text"><span class="option-letter" id="book-q3-option-3-letter">D</span><div class="quiz-option-content" id="book-q3-option-3-text"><p><code>HALF_DAYS</code></p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>YEAR</code></p>
+<ul>
+<li>This option is incorrect. <code>YEAR</code> is not a valid <code>ChronoUnit</code> for <code>LocalTime</code>. <code>LocalTime</code> represents a time of day without any date information, so units of <code>YEAR</code> do not apply.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>NANOS</code></p>
+<ul>
+<li>This option is correct. <code>NANOS</code> is a valid <code>ChronoUnit</code> for <code>LocalTime</code>. <code>LocalTime</code> has nanosecond precision, so you can perform operations on <code>LocalTime</code> using the <code>NANOS</code> unit.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>DAY</code></p>
+<ul>
+<li>This option is incorrect. <code>DAY</code> is not a valid <code>ChronoUnit</code> for <code>LocalTime</code>. Similar to <code>YEAR</code>, <code>LocalTime</code> has no concept of days since it only represents a time, not a date.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>HALF_DAYS</code></p>
+<ul>
+<li>This option is correct. <code>HALF_DAYS</code> is a valid <code>ChronoUnit</code> for <code>LocalTime</code>. A day can be divided into two 12-hour periods (AM and PM), so <code>HALF_DAYS</code> can be used with <code>LocalTime</code> to represent a difference or addition of 12 hour chunks of time.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q4" data-answer="1,2" aria-describedby="book-q4-feedback">
+          <legend>Question 4</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Which of the following statements are true? (Choose all that apply)</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q4-option-0" type="checkbox" name="book-q4" value="0" aria-labelledby="book-q4-option-0-letter book-q4-option-0-text"><span class="option-letter" id="book-q4-option-0-letter">A</span><div class="quiz-option-content" id="book-q4-option-0-text"><p><code>java.time.Period</code> implements <code>java.time.temporal.Temporal</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-1" type="checkbox" name="book-q4" value="1" aria-labelledby="book-q4-option-1-letter book-q4-option-1-text"><span class="option-letter" id="book-q4-option-1-letter">B</span><div class="quiz-option-content" id="book-q4-option-1-text"><p><code>java.time.Instant</code> implements <code>java.time.temporal.Temporal</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-2" type="checkbox" name="book-q4" value="2" aria-labelledby="book-q4-option-2-letter book-q4-option-2-text"><span class="option-letter" id="book-q4-option-2-letter">C</span><div class="quiz-option-content" id="book-q4-option-2-text"><p><code>LocalDate</code> and <code>LocalTime</code> are thread-safe</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-3" type="checkbox" name="book-q4" value="3" aria-labelledby="book-q4-option-3-letter book-q4-option-3-text"><span class="option-letter" id="book-q4-option-3-letter">D</span><div class="quiz-option-content" id="book-q4-option-3-text"><p><code>LocalDateTime.now()</code> will return the current time in UTC zone</p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>java.time.Period</code> implements <code>java.time.temporal.Temporal</code></p>
+<ul>
+<li>This option is incorrect. <code>java.time.Period</code> does not implement the <code>java.time.temporal.Temporal</code> interface. <code>Period</code> represents a span of time between two dates and is not itself a temporal object.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>java.time.Instant</code> implements <code>java.time.temporal.Temporal</code></p>
+<ul>
+<li>This option is correct. <code>java.time.Instant</code> does implement the <code>java.time.temporal.Temporal</code> interface. <code>Instant</code> represents a point in time on the timeline and can be thought of as a temporal object.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>LocalDate</code> and <code>LocalTime</code> are thread-safe.</p>
+<ul>
+<li>This option is correct. <code>LocalDate</code> and <code>LocalTime</code> are indeed thread-safe. All the core Java Time classes, including <code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>, <code>Instant</code>, etc., are designed to be immutable and thread-safe.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>LocalDateTime.now()</code> will return the current time in UTC zone</p>
+<ul>
+<li>This option is incorrect. <code>LocalDateTime.now()</code> returns the current date and time using the system clock in the default time zone, not necessarily in the UTC zone. To get the current time in UTC, you would use <code>LocalDateTime.now(ZoneOffset.UTC)</code> or <code>Instant.now()</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q5" data-answer="0" aria-describedby="book-q5-feedback">
+          <legend>Question 5</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following options is a valid way to get the nanoseconds part of an <code>Instant</code> object referenced by <code>i</code>?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q5-option-0" type="radio" name="book-q5" value="0" aria-labelledby="book-q5-option-0-letter book-q5-option-0-text"><span class="option-letter" id="book-q5-option-0-letter">A</span><div class="quiz-option-content" id="book-q5-option-0-text"><p><code>int nanos = i.getNano();</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-1" type="radio" name="book-q5" value="1" aria-labelledby="book-q5-option-1-letter book-q5-option-1-text"><span class="option-letter" id="book-q5-option-1-letter">B</span><div class="quiz-option-content" id="book-q5-option-1-text"><p><code>long nanos = i.get(ChronoField.NANOS);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-2" type="radio" name="book-q5" value="2" aria-labelledby="book-q5-option-2-letter book-q5-option-2-text"><span class="option-letter" id="book-q5-option-2-letter">C</span><div class="quiz-option-content" id="book-q5-option-2-text"><p><code>long nanos = i.get(ChronoUnit.NANOS);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-3" type="radio" name="book-q5" value="3" aria-labelledby="book-q5-option-3-letter book-q5-option-3-text"><span class="option-letter" id="book-q5-option-3-letter">D</span><div class="quiz-option-content" id="book-q5-option-3-text"><p><code>int nanos = i.getEpochNano();</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>int nanos = i.getNano();</code></p>
+<ul>
+<li>This option is correct. The <code>Instant</code> class does have a <code>getNano()</code> method that returns the nanosecond part of the <code>Instant</code> as an <code>int</code>. This is a valid way to get the nanoseconds.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>long nanos = i.get(ChronoField.NANOS);</code></p>
+<ul>
+<li>This option is incorrect. You can use the <code>get(TemporalField)</code> method of <code>Instant</code> to get the value of a specific <code>ChronoField</code>. Passing <code>ChronoField.NANO_OF_SECOND</code> (not <code>ChronoField.NANO</code>) will return the nanosecond part of the <code>Instant</code> as a <code>long</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>long nanos = i.get(ChronoUnit.NANOS);</code></p>
+<ul>
+<li>This option is incorrect. While <code>Instant</code> does have a <code>get(TemporalUnit)</code> method, <code>ChronoUnit.NANOS</code> is not a valid argument for it. <code>ChronoUnit</code> values are used for durations and periods, not for fields of a temporal object.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>int nanos = i.getEpochNano();</code></p>
+<ul>
+<li>This option is incorrect. The <code>Instant</code> class does have a <code>getEpochSecond()</code> method that returns the number of seconds since the Unix epoch, but there is no corresponding <code>getEpochNano()</code> method.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q6" data-answer="3" aria-describedby="book-q6-feedback">
+          <legend>Question 6</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following options is the result of executing this line?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs">System.out.println(
+   Period.between(
+       LocalDate.of(<span class="hljs-number">2025</span>, <span class="hljs-number">3</span>, <span class="hljs-number">20</span>),
+       LocalDate.of(<span class="hljs-number">2025</span>, <span class="hljs-number">2</span>, <span class="hljs-number">20</span>))
+);</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q6-option-0" type="radio" name="book-q6" value="0" aria-labelledby="book-q6-option-0-letter book-q6-option-0-text"><span class="option-letter" id="book-q6-option-0-letter">A</span><div class="quiz-option-content" id="book-q6-option-0-text"><p><code>P29D</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-1" type="radio" name="book-q6" value="1" aria-labelledby="book-q6-option-1-letter book-q6-option-1-text"><span class="option-letter" id="book-q6-option-1-letter">B</span><div class="quiz-option-content" id="book-q6-option-1-text"><p><code>P-29D</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-2" type="radio" name="book-q6" value="2" aria-labelledby="book-q6-option-2-letter book-q6-option-2-text"><span class="option-letter" id="book-q6-option-2-letter">C</span><div class="quiz-option-content" id="book-q6-option-2-text"><p><code>P1M</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-3" type="radio" name="book-q6" value="3" aria-labelledby="book-q6-option-3-letter book-q6-option-3-text"><span class="option-letter" id="book-q6-option-3-letter">D</span><div class="quiz-option-content" id="book-q6-option-3-text"><p><code>P-1M</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>P29D</code></p>
+<ul>
+<li>This option is incorrect. The <code>Period.between</code> method calculates the period between the second date and the first date, in that order. Since the first date (2025-03-20) is later than the second date (2025-02-20), the resulting period will be negative, not positive.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>P-29D</code></p>
+<ul>
+<li>This option is incorrect. While the resulting period will be negative, it will not be represented as <code>-29D</code>. A <code>Period</code> first counts the number of complete months, then the remaining days.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>P1M</code></p>
+<ul>
+<li>This option is incorrect. The resulting period will be negative because the first date is later than the second date.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>P-1M</code></p>
+<ul>
+<li>This option is correct. The <code>Period.between</code> method subtracts the second date from the first date. In this case, <code>2025-03-20</code> minus <code>2025-02-20</code> results in a period of -1 month, which is represented as <code>P-1M</code>. The <code>Period</code> class first calculates the difference in complete months, and then any remaining days. Since the difference is exactly one month, the result is <code>P-1M</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q7" data-answer="3" aria-describedby="book-q7-feedback">
+          <legend>Question 7</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following options is the result of executing this line? </p>
+<div class="code-block"><pre tabindex="0"><code class="hljs">System.out.println(
+   Duration.between(
+       LocalDateTime.of(<span class="hljs-number">2025</span>, <span class="hljs-number">3</span>, <span class="hljs-number">20</span>, <span class="hljs-number">18</span>, <span class="hljs-number">0</span>),
+       LocalTime.of(<span class="hljs-number">18</span>, <span class="hljs-number">5</span>) )
+);</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q7-option-0" type="radio" name="book-q7" value="0" aria-labelledby="book-q7-option-0-letter book-q7-option-0-text"><span class="option-letter" id="book-q7-option-0-letter">A</span><div class="quiz-option-content" id="book-q7-option-0-text"><p><code>PT5M</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-1" type="radio" name="book-q7" value="1" aria-labelledby="book-q7-option-1-letter book-q7-option-1-text"><span class="option-letter" id="book-q7-option-1-letter">B</span><div class="quiz-option-content" id="book-q7-option-1-text"><p><code>PT-5M</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-2" type="radio" name="book-q7" value="2" aria-labelledby="book-q7-option-2-letter book-q7-option-2-text"><span class="option-letter" id="book-q7-option-2-letter">C</span><div class="quiz-option-content" id="book-q7-option-2-text"><p><code>PT300S</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-3" type="radio" name="book-q7" value="3" aria-labelledby="book-q7-option-3-letter book-q7-option-3-text"><span class="option-letter" id="book-q7-option-3-letter">D</span><div class="quiz-option-content" id="book-q7-option-3-text"><p>An exception is thrown</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>PT5M</code></p>
+<ul>
+<li>This option is incorrect. <code>PT5M</code> represents a duration of 5 minutes, which would be the result if the second time point was 5 minutes after the first. However, since <code>LocalTime.of(18, 5)</code> is being compared to a <code>LocalDateTime</code>, this causes an issue because they are not of the same type.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>PT-5M</code></p>
+<ul>
+<li>This option is incorrect. <code>PT-5M</code> represents a duration of negative 5 minutes. Similar to option A, this would only be the case if the second time point was before the first. The main issue is that there is a type mismatch between <code>LocalDateTime</code> and <code>LocalTime</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>PT300S</code></p>
+<ul>
+<li>This option is incorrect. <code>PT300S</code> represents a duration of 300 seconds (or 5 minutes), which again would be the result if the second time point was 5 minutes after the first. However, this still doesn&#39;t resolve the type mismatch issue between <code>LocalDateTime</code> and <code>LocalTime</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> An exception is thrown</p>
+<ul>
+<li>This option is correct. An exception is thrown because there is a type mismatch between <code>LocalDateTime.of(2025, 3, 20, 18, 0)</code> and <code>LocalTime.of(18, 5)</code>. The <code>Duration.between</code> method requires two temporal objects of the same type.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q8" data-answer="0,2" aria-describedby="book-q8-feedback">
+          <legend>Question 8</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Which of the following are valid <code>ChronoField</code> values for <code>LocalDate</code>?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q8-option-0" type="checkbox" name="book-q8" value="0" aria-labelledby="book-q8-option-0-letter book-q8-option-0-text"><span class="option-letter" id="book-q8-option-0-letter">A</span><div class="quiz-option-content" id="book-q8-option-0-text"><p><code>DAY_OF_WEEK</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-1" type="checkbox" name="book-q8" value="1" aria-labelledby="book-q8-option-1-letter book-q8-option-1-text"><span class="option-letter" id="book-q8-option-1-letter">B</span><div class="quiz-option-content" id="book-q8-option-1-text"><p><code>HOUR_OF_DAY</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-2" type="checkbox" name="book-q8" value="2" aria-labelledby="book-q8-option-2-letter book-q8-option-2-text"><span class="option-letter" id="book-q8-option-2-letter">C</span><div class="quiz-option-content" id="book-q8-option-2-text"><p><code>DAY_OF_MONTH</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-3" type="checkbox" name="book-q8" value="3" aria-labelledby="book-q8-option-3-letter book-q8-option-3-text"><span class="option-letter" id="book-q8-option-3-letter">D</span><div class="quiz-option-content" id="book-q8-option-3-text"><p><code>MILLI_OF_SECOND</code></p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>DAY_OF_WEEK</code></p>
+<ul>
+<li>This option is correct. <code>DAY_OF_WEEK</code> is a valid <code>ChronoField</code> value for <code>LocalDate</code>. It represents the day of the week, an integer from 1 (Monday) to 7 (Sunday), which can be extracted from a <code>LocalDate</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>HOUR_OF_DAY</code></p>
+<ul>
+<li>This option is incorrect. <code>HOUR_OF_DAY</code> is not a valid <code>ChronoField</code> value for <code>LocalDate</code>. <code>HOUR_OF_DAY</code> pertains to <code>LocalTime</code> or <code>LocalDateTime</code>, which include time components, whereas <code>LocalDate</code> only deals with date components.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>DAY_OF_MONTH</code></p>
+<ul>
+<li>This option is correct. <code>DAY_OF_MONTH</code> is a valid <code>ChronoField</code> value for <code>LocalDate</code>. It represents the day of the month, which can be extracted from a <code>LocalDate</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>MILLI_OF_SECOND</code></p>
+<ul>
+<li>This option is incorrect. <code>MILLI_OF_SECOND</code> is not a valid <code>ChronoField</code> value for <code>LocalDate</code>. <code>MILLI_OF_SECOND</code> pertains to time components, specifically for <code>LocalTime</code> or <code>LocalDateTime</code>, and <code>LocalDate</code> only deals with date components.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q9" data-answer="2" aria-describedby="book-q9-feedback">
+          <legend>Question 9</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following are valid ways to create a <code>ZoneId</code> object?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q9-option-0" type="radio" name="book-q9" value="0" aria-labelledby="book-q9-option-0-letter book-q9-option-0-text"><span class="option-letter" id="book-q9-option-0-letter">A</span><div class="quiz-option-content" id="book-q9-option-0-text"><p><code>ZoneId.ofHours(2);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q9-option-1" type="radio" name="book-q9" value="1" aria-labelledby="book-q9-option-1-letter book-q9-option-1-text"><span class="option-letter" id="book-q9-option-1-letter">B</span><div class="quiz-option-content" id="book-q9-option-1-text"><p><code>ZoneId.of(&quot;2&quot;);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q9-option-2" type="radio" name="book-q9" value="2" aria-labelledby="book-q9-option-2-letter book-q9-option-2-text"><span class="option-letter" id="book-q9-option-2-letter">C</span><div class="quiz-option-content" id="book-q9-option-2-text"><p><code>ZoneId.of(&quot;-1&quot;);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q9-option-3" type="radio" name="book-q9" value="3" aria-labelledby="book-q9-option-3-letter book-q9-option-3-text"><span class="option-letter" id="book-q9-option-3-letter">D</span><div class="quiz-option-content" id="book-q9-option-3-text"><p><code>ZoneId.of(&quot;America/Canada&quot;);</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>ZoneId.ofHours(2);</code></p>
+<ul>
+<li>This option is incorrect. The method <code>ofHours(int)</code> belongs to the <code>ZoneOffset</code> class, not <code>ZoneId</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>ZoneId.of(&quot;2&quot;);</code></p>
+<ul>
+<li>This option is incorrect. The format of the offset is incorrect for <code>ZoneId</code>. It should be a proper time-zone ID or start with a sign (<code>+</code> or <code>-</code>).</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>ZoneId.of(&quot;-1&quot;);</code></p>
+<ul>
+<li>This option is correct. <code>ZoneId.of(&quot;-1&quot;)</code> is valid since it follows the correct format for time-zone offsets.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>ZoneId.of(&quot;America/Canada&quot;);</code></p>
+<ul>
+<li>This option is incorrect. The format for zone regions should be in the <code>&quot;Area/City&quot;</code> format, not <code>&quot;Area/Country&quot;</code>. A valid example would be <code>&quot;America/Montreal&quot;</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q10" data-answer="3" aria-describedby="book-q10-feedback">
+          <legend>Question 10</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following options is the result of executing these lines?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">ZoneOffset</span> <span class="hljs-variable">offset</span> <span class="hljs-operator">=</span> ZoneOffset.of(<span class="hljs-string">&quot;Z&quot;</span>);
+System.out.println(
+   offset.get(ChronoField.HOUR_OF_DAY)
+);</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q10-option-0" type="radio" name="book-q10" value="0" aria-labelledby="book-q10-option-0-letter book-q10-option-0-text"><span class="option-letter" id="book-q10-option-0-letter">A</span><div class="quiz-option-content" id="book-q10-option-0-text"><p><code>0</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q10-option-1" type="radio" name="book-q10" value="1" aria-labelledby="book-q10-option-1-letter book-q10-option-1-text"><span class="option-letter" id="book-q10-option-1-letter">B</span><div class="quiz-option-content" id="book-q10-option-1-text"><p><code>1</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q10-option-2" type="radio" name="book-q10" value="2" aria-labelledby="book-q10-option-2-letter book-q10-option-2-text"><span class="option-letter" id="book-q10-option-2-letter">C</span><div class="quiz-option-content" id="book-q10-option-2-text"><p><code>12:00</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q10-option-3" type="radio" name="book-q10" value="3" aria-labelledby="book-q10-option-3-letter book-q10-option-3-text"><span class="option-letter" id="book-q10-option-3-letter">D</span><div class="quiz-option-content" id="book-q10-option-3-text"><p>An exception is thrown</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q10-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>0</code></p>
+<ul>
+<li>This option is incorrect. The method <code>offset.get(ChronoField.HOUR_OF_DAY)</code> does not return the hour value of the <code>ZoneOffset</code>. <code>ZoneOffset</code> represents a time-zone offset from UTC/Greenwich, and calling <code>get(ChronoField.HOUR_OF_DAY)</code> on it is not appropriate.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>1</code></p>
+<ul>
+<li>This option is incorrect. Similar to option A, the <code>get</code> method of <code>ZoneOffset</code> with <code>ChronoField.HOUR_OF_DAY</code> does not produce this result. The <code>ZoneOffset</code> class is not meant to provide such a field directly.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>12:00</code></p>
+<ul>
+<li>This option is incorrect. <code>12:00</code> is not a valid response for the method call as it implies a time representation, while <code>ZoneOffset</code> is dealing with offset values rather than specific time of day values.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> An exception is thrown</p>
+<ul>
+<li>This option is correct. An exception is thrown because <code>ZoneOffset</code> does not support the field <code>ChronoField.HOUR_OF_DAY</code>. The <code>ZoneOffset</code> class provides offset values in terms of seconds rather than specific chrono fields like hour of day.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q11" data-answer="0" aria-describedby="book-q11-feedback">
+          <legend>Question 11</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Assuming a local time zone of <code>+2:00</code>, which of the following options is the result of executing these lines?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt</span> <span class="hljs-operator">=</span>
+   ZonedDateTime.of(<span class="hljs-number">2025</span>, <span class="hljs-number">02</span>, <span class="hljs-number">28</span>, <span class="hljs-number">5</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>,
+       ZoneId.of(<span class="hljs-string">&quot;+05:00&quot;</span>));
+System.out.println(zdt.toLocalTime());</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q11-option-0" type="radio" name="book-q11" value="0" aria-labelledby="book-q11-option-0-letter book-q11-option-0-text"><span class="option-letter" id="book-q11-option-0-letter">A</span><div class="quiz-option-content" id="book-q11-option-0-text"><p><code>05:00</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q11-option-1" type="radio" name="book-q11" value="1" aria-labelledby="book-q11-option-1-letter book-q11-option-1-text"><span class="option-letter" id="book-q11-option-1-letter">B</span><div class="quiz-option-content" id="book-q11-option-1-text"><p><code>17:00</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q11-option-2" type="radio" name="book-q11" value="2" aria-labelledby="book-q11-option-2-letter book-q11-option-2-text"><span class="option-letter" id="book-q11-option-2-letter">C</span><div class="quiz-option-content" id="book-q11-option-2-text"><p><code>02:00</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q11-option-3" type="radio" name="book-q11" value="3" aria-labelledby="book-q11-option-3-letter book-q11-option-3-text"><span class="option-letter" id="book-q11-option-3-letter">D</span><div class="quiz-option-content" id="book-q11-option-3-text"><p><code>03:00</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q11-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>05:00</code> </p>
+<ul>
+<li>This option is correct. <code>ZonedDateTime.of(2025, 02, 28, 5, 0, 0, 0, ZoneId.of(&quot;+05:00&quot;))</code> creates a <code>ZonedDateTime</code> instance with the specified date, time, and time zone offset of +05:00. Calling <code>toLocalTime()</code> on this instance returns the local time, which is <code>05:00</code>, as no conversion to the local time zone of +2:00 is done in this code snippet.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>17:00</code></p>
+<ul>
+<li>This option is incorrect. <code>17:00</code> would be the time if the code converted the given time (05:00) from the +05:00 time zone to the local time zone of +02:00, which it does not.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>02:00</code></p>
+<ul>
+<li>This option is incorrect. <code>02:00</code> does not correspond to any logical result based on the given time and time zone offset.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>03:00</code></p>
+<ul>
+<li>This option is incorrect. <code>03:00</code> also does not correspond to any logical result based on the given time and time zone offset.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q12" data-answer="2" aria-describedby="book-q12-feedback">
+          <legend>Question 12</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Assuming that DST starts on October, 4, 2025 at 0:00:00, which of the following is the result of executing the above lines?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt</span> <span class="hljs-operator">=</span>
+    ZonedDateTime.of(<span class="hljs-number">2025</span>, <span class="hljs-number">10</span>, <span class="hljs-number">4</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>,
+        ZoneId.of(<span class="hljs-string">&quot;America/Asuncion&quot;</span>))
+    .plus(Duration.ofHours(<span class="hljs-number">1</span>));
+System.out.println(zdt);</code></pre></div></div>
+          <p class="question-review-note"><strong>Reviewed note:</strong> Treat the stated DST transition as a hypothetical rule. Running this example against an installed time-zone database can give a different result.</p>
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q12-option-0" type="radio" name="book-q12" value="0" aria-labelledby="book-q12-option-0-letter book-q12-option-0-text"><span class="option-letter" id="book-q12-option-0-letter">A</span><div class="quiz-option-content" id="book-q12-option-0-text"><p><code>2025-10-04T00:00-03:00[America/Asuncion]</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q12-option-1" type="radio" name="book-q12" value="1" aria-labelledby="book-q12-option-1-letter book-q12-option-1-text"><span class="option-letter" id="book-q12-option-1-letter">B</span><div class="quiz-option-content" id="book-q12-option-1-text"><p><code>2025-10-04T01:00-03:00[America/Asuncion]</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q12-option-2" type="radio" name="book-q12" value="2" aria-labelledby="book-q12-option-2-letter book-q12-option-2-text"><span class="option-letter" id="book-q12-option-2-letter">C</span><div class="quiz-option-content" id="book-q12-option-2-text"><p><code>2025-10-04T02:00-03:00[America/Asuncion]</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q12-option-3" type="radio" name="book-q12" value="3" aria-labelledby="book-q12-option-3-letter book-q12-option-3-text"><span class="option-letter" id="book-q12-option-3-letter">D</span><div class="quiz-option-content" id="book-q12-option-3-text"><p><code>2025-10-03T23:00-03:00[America/Asuncion]</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q12-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><p><strong>C follows the question’s stated assumption.</strong> If the clock jumps from midnight to 01:00, constructing midnight resolves the gap to 01:00 at -03:00. Adding one elapsed hour produces 02:00. This is reasoning under the supplied hypothetical rule, not a claim about the actual rules installed in every JDK.</p>
+</div><p class="answer-origin">Includes a reviewed clarification or correction. <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/ZonedDateTime.html" target="_blank" rel="noopener noreferrer">Check the Java reference<span class="sr-only"> (opens in a new tab)</span></a></p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q13" data-answer="0,1" aria-describedby="book-q13-feedback">
+          <legend>Question 13</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Which of the following statements are true? (Choose all that apply)</p>
+</div>
+          <p class="question-review-note"><strong>Reviewed note:</strong> A is also true: ZoneOffset extends ZoneId. The book lists only B.</p>
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q13-option-0" type="checkbox" name="book-q13" value="0" aria-labelledby="book-q13-option-0-letter book-q13-option-0-text"><span class="option-letter" id="book-q13-option-0-letter">A</span><div class="quiz-option-content" id="book-q13-option-0-text"><p><code>java.time.ZoneOffset</code> is a subclass of <code>java.time.ZoneId</code>.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q13-option-1" type="checkbox" name="book-q13" value="1" aria-labelledby="book-q13-option-1-letter book-q13-option-1-text"><span class="option-letter" id="book-q13-option-1-letter">B</span><div class="quiz-option-content" id="book-q13-option-1-text"><p><code>java.time.Instant</code> can be obtained from <code>java.time.ZonedDateTime</code>.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q13-option-2" type="checkbox" name="book-q13" value="2" aria-labelledby="book-q13-option-2-letter book-q13-option-2-text"><span class="option-letter" id="book-q13-option-2-letter">C</span><div class="quiz-option-content" id="book-q13-option-2-text"><p><code>java.time.ZoneOffset</code> can manage DST.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q13-option-3" type="checkbox" name="book-q13" value="3" aria-labelledby="book-q13-option-3-letter book-q13-option-3-text"><span class="option-letter" id="book-q13-option-3-letter">D</span><div class="quiz-option-content" id="book-q13-option-3-text"><p><code>java.time.OffsetDateTime</code> represents a point in time in the UTC time zone.</p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q13-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><p><strong>A and B are correct.</strong> ZoneOffset is a ZoneId subtype, and ZonedDateTime can supply its Instant through <code>toInstant()</code>. A fixed ZoneOffset does not manage daylight-saving transitions. OffsetDateTime can use nonzero offsets; it is not restricted to UTC.</p>
+</div><p class="answer-origin">Includes a reviewed clarification or correction. <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/ZoneOffset.html" target="_blank" rel="noopener noreferrer">Check the Java reference<span class="sr-only"> (opens in a new tab)</span></a></p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q14" data-answer="2" aria-describedby="book-q14-feedback">
+          <legend>Question 14</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following options is the result of executing these lines?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter</span> <span class="hljs-operator">=</span>
+   DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
+System.out.println(
+   formatter
+   .withLocale(Locale.ENGLISH)
+   .format(LocalDateTime.of(<span class="hljs-number">2025</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">16</span>, <span class="hljs-number">0</span>))
+);</code></pre></div></div>
+          <p class="question-review-note"><strong>Reviewed note:</strong> Assume Locale.US, as the answer choices do. A localized formatter’s actual output depends on its locale.</p>
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q14-option-0" type="radio" name="book-q14" value="0" aria-labelledby="book-q14-option-0-letter book-q14-option-0-text"><span class="option-letter" id="book-q14-option-0-letter">A</span><div class="quiz-option-content" id="book-q14-option-0-text"><p><code>5/7/15 4:00 PM</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q14-option-1" type="radio" name="book-q14" value="1" aria-labelledby="book-q14-option-1-letter book-q14-option-1-text"><span class="option-letter" id="book-q14-option-1-letter">B</span><div class="quiz-option-content" id="book-q14-option-1-text"><p><code>5/7/15</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q14-option-2" type="radio" name="book-q14" value="2" aria-labelledby="book-q14-option-2-letter book-q14-option-2-text"><span class="option-letter" id="book-q14-option-2-letter">C</span><div class="quiz-option-content" id="book-q14-option-2-text"><p><code>4:00 PM</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q14-option-3" type="radio" name="book-q14" value="3" aria-labelledby="book-q14-option-3-letter book-q14-option-3-text"><span class="option-letter" id="book-q14-option-3-letter">D</span><div class="quiz-option-content" id="book-q14-option-3-text"><p><code>4:00:00 PM</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q14-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>5/7/15 4:00 PM</code></p>
+<ul>
+<li>This option is incorrect. The <code>DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)</code> method is used to format only the time portion of a <code>LocalDateTime</code> object, and it does not include the date. Therefore, the output will not include <code>5/7/15</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>5/7/15</code></p>
+<ul>
+<li>This option is incorrect. As mentioned earlier, the <code>DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)</code> formats only the time portion and does not include the date. Thus, the output <code>5/7/15</code> is not possible.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>4:00 PM</code></p>
+<ul>
+<li>This option is correct. The <code>DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)</code> formats the time portion of the <code>LocalDateTime</code> object in a short style. Given the input time <code>16:00</code>, in the <code>Locale.ENGLISH</code>, the formatted output is <code>4:00 PM</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>4:00:00 PM</code></p>
+<ul>
+<li>This option is incorrect. The <code>DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)</code> formats the time portion without including seconds. Therefore, the output will not include <code>4:00:00 PM</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Includes a reviewed clarification or correction. <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/format/DateTimeFormatter.html" target="_blank" rel="noopener noreferrer">Check the Java reference<span class="sr-only"> (opens in a new tab)</span></a></p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q15" data-answer="3" aria-describedby="book-q15-feedback">
+          <legend>Question 15</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following statements is true about these lines?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter</span> <span class="hljs-operator">=</span>
+   DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;HH:mm:ss X&quot;</span>);
+<span class="hljs-type">OffsetDateTime</span> <span class="hljs-variable">odt</span> <span class="hljs-operator">=</span>
+   OffsetDateTime.parse(<span class="hljs-string">&quot;11:50:20 Z&quot;</span>, formatter);</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q15-option-0" type="radio" name="book-q15" value="0" aria-labelledby="book-q15-option-0-letter book-q15-option-0-text"><span class="option-letter" id="book-q15-option-0-letter">A</span><div class="quiz-option-content" id="book-q15-option-0-text"><p>The pattern <code>HH:mm:ss X</code> is invalid.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q15-option-1" type="radio" name="book-q15" value="1" aria-labelledby="book-q15-option-1-letter book-q15-option-1-text"><span class="option-letter" id="book-q15-option-1-letter">B</span><div class="quiz-option-content" id="book-q15-option-1-text"><p>An <code>OffsetDateTime</code> is created successfully.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q15-option-2" type="radio" name="book-q15" value="2" aria-labelledby="book-q15-option-2-letter book-q15-option-2-text"><span class="option-letter" id="book-q15-option-2-letter">C</span><div class="quiz-option-content" id="book-q15-option-2-text"><p><code>Z</code> is an invalid offset.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q15-option-3" type="radio" name="book-q15" value="3" aria-labelledby="book-q15-option-3-letter book-q15-option-3-text"><span class="option-letter" id="book-q15-option-3-letter">D</span><div class="quiz-option-content" id="book-q15-option-3-text"><p>An exception is thrown at runtime.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q15-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> The pattern <code>HH:mm:ss X</code> is invalid.</p>
+<ul>
+<li>This option is incorrect. The pattern <code>HH:mm:ss X</code> is valid. <code>HH</code> represents the hour of the day (00-23), <code>mm</code> represents the minute of the hour, <code>ss</code> represents the second of the minute, and <code>X</code> represents the ISO 8601 time zone offset.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> An <code>OffsetDateTime</code> is created successfully. </p>
+<ul>
+<li>This option is incorrect. The pattern <code>HH:mm:ss X</code> is valid, but the <code>OffsetDateTime.parse</code> method requires a date and time format along with the offset. Since the input string <code>&quot;11:50:20 Z&quot;</code> does not contain a date part, this will cause a <code>DateTimeParseException</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Z</code> is an invalid offset.</p>
+<ul>
+<li>This option is incorrect. <code>Z</code> is a valid offset representing UTC (Coordinated Universal Time).</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> An exception is thrown at runtime.</p>
+<ul>
+<li>This option is correct. An exception is thrown at runtime because the input string <code>&quot;11:50:20 Z&quot;</code> does not match the expected pattern for an <code>OffsetDateTime</code>, which typically includes a date part as well as the time and offset.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart book practice</button></div>
+    </form>
+  </section><section class="chapter-quiz" id="chapter-quiz" aria-labelledby="quiz-title">
+    <h2 id="quiz-title">Extra quiz</h2>
+    <p class="quiz-intro">Choose an answer to see its explanation immediately. Correct choices appear in green; incorrect selections appear in red. For checkbox questions, select your answers, then choose Check answer.</p>
+    <details class="practice-context"><summary>About these questions</summary><p>11 original learning exercises, not official exam questions. Use Java 21 without preview features. Assume standard imports and a valid enclosing class or method, which may declare checked exceptions.</p></details>
+    <p class="quiz-saving">Your selections and feedback are saved in this browser.</p>
+    <noscript><p>Enable JavaScript for scoring. The book’s practice questions and separate answer sheet remain available without it.</p></noscript>
+    <form class="quiz-form" data-quiz="ch11">
+      <p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="quiz-q1" data-answer="2" aria-describedby="quiz-q1-feedback">
+          <legend><span class="quiz-number">1.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Immutability · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">date</span> <span class="hljs-operator">=</span> java.time.LocalDate.of(<span class="hljs-number">2024</span>, <span class="hljs-number">2</span>, <span class="hljs-number">28</span>);
+date.plusDays(<span class="hljs-number">1</span>);
+System.out.println(date);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q1" value="0"><span class="option-letter">A</span><span>2024-03-01</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="1"><span class="option-letter">B</span><span>2024-02-29</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="2"><span class="option-letter">C</span><span>2024-02-28</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">LocalDate is immutable. plusDays returns a new date, and this code discards it.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q2" data-answer="0" aria-describedby="quiz-q2-feedback">
+          <legend><span class="quiz-number">2.</span> What is <code>LocalDate.of(2024, 2, 28).plusDays(1)</code>?</legend>
+          <div class="quiz-question-meta">Leap years · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q2" value="0"><span class="option-letter">A</span><span>2024-02-29</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="1"><span class="option-letter">B</span><span>2024-03-01</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="2"><span class="option-letter">C</span><span>2024-02-28</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="3"><span class="option-letter">D</span><span>It throws DateTimeException</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">2024 is a leap year, so February has 29 days.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q3" data-answer="3" aria-describedby="quiz-q3-feedback">
+          <legend><span class="quiz-number">3.</span> What is <code>LocalDate.of(2024, 1, 31).plusMonths(1)</code>?</legend>
+          <div class="quiz-question-meta">Month adjustment · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q3" value="0"><span class="option-letter">A</span><span>2024-03-02</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="1"><span class="option-letter">B</span><span>It throws DateTimeException</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="2"><span class="option-letter">C</span><span>2024-02-28</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="3"><span class="option-letter">D</span><span>2024-02-29</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Adding a month adjusts an invalid day-of-month to the last valid day in the target month, February 29 here.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q4" data-answer="1" aria-describedby="quiz-q4-feedback">
+          <legend><span class="quiz-number">4.</span> Which type represents a date-based amount of two months?</legend>
+          <div class="quiz-question-meta">Date versus time amounts · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q4" value="0"><span class="option-letter">A</span><span>Duration</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="1"><span class="option-letter">B</span><span>Period</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="2"><span class="option-letter">C</span><span>Instant</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="3"><span class="option-letter">D</span><span>ZoneId</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Period represents years, months, and days. Duration represents a time-based amount in seconds and nanoseconds.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q5" data-answer="2" aria-describedby="quiz-q5-feedback">
+          <legend><span class="quiz-number">5.</span> What happens with <code>LocalDate.of(2023, 2, 29)</code>?</legend>
+          <div class="quiz-question-meta">Invalid date · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q5" value="0"><span class="option-letter">A</span><span>It becomes March 1</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="1"><span class="option-letter">B</span><span>It becomes February 28</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="2"><span class="option-letter">C</span><span>It throws DateTimeException</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="3"><span class="option-letter">D</span><span>It returns null</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">of validates all fields. February 29 is not a valid date in non-leap-year 2023.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q6" data-answer="0" aria-describedby="quiz-q6-feedback">
+          <legend><span class="quiz-number">6.</span> Which type includes a regional time zone such as Europe/Paris?</legend>
+          <div class="quiz-question-meta">Zone information · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q6" value="0"><span class="option-letter">A</span><span>ZonedDateTime</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="1"><span class="option-letter">B</span><span>LocalDateTime</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="2"><span class="option-letter">C</span><span>LocalTime</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="3"><span class="option-letter">D</span><span>Period</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">ZonedDateTime combines a local date and time with zone information. LocalDateTime contains no offset or region.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q7" data-answer="1" aria-describedby="quiz-q7-feedback">
+          <legend><span class="quiz-number">7.</span> In a DateTimeFormatter pattern, which letter means month-of-year?</legend>
+          <div class="quiz-question-meta">Pattern letters · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q7" value="0"><span class="option-letter">A</span><span>m</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="1"><span class="option-letter">B</span><span>M</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="2"><span class="option-letter">C</span><span>s</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="3"><span class="option-letter">D</span><span>H</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Uppercase M means month-of-year. Lowercase m means minute-of-hour; pattern letters are case-sensitive.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q8" data-answer="3" aria-describedby="quiz-q8-feedback">
+          <legend><span class="quiz-number">8.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Period components · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> java.time.Period.ofMonths(<span class="hljs-number">1</span>).ofDays(<span class="hljs-number">1</span>);
+System.out.println(p);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q8" value="0"><span class="option-letter">A</span><span>P1M</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="1"><span class="option-letter">B</span><span>P2M</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="2"><span class="option-letter">C</span><span>P1M1D</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="3"><span class="option-letter">D</span><span>P1D</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Each static of... call creates a new Period. Calling ofDays through a reference is legal but does not add to that reference’s value.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q9" data-answer="2" aria-describedby="quiz-q9-feedback">
+          <legend><span class="quiz-number">9.</span> What does <code>LocalTime.of(23, 30).plusHours(2)</code> represent?</legend>
+          <div class="quiz-question-meta">Local time rollover · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q9" value="0"><span class="option-letter">A</span><span>Next day at 01:30, with a stored date</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="1"><span class="option-letter">B</span><span>25:30</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="2"><span class="option-letter">C</span><span>01:30, without a stored date</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="3"><span class="option-letter">D</span><span>It throws DateTimeException</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">LocalTime wraps within a 24-hour day and has no date component to record which day is involved.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q10" data-answer="1" aria-describedby="quiz-q10-feedback">
+          <legend><span class="quiz-number">10.</span> Can one calendar day in a regional time zone span a duration other than 24 hours?</legend>
+          <div class="quiz-question-meta">Daylight saving · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q10" value="0"><span class="option-letter">A</span><span>No, all dates have exactly 24 elapsed hours</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="1"><span class="option-letter">B</span><span>Yes, daylight-saving transitions can change the elapsed duration</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="2"><span class="option-letter">C</span><span>Only with LocalDate, not ZonedDateTime</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="3"><span class="option-letter">D</span><span>Only for UTC</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q10-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Regional offset transitions can make a local calendar day shorter or longer. Date-based and elapsed-time arithmetic therefore serve different purposes.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q11" data-answer="1,3" aria-describedby="quiz-q11-feedback">
+          <legend><span class="quiz-number">11.</span> Which two are immutable?</legend>
+          <div class="quiz-question-meta">Date/time immutability · Select 2 answers</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="0"><span class="option-letter">A</span><span>SimpleDateFormat</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="1"><span class="option-letter">B</span><span>LocalDate</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="2"><span class="option-letter">C</span><span>Calendar</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="3"><span class="option-letter">D</span><span>DateTimeFormatter</span></label></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="quiz-q11-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">LocalDate and DateTimeFormatter are immutable. The legacy Calendar and SimpleDateFormat classes are mutable.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart extra quiz</button></div>
+    </form>
+  </section>
+  <section class="study-resources" id="free-resources" aria-labelledby="resources-title"><h2 id="resources-title">Free resources</h2><p>Use these to revisit the rules or try more examples. Links open in a new tab and need an internet connection. Some tutorials also cover Java versions newer than 21.</p>
+    <ul><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" target="_blank" rel="noopener noreferrer">LocalDate API — Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>Date arithmetic and immutable date values.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Period.html" target="_blank" rel="noopener noreferrer">Period API — Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>Date-based amounts, including years, months, and days.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/format/DateTimeFormatter.html" target="_blank" rel="noopener noreferrer">DateTimeFormatter API — Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>Parsing and formatting patterns.</p></li><li><a href="https://javaalmanac.io/snippets/" target="_blank" rel="noopener noreferrer">Runnable date/time examples<span class="sr-only"> (opens in a new tab)</span></a><p>Choose Time and Date examples to experiment in Java 21.</p></li></ul>
+    <p class="resource-date">Links reviewed 31 October 2026.</p>
+  </section></article><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch11.html"><small>Previous · Chapter 11</small>The Date/Time API</a><a href="ch12.html"><small>Next · Chapter 12</small>File I/O <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>Practice sections</summary><nav aria-label="On this page"><a class="toc-link" href="#book-practice">Book questions · 15</a><a class="toc-link" href="#chapter-quiz">Extra quiz · 11</a><a class="toc-link" href="#free-resources">Free resources</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

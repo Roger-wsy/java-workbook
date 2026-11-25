@@ -1,0 +1,364 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · File I/O and Serialization</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch12a"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>File I/O and Serialization<span class="answer-title">Answers & explanations</span></h1><div class="document-meta">Chapter 12 / Answer sheet<span>·</span>7 min read</div><div class="chapter-actions"><a class="" href="ch12.html">Read chapter</a><a href="ch12.html#key-points">Key points</a><a href="ch12-practice.html#book-practice">Book questions</a><a href="ch12-practice.html#chapter-quiz">Extra quiz</a><a class="active" href="ch12a.html">Original answers</a></div></div><article class="prose"><h2 id="answers">Answers<a class="heading-anchor" href="#answers" aria-label="Link to Answers">#</a></h2><details class="answer-item" id="answer-1"><summary><span>Question 1</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>/home/user</code></p>
+<ul>
+<li>This option is incorrect. The <code>resolve</code> method appends the given path to the base path. It does not return the base path alone.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>/home/user/documents</code> </p>
+<ul>
+<li>This option is incorrect. The <code>resolve</code> method includes the entire relative path provided as an argument, not just part of it.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>/documents/notes.txt</code></p>
+<ul>
+<li>This option is incorrect. The <code>resolve</code> method combines the base path with the given relative path; it does not replace the base path with the relative path.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>/home/user/documents/notes.txt</code></p>
+<ul>
+<li>This option is correct. The <code>resolve</code> method appends the relative path to the base path, resulting in <code>/home/user/documents/notes.txt</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-2"><summary><span>Question 2</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>/home/user/../documents/./notes.txt</code> </p>
+<ul>
+<li>This option is incorrect. The <code>normalize</code> method removes redundant <code>.</code> and <code>..</code> elements, so it wouldn&#39;t leave the path as is.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>/home/user/documents/notes.txt</code></p>
+<ul>
+<li>This option is incorrect. While the <code>.</code> is removed, the <code>..</code> navigates one directory up, resulting in an incorrect final path.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>/home/documents/notes.txt</code></p>
+<ul>
+<li>This option is correct. The <code>normalize</code> method processes the path by removing the <code>.</code> and moving one directory up due to <code>..</code>, resulting in <code>/home/documents/notes.txt</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>/documents/notes.txt</code></p>
+<ul>
+<li>This option is incorrect. The <code>normalize</code> method does not completely remove the leading part of the path up to <code>documents</code>. It only processes the <code>.</code> and <code>..</code> elements.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-3"><summary><span>Question 3</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>FileOutputStream</code></p>
+<ul>
+<li>This option is incorrect. <code>FileOutputStream</code> is used for writing binary data to a file, not for reading character streams.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>FileReader</code></p>
+<ul>
+<li>This option is correct. <code>FileReader</code> is designed for reading character streams from a file, making it the appropriate class for this purpose.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>BufferedOutputStream</code></p>
+<ul>
+<li>This option is incorrect. <code>BufferedOutputStream</code> is used to write binary data to an output stream, buffering the data for efficient writing. It is not used for reading character streams.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>ObjectInputStream</code></p>
+<ul>
+<li>This option is incorrect. <code>ObjectInputStream</code> is used for deserializing objects from an input stream, not for reading character streams.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-4"><summary><span>Question 4</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;source.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;target.txt&quot;</span>);
+Files.copy(source, target, StandardCopyOption.ATOMIC_MOVE);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>StandardCopyOption.ATOMIC_MOVE</code> is used for moving files atomically, not for copying. It does not ensure that an existing file is overwritten.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;source.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;target.txt&quot;</span>);
+Files.move(source, target, StandardCopyOption.REPLACE_EXISTING);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>Files.move</code> is used to move or rename a file, not to copy it. <code>StandardCopyOption.REPLACE_EXISTING</code> ensures the target file is overwritten during a move, not a copy.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;source.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;target.txt&quot;</span>);
+Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);</code></pre></div><ul>
+<li><p>This option is correct. <code>Files.copy</code> with <code>StandardCopyOption.REPLACE_EXISTING</code> ensures the target file is overwritten if it exists, which is the correct way to copy a file with overwriting.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;source.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;target.txt&quot;</span>);
+Files.copy(source, target, StandardCopyOption.APPEND);</code></pre></div><ul>
+<li>This option is incorrect. <code>StandardCopyOption.APPEND</code> does not exist in the <code>StandardCopyOption</code> enum, making this code snippet invalid.</li>
+</ul>
+</div></details><details class="answer-item" id="answer-5"><summary><span>Question 5</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;file.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.readAllBytes(path);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>Files.readAllBytes(path)</code> returns a byte array, not a <code>List&lt;String&gt;</code>.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;file.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.readString(path);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>Files.readString(path)</code> returns a single <code>String</code> containing the entire content of the file, not a <code>List&lt;String&gt;</code>.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;file.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.lines(path);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>Files.lines(path)</code> returns a <code>Stream&lt;String&gt;</code>, not a <code>List&lt;String&gt;</code>. It provides a lazy-loaded stream of lines.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;file.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.readAllLines(path);</code></pre></div><ul>
+<li>This option is correct. <code>Files.readAllLines(path)</code> reads all lines from the file and returns them as a <code>List&lt;String&gt;</code>, which is the desired behavior.</li>
+</ul>
+</div></details><details class="answer-item" id="answer-6"><summary><span>Question 6</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;output.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;line1&quot;</span>, <span class="hljs-string">&quot;line2&quot;</span>, <span class="hljs-string">&quot;line3&quot;</span>);
+Files.write(path, lines);</code></pre></div><ul>
+<li><p>This option is correct. <code>Files.write(path, lines)</code> writes the given list of strings to the file at the specified path, creating the file if it does not exist.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;output.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;line1&quot;</span>, <span class="hljs-string">&quot;line2&quot;</span>, <span class="hljs-string">&quot;line3&quot;</span>);
+Files.writeString(path, lines);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>Files.writeString(path, lines)</code> does not exist. <code>Files.writeString</code> expects a single <code>String</code> as the second argument, not a <code>List&lt;String&gt;</code>.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;output.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;line1&quot;</span>, <span class="hljs-string">&quot;line2&quot;</span>, <span class="hljs-string">&quot;line3&quot;</span>);
+Files.writeLines(path, lines);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>Files.writeLines(path, lines)</code> does not exist. There is no such method in the <code>Files</code> class.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;output.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;line1&quot;</span>, <span class="hljs-string">&quot;line2&quot;</span>, <span class="hljs-string">&quot;line3&quot;</span>);
+Files.write(path, lines, StandardOpenOption.READ);</code></pre></div><ul>
+<li>This option is incorrect. <code>StandardOpenOption.READ</code> is not a valid option for writing files. It is used for reading files.</li>
+</ul>
+</div></details><details class="answer-item" id="answer-7"><summary><span>Question 7</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+attrs.lastModifiedTime();</code></pre></div><ul>
+<li><p>This option is incorrect. <code>attrs.lastModifiedTime()</code> retrieves the last modified time of the file, not the creation time.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+attrs.creationTime();</code></pre></div><ul>
+<li><p>This option is correct. <code>attrs.creationTime()</code> retrieves the creation time of the file, which is the correct method from <code>BasicFileAttributes</code> for this purpose.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+attrs.lastAccessTime();</code></pre></div><ul>
+<li><p>This option is incorrect. <code>attrs.lastAccessTime()</code> retrieves the last access time of the file, not the creation time.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+attrs.size();</code></pre></div><ul>
+<li>This option is incorrect. <code>attrs.size()</code> retrieves the size of the file, not the creation time.</li>
+</ul>
+</div></details><details class="answer-item" id="answer-8"><summary><span>Question 8</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;start_directory&quot;</span>);
+Files.walkFileTree(start, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">return</span> FileVisitResult.SKIP_SUBTREE;
+    }
+});</code></pre></div><ul>
+<li><p>This option is incorrect. <code>FileVisitResult.SKIP_SUBTREE</code> will skip the traversal of the entire subtree, not allowing the complete traversal of the directory tree.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;start_directory&quot;</span>);
+Files.walkFileTree(start, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IOException</span>(<span class="hljs-string">&quot;Error visiting file&quot;</span>);
+    }
+});</code></pre></div><ul>
+<li><p>This option is incorrect. Throwing an <code>IOException</code> inside <code>visitFile</code> will stop the traversal due to an unhandled exception.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;start_directory&quot;</span>);
+Files.walkFileTree(start, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        System.out.println(<span class="hljs-string">&quot;Visited file: &quot;</span> + file);
+        <span class="hljs-keyword">return</span> FileVisitResult.TERMINATE;
+    }
+});</code></pre></div><ul>
+<li><p>This option is incorrect. The use of <code>FileVisitResult.TERMINATE</code> will stop the traversal after visiting the first file, not allowing the complete traversal of the directory tree.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;start_directory&quot;</span>);
+Files.walkFileTree(start, EnumSet.noneOf(FileVisitOption.class), Integer.MAX_VALUE, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        System.out.println(<span class="hljs-string">&quot;Visited file: &quot;</span> + file);
+        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">preVisitDirectory</span><span class="hljs-params">(Path dir, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFileFailed</span><span class="hljs-params">(Path file, IOException exc)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">postVisitDirectory</span><span class="hljs-params">(Path dir, IOException exc)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+    }
+});</code></pre></div><ul>
+<li>This option is correct. It uses <code>Files.walkFileTree</code> with <code>SimpleFileVisitor</code>, specifying no special <code>FileVisitOption</code> and setting the maximum depth to <code>Integer.MAX_VALUE</code>, ensuring full traversal of the directory tree. Additionally, it correctly handles directory pre-visit, file visit, file visit failure, and directory post-visit events.</li>
+</ul>
+</div></details><details class="answer-item" id="answer-9"><summary><span>Question 9</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> </p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+    <span class="hljs-keyword">private</span> String species;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Animal</span><span class="hljs-params">(String species, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.species = species;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+}
+
+<span class="hljs-type">Animal</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&quot;Lion&quot;</span>, <span class="hljs-number">5</span>);
+<span class="hljs-keyword">try</span> (<span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">ois</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;animal.ser&quot;</span>))) {
+    ois.writeObject(animal);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><ul>
+<li>This option is incorrect. <code>ObjectInputStream</code> is used for deserialization (reading objects from a stream), not serialization. It should be <code>ObjectOutputStream</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> </p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+    <span class="hljs-keyword">private</span> String species;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Animal</span><span class="hljs-params">(String species, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.species = species;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+}
+
+<span class="hljs-type">Animal</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&quot;Lion&quot;</span>, <span class="hljs-number">5</span>);
+<span class="hljs-keyword">try</span> (<span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;animal.ser&quot;</span>))) {
+    oos.writeObject(animal);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><ul>
+<li>This option is correct. <code>ObjectOutputStream</code> is used to serialize an object to a file, which is what this code snippet does correctly.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> </p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> {
+    <span class="hljs-keyword">private</span> String species;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Animal</span><span class="hljs-params">(String species, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.species = species;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+}
+
+<span class="hljs-type">Animal</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&quot;Lion&quot;</span>, <span class="hljs-number">5</span>);
+<span class="hljs-keyword">try</span> (<span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;animal.ser&quot;</span>))) {
+    oos.writeObject(animal);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><ul>
+<li>This option is incorrect. The <code>Animal</code> class does not implement <code>Serializable</code>, so it cannot be serialized using <code>ObjectOutputStream</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> </p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+    <span class="hljs-keyword">private</span> String species;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Animal</span><span class="hljs-params">(String species, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.species = species;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+}
+
+<span class="hljs-type">Animal</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&quot;Lion&quot;</span>, <span class="hljs-number">5</span>);
+<span class="hljs-keyword">try</span> (<span class="hljs-type">BufferedOutputStream</span> <span class="hljs-variable">bos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;animal.ser&quot;</span>))) {
+    bos.write(animal);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><ul>
+<li>This option is incorrect. <code>BufferedOutputStream</code> cannot be used to write objects directly; <code>ObjectOutputStream</code> should be used for serialization.</li>
+</ul>
+</li>
+</ul>
+</div></details></article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this answer sheet.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch12.html"><small>Previous</small>File I/O and Serialization</a><a href="ch12-practice.html"><small>Next chapter</small>Chapter 12.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#answers">Answers</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

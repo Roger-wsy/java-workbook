@@ -1,0 +1,214 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Working with Records and Enums</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch03a"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Working with Records and Enums<span class="answer-title">Answers & explanations</span></h1><div class="document-meta">Chapter 03 / Answer sheet<span>·</span>8 min read</div><div class="chapter-actions"><a class="" href="ch03.html">Read chapter</a><a href="ch03.html#key-points">Key points</a><a href="ch03-practice.html#book-practice">Book questions</a><a href="ch03-practice.html#chapter-quiz">Extra quiz</a><a class="active" href="ch03a.html">Original answers</a></div></div><article class="prose"><h2 id="answers">Answers<a class="heading-anchor" href="#answers" aria-label="Link to Answers">#</a></h2><details class="answer-item" id="answer-1"><summary><span>Question 1</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>Employee</code> record explicitly defines a public constructor that initializes its fields. </p>
+<ul>
+<li>This option is incorrect because the record <code>Employee</code> does not explicitly define a <code>public</code> constructor. Records automatically generate a <code>public</code> constructor with the same parameters as the record&#39;s declaration.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The fields <code>name</code> and <code>age</code> can be reassigned to new values after an <code>Employee</code> object is created.</p>
+<ul>
+<li>This option is incorrect as the fields within a record are <code>final</code>, which means they cannot be reassigned to new values after an <code>Employee</code> object has been created. This immutability is one of the key characteristics of records.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>Employee</code> record implicitly creates a <code>public</code> constructor and <code>private</code> <code>final</code> fields for <code>name</code> and <code>age</code>.</p>
+<ul>
+<li>This is the correct option. Records implicitly create a public constructor for the record&#39;s fields and also make these fields <code>private</code> and <code>final</code>. This means you don&#39;t have to manually write boilerplate code for constructor, getters, or to ensure immutability.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> It is mandatory to define getters for the fields <code>name</code> and <code>age</code> in the <code>Employee</code> record.</p>
+<ul>
+<li>This option is incorrect because records automatically generate public methods to access the fields, known as accessor methods, which essentially act as getters. Therefore, it is not mandatory (or even possible) to define separate getters for the fields.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-2"><summary><span>Question 2</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>balance</code> field can be modified using a public setter method within the <code>Account</code> record.</p>
+<ul>
+<li>This option is incorrect because records in Java do not support public setter methods for their fields. The fields of a record are <code>final</code> and cannot be modified after the object&#39;s construction, which is a key aspect of their design to enforce immutability.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Once an <code>Account</code> object is created, its <code>id</code> and <code>balance</code> cannot be changed.</p>
+<ul>
+<li>This is the correct option. Records are immutable by design, meaning that once a record object is created, the values of its fields (<code>id</code> and <code>balance</code> in this case) cannot be changed. This immutability is ensured by making the fields <code>private</code> and <code>final</code>, and by not providing setter methods.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Immutability of records can be bypassed by you define custom setter methods for the <code>id</code> and <code>balance</code> fields. </p>
+<ul>
+<li>This option is incorrect. Custom setter methods cannot be defined for the record fields because records do not allow defining mutators for their components.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Records allow field values to be modified if accessed directly, without using setter methods.</p>
+<ul>
+<li>This option is incorrect because the fields in a record are implicitly <code>final</code> and private, which means they cannot be modified directly or through setter methods. The design of records enforces this immutability to ensure that instances of records act as true carriers of immutable data.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-3"><summary><span>Question 3</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>Product p = new Product();</code></p>
+<ul>
+<li>This option is incorrect because the default constructor without parameters does not exist for records in Java. Records require all their fields to be specified at the time of instantiation.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Product p = Product(101, &quot;Coffee&quot;, 15.99);</code></p>
+<ul>
+<li>This option is incorrect because the syntax used here is not valid for creating a new instance of a record in Java. The correct syntax for instantiating a record involves using the <code>new</code> keyword followed by the record name and the parameters in parentheses.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Product p = {101, &quot;Coffee&quot;, 15.99};</code></p>
+<ul>
+<li>This option is incorrect as it mistakenly uses the syntax for array initialization. In Java, objects, including records, cannot be instantiated using curly braces without the <code>new</code> keyword and proper constructor.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Product p = new Product(101, &quot;Coffee&quot;, 15.99);</code></p>
+<ul>
+<li>This is the correct option. Records in Java are instantiated using the <code>new</code> keyword followed by the record&#39;s constructor, which requires passing all the fields defined in the record. This syntax correctly creates a new <code>Product</code> record with the given <code>id</code>, <code>name</code>, and <code>price</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-4"><summary><span>Question 4</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> Records cannot implement interfaces because they are <code>final</code> and immutable by design, which prevents any form of behavior customization.</p>
+<ul>
+<li>This option is incorrect. Records in Java can implement interfaces. The finality and immutability of records do not preclude them from implementing interfaces, which can be used to add behaviors or contractual obligations to a record.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> This record correctly implements the <code>Comparable</code> interface, allowing <code>Item</code> objects to be sorted based on their <code>price</code>.</p>
+<ul>
+<li>This is the correct option. The provided record definition correctly implements the <code>Comparable&lt;Item&gt;</code> interface by overriding the <code>compareTo</code> method. This customization allows instances of the <code>Item</code> record to be sorted based on the <code>price</code> field, demonstrating that records can indeed implement interfaces and override their methods as needed.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Implementing interfaces in records is restricted only to functional interfaces due to their immutable nature.</p>
+<ul>
+<li>This option is incorrect. There is no such restriction that limits records to implementing only functional interfaces. Records can implement any interface, including those with multiple abstract methods, as long as the record provides implementations for the abstract methods defined in the interface.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>compareTo</code> method cannot be overridden in records because method overriding is not supported in record types.</p>
+<ul>
+<li>This option is incorrect. Records can override methods from the interfaces they implement, including the <code>compareTo</code> method from the <code>Comparable</code> interface in this example. Method overriding is a key aspect of implementing interfaces and is fully supported by record types in Java.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-5"><summary><span>Question 5</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are A and D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Day</span> {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}</code></pre></div><ul>
+<li><p>This option is correct. It demonstrates a valid declaration of an enum in Java. Enums are used to define a set of named constants, and this syntax is the standard way to declare them. The <code>public</code> access modifier makes this enum accessible from any other class.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Month</span> {
+    <span class="hljs-keyword">private</span> JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER;
+}</code></pre></div><ul>
+<li><p>This option is incorrect. Enums cannot have <code>private</code> access modifiers for their constants. Enum constants are implicitly <code>public</code>, <code>static</code>, and <code>final</code> and should be declared without access modifiers.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Season</span> {
+    WINTER, SPRING, SUMMER, FALL
+}</code></pre></div><ul>
+<li><p>This option is incorrect because enums cannot be declared with <code>protected</code> or <code>private</code> access levels. Enums are implicitly <code>public</code> if they are defined outside of a class. If defined within a class, they can have any access level, but the <code>protected</code> keyword cannot be used at the enum level itself.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Status</span> {
+    ACTIVE, INACTIVE, DELETED;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">printStatus</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Current status: &quot;</span> + <span class="hljs-built_in">this</span>);
+    }
+}</code></pre></div><ul>
+<li>This option is correct. It shows an enum <code>Status</code> with a method <code>printStatus()</code>. Enums in Java can contain methods, fields, constructors, and implement interfaces. This demonstrates the ability of enums to have methods, making this declaration valid.</li>
+</ul>
+</div></details><details class="answer-item" id="answer-6"><summary><span>Question 6</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>1</code></p>
+<ul>
+<li>This option is correct. The <code>ordinal()</code> method returns the ordinal of this enumeration constant (its position in its enum declaration, where the initial constant is assigned an ordinal of zero). Since <code>GREEN</code> is the second enum constant declared in the <code>Color</code> enum, its ordinal value is 1.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>2</code></p>
+<ul>
+<li>This option is incorrect. The ordinal value of <code>BLUE</code> would be 2, not <code>GREEN</code>, because <code>BLUE</code> is the third declared constant in the <code>Color</code> enum.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>0</code></p>
+<ul>
+<li>This option is incorrect. The ordinal value of <code>RED</code> is 0, as it is the first declared constant in the <code>Color</code> enum.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Color.GREEN</code></p>
+<ul>
+<li>This option is incorrect. The <code>ordinal()</code> method returns an integer representing the position of the enum constant in the declaration, not the enum constant itself.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-7"><summary><span>Question 7</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Size</span> {
+    SMALL, MEDIUM, LARGE;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">printSize</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;The size is &quot;</span> + <span class="hljs-built_in">this</span>.name());
+    }
+}</code></pre></div><ul>
+<li><p>This option is incorrect because the method <code>printSize()</code> is defined as <code>static</code>, which means it cannot access the <code>this</code> reference. Static methods in enums can&#39;t directly access the enum constants without specifying the constant explicitly or being passed a reference.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Flavor</span> {
+    CHOCOLATE, VANILLA, STRAWBERRY;
+    <span class="hljs-type">void</span> <span class="hljs-title function_">printFlavor</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Flavor: &quot;</span> + Flavor.name);
+    }
+}</code></pre></div><ul>
+<li><p>This option is incorrect because the <code>name</code> property of an enum constant is <code>private</code>. You can only access it using the <code>this</code> reference and the <code>name()</code> method (<code>this.name()</code>).</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Direction</span> {
+    NORTH, SOUTH, EAST, WEST;
+    <span class="hljs-type">private</span> <span class="hljs-title function_">printDirection</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Going &quot;</span> + <span class="hljs-built_in">this</span>.toString());
+    }
+}</code></pre></div><ul>
+<li><p>This option is incorrect for two reasons. First, <code>protected</code> is not a valid access modifier for a top-level enum, top-level enums can only be <code>public</code> or package-private (no modifier). Second, <code>printDirection()</code> method is missing a return type (e.g., <code>void</code>).</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Season</span> {
+    WINTER, SPRING, SUMMER, FALL;
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">printSeason</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;The season is &quot;</span> + <span class="hljs-built_in">this</span>.name());
+    }
+}</code></pre></div><ul>
+<li>This is the correct option. The <code>printSeason()</code> method is properly defined: it&#39;s <code>public</code>, non-static, and utilizes the <code>this</code> reference to access the name of the current enum constant. This method correctly provides custom behavior for each enum constant, allowing it to print a message indicating the current season.</li>
+</ul>
+</div></details></article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this answer sheet.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch03.html"><small>Previous</small>Working with Records and Enums</a><a href="ch03-practice.html"><small>Next chapter</small>Chapter 3.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#answers">Answers</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

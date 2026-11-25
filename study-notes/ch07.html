@@ -1,0 +1,432 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Error Handling and Exceptions</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch07"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch07.html" aria-current="page" data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Error Handling and Exceptions</h1><div class="document-meta">Chapter 07<span>·</span>6 min read</div><div class="chapter-actions"><a class="active" href="ch07.html">Read chapter</a><a href="ch07.html#key-points">Key points</a><a href="ch07-practice.html#book-practice">Book questions</a><a href="ch07-practice.html#chapter-quiz">Extra quiz</a><a class="" href="ch07a.html">Original answers</a></div></div><details class="objectives" open><summary>Exam objectives</summary><ul><li>Handle exceptions using try/catch/finally, try-with-resources, and multi-catch blocks, including custom exceptions.</li></ul></details><article class="prose"><h2 id="understanding-exceptions">Understanding Exceptions<a class="heading-anchor" href="#understanding-exceptions" aria-label="Link to Understanding Exceptions">#</a></h2><p>Being able to run a program is not the same as running the program correctly. Any non-trivial program is susceptible to errors. Errors in user inputs, mathematical operations, and accessing resources, etc. </p>
+<p>That&#39;s where exceptions come into play. An exception indicates some sort of abnormal or exceptional condition that disrupts the normal flow of the program.</p>
+<p>When an exceptional condition arises, an exception is said to be <em>thrown</em>. When this happens, the normal flow of the program is disrupted and the execution is transferred to a special block of code called an exception handler, if one exists for the exception.</p>
+<p>The purpose of exceptions is to handle these errors gracefully and prevent the program from crashing or behaving unexpectedly. By using exceptions, you can separate the error-handling code from the normal program logic, making your code cleaner and more manageable.</p>
+<p>Exceptions don&#39;t necessarily stop the program entirely when they happen. When an exception is thrown, it is propagated up the call stack until it is caught and handled by an exception handler. If no suitable handler is found, the program will terminate. But if you have a <code>try-catch</code> block in place to handle the exception, your program can deal with the issue and continue running.</p>
+<h3 id="understanding-exception-types">Understanding Exception Types<a class="heading-anchor" href="#understanding-exception-types" aria-label="Link to Understanding Exception Types">#</a></h3><p>Most common exception classes in Java are subtypes of the <code>java.lang.Exception</code> class. But that&#39;s not the whole story. To really understand exceptions, we need to look at the exception hierarchy:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">                         ┌───────────┐
+                         │ Throwable │
+                         └─────┬─────┘
+                               │
+                   ┌───────────┴───────────┐
+                   │                       │
+           ┌───────────────┐       ┌───────────────┐
+           │   Exception   │       │     Error     │
+           └───────┬───────┘       └───────────────┘
+                   │
+       ┌───────────┴───────────┐
+       │                       │
+┌──────────────────┐   ┌───────────────────┐
+│ RuntimeException │   │ Checked Exceptions│
+└──────────────────┘   └───────────────────┘</code></pre></div><p>At the top of the hierarchy is the <code>java.lang.Throwable</code> class. Beneath <code>Throwable</code> are two branches: <code>Exception</code> and <code>Error</code>. While they might sound similar, they actually represent quite different things in Java.</p>
+<p>Exceptions are conditions that a reasonable application might want to catch and handle. They typically represent conditions that, while unusual, are not entirely unexpected. For example, trying to open a file that doesn&#39;t exist would throw a <code>FileNotFoundException</code>.</p>
+<p>Errors, on the other hand, are not meant to be caught or handled by your program. They indicate serious problems that a reasonable application should not try to catch. Most such errors are abnormal conditions. For example, if your application runs out of memory, an <code>OutOfMemoryError</code> will be thrown.</p>
+<p>Beneath the <code>Exception</code> class, there are two further categories: checked exceptions and unchecked exceptions (also known as runtime exceptions because they extend from <code>java.lang.RuntimeException</code>).</p>
+<p>Checked exceptions are exceptional conditions that a well-written application should anticipate and handle. These are typically exceptions that are outside the control of the program, such as a file not being found, a network connection failing, or invalid user input. Checked exceptions  are subclasses of <code>Exception</code> but not <code>RuntimeException</code>.</p>
+<p>Unchecked exceptions are exceptional conditions that the application usually cannot anticipate or recover from. These usually indicate programming bugs, such as logic errors or improper use of an API. Unchecked exceptions are subclasses of <code>RuntimeException</code>.</p>
+<p>While it might seem like unchecked exceptions are sufficient, checked exceptions serve an important purpose. They force the programmer to handle the exception, ensuring that proper error handling code is written. This leads to more robust and reliable code.</p>
+<p>On the other hand, unchecked exceptions don&#39;t need to be declared in a method&#39;s <code>throws</code> clause if they can be thrown by the execution of the method. These usually represent defects in the program (bugs) and as such, the API client code cannot reasonably be expected to recover from them or to handle them in any way. Such exceptions most often indicate programming defects, and an unchecked exception is the way the Java programming language allows a developer to indicate a potential defect where the compiler cannot easily detect the problem.</p>
+<h3 id="throwing-an-exception">Throwing an Exception<a class="heading-anchor" href="#throwing-an-exception" aria-label="Link to Throwing an Exception">#</a></h3><p>So far, we&#39;ve talked about what exceptions are and the different types of exceptions. But how do exceptions actually get thrown?</p>
+<p>An exception can be thrown in two ways: automatically by the Java runtime system, or explicitly by your code.</p>
+<p>Many exceptions are thrown automatically by the Java runtime system. For example, if you try to access an array element with an index that is out of bounds, an <code>ArrayIndexOutOfBoundsException</code> will be thrown. If you try to divide a number by zero, an <code>ArithmeticException</code> will be thrown.</p>
+<p>But you can also throw exceptions explicitly in your code using the <code>throw</code> statement. The general form of the <code>throw</code> statement is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExceptionType</span>(messageString);</code></pre></div><p>Here, <code>ExceptionType</code> is the type of exception you want to throw, and <code>messageString</code> is an optional string that provides more information about the exception.</p>
+<p>For example, let&#39;s say you have a method that accepts an integer parameter age. If the passed-in age is negative, you might want to throw an exception:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">checkAge</span><span class="hljs-params">(<span class="hljs-type">int</span> age)</span> {
+    <span class="hljs-keyword">if</span> (age &lt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;Age cannot be negative&quot;</span>);
+    }
+    <span class="hljs-comment">// rest of the method</span>
+}</code></pre></div><p>In this case, we are throwing an <code>IllegalArgumentException</code>, which is a type of unchecked exception.</p>
+<p>There are many cases where it&#39;s appropriate, and even necessary, for you to throw exceptions in your own code.</p>
+<p>By throwing exceptions, you can signal that an error has occurred and provide information about what went wrong. This is especially important when you&#39;re writing methods or classes that will be used by other developers. By throwing exceptions, you can communicate to the user of your code that they have used your method or class incorrectly, or that something has gone wrong that they need to handle.</p>
+<p>Moreover, by throwing exceptions, you can separate the error-handling code from the normal flow of your program. This makes your code more readable and maintainable.</p>
+<h3 id="custom-exceptions">Custom Exceptions<a class="heading-anchor" href="#custom-exceptions" aria-label="Link to Custom Exceptions">#</a></h3><p>While Java provides a rich set of built-in exceptions, there are situations where it can be beneficial to create your own custom exceptions.</p>
+<p>Custom exceptions allow you to add more context and meaning to the exceptions thrown by your application. They can help to better encapsulate the error conditions specific to your application domain.</p>
+<p>For example, if you&#39;re writing a library for parsing XML files, you might define a custom <code>XMLFileParseException</code> that you throw whenever there&#39;s an error parsing an XML file. This communicates to the user of your library exactly what went wrong, as opposed to just throwing a generic <code>Exception</code>.</p>
+<p>To create a custom checked exception, you simply need to extend the <code>Exception</code> class (or one of its subclasses):</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">XMLFileParseException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Exception</span> {
+    <span class="hljs-type">public</span> <span class="hljs-title function_">XMLFileParseException</span><span class="hljs-params">(String message)</span> {
+        <span class="hljs-built_in">super</span>(message);
+    }
+}</code></pre></div><p>To create a custom unchecked exception, you extend the <code>RuntimeException</code> class (or one of its subclasses):</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">InvalidInputException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">RuntimeException</span> {
+    <span class="hljs-type">public</span> <span class="hljs-title function_">InvalidInputException</span><span class="hljs-params">(String message)</span> {
+        <span class="hljs-built_in">super</span>(message);
+    }
+}</code></pre></div><p>Then you can throw your custom exceptions just like any other exception:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLFileParseException</span>(<span class="hljs-string">&quot;Error parsing XML file: &quot;</span> + fileName);
+<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">InvalidInputException</span>(<span class="hljs-string">&quot;Input cannot be negative&quot;</span>);</code></pre></div><p>When deciding whether to make your custom exception checked or unchecked consider the following guidelines:</p>
+<ul>
+<li><p>Use checked exceptions for exceptional conditions that the caller should recover from. These often represent conditions that are outside the control of the program, such as a file not being found or a network connection failing.</p>
+</li>
+<li><p>Use unchecked exceptions (extending <code>RuntimeException</code>) for exceptional conditions that the caller usually cannot recover from. These often indicate programming errors, such as trying to access an array element with an out-of-bounds index.</p>
+</li>
+</ul>
+<p>Another thing to consider when creating custom exceptions is serialization. If your exception class is going to be thrown across different JVMs (for example, in a distributed system), it should implement the <code>java.io.Serializable</code> interface.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RemoteServiceException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Exception</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-comment">// ...</span>
+}</code></pre></div><p>This ensures that the exception object can be successfully serialized and deserialized when it&#39;s transmitted across the network.</p>
+<p>Finally, when creating custom exceptions, it&#39;s a good practice to provide constructors that accept a message string and a cause exception. The cause is the exception that triggered your exception. This allows you to wrap lower-level exceptions in your higher-level custom exceptions, which can provide more context about the error.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DataAccessException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Exception</span> {
+    <span class="hljs-type">public</span> <span class="hljs-title function_">DataAccessException</span><span class="hljs-params">(String message)</span> {
+        <span class="hljs-built_in">super</span>(message);
+    }
+    
+    <span class="hljs-type">public</span> <span class="hljs-title function_">DataAccessException</span><span class="hljs-params">(String message, Throwable cause)</span> {
+        <span class="hljs-built_in">super</span>(message, cause);
+    }
+}</code></pre></div><p>Then you can use it like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// some database operation that throws a SQLException</span>
+} <span class="hljs-keyword">catch</span> (SQLException ex) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataAccessException</span>(<span class="hljs-string">&quot;Error accessing database&quot;</span>, ex);
+}</code></pre></div><p>This way, the caller of your code knows that a <code>DataAccessException</code> occurred, but can still access the underlying cause (the <code>SQLException</code>) if needed for more detailed error handling or logging.</p>
+<h3 id="exceptions-and-methods">Exceptions and Methods<a class="heading-anchor" href="#exceptions-and-methods" aria-label="Link to Exceptions and Methods">#</a></h3><p>When a method throws an exception, it must declare this in its method signature. This is done using the <code>throws</code> keyword followed by a list of the exceptions that the method might throw.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">readFile</span><span class="hljs-params">(String fileName)</span> <span class="hljs-keyword">throws</span> FileNotFoundException {
+    <span class="hljs-comment">// code that might throw a FileNotFoundException</span>
+}</code></pre></div><p>In this example, the <code>readFile</code> method declares that it might throw a <code>FileNotFoundException</code>.</p>
+<p>However, not all exceptions need to be declared in the method signature. Only checked exceptions need to be declared. Unchecked exceptions (those that extend <code>RuntimeException</code>) do not need to be declared.</p>
+<p>This brings us to an important distinction: the difference between <code>throw</code> and <code>throws</code>.</p>
+<ul>
+<li><code>throw</code> is used to actually throw an exception within a method.</li>
+<li><code>throws</code> is used in a method signature to declare that the method might throw an exception.</li>
+</ul>
+<p>A useful analogy for remembering the difference is a baseball game:</p>
+<ul>
+<li>A pitcher throws the ball.</li>
+<li>But before the game, the manager tells the umpire what kind of pitches his pitcher throws (fastball, curveball, etc.).</li>
+</ul>
+<p>Similarly in Java:</p>
+<ul>
+<li>A method throws an exception.</li>
+<li>But in the method signature, the method declares the types of exceptions it throws.</li>
+</ul>
+<h4 id="overriding-methods-with-exceptions">Overriding Methods with Exceptions<a class="heading-anchor" href="#overriding-methods-with-exceptions" aria-label="Link to Overriding Methods with Exceptions">#</a></h4><p>When you override a method in a subclass, you&#39;re allowed to declare that the method throws fewer checked exceptions than the method you&#39;re overriding.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">doSomething</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException, SQLException {
+        <span class="hljs-comment">// ...</span>
+    }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Parent</span> {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">doSomething</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-comment">// ...</span>
+    }
+}</code></pre></div><p>In this example, the <code>doSomething</code> method in the <code>Parent</code> class declares that it can throw either an <code>IOException</code> or a <code>SQLException</code>. But when we override <code>doSomething</code> in the <code>Child</code> class, we declare that it only throws <code>IOException</code>.</p>
+<p>This is allowed because it makes the method more usable. A caller of the <code>Child</code> class&#39;s <code>doSomething</code> method only needs to handle <code>IOException</code>, not <code>SQLException</code>.</p>
+<p>However, the reverse is not allowed. If the parent class&#39;s method does not declare any exceptions, the overriding method in the child class cannot declare any checked exceptions.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">doSomething</span><span class="hljs-params">()</span> {
+        <span class="hljs-comment">// ...</span>
+    }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Parent</span> {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">doSomething</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException {  <span class="hljs-comment">// Compile-time error</span>
+        <span class="hljs-comment">// ...</span>
+    }
+}</code></pre></div><p>This code will not compile because the overriding method (in <code>Child</code>) declares a checked exception (<code>IOException</code>) that the original method (in <code>Parent</code>) does not declare.</p>
+<p>The rule is that an overriding method can declare to throw fewer exceptions or narrower exceptions (subclasses of the declared exceptions) than the original method, but not more or broader exceptions.</p>
+<p>This rule exists to ensure that a child class can always be used in place of its parent class without causing any unexpected checked exceptions. This is a fundamental principle of polymorphism and inheritance in Java.</p>
+<p>However, notice that this only applies for checked exceptions. Unchecked exceptions can be added freely when overriding methods.</p>
+<h3 id="understanding-stack-traces">Understanding Stack Traces<a class="heading-anchor" href="#understanding-stack-traces" aria-label="Link to Understanding Stack Traces">#</a></h3><p>When an exception occurs in a Java program, it prints out a stack trace. A stack trace provides information about the exception and the state of the program when the exception occurred.</p>
+<p>A stack trace can be incredibly useful when debugging a program. It tells you what went wrong and where in the code it went wrong.</p>
+<p>Let&#39;s look at an example stack trace:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Exception in thread &quot;main&quot; java.lang.NullPointerException
+    at com.example.myproject.Book.getTitle(Book.java:16)
+    at com.example.myproject.Author.getBookTitles(Author.java:25)
+    at com.example.myproject.App.main(Bootstrap.java:14)</code></pre></div><p>This stack trace is telling us that a <code>NullPointerException</code> occurred in the <code>getTitle</code> method of the <code>Book</code> class, which was called from line 25 of the <code>getBookTitles</code> method of the <code>Author</code> class, which in turn was called from line 14 of the <code>main</code> method of the <code>App</code> class.</p>
+<p>Each line in the stack trace represents a method call, with the most recent call at the top. The first line shows the thrown exception, followed by the method calls on the stack at that time.</p>
+<p>For each method call, the stack trace shows:</p>
+<ul>
+<li>The fully qualified name of the class containing the method</li>
+<li>The name of the method</li>
+<li>The name of the source code file containing the method</li>
+<li>The line number in the source code file where the method call occurred</li>
+</ul>
+<p>To read a stack trace, you can start from the top and work your way down. The top line tells you what type of exception was thrown. The lines after that represent the method calls on the stack, with the most recent call at the top.</p>
+<p>Each line provides a clue about the program&#39;s state when the exception was thrown. You can use these clues to pinpoint the location in your code where the problem occurred.</p>
+<h3 id="recognizing-exception-classes">Recognizing Exception Classes<a class="heading-anchor" href="#recognizing-exception-classes" aria-label="Link to Recognizing Exception Classes">#</a></h3><p>When you encounter an exception in your Java program, one of the first steps in resolving the issue is to identify what type of exception it is. Previously, you learned about the hierarchy of exception classes, each designed to represent a specific type of problem. Recognizing these classes and understanding when they&#39;re thrown can help you diagnose issues more quickly.</p>
+<p><strong>Tip 1: Read the Exception Class Name</strong>
+The exception class name often indicates what went wrong. For example, a <code>NullPointerException</code> suggests that you&#39;re trying to use a <code>null</code> reference, an <code>ArrayIndexOutOfBoundsException</code> indicates that you&#39;re trying to access an array with an invalid index, and an <code>IOException</code> signals that something went wrong during an input/output operation.</p>
+<p>Familiarizing yourself with the names and meanings of the most common exception classes can help you quickly identify issues in your code.</p>
+<p><strong>Tip 2: Understand the Exception Hierarchy</strong>
+Understanding the Java exception hierarchy can also aid in recognizing exceptions. All exceptions in Java inherit from the <code>Throwable</code> class, which has two main subclasses: <code>Exception</code> and <code>Error</code>.</p>
+<p>Exceptions that inherit directly from the <code>Exception</code> class are checked exceptions. These typically represent issues that should be handled in your code. Common examples include <code>IOException</code> and <code>SQLException</code></p>
+<p>Exceptions that inherit from the <code>RuntimeException</code> class (which is a subclass of <code>Exception</code>) are unchecked exceptions. These often indicate programming errors, such as trying to access an array element with an out-of-bounds index (<code>ArrayIndexOutOfBoundsException</code>) or trying to use a <code>null</code> reference (<code>NullPointerException</code>).</p>
+<p>Errors, on the other hand, represent serious problems that a reasonable application should not try to catch. These are typically irrecoverable conditions, such as running out of memory (<code>OutOfMemoryError</code>) or a stack overflow (<code>StackOverflowError</code>).</p>
+<p><strong>Tip 3: Read the Exception Message</strong>
+When an exception is thrown, it usually includes a message with more details about what went wrong. This message can be incredibly helpful in diagnosing the issue.</p>
+<p>For example, consider this exception message:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">java.lang.ArrayIndexOutOfBoundsException: Index 10 out of bounds for length 5</code></pre></div><p>This message indicates that the code is trying to access the element at index 10 in an array that only has 5 elements.</p>
+<p><strong>Tip 4: Look at the Stack Trace</strong>
+The stack trace that accompanies an exception can also provide valuable clues about what went wrong. The stack trace shows the sequence of method invocations that led to the exception.</p>
+<p>Each line in the stack trace represents a method call, with the most recent call at the top. The line tells you the name of the method, the class it&#39;s in, and the line number in the source code where the call occurred.</p>
+<p>By tracing through the stack trace, you can often pinpoint the exact location in your code where the problem occurred.</p>
+<p><strong>Tip 5: Consult the Java API Documentation</strong>
+If you encounter an exception that you&#39;re not familiar with, the Java API documentation can be a great resource. The documentation for each exception class provides information on when the exception is thrown and often includes examples of how to handle it.</p>
+<p>For instance, the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ArrayIndexOutOfBoundsException.html">documentation for the <code>ArrayIndexOutOfBoundsException</code></a> states:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Thrown to indicate that an array has been accessed with an illegal index. The index is either negative or greater than or equal to the size of the array.</code></pre></div><p>This provides a clear explanation of when you can expect to encounter this exception.</p>
+<p>Finally, here&#39;s a list of common unchecked and checked exceptions, as well as error classes:</p>
+<p><strong>Common Unchecked Exceptions</strong>
+Unchecked exceptions are those that are not checked at compile-time. They usually represent programming errors, such as logic mistakes or improper use of an API.</p>
+<ol>
+<li><strong>ArithmeticException</strong><ul>
+<li>Thrown when an exceptional arithmetic condition has occurred.</li>
+</ul>
+</li>
+<li><strong>ArrayIndexOutOfBoundsException</strong><ul>
+<li>Thrown to indicate that an array has been accessed with an illegal index.</li>
+</ul>
+</li>
+<li><strong>ClassCastException</strong><ul>
+<li>Thrown to indicate that the code has attempted to cast an object to a subclass of which it is not an instance.</li>
+</ul>
+</li>
+<li><strong>IllegalArgumentException</strong><ul>
+<li>Thrown to indicate that a method has been passed an illegal or inappropriate argument.</li>
+</ul>
+</li>
+<li><strong>IllegalStateException</strong><ul>
+<li>Signals that a method has been invoked at an illegal or inappropriate time.</li>
+</ul>
+</li>
+<li><strong>NullPointerException</strong><ul>
+<li>Thrown when an application attempts to use <code>null</code> in a case where an object is required.</li>
+</ul>
+</li>
+<li><strong>NumberFormatException</strong><ul>
+<li>Thrown to indicate that the application has attempted to convert a string to one of the numeric types, but that the string does not have the appropriate format.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Common Checked Exceptions</strong>
+Checked exceptions are those that are checked at compile-time. They usually represent conditions that a reasonable application might want to catch.</p>
+<ol>
+<li><strong>ClassNotFoundException</strong><ul>
+<li>Thrown when an application tries to load a class through its string name but no definition for the class with the specified name could be found.</li>
+</ul>
+</li>
+<li><strong>IOException</strong><ul>
+<li>Signals that an I/O exception of some sort has occurred.</li>
+</ul>
+</li>
+<li><strong>FileNotFoundException</strong><ul>
+<li>Signals that an attempt to open the file denoted by a specified pathname has failed.</li>
+</ul>
+</li>
+<li><strong>InterruptedException</strong><ul>
+<li>Thrown when a thread is waiting, sleeping, or otherwise occupied, and the thread is interrupted.</li>
+</ul>
+</li>
+<li><strong>SQLException</strong><ul>
+<li>An exception that provides information on a database access error or other errors.</li>
+</ul>
+</li>
+<li><strong>TimeoutException</strong><ul>
+<li>Thrown when a blocking operation times out.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Common Error Classes</strong>
+Errors are usually thrown by the Java Virtual Machine and indicate serious problems that applications should not try to catch.</p>
+<ol>
+<li><strong>OutOfMemoryError</strong><ul>
+<li>Thrown when the JVM cannot allocate an object because it is out of memory.</li>
+</ul>
+</li>
+<li><strong>StackOverflowError</strong><ul>
+<li>Thrown when a stack overflow occurs because an application recurses too deeply.</li>
+</ul>
+</li>
+<li><strong>VirtualMachineError</strong><ul>
+<li>Thrown to indicate that the Java Virtual Machine is broken or has run out of resources necessary for it to continue operating.</li>
+</ul>
+</li>
+<li><strong>UnknownError</strong><ul>
+<li>Thrown when an unknown but serious exception has occurred.</li>
+</ul>
+</li>
+</ol>
+<h2 id="handling-exceptions">Handling Exceptions<a class="heading-anchor" href="#handling-exceptions" aria-label="Link to Handling Exceptions">#</a></h2><p>When an exception occurs in your Java program, you need to handle it to prevent your program from abruptly terminating. This is done using <code>try-catch</code> blocks.</p>
+<h3 id="the-try-catch-block">The <code>try-catch</code> Block<a class="heading-anchor" href="#the-try-catch-block" aria-label="Link to The try-catch Block">#</a></h3><p>The basic syntax of a try-catch block is as follows:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// code that might throw an exception</span>
+} <span class="hljs-keyword">catch</span> (ExceptionType e) {
+    <span class="hljs-comment">// code to handle the exception</span>
+}</code></pre></div><p>You place the code that might throw an exception in the <code>try</code> block. If an exception occurs within the <code>try</code> block, it is caught by the <code>catch</code> block. The <code>catch</code> block specifies the type of exception it can handle (<code>ExceptionType</code> in the syntax above) and provides the code to handle that exception.</p>
+<p>Here&#39;s a concrete example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> {
+    <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;example.txt&quot;</span>);
+    <span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(file);
+    <span class="hljs-keyword">while</span> (scanner.hasNext()) {
+        System.out.println(scanner.nextLine());
+    }
+    scanner.close();
+} <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+    System.out.println(<span class="hljs-string">&quot;File not found: &quot;</span> + e.getMessage());
+}</code></pre></div><p>In this example, we&#39;re trying to read from a file named <code>example.txt</code>. If the file doesn&#39;t exist, a <code>FileNotFoundException</code> will be thrown. The <code>catch</code> block catches this exception and prints a message indicating that the file was not found.</p>
+<p>You can use multiple <code>catch</code> blocks to handle different types of exceptions. If an exception occurs in the <code>try</code> block, Java will search for the first <code>catch</code> block that can handle the exception, starting from the top.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// code that might throw exceptions</span>
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    <span class="hljs-comment">// handle IOException</span>
+} <span class="hljs-keyword">catch</span> (SQLException e) {
+    <span class="hljs-comment">// handle SQLException</span>
+}</code></pre></div><p>In this example, if an <code>IOException</code> occurs in the <code>try</code> block, it will be handled by the first <code>catch</code> block. If a <code>SQLException</code> occurs, it will be handled by the second <code>catch</code> block.</p>
+<p>You can also catch multiple exceptions in a single <code>catch</code> block. This is known as a <code>multi-catch</code> block.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// code that might throw exceptions</span>
+} <span class="hljs-keyword">catch</span> (IOException | SQLException e) {
+    <span class="hljs-comment">// handle either IOException or SQLException</span>
+}</code></pre></div><p>In this example, the <code>catch</code> block will handle either an <code>IOException</code> or a <code>SQLException</code>.</p>
+<p>This can make your code more concise, but it should only be used when you want to handle the exceptions in the same manner. If you need to handle the exceptions differently, use separate <code>catch</code> blocks.</p>
+<p>Also, the multi-catch block must catch two or more unrelated exceptions. Unrelated exceptions do not share a parent-child relationship in the exception hierarchy, like <code>IOException</code> and <code>SQLException</code> in the previous example.</p>
+<p>However, it&#39;s important to order your <code>catch</code> blocks from the most specific to the most general. This means placing catch blocks that catch subclasses of exceptions before those that catch their superclass exceptions. If you placed the <code>IOException</code> catch block before the <code>FileNotFoundException</code> catch block, the <code>FileNotFoundException</code> catch block would never be reached because <code>FileNotFoundException</code> is a subclass of <code>IOException</code>. As a result, the <code>IOException</code> catch block would catch all exceptions of type <code>IOException</code>, including <code>FileNotFoundException</code>, and the more specific handling code for <code>FileNotFoundException</code> would be bypassed.</p>
+<p>For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// code that might throw exceptions</span>
+} <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+    <span class="hljs-comment">// handle FileNotFoundException</span>
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    <span class="hljs-comment">// handle IOException</span>
+}</code></pre></div><p>In this example, if a <code>FileNotFoundException</code> occurs, it will be caught by the first <code>catch</code> block. If a different <code>IOException</code> occurs, it will be caught by the second <code>catch</code> block. This ensures that specific exceptions are handled appropriately before more general exceptions.</p>
+<h3 id="the-finally-block">The <code>finally</code> Block<a class="heading-anchor" href="#the-finally-block" aria-label="Link to The finally Block">#</a></h3><p>The <code>finally</code> block is used to execute code that should always run, regardless of whether an exception was thrown or not:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// code that might throw an exception</span>
+} <span class="hljs-keyword">catch</span> (ExceptionType e) {
+    <span class="hljs-comment">// handle the exception</span>
+} <span class="hljs-keyword">finally</span> {
+    <span class="hljs-comment">// code that always runs</span>
+}</code></pre></div><p>The <code>finally</code> block is often used for cleanup tasks, such as closing files or database connections.</p>
+<p>If a <code>return</code> statement is executed inside the <code>try</code> block, the <code>finally</code> block will still execute before the method returns:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">returnTest</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    } <span class="hljs-keyword">catch</span> (Exception e) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;
+    } <span class="hljs-keyword">finally</span> {
+        System.out.println(<span class="hljs-string">&quot;Finally block&quot;</span>);
+    }
+}</code></pre></div><p>In this example, even though we&#39;re returning from inside the <code>try</code> block, the <code>finally</code> block will still execute and print <code>&quot;Finally block&quot;</code> before the method returns.</p>
+<p>The same is true if the <code>return</code> statement is in a <code>catch</code> block, the <code>finally</code> block will still execute before the method returns.</p>
+<p>However, <code>finally</code> will not run if you call <code>System.exit()</code> in the <code>try</code> or <code>catch</code> block. <code>System.exit()</code> causes the Java Virtual Machine to exit, and the <code>finally</code> block will not be executed before the program terminates:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> {
+    System.out.println(<span class="hljs-string">&quot;Try block&quot;</span>);
+    System.exit(<span class="hljs-number">0</span>);
+} <span class="hljs-keyword">catch</span> (Exception e) {
+    System.out.println(<span class="hljs-string">&quot;Catch block&quot;</span>);
+} <span class="hljs-keyword">finally</span> {
+    System.out.println(<span class="hljs-string">&quot;Finally block&quot;</span>);
+}</code></pre></div><p>In this example, we call <code>System.exit(0)</code> in the <code>try</code> block, so it will only print <code>&quot;Try block&quot;</code> before the program terminates.</p>
+<p>You can use a <code>try</code> block with a <code>finally</code> block and without any <code>catch</code> blocks.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// code that might throw an exception</span>
+} <span class="hljs-keyword">finally</span> {
+    <span class="hljs-comment">// code that always runs</span>
+}</code></pre></div><p>This can be useful when you want to ensure that certain code always runs, even if an exception is thrown, but you don&#39;t actually want to handle the exception in this method.</p>
+<p>Lastly, it&#39;s possible for the <code>finally</code> block itself to throw an exception. If this happens, and there was also an exception in the <code>try</code> block, the exception from the <code>finally</code> block will be the one that&#39;s actually thrown.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exception</span>(<span class="hljs-string">&quot;Exception in try&quot;</span>);
+} <span class="hljs-keyword">finally</span> {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exception</span>(<span class="hljs-string">&quot;Exception in finally&quot;</span>);
+}</code></pre></div><p>In this example, the exception thrown in the <code>finally</code> block will be the one that&#39;s actually thrown by the method. The exception from the <code>try</code> block will be suppressed.</p>
+<h2 id="automating-resource-management-with-the-try-with-resources-block">Automating Resource Management with the <code>try-with-resources</code> Block<a class="heading-anchor" href="#automating-resource-management-with-the-try-with-resources-block" aria-label="Link to Automating Resource Management with the try-with-resources Block">#</a></h2><p>Introduced in Java 7, the <code>try-with-resources</code> statement is a <code>try</code> statement that declares one or more resources. A resource is an object that must be closed after the program is finished with it. The <code>try-with-resources</code> statement ensures that each resource is closed at the end of the statement.</p>
+<p>The basic syntax of a <code>try-with-resources</code> statement is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (Resource declaration) {
+    <span class="hljs-comment">// use the resource</span>
+} <span class="hljs-keyword">catch</span> (ExceptionType e1) {
+    <span class="hljs-comment">// catch block</span>
+}</code></pre></div><p>For a resource to be used in a <code>try-with-resources</code> statement, it must implement the <code>java.lang.AutoCloseable</code> interface. This interface has a single method, <code>close()</code>, which is called automatically at the end of the <code>try</code> block:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">AutoCloseable</span> {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">close</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception;
+}</code></pre></div><p>Alternatively, resources can implement the <code>java.io.Closeable</code> interface:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Closeable</span>  <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AutoCloseable</span>  {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">close</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException;
+}</code></pre></div><p>They both declare a <code>close()</code> method, and the only practical difference between these two interfaces is that the <code>close</code> method of the <code>Closeable</code> interface only throws exceptions of type <code>IOException</code>, while the <code>close</code> method of the <code>AutoCloseable</code> interface throws exceptions of type <code>Exception</code> (in other words, it can throw any kind of exception):</p>
+<p>However, many of Java&#39;s standard resources, such as <code>Scanner</code>, <code>FileReader</code>, and <code>DatabaseConnection</code>, already implement <code>AutoCloseable</code>.</p>
+<p>Resources can be declared inside the parentheses of the <code>try</code> statement, separated by semicolons if there are multiple resources.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;example.txt&quot;</span>));
+     <span class="hljs-type">PrintWriter</span> <span class="hljs-variable">writer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;output.txt&quot;</span>))) {
+    <span class="hljs-comment">// use the resources</span>
+}</code></pre></div><p>The resources are declared so they can be closed without doing it explicitly in a <code>finally</code> block. Additionally, the resources declared in the <code>try-with-resources</code> statement are only in scope inside the <code>try</code> block. They are effectively <code>final</code>, meaning you cannot assign a new value to them after they have been initialized.</p>
+<p>So, if the resources are declared outside the <code>try-with-resources</code> statement, they must be final:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">final</span> <span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;example.txt&quot;</span>));
+<span class="hljs-keyword">final</span> <span class="hljs-type">PrintWriter</span> <span class="hljs-variable">writer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;output.txt&quot;</span>));
+
+<span class="hljs-keyword">try</span> (scanner; writer) {
+    <span class="hljs-comment">// use the resources</span>
+}
+</code></pre></div><p>Or effectively final:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;example.txt&quot;</span>));
+<span class="hljs-type">PrintWriter</span> <span class="hljs-variable">writer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;output.txt&quot;</span>));
+
+<span class="hljs-comment">// No reassignment after initialization makes them effectively final</span>
+<span class="hljs-keyword">try</span> (scanner; writer) {
+    <span class="hljs-comment">// use the resources</span>
+}
+</code></pre></div><p>If multiple resources are declared, they have to be separated by a semicolon and they are closed in the reverse order of their declaration. This is important if the resources depend on each other.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;example.txt&quot;</span>));
+     <span class="hljs-type">DatabaseConnection</span> <span class="hljs-variable">connection</span> <span class="hljs-operator">=</span> DriverManager.getConnection(DB_URL)) {
+    <span class="hljs-comment">// use the resources</span>
+}</code></pre></div><p>In this example, connection will be closed before scanner.</p>
+<p>As mentioned earlier, the resources declared in a <code>try-with-resources</code> statement are effectively <code>final</code>. While you don&#39;t have to explicitly declare them as <code>final</code>, you cannot assign a new value to them after they have been initialized:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;example.txt&quot;</span>))) {
+    scanner = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;other.txt&quot;</span>));  <span class="hljs-comment">// This will not compile</span>
+}</code></pre></div><p>However, one thing to be aware of with <code>try-with-resources</code> is the possibility of suppressed exceptions.</p>
+<p>Suppressed exceptions only occur when both the <code>try</code> block and the <code>close()</code> method throw exceptions. </p>
+<p>If an exception is thrown from the <code>try</code> block and another exception is thrown from the automatic <code>close()</code> call, the exception from the <code>close()</code> call is suppressed. It is added as a suppressed exception to the exception thrown from the <code>try</code> block.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;example.txt&quot;</span>))) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalStateException</span>(<span class="hljs-string">&quot;Thrown from try&quot;</span>);
+}</code></pre></div><p>If the call to <code>scanner.close()</code> also throws an exception, that exception will be added as a suppressed exception to the <code>IllegalStateException</code>.</p>
+<p>You can retrieve these suppressed exceptions by calling the <code>Throwable[] java.lang.Throwable.getSuppressed()</code> method on the exception thrown by the <code>try</code> block:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;example.txt&quot;</span>))) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalStateException</span>(<span class="hljs-string">&quot;Thrown from try&quot;</span>);
+} <span class="hljs-keyword">catch</span> (Exception e) {
+    System.err.println(e.getMessage());
+    Stream.of(e.getSuppressed())
+        .forEach(t -&gt; System.err.println(t.getMessage()));
+}</code></pre></div><p>This is the output (assuming the <code>close()</code> method throws an exception):</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Thrown from try
+Close Exception</code></pre></div><h2 id="key-points">Key Points<a class="heading-anchor" href="#key-points" aria-label="Link to Key Points">#</a></h2><ul>
+<li><p>An exception is an abnormal condition that disrupts the normal flow of a program. When an exception occurs, it is said to be <em>thrown</em>.</p>
+</li>
+<li><p>The purpose of exceptions is to handle errors gracefully and prevent the program from crashing or behaving unexpectedly.</p>
+</li>
+<li><p>All exception classes in Java are subtypes of the <code>java.lang.Exception</code> class. The two main branches under <code>Exception</code> are checked exceptions and unchecked exceptions (also known as runtime exceptions).</p>
+</li>
+<li><p>Checked exceptions are exceptional conditions that a well-written application should anticipate and handle, while unchecked exceptions are usually not recoverable.</p>
+</li>
+<li><p>An exception can be thrown automatically by the Java runtime or explicitly in code using the <code>throw</code> statement.</p>
+</li>
+<li><p>Custom exceptions can be created by extending the <code>Exception</code> class (for checked exceptions) or <code>RuntimeException</code> class (for unchecked exceptions).</p>
+</li>
+<li><p>When a method throws an exception, it must declare this in its method signature using the <code>throws</code> keyword. Only checked exceptions need to be declared.</p>
+</li>
+<li><p>A stack trace provides information about an exception and the state of the program when the exception occurred. It can be used to pinpoint the location in code where a problem occurred.</p>
+</li>
+<li><p>Exception classes can be recognized by their name, their place in the exception hierarchy, the exception message, and by consulting the Java API documentation.</p>
+</li>
+<li><p>Exceptions are handled using <code>try-catch</code> blocks. The <code>finally</code> block is used to execute code that should run regardless of whether an exception was thrown.</p>
+</li>
+<li><p>The <code>multi-catch</code> block allows us to catch two or more unrelated exceptions with a single <code>catch</code> block.</p>
+</li>
+<li><p>The <code>finally</code> block is always executed, even when an exception is caught or when either the <code>try</code> or <code>catch</code> block contains a <code>return</code> statement. However, the <code>finally</code> block will not execute if the JVM exits during the <code>try</code> or <code>catch</code> block, such as by calling <code>System.exit()</code>.</p>
+</li>
+<li><p>The <code>try-with-resources</code> statement, introduced in Java 7, ensures that resources are properly closed after use. Resources used in a <code>try-with-resources</code> statement must implement the <code>AutoCloseable</code> or <code>Closeable</code> interface.</p>
+</li>
+</ul>
+<h2 id="practice-questions">Practice Questions<a class="heading-anchor" href="#practice-questions" aria-label="Link to Practice Questions">#</a></h2><p><a href="ch07-practice.html#book-practice">Open the interactive book questions on the Chapter 7.1 Practice page</a>.</p>
+</article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this chapter.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><div class="finish-chapter"><button class="primary-button" id="complete-chapter" data-id="ch07" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg><span>Mark chapter complete</span></button><a href="ch07a.html">Review the answers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch06-practice.html"><small>Previous</small>Chapter 6.1 Practice</a><a href="ch07-practice.html"><small>Next chapter</small>Chapter 7.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#understanding-exceptions">Understanding Exceptions</a><a class="toc-link" href="#handling-exceptions">Handling Exceptions</a><a class="toc-link" href="#automating-resource-management-with-the-try-with-resources-block">Automating Resource Management with the try-with-resources Block</a><a class="toc-link" href="#key-points">Key Points</a><a class="toc-link" href="#practice-questions">Practice Questions</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

@@ -1,0 +1,949 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · File I/O</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch12"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch12.html" aria-current="page" data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>File I/O</h1><div class="document-meta">Chapter 12<span>·</span>40 min read</div><div class="chapter-actions"><a class="active" href="ch12.html">Read chapter</a><a href="ch12.html#key-points">Key points</a><a href="ch12-practice.html#book-practice">Book questions</a><a href="ch12-practice.html#chapter-quiz">Extra quiz</a><a class="" href="ch12a.html">Original answers</a></div></div><details class="objectives" open><summary>Exam objectives</summary><ul><li>Read and write console and file data using I/O streams.</li><li>Serialize and de-serialize Java objects.</li><li>Construct, traverse, create, read, and write Path objects and their properties using the java.nio.file API.</li></ul></details><article class="prose"><h2 id="basic-concepts">Basic Concepts<a class="heading-anchor" href="#basic-concepts" aria-label="Link to Basic Concepts">#</a></h2><p>Let&#39;s start by defining some concepts.</p>
+<p>As we know, data is organized into files, directories, and file systems in a computer.</p>
+<p>A file is a group of related data stored on a disk or other storage device. Files can contain programs, documents, images or any other types of data. </p>
+<p>A directory, also called a folder, is a collection of files and other directories that are stored under the same name. Directories allow you to organize files in a hierarchical structure. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">documents/
+  work/
+    report.pdf  
+    presentation.ppt
+  personal/
+    resume.doc
+    family.jpg</code></pre></div><p>The directory at the very top of the structure is known as the root directory. In Unix systems it is represented by a forward slash (<code>/</code>), while on Windows it is identified by a drive letter followed by a colon, like <code>C:</code>.</p>
+<p>To locate a specific file or directory, you need to specify its path, the route from the root directory to that particular item in the hierarchy. Path separators differ between operating systems. Unix uses a forward slash (<code>/</code>) while Windows uses a backslash (<code>\</code>). </p>
+<p>A path can be absolute, specifying the complete route from the root:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">/home/steve/documents/work/report.pdf
+C:\Users\Steve\Documents\Work\report.pdf </code></pre></div><p>Or it can be relative, specifying the route from the current directory, also known as the working directory:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">documents/work/report.pdf
+..\personal\resume.doc</code></pre></div><p>Two special symbols are commonly used in relative paths:</p>
+<ul>
+<li>A single dot (<code>.</code>) represents the current directory </li>
+<li>Two dots (<code>..</code>) represent the parent of the current directory (one level up in the hierarchy)</li>
+</ul>
+<p>So for example, if the current directory is <code>/home/steve/documents</code>, then:</p>
+<ul>
+<li><code>./work/report.pdf</code> is equivalent to <code>work/report.pdf</code>  </li>
+<li><code>../downloads/file.zip</code> refers to <code>/home/steve/downloads/file.zip</code></li>
+</ul>
+<p>In Java, you can work with the file system in two main ways:</p>
+<ol>
+<li>Using the <code>java.io.File</code> class (legacy I/O API)</li>
+<li>Using the <code>java.nio.file.Path</code> interface (NIO.2 API)</li>
+</ol>
+<p>To create a <code>File</code> instance, simply pass a file or directory path to its constructor:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;/home/steve/documents/work/report.pdf&quot;</span>);
+<span class="hljs-type">File</span> <span class="hljs-variable">dir</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;C:\\Users\\Steve\\Documents&quot;</span>);</code></pre></div><p>Note that this does not actually create the file or directory on the disk, it just creates an object that represents that path. You can then call various methods on the <code>File</code> object to get information about the file or directory or to manipulate it.</p>
+<p>In the newer NIO.2 (New Input/Output) API, paths are represented by the <code>Path</code> interface rather than the <code>File</code> class. You can get a <code>Path</code> instance in several ways:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// 1. Using the Paths helper class</span>
+<span class="hljs-type">Path</span> <span class="hljs-variable">p1</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home/steve/documents/work/report.pdf&quot;</span>);
+
+<span class="hljs-comment">// 2. From a File object  </span>
+<span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;C:\\Users\\Steve\\Documents&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">p2</span> <span class="hljs-operator">=</span> file.toPath();
+
+<span class="hljs-comment">// 3. By joining path strings</span>
+<span class="hljs-type">Path</span> <span class="hljs-variable">p3</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;documents&quot;</span>, <span class="hljs-string">&quot;work&quot;</span>, <span class="hljs-string">&quot;report.pdf&quot;</span>); 
+<span class="hljs-type">Path</span> <span class="hljs-variable">p4</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home&quot;</span>, <span class="hljs-string">&quot;steve&quot;</span>).resolve(<span class="hljs-string">&quot;documents&quot;</span>);
+
+<span class="hljs-comment">// 4. From the default FileSystem</span>
+<span class="hljs-type">Path</span> <span class="hljs-variable">p5</span> <span class="hljs-operator">=</span> FileSystems.getDefault().getPath(<span class="hljs-string">&quot;documents/work/report.pdf&quot;</span>);</code></pre></div><p>You can easily convert between <code>File</code> and <code>Path</code> using the <code>toFile()</code> and <code>toPath()</code> methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> path.toFile();
+<span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> file.toPath();  </code></pre></div><p>The <code>Path</code> interface provides similar methods to <code>File</code> but offers more flexibility and additional features for working with paths.</p>
+<p>For example, you can extract specific parts of a path:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home/steve/documents/work/report.pdf&quot;</span>);
+        
+<span class="hljs-type">Path</span> <span class="hljs-variable">parent</span> <span class="hljs-operator">=</span> path.getParent(); <span class="hljs-comment">// /home/steve/documents/work</span>
+<span class="hljs-type">Path</span> <span class="hljs-variable">root</span> <span class="hljs-operator">=</span> path.getRoot(); <span class="hljs-comment">// /  </span>
+<span class="hljs-type">Path</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> path.getFileName(); <span class="hljs-comment">// report.pdf</span></code></pre></div><p>Or construct paths by joining elements:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">documents</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home/steve/documents&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> documents.resolve(<span class="hljs-string">&quot;work/report.pdf&quot;</span>); </code></pre></div><p>The resulting path doesn&#39;t have to exist, it is just an abstract representation that can be used for further processing.</p>
+<p>In the next sections, we&#39;ll focus on the <code>Path</code> interface and the NIO.2 API.</p>
+<h2 id="using-nio2-paths">Using NIO.2 Paths<a class="heading-anchor" href="#using-nio2-paths" aria-label="Link to Using NIO.2 Paths">#</a></h2><p>Let&#39;s explore in more detail some of the key methods and concepts related to <code>Path</code>.</p>
+<p>This interface provides the following methods for retrieving basic path information:</p>
+<ul>
+<li><code>String toString()</code>: Returns the string representation of the path.</li>
+<li><code>int getNameCount()</code>: Returns the number of name elements in the path.</li>
+<li><code>Path getName(int index)</code>: Returns the name element at the specified index.</li>
+</ul>
+<p>Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home/user/documents/file.txt&quot;</span>);
+System.out.println(path.toString()); <span class="hljs-comment">// Output: /home/user/documents/file.txt</span>
+System.out.println(path.getNameCount()); <span class="hljs-comment">// Output: 4</span>
+System.out.println(path.getName(<span class="hljs-number">0</span>)); <span class="hljs-comment">// Output: home</span>
+System.out.println(path.getName(<span class="hljs-number">2</span>)); <span class="hljs-comment">// Output: documents</span></code></pre></div><p>Additionally, there are methods for accessing the path elements:</p>
+<ul>
+<li><code>Path getFileName()</code>: Returns the filename (the last element) of the path.</li>
+<li><code>Path getRoot()</code>: Returns the root component of the path, or <code>null</code> if the path is relative.</li>
+<li><code>Path getParent()</code>: Returns the parent path, or <code>null</code> if there is no parent.</li>
+</ul>
+<p>Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home/user/documents/file.txt&quot;</span>);
+System.out.println(path.getFileName()); <span class="hljs-comment">// Output: file.txt</span>
+System.out.println(path.getRoot()); <span class="hljs-comment">// Output: /</span>
+System.out.println(path.getParent()); <span class="hljs-comment">// Output: /home/user/documents</span></code></pre></div><p>The <code>relativize</code> method constructs a relative path between the current path and a given path. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">base</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home/user&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home/user/documents/file.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">relativePath</span> <span class="hljs-operator">=</span> base.relativize(path);
+System.out.println(relativePath); <span class="hljs-comment">// Output: documents/file.txt</span></code></pre></div><p>The <code>normalize</code> method returns a path that is a normalized version of the original path, eliminating any redundant elements such as <code>.</code> (current directory) and <code>..</code> (parent directory):</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home/user/./documents/../file.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">normalizedPath</span> <span class="hljs-operator">=</span> path.normalize();
+System.out.println(normalizedPath); <span class="hljs-comment">// Output: /home/user/file.txt</span></code></pre></div><p>The <code>toRealPath</code> method returns the real path of an existing file in the file system, resolving any symbolic links:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/path/to/symlink&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">realPath</span> <span class="hljs-operator">=</span> path.toRealPath();
+System.out.println(realPath); <span class="hljs-comment">// Output: /actual/path/to/file</span></code></pre></div><p>The <code>resolve</code> method resolves a path against the current path, allowing you to mix absolute and relative paths:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">base</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home/user&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">relativePath</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;documents/file.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">resolvedPath</span> <span class="hljs-operator">=</span> base.resolve(relativePath);
+System.out.println(resolvedPath); <span class="hljs-comment">// Output: /home/user/documents/file.txt</span></code></pre></div><p>However, if the path to be resolved is already an absolute path, it will be returned as-is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">base</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home/user&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">absolutePath</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/other/path/file.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">resolvedPath</span> <span class="hljs-operator">=</span> base.resolve(absolutePath);
+System.out.println(resolvedPath); <span class="hljs-comment">// Output: /other/path/file.txt</span></code></pre></div><h2 id="the-files-class">The <code>Files</code> Class<a class="heading-anchor" href="#the-files-class" aria-label="Link to The Files Class">#</a></h2><p>The <code>java.nio.file.Files</code> class is part of the NIO.2 API. It provides a rich set of static utility methods for working with files and directories in a more concise and efficient manner compared to the legacy <code>File</code> class.</p>
+<p>These are some of its key features:</p>
+<ul>
+<li><p><strong>Improved Exception Handling:</strong>
+Many of the <code>Files</code> methods throw more specific exceptions like <code>NoSuchFileException</code>, <code>DirectoryNotEmptyException</code>, etc., making it easier to handle different error scenarios. In contrast, the <code>File</code> class methods typically return boolean values or throw more generic exceptions.</p>
+</li>
+<li><p><strong>Symbolic Links Support:</strong>
+The <code>Files</code> class has built-in support for symbolic links. You can create, detect, and resolve symbolic links using methods like <code>createSymbolicLink()</code>, <code>isSymbolicLink()</code>, and <code>readSymbolicLink()</code>.</p>
+</li>
+<li><p><strong>Atomic Operations:</strong>
+The <code>Files</code> class provides methods for performing atomic file operations. For example, <code>move()</code> with the <code>StandardCopyOption.ATOMIC_MOVE</code> option ensures that a file move operation is performed atomically.</p>
+</li>
+<li><p><strong>File Attributes:</strong>
+The <code>Files</code> class makes it easy to read and modify file attributes, such as file permissions, owners, timestamps, etc. You can use methods like <code>readAttributes()</code>, <code>setOwner()</code>, <code>setLastModifiedTime()</code>, etc.</p>
+</li>
+<li><p><strong>Directory Walking:</strong> 
+The <code>Files.walkFileTree()</code> method allows you to recursively traverse a directory tree and perform actions on each file and directory encountered. This is more efficient and flexible than manually traversing the tree using the <code>File</code> class.</p>
+</li>
+<li><p><strong>Streams and Buffers:</strong>
+The <code>Files</code> class provides methods to open files as streams (<code>newInputStream()</code>, <code>newOutputStream()</code>) or buffered readers/writers (<code>newBufferedReader()</code>, <code>newBufferedWriter()</code>), making I/O operations more convenient.</p>
+</li>
+<li><p><strong>Path Operations:</strong>
+Since the <code>Files</code> class works with <code>Path</code> objects, it can perform path-related operations like resolving, normalizing, and getting path components, etc.</p>
+</li>
+<li><p><strong>File Content Operations:</strong>
+The <code>Files</code> class has methods to read and write file content in a single line of code, such as <code>readAllBytes()</code>, <code>readAllLines()</code>, <code>write()</code>, etc. This eliminates the need for manual file I/O boilerplate.</p>
+</li>
+</ul>
+<p>Here are some of the key methods provided by the <code>Files</code> class:</p>
+<ul>
+<li><p><strong>File Operations:</strong></p>
+<ul>
+<li><code>static Path createFile(Path path)</code>: Creates a new file.</li>
+<li><code>static Path createDirectory(Path path)</code>: Creates a new directory.</li>
+<li><code>static Path createDirectories(Path path)</code>: Creates a directory and all nonexistent parent directories.</li>
+<li><code>static void delete(Path path)</code>: Deletes a file or directory.</li>
+<li><code>static boolean deleteIfExists(Path path)</code>: Deletes a file or directory if it exists.</li>
+<li><code>static Path copy(Path source, Path target, CopyOption... options)</code>: Copies a file or directory.</li>
+<li><code>static Path move(Path source, Path target, CopyOption... options)</code>: Moves or renames a file or directory.</li>
+</ul>
+</li>
+<li><p><strong>Reading and Writing:</strong></p>
+<ul>
+<li><code>static byte[] readAllBytes(Path path)</code>: Reads all bytes from a file.</li>
+<li><code>static String readString(Path path)</code>: Reads a file as a string.</li>
+<li><code>static List&lt;String&gt; readAllLines(Path path)</code>: Reads all lines from a file.</li>
+<li><code>static Path write(Path path, byte[] bytes, OpenOption... options)</code>: Writes bytes to a file.</li>
+<li><code>static Path writeString(Path path, CharSequence csq, OpenOption... options)</code>: Writes a string to a file.</li>
+<li><code>static Path write(Path path, Iterable&lt;? extends CharSequence&gt; lines, OpenOption... options)</code>: Writes lines of text to a file.</li>
+</ul>
+</li>
+<li><p><strong>File Attributes:</strong></p>
+<ul>
+<li><code>static boolean exists(Path path, LinkOption... options)</code>: Checks if a file or directory exists.</li>
+<li><code>static boolean notExists(Path path, LinkOption... options)</code>: Checks if a file or directory does not exist.</li>
+<li><code>static boolean isReadable(Path path)</code>: Checks if a file is readable.</li>
+<li><code>static boolean isWritable(Path path)</code>: Checks if a file is writable.</li>
+<li><code>static boolean isExecutable(Path path)</code>: Checks if a file is executable.</li>
+<li><code>static boolean isDirectory(Path path, LinkOption... options)</code>: Checks if a path is a directory.</li>
+<li><code>static boolean isRegularFile(Path path, LinkOption... options)</code>: Checks if a path is a regular file.</li>
+<li><code>static long size(Path path)</code>: Returns the size of a file.</li>
+</ul>
+</li>
+<li><p><strong>Stream Support:</strong> </p>
+<ul>
+<li><code>static Stream&lt;Path&gt; list(Path dir)</code>: Returns a stream of entries in a directory.</li>
+<li><code>static Stream&lt;Path&gt; walk(Path start, FileVisitOption... options)</code>: Returns a stream that is lazily populated with <code>Path</code> by walking the file tree rooted at a given starting file.</li>
+<li><code>static Path walkFileTree(Path start, FileVisitor&lt;? super Path&gt; visitor)</code>: Walks a file tree.</li>
+</ul>
+</li>
+<li><p><strong>Symbolic Links:</strong></p>
+<ul>
+<li><code>static Path createSymbolicLink(Path link, Path target, FileAttribute&lt;?&gt;... attrs)</code>: Creates a symbolic link.</li>
+<li><code>static Path readSymbolicLink(Path link)</code>: Reads the target of a symbolic link.</li>
+</ul>
+</li>
+<li><p><strong>File Permissions:</strong></p>
+<ul>
+<li><code>static Path setPosixFilePermissions(Path path, Set&lt;PosixFilePermission&gt; perms)</code>: Sets POSIX file permissions.</li>
+<li><code>static Set&lt;PosixFilePermission&gt; getPosixFilePermissions(Path path, LinkOption... options)</code>: Reads POSIX file permissions.</li>
+</ul>
+</li>
+</ul>
+<p>Several methods of the <code>Files</code> class take optional arguments that control how the operation is performed. Here are some common ones:</p>
+<ul>
+<li><code>java.nio.file.LinkOption</code>: Specifies how symbolic links are handled. A common value is <code>LinkOption.NOFOLLOW_LINKS</code>, which indicates that symbolic links should not be followed.</li>
+<li><code>java.nio.file.StandardCopyOption</code>: Controls how a file copy operation should be done. Values include <code>REPLACE_EXISTING</code> (replace the target if it exists), <code>COPY_ATTRIBUTES</code> (copy file attributes as well), <code>ATOMIC_MOVE</code> (perform an atomic move operation).</li>
+<li><code>java.nio.file.StandardOpenOption</code>: Specifies options for opening a file. Common values are <code>CREATE</code> (create a new file if it doesn&#39;t exist), <code>APPEND</code> (append to the end of the file), <code>TRUNCATE_EXISTING</code> (truncate the file if it exists).</li>
+<li><code>java.nio.file.FileVisitOption</code>: Used with the <code>Files.walkFileTree()</code> method to control how the file tree traversal is done. The <code>FOLLOW_LINKS</code> value indicates that symbolic links should be followed during traversal.</li>
+</ul>
+<p>In the next sections, we&#39;ll review some of the methods and optional arguments of this class in more detail. But first, let&#39;s talk about I/O streams.</p>
+<h2 id="io-streams">I/O Streams<a class="heading-anchor" href="#io-streams" aria-label="Link to I/O Streams">#</a></h2><p>In Java, I/O (Input/Output) streams provide a way to read data from a source or write data to a destination.</p>
+<p>Here&#39;s an analogy to explain I/O streams. Imagine you have a water tank and you want to transfer the water to another container. You can connect a pipe between the tank and the container, and the water will flow from the tank to the container through the pipe. Similarly, I/O streams act as the pipe, allowing data to flow from a source (a file, network, or memory) to a destination (another file, network, or memory).</p>
+<p>I/O streams can be classified into several categories.</p>
+<p>First of all, Java provides two types of I/O streams: byte streams and character streams.</p>
+<ul>
+<li><p><strong>Byte streams</strong>, as the name suggests, read and write data in the form of bytes (8-bit data). They are suitable for handling raw binary data, such as images, audio files, or any other type of non-text data. Examples include <code>InputStream</code> and <code>OutputStream</code>.</p>
+</li>
+<li><p><strong>Character streams</strong> are designed to read and write data in the form of characters (16-bit Unicode data). They are useful for handling text-based data, such as reading from or writing to text files. Examples include <code>Reader</code> and <code>Writer</code>.</p>
+</li>
+</ul>
+<p>I/O streams can also be classified into input streams and output streams.</p>
+<ul>
+<li><p><strong>Input streams</strong> are used to read data from a source. They provide methods like <code>read()</code> to read bytes or characters from the input source. Examples of input stream classes in Java include <code>FileInputStream</code>, <code>BufferedInputStream</code>, <code>FileReader</code>, and <code>BufferedReader</code>.</p>
+</li>
+<li><p><strong>Output streams</strong> are used to write data to a destination. They provide methods like <code>write()</code> to write bytes or characters to the output destination. Examples of output stream classes in Java include <code>FileOutputStream</code>, <code>BufferedOutputStream</code>, <code>FileWriter</code>, and <code>BufferedWriter</code>.</p>
+</li>
+</ul>
+<p>Finally, I/O streams can be categorized into low-level streams and high-level streams.</p>
+<ul>
+<li><p><strong>Low-level streams</strong>, also known as node streams, are directly connected to the data source or destination. They are the building blocks of I/O operations and provide basic functionality for reading from or writing to a specific source or destination. Examples of low-level streams include <code>FileInputStream</code>, <code>FileOutputStream</code>, <code>FileReader</code>, and <code>FileWriter</code>.</p>
+</li>
+<li><p><strong>High-level streams</strong>, also known as processing streams or filter streams, are built on top of low-level streams. They provide additional functionality and features, such as buffering, filtering, or transforming the data as it passes through the stream. Examples of high-level streams include <code>BufferedInputStream</code>, <code>BufferedOutputStream</code>, <code>BufferedReader</code>, <code>BufferedWriter</code>, <code>ObjectInputStream</code>, and <code>ObjectOutputStream</code>.</p>
+</li>
+</ul>
+<h3 id="stream-classes">Stream Classes<a class="heading-anchor" href="#stream-classes" aria-label="Link to Stream Classes">#</a></h3><p>The <code>java.io</code> library defines four abstract classes that serve as the parents of all I/O stream classes:</p>
+<ul>
+<li><code>InputStream</code>: The base class for all byte input streams.</li>
+<li><code>OutputStream</code>: The base class for all byte output streams.</li>
+<li><code>Reader</code>: The base class for all character input streams.</li>
+<li><code>Writer</code>: The base class for all character output streams.</li>
+</ul>
+<p>These abstract classes provide the fundamental methods for reading from or writing to a stream, such as <code>read()</code>, <code>write()</code>, <code>close()</code>, and more. Concrete stream classes extend these base classes to provide specific functionality.</p>
+<p>Java provides a wide range of concrete I/O stream classes in the <code>java.io</code> package. Some commonly used classes include:</p>
+<ul>
+<li><code>FileInputStream</code> and <code>FileOutputStream</code>: Used for reading from and writing to files as byte streams.</li>
+<li><code>FileReader</code> and <code>FileWriter</code>: Used for reading from and writing to files as character streams.</li>
+<li><code>BufferedInputStream</code> and <code>BufferedOutputStream</code>: Provide buffering capabilities to improve performance of byte streams.</li>
+<li><code>BufferedReader</code> and <code>BufferedWriter</code>: Provide buffering capabilities and additional methods for reading and writing character streams.</li>
+<li><code>ObjectInputStream</code> and <code>ObjectOutputStream</code>: Used for reading and writing Java objects to streams.</li>
+<li><code>PrintStream</code> and <code>PrintWriter</code>: Provide methods for writing formatted data to a stream.</li>
+</ul>
+<p>These concrete classes extend the appropriate base classes (<code>InputStream</code>, <code>OutputStream</code>, <code>Reader</code>, or <code>Writer</code>) and implement specific functionality for handling different types of data sources and destinations.</p>
+<h3 id="fileinputstream"><code>FileInputStream</code><a class="heading-anchor" href="#fileinputstream" aria-label="Link to FileInputStream">#</a></h3><p><code>FileInputStream</code> reads bytes from a file. It inherits from <code>InputStream</code>.</p>
+<p>It can be created either with a <code>File</code> object or a <code>String path</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">FileInputStream(File file)
+FileInputStream(String path)</code></pre></div><p>Here&#39;s how you use it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">InputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;/file.txt&quot;</span>)) {
+    <span class="hljs-type">int</span> b;
+    <span class="hljs-comment">// -1 indicates the end of the file</span>
+    <span class="hljs-keyword">while</span>((b = in.read()) != -<span class="hljs-number">1</span>) {
+        <span class="hljs-comment">// Do something with the byte read</span>
+    }
+} <span class="hljs-keyword">catch</span>(IOException e) {
+    <span class="hljs-comment">/** ... */</span>
+}</code></pre></div><p>There&#39;s also a <code>read()</code> method that reads bytes into an array of bytes:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">byte</span>[] <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];
+<span class="hljs-type">int</span> numberOfBytesRead;
+<span class="hljs-keyword">while</span>((numberOfBytesRead = in.read(data)) != -<span class="hljs-number">1</span>) {
+    <span class="hljs-comment">// Do something with the array data</span>
+}</code></pre></div><p>All the classes we&#39;ll review should be closed. Fortunately, they implement <code>java.lang.AutoCloseable</code> so they can be used in a <code>try-with-resources</code>.</p>
+<p>Also, almost all methods of these classes throw <code>IOExceptions</code> or one of its subclasses (such as <code>FileNotFoundException</code>, which is pretty descriptive).</p>
+<h3 id="fileoutputstream"><code>FileOutputStream</code><a class="heading-anchor" href="#fileoutputstream" aria-label="Link to FileOutputStream">#</a></h3><p><code>FileOutputStream</code> writes bytes to a file. It inherits from <code>OutputStream</code>.</p>
+<p>It can be created either with a <code>File</code> object or a <code>String</code> path and an optional <code>boolean</code> that indicates whether you want to overwrite or append to the file if it exists (it&#39;s overwritten by default):</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">FileOutputStream(File file)
+FileOutputStream(File file, <span class="hljs-type">boolean</span> append)
+FileOutputStream(String path)
+FileOutputStream(String path, <span class="hljs-type">boolean</span> append)</code></pre></div><p>Here&#39;s how you use it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">OutputStream</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;/file.txt&quot;</span>)) {
+    <span class="hljs-type">int</span> b;
+    <span class="hljs-comment">// Made up method to get some data</span>
+    <span class="hljs-keyword">while</span>((b = getData()) != -<span class="hljs-number">1</span>) {
+        <span class="hljs-comment">// Writes b to the file output stream</span>
+        out.write(b);
+        out.flush();
+    }
+} <span class="hljs-keyword">catch</span>(IOException e) {
+    <span class="hljs-comment">/** ... */</span>
+}</code></pre></div><p>When you write to an <code>OutputStream</code>, the data may get cached internally in memory and written to disk at a later time. If you want to make sure that all data is written to disk without having to close the <code>OutputStream</code>, you can call the <code>flush()</code> method every once in a while.</p>
+<p><code>FileOutputStream</code> also contains overloaded versions of <code>write()</code> that allow you to write data contained in a byte array.</p>
+<h3 id="filereader"><code>FileReader</code><a class="heading-anchor" href="#filereader" aria-label="Link to FileReader">#</a></h3><p><code>FileReader</code> reads characters from a text file. It inherits from <code>Reader</code>.</p>
+<p>It can be created either with a <code>File</code> object or a <code>String</code> path:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">FileReader(File file)
+FileReader(String path)</code></pre></div><p>Here&#39;s how you use it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">Reader</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(<span class="hljs-string">&quot;/file.txt&quot;</span>)) {
+    <span class="hljs-type">int</span> c;
+    <span class="hljs-comment">// -1 indicates the end of the file</span>
+    <span class="hljs-keyword">while</span>((c = r.read()) != -<span class="hljs-number">1</span>) {
+        <span class="hljs-type">char</span> <span class="hljs-variable">character</span> <span class="hljs-operator">=</span> (<span class="hljs-type">char</span>)c;
+        <span class="hljs-comment">// Do something with the character</span>
+    }
+} <span class="hljs-keyword">catch</span>(IOException e) {
+    <span class="hljs-comment">/** ... */</span>
+}</code></pre></div><p>There&#39;s also a <code>read()</code> method that reads characters into an array of <code>char</code>s:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">char</span>[] <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">char</span>[<span class="hljs-number">1024</span>];
+<span class="hljs-type">int</span> <span class="hljs-variable">numberOfCharsRead</span> <span class="hljs-operator">=</span> r.read(data);
+<span class="hljs-keyword">while</span>((numberOfCharsRead = r.read(data)) != -<span class="hljs-number">1</span>) {
+    <span class="hljs-comment">// Do something with the array data</span>
+}</code></pre></div><p><code>FileReader</code> assumes that you want to decode the characters in the file using the default character encoding of the machine your program is running on.</p>
+<h3 id="filewriter"><code>FileWriter</code><a class="heading-anchor" href="#filewriter" aria-label="Link to FileWriter">#</a></h3><p><code>FileWriter</code> writes characters to a text file. It inherits from <code>Writer</code>.</p>
+<p>It can be created either with a <code>File</code> object or a <code>String</code> path and an optional <code>boolean</code> that indicates whether you want to overwrite or append to the file if it exists (it&#39;s overwritten by default):</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">FileWriter(File file)
+FileWriter(File file, <span class="hljs-type">boolean</span> append)
+FileWriter(String path)
+FileWriter(String path, <span class="hljs-type">boolean</span> append)</code></pre></div><p>Here&#39;s how you use it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">Writer</span> <span class="hljs-variable">w</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(<span class="hljs-string">&quot;/file.txt&quot;</span>)) {
+    w.write(<span class="hljs-string">&#x27;-&#x27;</span>); <span class="hljs-comment">// writing a character</span>
+    <span class="hljs-comment">// writing a string</span>
+    w.write(<span class="hljs-string">&quot;Writing to the file...&quot;</span>);
+} <span class="hljs-keyword">catch</span>(IOException e) {
+    <span class="hljs-comment">/** ... */</span>
+}</code></pre></div><p>Just like an <code>OutputStream</code>, the data may get cached internally in memory and written to disk at a later time. If you want to make sure that all data is written to disk without having to close the <code>FileWriter</code>, you can call the <code>flush()</code> method every once in a while.</p>
+<p><code>FileWriter</code> also contains overloaded versions of <code>write()</code> that allow you to write data contained in a <code>char</code> array, or in a <code>String</code>.</p>
+<p><code>FileWriter</code> assumes that you want to encode the characters in the file using the default character encoding of the machine your program is running on.</p>
+<h3 id="bufferedreader"><code>BufferedReader</code><a class="heading-anchor" href="#bufferedreader" aria-label="Link to BufferedReader">#</a></h3><p><code>BufferedReader</code> reads text from a character stream. Rather than read one character at a time, <code>BufferedReader</code> reads a large block at a time into a buffer. It inherits from <code>Reader</code>.</p>
+<p>This is a wrapper class that is created by passing a <code>Reader</code> to its constructor, and optionally, the size of the buffer:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">BufferedReader(Reader in)
+BufferedReader(Reader in, <span class="hljs-type">int</span> size)</code></pre></div><p><code>BufferedReader</code> has one extra read method (in addition to the ones inherited by <code>Reader</code>), <code>readLine()</code>. Here&#39;s how you use it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">BufferedReader</span> <span class="hljs-variable">br</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(<span class="hljs-string">&quot;/file.txt&quot;</span>))) {
+    String line;
+    <span class="hljs-comment">// null indicates the end of the file</span>
+    <span class="hljs-keyword">while</span>((line = br.readLine()) != <span class="hljs-literal">null</span>) {
+        <span class="hljs-comment">// Do something with the line</span>
+    }
+} <span class="hljs-keyword">catch</span>(IOException e) {
+    <span class="hljs-comment">/** ... */</span>
+}</code></pre></div><p>When the <code>BufferedReader</code> is closed, it will also close the <code>Reader</code> instance it reads from.</p>
+<h3 id="bufferedwriter"><code>BufferedWriter</code><a class="heading-anchor" href="#bufferedwriter" aria-label="Link to BufferedWriter">#</a></h3><p><code>BufferedWriter</code> writes text to a character stream, buffering characters for efficiency. It inherits from <code>Writer</code>.</p>
+<p>This is a wrapper class that is created by passing a <code>Writer</code> to its constructor, and optionally, the size of the buffer:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">BufferedWriter(Writer out)
+BufferedWriter(Writer out, <span class="hljs-type">int</span> size)</code></pre></div><p><code>BufferedWriter</code> has one extra write method (in addition to the ones inherited by <code>Writer</code>), <code>newLine()</code>. Here&#39;s how you use it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">BufferedWriter</span> <span class="hljs-variable">bw</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(<span class="hljs-string">&quot;/file.txt&quot;</span>))) {
+    bw.write(<span class="hljs-string">&quot;Writing to the file...&quot;</span>);
+    bw.newLine();
+} <span class="hljs-keyword">catch</span>(IOException e) {
+    <span class="hljs-comment">/** ... */</span>
+}</code></pre></div><p>Since data is written to a buffer first, you can call the <code>flush()</code> method to make sure that the text written until that moment is indeed written to the disk.</p>
+<p>When the <code>BufferedWriter</code> is closed, it will also close the <code>Writer</code> instance it writes to.</p>
+<h3 id="objectinputstream-and-objectoutputstream"><code>ObjectInputStream</code> and <code>ObjectOutputStream</code><a class="heading-anchor" href="#objectinputstream-and-objectoutputstream" aria-label="Link to ObjectInputStream and ObjectOutputStream">#</a></h3><p>The process of converting an object to a data format that can be stored (in a file, for example) is called <em>serialization</em> and converting that stored data format into an object is called <em>deserialization</em>.</p>
+<p>If you want to serialize an object, its class must implement the <code>java.io.Serializable</code> interface, which has no methods to implement, it only tags the objects of that class as serializable.</p>
+<p>We&#39;ll cover this process in more detail later, but right now, you have to know that <code>ObjectOutputStream</code> allows you to serialize objects to an <code>OutputStream</code> while <code>ObjectInputStream</code> allows you to deserialize objects from an <code>InputStream</code>. So both are considered wrapper classes.</p>
+<p>Here&#39;s the constructor of the <code>ObjectOutputStream</code> class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">ObjectOutputStream(OutputStream out)</code></pre></div><p>This class has methods to write many primitive types, like:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">void</span> <span class="hljs-title function_">writeInt</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span>
+<span class="hljs-type">void</span> <span class="hljs-title function_">writeBoolean</span><span class="hljs-params">(<span class="hljs-type">boolean</span> val)</span></code></pre></div><p>But the most useful is <code>writeObject(Object)</code>. Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">java</span>.io.Serializable {
+    <span class="hljs-comment">/** ... */</span>
+}
+...
+<span class="hljs-keyword">try</span>(<span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;obj.dat&quot;</span>))) {
+    <span class="hljs-type">Box</span> <span class="hljs-variable">box</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Box</span>();
+    oos.writeObject(box);
+} <span class="hljs-keyword">catch</span>(IOException e) {
+    <span class="hljs-comment">/** ... */</span>
+}</code></pre></div><p>To deserialize the file <code>obj.dat</code>, we use <code>ObjectInputStream</code> class. Here&#39;s its constructor:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">ObjectInputStream(InputStream in)</code></pre></div><p>This class has methods to read many data types, among them:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Object</span> <span class="hljs-title function_">readObject</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException, ClassNotFoundException</code></pre></div><p>Notice that it returns an <code>Object</code> type. Thus, we have to cast the object explicitly. This can lead to a <code>ClassCastException</code> thrown at runtime. Note that this method also throws a <code>ClassNotFoundException</code> (a checked exception), in case the class of a serialized object cannot be found.</p>
+<p>Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">ois</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;obj.dat&quot;</span>))) {
+    <span class="hljs-type">Box</span> <span class="hljs-variable">box</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;
+    <span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> ois.readObject();
+    <span class="hljs-keyword">if</span>(obj <span class="hljs-keyword">instanceof</span> Box) {
+        box = (Box)obj;
+    }
+} <span class="hljs-keyword">catch</span>(IOException ioe) {
+    <span class="hljs-comment">/** ... */</span>
+} <span class="hljs-keyword">catch</span>(ClassNotFoundException cnfe) {
+    <span class="hljs-comment">/** ... */</span>
+}</code></pre></div><h3 id="printstream"><code>PrintStream</code><a class="heading-anchor" href="#printstream" aria-label="Link to PrintStream">#</a></h3><p><code>PrintStream</code> is a subclass of <code>OutputStream</code> that adds functionality for printing various data types in a human-readable format. It is similar to <code>PrintWriter</code>, but it works with <code>OutputStreams</code> only. Here&#39;s a look at its constructors:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">PrintStream(OutputStream out)
+PrintStream(OutputStream out, <span class="hljs-type">boolean</span> autoFlush)
+PrintStream(OutputStream out, <span class="hljs-type">boolean</span> autoFlush, String encoding) <span class="hljs-keyword">throws</span> <span class="hljs-type">UnsupportedEncodingException</span>
+<span class="hljs-title function_">PrintStream</span><span class="hljs-params">(File file)</span> <span class="hljs-keyword">throws</span> <span class="hljs-type">FileNotFoundException</span>
+<span class="hljs-title function_">PrintStream</span><span class="hljs-params">(File file, String encoding)</span> <span class="hljs-keyword">throws</span> FileNotFoundException, <span class="hljs-type">UnsupportedEncodingException</span>
+<span class="hljs-title function_">PrintStream</span><span class="hljs-params">(String fileName)</span> <span class="hljs-keyword">throws</span> <span class="hljs-type">FileNotFoundException</span>
+<span class="hljs-title function_">PrintStream</span><span class="hljs-params">(String fileName, String encoding)</span> <span class="hljs-keyword">throws</span> FileNotFoundException, UnsupportedEncodingException</code></pre></div><p>By default, it uses the default charset of the machine you&#39;re running the program, but you can specify a charset if needed.</p>
+<p><code>PrintStream</code> has the <code>write()</code> method like other <code>OutputStream</code> subclasses, but it overrides them to avoid throwing an <code>IOException</code>.</p>
+<p>It also adds methods such as <code>print()</code>, <code>println()</code>, <code>format()</code>, and <code>printf()</code> for convenient output. Here&#39;s how you use this class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Opens or creates the file without automatic line flushing</span>
+<span class="hljs-comment">// and using the default character encoding</span>
+<span class="hljs-keyword">try</span> (<span class="hljs-type">PrintStream</span> <span class="hljs-variable">ps</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintStream</span>(<span class="hljs-string">&quot;file.txt&quot;</span>)) {
+    ps.write(<span class="hljs-string">&quot;Hi&quot;</span>.getBytes()); <span class="hljs-comment">// Writing a String as bytes</span>
+    ps.write(<span class="hljs-number">100</span>); <span class="hljs-comment">// Writing a character as bytes</span>
+
+    <span class="hljs-comment">// write the string representation of the argument</span>
+    <span class="hljs-comment">// it has versions for all primitives, char[], String, and Object</span>
+    ps.print(<span class="hljs-literal">true</span>);
+    ps.print(<span class="hljs-number">10</span>);
+
+    <span class="hljs-comment">// same as print() but it also writes a line break as defined by</span>
+    <span class="hljs-comment">// System.getProperty(&quot;line.separator&quot;) after the value</span>
+    ps.println(); <span class="hljs-comment">// Just writes a new line</span>
+    ps.println(<span class="hljs-string">&quot;A new line...&quot;</span>);
+
+    <span class="hljs-comment">// format() and printf() are the same methods</span>
+    <span class="hljs-comment">// They write a formatted string using a format string,</span>
+    <span class="hljs-comment">// its arguments and an optional Locale</span>
+    ps.format(<span class="hljs-string">&quot;%s %d&quot;</span>, <span class="hljs-string">&quot;Formatted string &quot;</span>, <span class="hljs-number">1</span>);
+    ps.printf(<span class="hljs-string">&quot;%s %d&quot;</span>, <span class="hljs-string">&quot;Formatted string &quot;</span>, <span class="hljs-number">2</span>);
+    ps.format(Locale.GERMAN, <span class="hljs-string">&quot;%.2f&quot;</span>, <span class="hljs-number">3.1416</span>);
+    ps.printf(Locale.GERMAN, <span class="hljs-string">&quot;%.3f&quot;</span>, <span class="hljs-number">3.1416</span>);
+} <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+    <span class="hljs-comment">// if the file cannot be opened or created</span>
+}</code></pre></div><p>You can learn more about format strings for <code>format()</code> and <code>printf()</code> in the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Formatter.html">documentation of the <code>java.util.Formatter</code> class</a>.</p>
+<h3 id="printwriter"><code>PrintWriter</code><a class="heading-anchor" href="#printwriter" aria-label="Link to PrintWriter">#</a></h3><p><code>PrintWriter</code> is a subclass of <code>Writer</code> that writes formatted data to another (wrapped) stream, even an <code>OutputStream</code>. Just look at its constructors:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">PrintWriter(File file) <span class="hljs-keyword">throws</span> <span class="hljs-type">FileNotFoundException</span>
+<span class="hljs-title function_">PrintWriter</span><span class="hljs-params">(File file, String charset)</span> <span class="hljs-keyword">throws</span> FileNotFoundException, <span class="hljs-type">UnsupportedEncodingException</span>
+<span class="hljs-title function_">PrintWriter</span><span class="hljs-params">(OutputStream out)</span>
+PrintWriter(OutputStream out, <span class="hljs-type">boolean</span> autoFlush)
+PrintWriter(String fileName) <span class="hljs-keyword">throws</span> <span class="hljs-type">FileNotFoundException</span>
+<span class="hljs-title function_">PrintWriter</span><span class="hljs-params">(String fileName, String charset)</span> <span class="hljs-keyword">throws</span> FileNotFoundException, <span class="hljs-type">UnsupportedEncodingException</span>
+<span class="hljs-title function_">PrintWriter</span><span class="hljs-params">(Writer out)</span>
+PrintWriter(Writer out, <span class="hljs-type">boolean</span> autoFlush)</code></pre></div><p>By default, it uses the default charset of the machine you&#39;re running the program, but this class accepts the following charsets (there are other optional charsets):</p>
+<ul>
+<li><code>US-ASCII</code></li>
+<li><code>ISO-8859-1</code></li>
+<li><code>UTF-8</code></li>
+<li><code>UTF-16BE</code></li>
+<li><code>UTF-16LE</code></li>
+<li><code>UTF-16</code></li>
+</ul>
+<p>As any <code>Writer</code>, this class has the <code>write()</code> method we&#39;ve seen in other <code>Writer</code> subclasses, but it overwrites them to avoid throwing an <code>IOException</code>.</p>
+<p>It also adds the methods <code>format()</code>, <code>print()</code>, <code>printf()</code>, <code>println()</code>.</p>
+<p>Here&#39;s how you use this class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Opens or creates the file without automatic line flushing</span>
+<span class="hljs-comment">// and converting characters by using the default character encoding</span>
+<span class="hljs-keyword">try</span>(<span class="hljs-type">PrintWriter</span> <span class="hljs-variable">pw</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintWriter</span>(<span class="hljs-string">&quot;/file.txt&quot;</span>)) {
+    pw.write(<span class="hljs-string">&quot;Hi&quot;</span>); <span class="hljs-comment">// Writing a String</span>
+    pw.write(<span class="hljs-number">100</span>); <span class="hljs-comment">// Writing a character</span>
+
+    <span class="hljs-comment">// write the string representation of the argument</span>
+    <span class="hljs-comment">// it has versions for all primitives, char[], String, and Object</span>
+    pw.print(<span class="hljs-literal">true</span>);
+    pw.print(<span class="hljs-number">10</span>);
+
+    <span class="hljs-comment">// same as print() but it also writes a line break as defined by</span>
+    <span class="hljs-comment">// System.getProperty(&quot;line.separator&quot;) after the value</span>
+    pw.println(); <span class="hljs-comment">// Just writes a new line</span>
+    pw.println(<span class="hljs-string">&quot;A new line...&quot;</span>);
+
+    <span class="hljs-comment">// format() and printf() are the same methods</span>
+    <span class="hljs-comment">// They write a formatted string using a format string,</span>
+    <span class="hljs-comment">// its arguments and an optional Locale</span>
+    pw.format(<span class="hljs-string">&quot;%s %d&quot;</span>, <span class="hljs-string">&quot;Formatted string &quot;</span>, <span class="hljs-number">1</span>);
+    pw.printf(<span class="hljs-string">&quot;%s %d&quot;</span>, <span class="hljs-string">&quot;Formatted string &quot;</span>, <span class="hljs-number">2</span>);
+    pw.format(Locale.GERMAN, <span class="hljs-string">&quot;%.2f&quot;</span>, <span class="hljs-number">3.1416</span>);
+    pw.printf(Locale.GERMAN, <span class="hljs-string">&quot;%.3f&quot;</span>, <span class="hljs-number">3.1416</span>);
+} <span class="hljs-keyword">catch</span>(FileNotFoundException e) {
+    <span class="hljs-comment">// if the file cannot be opened or created</span>
+}</code></pre></div><p>Just like with <code>PrintWriter</code>, you can learn more about format strings for <code>format()</code> and <code>printf()</code> in the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Formatter.html">documentation of the <code>java.util.Formatter</code> class</a>.</p>
+<h3 id="standard-streams">Standard Streams<a class="heading-anchor" href="#standard-streams" aria-label="Link to Standard Streams">#</a></h3><p>Java initializes and provides three stream objects as <code>public static</code> fields of the <code>java.lang.System</code> class:</p>
+<ul>
+<li><code>InputStream System.in</code><br>The standard input stream (typically the input from the keyboard)</li>
+<li><code>PrintStream System.out</code><br>The standard output stream (typically the default display output)</li>
+<li><code>PrintStream System.err</code><br>The standard error output stream (typically the default error display)</li>
+</ul>
+<p>Remember, <code>PrintStream</code> does exactly the same and has the same features that <code>PrintWriter</code>, it just works with <code>OutputStreams</code> only.</p>
+<p>The following example shows how to read a single character (a byte) from the command line:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">System.out.print(<span class="hljs-string">&quot;Enter a character: &quot;</span>);
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-type">int</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> System.in.read();
+} <span class="hljs-keyword">catch</span>(IOException e) {
+    System.err.println(<span class="hljs-string">&quot;Error: &quot;</span> + e);
+}</code></pre></div><p>Or to read strings:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">BufferedReader</span> <span class="hljs-variable">br</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(System.in));
+<span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span> br.readLine();
+<span class="hljs-comment">// Or using the java.util.Scanner class</span>
+<span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);
+<span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span> scanner.nextLine();</code></pre></div><p>These streams (<code>System.in</code>, <code>System.out</code>, <code>System.err</code>) are used for basic input and output in many Java programs.</p>
+<h2 id="copying-moving-deleting-and-comparing-files">Copying, Moving, Deleting, and Comparing Files<a class="heading-anchor" href="#copying-moving-deleting-and-comparing-files" aria-label="Link to Copying, Moving, Deleting, and Comparing Files">#</a></h2><p>You have previously learned that the <code>java.nio.file.Files</code> class provides various methods for file operations like copying, moving, deleting, and comparing files. Let&#39;s explore these operations in detail.</p>
+<p>The <code>Files.copy()</code> method allows you to copy a file from one location to another. It takes a source path and a target path as parameters.</p>
+<p>If the target file already exists, you can specify how to handle the copy operation using the <code>StandardCopyOption</code> enum.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/source/file.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/target/file.txt&quot;</span>);
+
+<span class="hljs-comment">// Copy the file, replacing the target file if it exists</span>
+Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);</code></pre></div><p>The <code>StandardCopyOption.REPLACE_EXISTING</code> option indicates that if the target file already exists, it should be replaced with the source file.</p>
+<p>You can also copy files using I/O streams. This is useful when you need more control over the copying process or when working with large files:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> (<span class="hljs-type">InputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;source.txt&quot;</span>);
+     <span class="hljs-type">OutputStream</span> <span class="hljs-variable">outputStream</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;target.txt&quot;</span>)) {
+    
+    <span class="hljs-type">byte</span>[] <span class="hljs-variable">buffer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>]; <span class="hljs-comment">// Buffer size can be adjusted for performance</span>
+    <span class="hljs-type">int</span> bytesRead;
+    <span class="hljs-keyword">while</span> ((bytesRead = inputStream.read(buffer)) != -<span class="hljs-number">1</span>) {
+        outputStream.write(buffer, <span class="hljs-number">0</span>, bytesRead);
+    }
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>In this example, we create an <code>InputStream</code> to read from the source file and an <code>OutputStream</code> to write to the target file. We use a buffer to read and write the data in chunks.</p>
+<p>To copy a file into a directory, you can specify the target directory path and the filename.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">sourceFile</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/source/file.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">targetDirectory</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/target/directory&quot;</span>);
+
+<span class="hljs-comment">// Copy the file into the target directory</span>
+Files.copy(sourceFile, targetDirectory.resolve(sourceFile.getFileName()));</code></pre></div><p>The <code>targetDirectory.resolve(sourceFile.getFileName())</code> expression creates the target path by combining the target directory path with the file name of the source file.</p>
+<p>The <code>Files.move()</code> method allows you to move or rename a file or directory.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/source/file.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/target/file.txt&quot;</span>);
+
+<span class="hljs-comment">// Move the file</span>
+Files.move(source, target);</code></pre></div><p>If the target file already exists, an exception will be thrown. You can use the <code>StandardCopyOption.REPLACE_EXISTING</code> option to replace the target file if it exists:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">Files.move(source, target, StandardCopyOption.REPLACE_EXISTING);</code></pre></div><p>An atomic move ensures that the move operation is performed as a single indivisible operation. It either completes successfully or fails without any partial changes:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/source/file.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/target/file.txt&quot;</span>);
+
+<span class="hljs-comment">// Perform an atomic move</span>
+Files.move(source, target, StandardCopyOption.ATOMIC_MOVE);</code></pre></div><p>The <code>StandardCopyOption.ATOMIC_MOVE</code> option guarantees that the move operation is atomic, preventing data corruption during the move process.</p>
+<p>The <code>Files.delete()</code> method allows you to delete a file or an empty directory:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file.txt&quot;</span>);
+
+<span class="hljs-comment">// Delete the file</span>
+Files.delete(path);</code></pre></div><p>If the file does not exist, a <code>NoSuchFileException</code> will be thrown.</p>
+<p>The <code>Files.deleteIfExists()</code> method deletes the file if it exists and returns a boolean indicating whether the file was deleted:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file.txt&quot;</span>);
+
+<span class="hljs-comment">// Delete the file if it exists</span>
+<span class="hljs-type">boolean</span> <span class="hljs-variable">deleted</span> <span class="hljs-operator">=</span> Files.deleteIfExists(path);</code></pre></div><p>This method does not throw an exception if the file does not exist.</p>
+<p>The <code>Files.isSameFile()</code> method allows you to determine if two paths locate the same file in the file system:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path1</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file1.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">path2</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file2.txt&quot;</span>);
+
+<span class="hljs-comment">// Check if the paths refer to the same file</span>
+<span class="hljs-type">boolean</span> <span class="hljs-variable">isSame</span> <span class="hljs-operator">=</span> Files.isSameFile(path1, path2);</code></pre></div><p>It returns <code>true</code> if the paths refer to the same file, and <code>false</code> otherwise.</p>
+<p>The <code>Files.mismatch()</code> method compares the content of two files and returns the position of the first mismatched byte:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">file1</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file1.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">file2</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file2.txt&quot;</span>);
+
+<span class="hljs-comment">// Compare the content of the files</span>
+<span class="hljs-type">long</span> <span class="hljs-variable">mismatchPosition</span> <span class="hljs-operator">=</span> Files.mismatch(file1, file2);</code></pre></div><p>If the files have identical content, it returns -1. If the files have different sizes, it returns the size of the smaller file.</p>
+<p>These are some of the key methods provided by the <code>Files</code> class for copying, moving, deleting, and comparing files in Java. They offer convenient ways to perform common file operations without the need for manual I/O stream handling.</p>
+<h2 id="reading-and-writing-files">Reading and Writing Files<a class="heading-anchor" href="#reading-and-writing-files" aria-label="Link to Reading and Writing Files">#</a></h2><p>Java provides several methods in the <code>java.nio.file.Files</code> class for reading from and writing to files. Let&#39;s explore some commonly used methods and techniques.</p>
+<h3 id="reading-files">Reading Files<a class="heading-anchor" href="#reading-files" aria-label="Link to Reading Files">#</a></h3><p>The <code>Files</code> class offers two convenient methods for reading the contents of a file: <code>readAllLines()</code> and <code>lines()</code>.</p>
+<p>The <code>Files.readAllLines()</code> method reads all the lines of a file into a <code>List&lt;String&gt;</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file.txt&quot;</span>);
+
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.readAllLines(path);
+    <span class="hljs-keyword">for</span> (String line : lines) {
+        System.out.println(line);
+    }
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>This method is suitable when you need to process all the lines of a file at once. However, note that it reads the entire file into memory, so it may not be efficient for large files.</p>
+<p>On the other hand, the <code>Files.lines()</code> method returns a <code>Stream&lt;String&gt;</code> that allows you to process the lines of a file lazily:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file.txt&quot;</span>);
+
+<span class="hljs-keyword">try</span> (<span class="hljs-type">Stream</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.lines(path)) {
+    lines.forEach(System.out::println);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>This method is more memory-efficient as it reads the lines on-demand and does not load the entire file into memory at once. It is especially useful when you need to process large files or perform operations like filtering or mapping on the lines.</p>
+<p>However, for more control over the reading process, you can use the <code>Files.newBufferedReader()</code> method to create a <code>BufferedReader</code> instance:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file.txt&quot;</span>);
+
+<span class="hljs-keyword">try</span> (<span class="hljs-type">BufferedReader</span> <span class="hljs-variable">reader</span> <span class="hljs-operator">=</span> Files.newBufferedReader(path)) {
+    String line;
+    <span class="hljs-keyword">while</span> ((line = reader.readLine()) != <span class="hljs-literal">null</span>) {
+        System.out.println(line);
+    }
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>The <code>BufferedReader</code> provides methods such as <code>readLine()</code> to read the file line by line, allowing you to process the lines as needed.</p>
+<h3 id="writing-files">Writing Files<a class="heading-anchor" href="#writing-files" aria-label="Link to Writing Files">#</a></h3><p>The <code>Files</code> class provides methods for writing content to files, such as <code>write()</code> and <code>newBufferedWriter()</code>.</p>
+<p>The <code>Files.write()</code> method allows you to write content to a file in a single operation:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file.txt&quot;</span>);
+<span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello, World!&quot;</span>;
+
+<span class="hljs-keyword">try</span> {
+    Files.write(path, content.getBytes(StandardCharsets.UTF_8));
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>This method writes the specified byte array to the file. If the file already exists, it will be overwritten by default.</p>
+<p>Additionally, you can specify additional options using the <code>StandardOpenOption</code> enum.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file.txt&quot;</span>);
+<span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Appended content&quot;</span>;
+
+<span class="hljs-keyword">try</span> {
+    Files.write(path, content.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>The <code>StandardOpenOption.APPEND</code> option specifies that the content should be appended to the end of the file instead of overwriting it.</p>
+<p>Other useful options include:</p>
+<ul>
+<li><code>StandardOpenOption.CREATE</code>: Creates a new file if it doesn&#39;t exist.</li>
+<li><code>StandardOpenOption.CREATE_NEW</code>: Creates a new file, failing if it already exists.</li>
+<li><code>StandardOpenOption.TRUNCATE_EXISTING</code>: Truncates the file to zero bytes if it exists.</li>
+</ul>
+<p>These options give you more control over how the file is opened and written to.</p>
+<p>However, you can also use the <code>Files.newBufferedWriter()</code> method to create a <code>BufferedWriter</code> instance:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file.txt&quot;</span>);
+
+<span class="hljs-keyword">try</span> (<span class="hljs-type">BufferedWriter</span> <span class="hljs-variable">writer</span> <span class="hljs-operator">=</span> Files.newBufferedWriter(path)) {
+    writer.write(<span class="hljs-string">&quot;Hello, World!&quot;</span>);
+    writer.newLine();
+    writer.write(<span class="hljs-string">&quot;This is a new line.&quot;</span>);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>The <code>BufferedWriter</code> provides methods such as <code>write()</code> and <code>newLine()</code> to write content to the file, allowing you to write line by line or in chunks.</p>
+<h2 id="working-with-file-attributes">Working with File Attributes<a class="heading-anchor" href="#working-with-file-attributes" aria-label="Link to Working with File Attributes">#</a></h2><p>The <code>java.nio.file</code> package provides classes and methods for working with file attributes. File attributes are metadata associated with a file or directory, such as size, modification time, permissions, and more. You can retrieve and modify file attributes using the NIO.2 API.</p>
+<p>Java defines several attribute and view types that represent different sets of file attributes:</p>
+<p><strong>BasicFileAttributes</strong>
+The <code>BasicFileAttributes</code> interface provides basic file attributes that are common across different file systems. It includes attributes like:</p>
+<ul>
+<li><code>FileTime creationTime()</code>: Returns the creation time of the file.</li>
+<li><code>FileTime lastModifiedTime()</code>: Returns the last modification time of the file.</li>
+<li><code>FileTime lastAccessTime()</code>: Returns the last access time of the file.</li>
+<li><code>long size()</code>: Returns the size of the file in bytes.</li>
+<li><code>boolean isRegularFile()</code>, <code>isDirectory()</code>, <code>isSymbolicLink()</code>: Checks the type of the file.</li>
+</ul>
+<p><strong>DosFileAttributes</strong>
+The <code>DosFileAttributes</code> interface extends <code>BasicFileAttributes</code> and provides additional attributes specific to DOS/Windows file systems. It includes attributes like:</p>
+<ul>
+<li><code>boolean isReadOnly()</code>: Checks if the file is read-only.</li>
+<li><code>boolean isHidden()</code>: Checks if the file is hidden.</li>
+<li><code>boolean isArchive()</code>: Checks if the file is an archive.</li>
+<li><code>boolean isSystem()</code>: Checks if the file is a system file.</li>
+</ul>
+<p><strong>PosixFileAttributes</strong>
+The <code>PosixFileAttributes</code> interface extends <code>BasicFileAttributes</code> and provides additional attributes specific to POSIX-compliant file systems. It includes attributes like:</p>
+<ul>
+<li><code>UserPrincipal owner()</code>: Returns the owner of the file.</li>
+<li><code>GroupPrincipal group()</code>: Returns the group owner of the file.</li>
+<li><code>Set&lt;PosixFilePermission&gt; permissions()</code>: Returns the file permissions as a set of <code>PosixFilePermission</code>.</li>
+</ul>
+<p>To retrieve file attributes, you can use the <code>Files.readAttributes()</code> method, specifying the attribute type you want to retrieve:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file.txt&quot;</span>);
+
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+    System.out.println(<span class="hljs-string">&quot;Creation Time: &quot;</span> + attrs.creationTime());
+    System.out.println(<span class="hljs-string">&quot;Last Modified Time: &quot;</span> + attrs.lastModifiedTime());
+    System.out.println(<span class="hljs-string">&quot;Size: &quot;</span> + attrs.size());
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>In this example, we retrieve the <code>BasicFileAttributes</code> of the file and access its creation time, last modified time, and size.</p>
+<p>Additionally, you can specify the <code>LinkOption</code> to control how symbolic links are handled:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/symlink.txt&quot;</span>);
+
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class, LinkOption.NOFOLLOW_LINKS);
+    <span class="hljs-type">boolean</span> <span class="hljs-variable">isSymLink</span> <span class="hljs-operator">=</span> attrs.isSymbolicLink();
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>By passing <code>LinkOption.NOFOLLOW_LINKS</code>, the <code>readAttributes()</code> method will not follow symbolic links and will instead return the attributes of the symbolic link itself.</p>
+<p>To quickly check if a file is accessible for reading, writing, or executing, you can use the <code>Files.isReadable()</code>, <code>Files.isWritable()</code>, and <code>Files.isExecutable()</code> methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file.txt&quot;</span>);
+
+<span class="hljs-type">boolean</span> <span class="hljs-variable">isReadable</span> <span class="hljs-operator">=</span> Files.isReadable(path);
+<span class="hljs-type">boolean</span> <span class="hljs-variable">isWritable</span> <span class="hljs-operator">=</span> Files.isWritable(path);
+<span class="hljs-type">boolean</span> <span class="hljs-variable">isExecutable</span> <span class="hljs-operator">=</span> Files.isExecutable(path);</code></pre></div><p>These methods return <code>true</code> if the file is accessible for the respective operation, and <code>false</code> otherwise.</p>
+<p>To modify file attributes you can use the <code>Files.setAttribute()</code> method, specifying the attribute name and value:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;path/to/file.txt&quot;</span>);
+
+<span class="hljs-keyword">try</span> {
+    Files.setAttribute(path, <span class="hljs-string">&quot;dos:readonly&quot;</span>, <span class="hljs-literal">true</span>);
+    Files.setAttribute(path, <span class="hljs-string">&quot;dos:hidden&quot;</span>, <span class="hljs-literal">true</span>);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>In this example, we set the <code>readonly</code> and <code>hidden</code> attributes of a file on a DOS/Windows file system.</p>
+<h2 id="traversing-a-directory-tree">Traversing a Directory Tree<a class="heading-anchor" href="#traversing-a-directory-tree" aria-label="Link to Traversing a Directory Tree">#</a></h2><p>Traversing a directory tree, also known as walking a directory tree, refers to the process of recursively visiting all the subdirectories and files within a given directory. The NIO.2 API, in particular, the <code>Files</code> class, provides methods to simplify this process and allows you to perform actions on each visited file and directory.</p>
+<p>The <code>Files.walk()</code> method is a convenient way to traverse a directory tree. It returns a <code>Stream&lt;Path&gt;</code> that represents the file tree rooted at the given starting directory:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">startingDir</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/path/to/directory&quot;</span>);
+
+<span class="hljs-keyword">try</span> (<span class="hljs-type">Stream</span>&lt;Path&gt; <span class="hljs-variable">stream</span> <span class="hljs-operator">=</span> Files.walk(startingDir)) {
+    stream.forEach(path -&gt; {
+        <span class="hljs-comment">// Process each path</span>
+        System.out.println(path);
+    });
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>The <code>Files.walk()</code> method visits all the files and directories in the tree, including the starting directory itself. You can perform various operations on each path using the stream API, such as filtering, mapping, or collecting the paths.</p>
+<p>You can control the depth of the traversal by passing a maximum depth value to the <code>Files.walk()</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">startingDir</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/path/to/directory&quot;</span>);
+<span class="hljs-type">int</span> <span class="hljs-variable">maxDepth</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span>;
+
+<span class="hljs-keyword">try</span> (<span class="hljs-type">Stream</span>&lt;Path&gt; <span class="hljs-variable">stream</span> <span class="hljs-operator">=</span> Files.walk(startingDir, maxDepth)) {
+    <span class="hljs-comment">// ...</span>
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>In this example, the traversal will go up to a maximum depth of 3 levels below the starting directory. A depth of 0 means only the starting directory itself is visited.</p>
+<p>By default, <code>Files.walk()</code> follows symbolic links. If you want to control this behavior, you can pass a <code>FileVisitOption</code> to the method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Path</span> <span class="hljs-variable">startingDir</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/path/to/directory&quot;</span>);
+
+<span class="hljs-keyword">try</span> (<span class="hljs-type">Stream</span>&lt;Path&gt; <span class="hljs-variable">stream</span> <span class="hljs-operator">=</span> Files.walk(startingDir, FileVisitOption.FOLLOW_LINKS)) {
+    <span class="hljs-comment">// ...</span>
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><p>The <code>FileVisitOption.FOLLOW_LINKS</code> option specifies that symbolic links should be followed during the traversal.</p>
+<p>However, when traversing a directory tree in Java, it&#39;s important to be aware of circular paths caused by symbolic links. A circular path occurs when a symbolic link points to a directory that is an ancestor of the link, creating an infinite loop.</p>
+<p>To avoid circular paths, you can use the <code>FileVisitOption.FOLLOW_LINKS</code> option and implement your own cycle detection logic. Here&#39;s a complete example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.nio.file.*;
+<span class="hljs-keyword">import</span> java.nio.file.attribute.BasicFileAttributes;
+<span class="hljs-keyword">import</span> java.util.EnumSet;
+<span class="hljs-keyword">import</span> java.util.HashSet;
+<span class="hljs-keyword">import</span> java.util.Set;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DirectoryTraversal</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">Path</span> <span class="hljs-variable">startingDir</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/path/to/directory&quot;</span>);
+        <span class="hljs-type">Set</span>&lt;Path&gt; <span class="hljs-variable">visitedPaths</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();
+
+        <span class="hljs-keyword">try</span> {
+            Files.walkFileTree(
+                               startingDir, 
+                               EnumSet.of(FileVisitOption.FOLLOW_LINKS), 
+                               Integer.MAX_VALUE, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+                <span class="hljs-meta">@Override</span>
+                <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(
+                        Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+                    <span class="hljs-keyword">if</span> (visitedPaths.contains(file)) {
+                        <span class="hljs-comment">// Circular path detected, skip processing</span>
+                        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+                    }
+                    visitedPaths.add(file);
+                    <span class="hljs-comment">// Process the file</span>
+                    System.out.println(file);
+                    <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+                }
+
+                <span class="hljs-meta">@Override</span>
+                <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">preVisitDirectory</span><span class="hljs-params">(
+                        Path dir, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+                    <span class="hljs-keyword">if</span> (visitedPaths.contains(dir)) {
+                        <span class="hljs-comment">// Circular path detected, skip processing</span>
+                        <span class="hljs-keyword">return</span> FileVisitResult.SKIP_SUBTREE;
+                    }
+                    visitedPaths.add(dir);
+                    <span class="hljs-comment">// Process the directory</span>
+                    System.out.println(dir);
+                    <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+                }
+
+                <span class="hljs-meta">@Override</span>
+                <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFileFailed</span><span class="hljs-params">(
+                        Path file, IOException exc)</span> <span class="hljs-keyword">throws</span> IOException {
+                    System.err.println(
+                        <span class="hljs-string">&quot;Error visiting file: &quot;</span> + file + <span class="hljs-string">&quot; - &quot;</span> + exc.getMessage()
+                    );
+                    <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+                }
+            });
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre></div><p>This program demonstrates how to traverse a directory tree while avoiding circular paths caused by symbolic links. It begins by defining the starting directory specified by the <code>startingDir</code> variable and uses the <code>Files.walkFileTree</code> method to traverse the directory tree. This method is recommended because it visits all files and directories and can follow symbolic links when specified by the <code>FileVisitOption.FOLLOW_LINKS</code> option. To prevent infinite loops caused by circular paths, the program maintains a set of visited paths (<code>visitedPaths</code>). This set is used to keep track of all the directories and files that have already been visited during the traversal.</p>
+<p>The core of the program is the implementation of a <code>SimpleFileVisitor</code>, which overrides several methods to define custom behaviors for visiting files and directories. When the program finds a file or directory, it checks the <code>visitedPaths</code> set to see if the path has already been visited. If the path is found in the set, this indicates a circular path, and the program skips further processing for that path. If the path is not in the set, it is added to the <code>visitedPaths</code> set, and the path is processed (in this case, printed to the console). This ensures that each path is processed only once, effectively preventing infinite loops.</p>
+<h2 id="serializing-data">Serializing Data<a class="heading-anchor" href="#serializing-data" aria-label="Link to Serializing Data">#</a></h2><p>We talked about serialization before. It is the process of converting an object into a byte stream, which can be saved to a file or transmitted over a network. Deserialization is the reverse process, where the byte stream is converted back into an object. Let&#39;s explore the key concepts and techniques related to serialization in Java.</p>
+<p>Serialization allows you to persist the state of an object and recreate it later. This is useful for:</p>
+<ul>
+<li>Saving object state to a file</li>
+<li>Sending objects over a network</li>
+<li>Caching objects for performance</li>
+</ul>
+<p>The Java Object Serialization API provides a standard mechanism for developers to handle this process.</p>
+<p>To make a class serializable, it must implement the <code>java.io.Serializable</code> interface. This is a marker interface (it has no methods) that tells the Java runtime that the class can be serialized:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Employee</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-comment">// Constructor, getters, and setters</span>
+}</code></pre></div><p>If you try to serialize a class that doesn&#39;t implement that interface, a <code>java.io.NotSerializableException</code> (a subclass of <code>IOException</code>) will be thrown at runtime.</p>
+<p>The <code>serialVersionUID</code> is a unique identifier for the serialized class. It&#39;s used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Employee</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+    <span class="hljs-comment">// ... rest of the class</span>
+}</code></pre></div><p>If you don&#39;t explicitly declare a <code>serialVersionUID</code>, the Java runtime will generate one based on various aspects of your class. However, it&#39;s recommended to declare one explicitly to maintain control over class versioning.</p>
+<p>If you have fields in your class that you don&#39;t want to be serialized (for example, sensitive data or derived data), you can mark them with the <code>transient</code> keyword:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Employee</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">transient</span> String password; <span class="hljs-comment">// This won&#x27;t be serialized</span>
+    <span class="hljs-comment">// ... rest of the class</span>
+}</code></pre></div><p>In summary, to ensure a class is serializable:</p>
+<ol>
+<li>The class must be marked <code>Serializable</code>.</li>
+<li>Every instance member of the class must be serializable, marked transient, or have a <code>null</code> value at the time of serialization.</li>
+</ol>
+<p>After that, you can use <code>ObjectOutputStream</code> and <code>ObjectInputStream</code> for the serialization/deserialization process as shown in a previous section. Here&#39;s a complete example demonstrating this process:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">import</span> java.io.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SerializationDemo</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">Person</span> <span class="hljs-variable">person</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;John Doe&quot;</span>, <span class="hljs-number">30</span>);
+
+        <span class="hljs-comment">// Serialization</span>
+        <span class="hljs-keyword">try</span> (<span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> 
+                 <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;person.ser&quot;</span>))) {
+            out.writeObject(person);
+            System.out.println(<span class="hljs-string">&quot;Person object serialized&quot;</span>);
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        }
+
+        <span class="hljs-comment">// Deserialization</span>
+        <span class="hljs-keyword">try</span> (<span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> 
+                <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;person.ser&quot;</span>))) {
+            <span class="hljs-type">Person</span> <span class="hljs-variable">deserializedPerson</span> <span class="hljs-operator">=</span> (Person) in.readObject();
+            System.out.println(<span class="hljs-string">&quot;Person object deserialized&quot;</span>);
+            System.out.println(<span class="hljs-string">&quot;Name: &quot;</span> + deserializedPerson.getName());
+            System.out.println(<span class="hljs-string">&quot;Age: &quot;</span> + deserializedPerson.getAge());
+        } <span class="hljs-keyword">catch</span> (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Person</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.name = name;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+
+    <span class="hljs-comment">// Getters</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">String</span> <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> { <span class="hljs-keyword">return</span> name; }
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAge</span><span class="hljs-params">()</span> { <span class="hljs-keyword">return</span> age; }
+                                      
+    <span class="hljs-comment">// ... rest of the class</span>
+}</code></pre></div><p>In this example, we serialize a <code>Person</code> object to a file named <code>person.ser</code> and then deserialize it back into a <code>Person</code> object.</p>
+<p>It&#39;s important to note that when deserializing an object, the constructor and any initialization block are not executed. However, the default initialization of instance variables still occurs.</p>
+<p>Also, unlike classes, records are automatically serializable. They implicitly implement the <code>Serializable</code> interface, so you don&#39;t need to explicitly declare it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">PersonRecord</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> <span class="hljs-comment">/** implements Serializable */</span> {
+    <span class="hljs-comment">// No need to declare serialVersionUID, as it&#x27;s automatically generated</span>
+}</code></pre></div><p>Remember, records provide a compact way to declare classes that are primarily used to store data, and their built-in serializability makes them convenient for use in scenarios where object serialization is required.</p>
+<h2 id="reference-tables">Reference Tables<a class="heading-anchor" href="#reference-tables" aria-label="Link to Reference Tables">#</a></h2><p>Here are some tables to help you review and understand the I/O stream classes and related concepts:</p>
+<p><strong>I/O Stream Classes Summary</strong></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Stream Type</th><th>Byte Streams</th><th>Character Streams</th></tr></thead><tbody><tr><td><strong>Input</strong></td><td><strong>Abstract Classes</strong>: <code>InputStream</code><br><strong>Concrete Classes</strong>: <code>FileInputStream</code>, <code>BufferedInputStream</code>, <code>ObjectInputStream</code></td><td><strong>Abstract Classes</strong>: <code>Reader</code><br><strong>Concrete Classes</strong>: <code>FileReader</code>, <code>BufferedReader</code></td></tr><tr><td><strong>Output</strong></td><td><strong>Abstract Classes</strong>: <code>OutputStream</code><br><strong>Concrete Classes</strong>: <code>FileOutputStream</code>, <code>BufferedOutputStream</code>, <code>ObjectOutputStream</code>, <code>PrintStream</code></td><td><strong>Abstract Classes</strong>: <code>Writer</code><br><strong>Concrete Classes</strong>: <code>FileWriter</code>, <code>BufferedWriter</code>, <code>PrintWriter</code></td></tr></tbody></table></div><p><strong>File and Path Operations Comparison</strong></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Operation</th><th>File Class</th><th>NIO.2 (Path and Files)</th></tr></thead><tbody><tr><td>Create File</td><td><code>file.createNewFile()</code></td><td><code>Files.createFile(path)</code></td></tr><tr><td>Delete File</td><td><code>file.delete()</code></td><td><code>Files.delete(path)</code></td></tr><tr><td>Check Existence</td><td><code>file.exists()</code></td><td><code>Files.exists(path)</code></td></tr><tr><td>Get Absolute Path</td><td><code>file.getAbsolutePath()</code></td><td><code>path.toAbsolutePath()</code></td></tr><tr><td>Check if Directory</td><td><code>file.isDirectory()</code></td><td><code>Files.isDirectory(path)</code></td></tr><tr><td>Check if File</td><td><code>file.isFile()</code></td><td><code>Files.isRegularFile(path)</code></td></tr><tr><td>List Directory Contents</td><td><code>file.list()</code>, <code>file.listFiles()</code></td><td><code>Files.list(path)</code></td></tr><tr><td>Create Directory</td><td><code>file.mkdir()</code></td><td><code>Files.createDirectory(path)</code></td></tr><tr><td>Create Directories</td><td><code>file.mkdirs()</code></td><td><code>Files.createDirectories(path)</code></td></tr><tr><td>Rename File</td><td><code>file.renameTo(dest)</code></td><td><code>Files.move(source, target)</code></td></tr></tbody></table></div><p><strong>Files Class Methods Summary</strong></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Method</th><th>Description</th></tr></thead><tbody><tr><td><code>copy()</code></td><td>Copies a file to a target file</td></tr><tr><td><code>createDirectories()</code></td><td>Creates a directory and any necessary parent directories</td></tr><tr><td><code>delete()</code></td><td>Deletes a file or empty directory</td></tr><tr><td><code>exists()</code></td><td>Checks file existence</td></tr><tr><td><code>isDirectory()</code></td><td>Checks if the path is a directory</td></tr><tr><td><code>isRegularFile()</code></td><td>Checks if the path is a regular file</td></tr><tr><td><code>move()</code></td><td>Moves or renames a file</td></tr><tr><td><code>size()</code></td><td>Returns the size of a file</td></tr><tr><td><code>readAllBytes()</code></td><td>Reads all bytes from a file</td></tr><tr><td><code>readAllLines()</code></td><td>Reads all lines from a file</td></tr><tr><td><code>walk()</code></td><td>Returns a <code>Stream</code> of file tree structure</td></tr><tr><td><code>write()</code></td><td>Writes bytes or lines to a file</td></tr></tbody></table></div><p><strong>Common File Attributes</strong></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Attribute</th><th><code>BasicFileAttributes</code></th><th><code>DosFileAttributes</code></th><th><code>PosixFileAttributes</code></th></tr></thead><tbody><tr><td>Creation Time</td><td>✓</td><td>✓</td><td>✓</td></tr><tr><td>Last Modified Time</td><td>✓</td><td>✓</td><td>✓</td></tr><tr><td>Last Access Time</td><td>✓</td><td>✓</td><td>✓</td></tr><tr><td>Size</td><td>✓</td><td>✓</td><td>✓</td></tr><tr><td>Is Directory</td><td>✓</td><td>✓</td><td>✓</td></tr><tr><td>Is Regular File</td><td>✓</td><td>✓</td><td>✓</td></tr><tr><td>Is Symbolic Link</td><td>✓</td><td>✓</td><td>✓</td></tr><tr><td>Is Hidden</td><td></td><td>✓</td><td></td></tr><tr><td>Is Read-only</td><td></td><td>✓</td><td></td></tr><tr><td>Owner</td><td></td><td></td><td>✓</td></tr><tr><td>Group</td><td></td><td></td><td>✓</td></tr><tr><td>Permissions</td><td></td><td></td><td>✓</td></tr></tbody></table></div><p><strong>StandardOpenOption Values</strong></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody><tr><td><code>APPEND</code></td><td>Append to the end of the file if it exists</td></tr><tr><td><code>CREATE</code></td><td>Create a new file if it doesn&#39;t exist</td></tr><tr><td><code>CREATE_NEW</code></td><td>Create a new file, failing if it already exists</td></tr><tr><td><code>DELETE_ON_CLOSE</code></td><td>Delete the file when the stream is closed</td></tr><tr><td><code>DSYNC</code></td><td>Synchronize only the file&#39;s content with the underlying storage device</td></tr><tr><td><code>READ</code></td><td>Open for read access</td></tr><tr><td><code>SPARSE</code></td><td>Hint that a newly created file will be sparse</td></tr><tr><td><code>SYNC</code></td><td>Synchronize every update to the file&#39;s content and metadata with the underlying storage device</td></tr><tr><td><code>TRUNCATE_EXISTING</code></td><td>Truncate the file to zero bytes if it exists</td></tr><tr><td><code>WRITE</code></td><td>Open for write access</td></tr></tbody></table></div><p><strong>StandardCopyOption Values</strong></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody><tr><td><code>REPLACE_EXISTING</code></td><td>Replace the target file if it exists</td></tr><tr><td><code>COPY_ATTRIBUTES</code></td><td>Copy file attributes to the target file</td></tr><tr><td><code>ATOMIC_MOVE</code></td><td>Move the file as an atomic file system operation</td></tr></tbody></table></div><h2 id="key-points">Key Points<a class="heading-anchor" href="#key-points" aria-label="Link to Key Points">#</a></h2><ul>
+<li><p>In the NIO.2 API, the key classes for file operations are:</p>
+<ul>
+<li><code>java.nio.file.Path</code>: Represents file and directory paths in a more flexible way (compared to the <code>java.io.File</code> class).</li>
+<li><code>java.nio.file.Files</code>: Utility class for file operations.</li>
+</ul>
+</li>
+<li><p>There two main types of I/O streams:</p>
+<ul>
+<li>Byte streams: Work with raw binary data (8-bit). Main abstract classes are <code>InputStream</code> and <code>OutputStream</code>.</li>
+<li>Character streams: Work with text data (16-bit Unicode). Main abstract classes are <code>Reader</code> and <code>Writer</code>.</li>
+</ul>
+</li>
+<li><p>However, streams can be classified as:</p>
+<ul>
+<li>Input streams: Used to read data from a source.</li>
+<li>Output streams: Used to write data to a destination.</li>
+<li>Low-level streams: Directly connected to the data source or destination.</li>
+<li>High-level streams: Built on top of other streams, providing additional functionality.</li>
+</ul>
+</li>
+<li><p>Here are the most important stream classes:</p>
+<ul>
+<li><code>FileInputStream</code> and <code>FileOutputStream</code>: Read and write bytes from/to files.</li>
+<li><code>FileReader</code> and <code>FileWriter</code>: Read and write characters from/to files.</li>
+<li><code>BufferedReader</code> and <code>BufferedWriter</code>: Add buffering capability to character streams.</li>
+<li><code>ObjectInputStream</code> and <code>ObjectOutputStream</code>: Read and write serialized objects.</li>
+<li><code>PrintStream</code> and <code>PrintWriter</code>: Write formatted data to byte and character streams respectively.</li>
+</ul>
+</li>
+<li><p>The <code>try-with-resources</code> statement should be used with I/O classes to ensure proper resource management.</p>
+</li>
+<li><p>Most I/O operations can throw <code>IOException</code> or its subclasses, which need to be handled.</p>
+</li>
+<li><p>Standard streams:</p>
+<ul>
+<li><code>System.in</code>: Standard input stream (typically keyboard input).</li>
+<li><code>System.out</code>: Standard output stream (typically console output).</li>
+<li><code>System.err</code>: Standard error stream (typically error console output).</li>
+</ul>
+</li>
+<li><p>When working with character streams, be aware of character encoding. The default is usually the system&#39;s default encoding.</p>
+</li>
+<li><p>Buffered streams (<code>BufferedReader</code>, <code>BufferedWriter</code>, etc.) can improve performance by reducing the number of I/O operations.</p>
+</li>
+<li><p>The <code>Files</code> class provides methods for various file operations like copying, moving, deleting, and comparing files.</p>
+</li>
+<li><p>Copying Files:</p>
+<ul>
+<li>Use <code>Files.copy(source, target, CopyOption...)</code> to copy files.</li>
+<li><code>StandardCopyOption.REPLACE_EXISTING</code> can be used to overwrite existing files.</li>
+<li>For large files, consider using I/O streams with a buffer for more control over the copying process.</li>
+</ul>
+</li>
+<li><p>Moving Files:</p>
+<ul>
+<li>Use <code>Files.move(source, target, CopyOption...)</code> to move or rename files.</li>
+<li><code>StandardCopyOption.ATOMIC_MOVE</code> ensures the move operation is performed as a single indivisible operation.</li>
+</ul>
+</li>
+<li><p>Deleting Files:</p>
+<ul>
+<li><code>Files.delete(path)</code> deletes a file or empty directory.</li>
+<li><code>Files.deleteIfExists(path)</code> deletes a file if it exists and returns a <code>boolean</code> indicating success.</li>
+</ul>
+</li>
+<li><p>Comparing Files:</p>
+<ul>
+<li><code>Files.isSameFile(path1, path2)</code> checks if two paths refer to the same file.</li>
+<li><code>Files.mismatch(file1, file2)</code> compares the content of two files and returns the position of the first mismatched byte.</li>
+</ul>
+</li>
+<li><p>Reading Files:</p>
+<ul>
+<li><code>Files.readAllLines(path)</code> reads all lines of a file into a <code>List&lt;String&gt;</code>.</li>
+<li><code>Files.lines(path)</code> returns a <code>Stream&lt;String&gt;</code> for lazy processing of file lines.</li>
+<li><code>Files.newBufferedReader(path)</code> creates a <code>BufferedReader</code> for more control over reading.</li>
+</ul>
+</li>
+<li><p>Writing Files:</p>
+<ul>
+<li><code>Files.write(path, bytes, OpenOption...)</code> writes content to a file in a single operation.</li>
+<li><code>Files.newBufferedWriter(path)</code> creates a <code>BufferedWriter</code> for writing line by line or in chunks.</li>
+<li>Use <code>StandardOpenOption</code> enum to specify how the file should be opened or written to.</li>
+</ul>
+</li>
+<li><p>File Attributes:</p>
+<ul>
+<li><code>BasicFileAttributes</code>, <code>DosFileAttributes</code>, and <code>PosixFileAttributes</code> interfaces provide access to various file attributes.</li>
+<li>Use <code>Files.readAttributes(path, Class&lt;A&gt;, LinkOption...)</code> to retrieve file attributes.</li>
+<li><code>Files.setAttribute(path, attribute, value)</code> modifies file attributes.</li>
+</ul>
+</li>
+<li><p>Directory Traversal:</p>
+<ul>
+<li><code>Files.walk(path, options)</code> returns a <code>Stream&lt;Path&gt;</code> for traversing a directory tree.</li>
+<li>Use <code>FileVisitOption.FOLLOW_LINKS</code> to follow symbolic links during traversal.</li>
+<li>Implement cycle detection logic to avoid infinite loops caused by circular symbolic links.</li>
+</ul>
+</li>
+<li><p>Serialization allows objects to be converted to a byte stream, which can be saved or transmitted. Classes must implement the <code>Serializable</code> interface to be serializable.</p>
+</li>
+<li><p>Classes must implement the <code>Serializable</code> interface to be serializable.</p>
+</li>
+<li><p>Use <code>serialVersionUID</code> for version control of serialized classes.</p>
+</li>
+<li><p>Mark fields as <code>transient</code> to exclude them from serialization.</p>
+</li>
+<li><p>Use <code>ObjectOutputStream</code> for serialization and <code>ObjectInputStream</code> for deserialization.</p>
+</li>
+<li><p>Records are automatically serializable and don&#39;t require explicit implementation of <code>Serializable</code>.</p>
+</li>
+</ul>
+<h2 id="practice-questions">Practice Questions<a class="heading-anchor" href="#practice-questions" aria-label="Link to Practice Questions">#</a></h2><p><a href="ch12-practice.html#book-practice">Open the interactive book questions on the Chapter 12.1 Practice page</a>.</p>
+</article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this chapter.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><div class="finish-chapter"><button class="primary-button" id="complete-chapter" data-id="ch12" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg><span>Mark chapter complete</span></button><a href="ch12a.html">Review the answers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch11-practice.html"><small>Previous</small>Chapter 11.1 Practice</a><a href="ch12-practice.html"><small>Next chapter</small>Chapter 12.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#basic-concepts">Basic Concepts</a><a class="toc-link" href="#using-nio2-paths">Using NIO.2 Paths</a><a class="toc-link" href="#the-files-class">The Files Class</a><a class="toc-link" href="#io-streams">I/O Streams</a><a class="toc-link" href="#copying-moving-deleting-and-comparing-files">Copying, Moving, Deleting, and Comparing Files</a><a class="toc-link" href="#reading-and-writing-files">Reading and Writing Files</a><a class="toc-link" href="#working-with-file-attributes">Working with File Attributes</a><a class="toc-link" href="#traversing-a-directory-tree">Traversing a Directory Tree</a><a class="toc-link" href="#serializing-data">Serializing Data</a><a class="toc-link" href="#reference-tables">Reference Tables</a><a class="toc-link" href="#key-points">Key Points</a><a class="toc-link" href="#practice-questions">Practice Questions</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

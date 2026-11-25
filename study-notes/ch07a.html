@@ -1,0 +1,195 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Error Handling and Exceptions</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch07a"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Error Handling and Exceptions<span class="answer-title">Answers & explanations</span></h1><div class="document-meta">Chapter 07 / Answer sheet<span>·</span>6 min read</div><div class="chapter-actions"><a class="" href="ch07.html">Read chapter</a><a href="ch07.html#key-points">Key points</a><a href="ch07-practice.html#book-practice">Book questions</a><a href="ch07-practice.html#chapter-quiz">Extra quiz</a><a class="active" href="ch07a.html">Original answers</a></div></div><article class="prose"><p class="question-review-note">This page preserves the original answer sheet. Reviewed corrections and clarifications appear beside the <a href="ch07-practice.html#book-practice">interactive book questions</a>.</p><h2 id="answers">Answers<a class="heading-anchor" href="#answers" aria-label="Link to Answers">#</a></h2><details class="answer-item" id="answer-1"><summary><span>Question 1</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A.</strong> A checked exception is a type of exception that inherits from the <code>java.lang.RuntimeException</code> class.</p>
+<ul>
+<li>This option is incorrect. A checked exception does not inherit from <code>java.lang.RuntimeException</code>. Checked exceptions are subclasses of <code>java.lang.Exception</code> but not of <code>java.lang.RuntimeException</code>.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> A checked exception must be either caught or declared in the method signature using the <code>throws</code> keyword.</p>
+<ul>
+<li>This option is correct. Checked exceptions must be either caught using a <code>try-catch</code> block or declared in the method signature with the <code>throws</code> keyword. This is to ensure that the exception is properly handled at some point in the code.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> A checked exception is an error that is typically caused by the environment in which the application is running, and it cannot be handled by the application.</p>
+<ul>
+<li>This option is incorrect. It describes errors more accurately than checked exceptions. Errors are typically caused by the environment and are not expected to be handled by the application.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> A checked exception can be thrown by the Java Virtual Machine when a severe error occurs, such as an out-of-memory error.</p>
+<ul>
+<li>This option is incorrect. It describes errors rather than checked exceptions. Errors like out-of-memory errors are thrown by the JVM and are not meant to be caught or handled by applications in most cases.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-2"><summary><span>Question 2</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A.</strong> This code defines a custom checked exception and correctly throws and handles it.</p>
+<ul>
+<li>This option is correct. The code defines a custom checked exception by extending <code>Exception</code>. The <code>methodThatThrowsException</code> method throws this custom exception, which is then caught and handled in the <code>main</code> method.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> This code defines a custom unchecked exception. </p>
+<ul>
+<li>This option is incorrect. The code extends <code>Exception</code>, not <code>RuntimeException</code>, making it a checked exception rather than an unchecked one.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> This code will not compile because the custom exception is not declared correctly in the method signature.</p>
+<ul>
+<li>This option is incorrect. The custom exception is correctly declared in the method signature of <code>methodThatThrowsException</code>, so it will compile without issues.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> This code will compile but will not throw the custom exception at runtime.</p>
+<ul>
+<li>This option is incorrect. The code will throw the custom exception at runtime as expected, and it will be caught and handled in the <code>catch</code> block.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-3"><summary><span>Question 3</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A.</strong> <code>1</code></p>
+<ul>
+<li>This option is incorrect. Although the <code>catch</code> block returns <code>1</code>, the <code>finally</code> block will override this return value with <code>2</code>.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> <code>2</code></p>
+<ul>
+<li>This option is correct. The <code>finally</code> block always executes and its return value overrides the return value from the <code>catch</code> block, resulting in <code>2</code> being printed.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> Compilation fails</p>
+<ul>
+<li>This option is incorrect. The code compiles without any errors.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> An exception occurs at runtime</p>
+<ul>
+<li>This option is incorrect. While a <code>RuntimeException</code> is thrown in the <code>try</code> block, it is caught by the <code>catch</code> block, and no exception propagates to cause a runtime error.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-4"><summary><span>Question 4</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A.</strong> The code doesn&#39;t compile correctly.</p>
+<ul>
+<li>This option is incorrect. The code does compile correctly. A <code>try</code> block can be followed by a <code>finally</code> block without a <code>catch</code> block.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> The code would compile correctly if we add a <code>catch</code> block.</p>
+<ul>
+<li>This option is incorrect. While adding a <code>catch</code> block is valid, it is not necessary for the code to compile. The <code>try</code> block can be used with only a <code>finally</code> block.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> The code would compile correctly if we remove the <code>finally</code> block.</p>
+<ul>
+<li>This option is incorrect. Removing the <code>finally</code> block is not necessary for the code to compile. The code is valid with the <code>finally</code> block present.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> The code compiles correctly as it is.</p>
+<ul>
+<li>This option is correct. The code compiles correctly as it is. A <code>try</code> block must be followed by either a <code>catch</code> block, a <code>finally</code> block, or both.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-5"><summary><span>Question 5</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are C and D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A.</strong> In a <code>try-with-resources</code>, the <code>catch</code> block is required.</p>
+<ul>
+<li>This option is incorrect. In a <code>try-with-resources</code> statement, the catch block is optional. The primary purpose of <code>try-with-resources</code> is to ensure that each resource is closed at the end of the statement, whether an exception is thrown or not.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> The <code>throws</code> keyword is used to throw an exception. </p>
+<ul>
+<li>This option is incorrect. The <code>throws</code> keyword is used in method declarations to specify that the method can throw an exception, not to throw an exception. The <code>throw</code> keyword is used to actually throw an exception.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> In a <code>try-with-resources</code> block, if you declare more than one resource, they have to be separated by a semicolon.</p>
+<ul>
+<li>This option is correct. In a <code>try-with-resources</code> block, if you declare more than one resource, they must be separated by a semicolon.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> If a <code>catch</code> block is defined for an exception that couldn&#39;t be thrown by the code in the <code>try</code> block, a compile-time error is generated.</p>
+<ul>
+<li>This option is correct. If a <code>catch</code> block is defined for an exception that cannot be thrown by the code in the <code>try</code> block, the compiler will generate an error because the <code>catch</code> block is unreachable.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-6"><summary><span>Question 6</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is E.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A.</strong> <code>Close Exception</code></p>
+<ul>
+<li>This option is incorrect. While the <code>IOException</code> from <code>close()</code> will occur, it will be suppressed by the <code>RuntimeException</code>.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> <code>RuntimeException</code></p>
+<ul>
+<li>This option is incorrect. The primary exception is <code>RuntimeException</code>, but it will not print its message directly because the catch block does not handle it.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> <code>RuntimeException</code> and then <code>CloseException</code> </p>
+<ul>
+<li>This option is incorrect. Although both exceptions occur, the <code>RuntimeException</code> is primary, and the <code>IOException</code> is suppressed. Both messages are not printed in sequence.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> Compilation fails</p>
+<ul>
+<li>This option is incorrect. The code compiles without any errors.</li>
+</ul>
+</li>
+<li><p><strong>E.</strong> The stack trace of an uncaught exception is printed.</p>
+<ul>
+<li>This option is correct. The <code>RuntimeException</code> thrown in the try block is not caught by the <code>catch (IOException e)</code> block. Hence, the stack trace of the <code>RuntimeException</code> is printed.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-7"><summary><span>Question 7</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are B and C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A.</strong> <code>java.io.FileNotFoundException</code> is incorrect. It is a subclass of <code>java.io.IOException</code>, which in turn is a subclass of <code>java.lang.Exception</code>, making it a checked exception.</p>
+</li>
+<li><p><strong>B.</strong> <code>java.lang.ArithmeticException</code> is correct. It is a direct subclass of <code>java.lang.RuntimeException</code> and represents arithmetic errors such as division by zero.</p>
+</li>
+<li><p><strong>C.</strong> <code>java.lang.ClassCastException</code> is correct. It is a direct subclass of <code>java.lang.RuntimeException</code> and indicates an invalid cast operation.</p>
+</li>
+<li><p><strong>D.</strong> <code>java.lang.InterruptedException</code> is incorrect. It is a direct subclass of <code>java.lang.Exception</code>, making it a checked exception. It indicates that a thread has been interrupted.</p>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-8"><summary><span>Question 8</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A.</strong> Only <code>&quot;Try Block Exception&quot;</code> is printed.</p>
+<ul>
+<li>This option is incorrect. The <code>Try Block Exception</code> is the main exception and is not directly printed because the <code>catch</code> block checks for suppressed exceptions first.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> Only <code>&quot;Close Exception&quot;</code> is printed.</p>
+<ul>
+<li>This option is incorrect. The <code>Close Exception</code> is not directly printed; it is suppressed and accessed via the <code>getSuppressed</code> method.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> Both <code>&quot;Try Block Exception&quot;</code> and <code>&quot;Close Exception&quot;</code> are printed.</p>
+<ul>
+<li>This option is incorrect. The code only prints suppressed exceptions, not the main exception message directly.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> <code>&quot;Suppressed: Close Exception&quot;</code> is printed.</p>
+<ul>
+<li>This option is correct. The <code>RuntimeException</code> thrown in the <code>try</code> block is the main exception, and the <code>RuntimeException</code> from the <code>close</code> method is suppressed. The <code>catch</code> block prints the suppressed exception message, <code>&quot;Suppressed: Close Exception&quot;</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details></article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this answer sheet.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch07.html"><small>Previous</small>Error Handling and Exceptions</a><a href="ch07-practice.html"><small>Next chapter</small>Chapter 7.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#answers">Answers</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

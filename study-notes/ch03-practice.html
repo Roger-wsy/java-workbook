@@ -1,0 +1,434 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Chapter 3.1 Practice</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch03-practice"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link selected" href="ch03-practice.html" aria-current="page"><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Chapter 3.1 Practice</h1><p class="practice-subtitle">Working with Records and Enums</p><div class="document-meta">7 book questions <span>·</span> 11 extra quiz questions</div><div class="chapter-actions"><a href="ch03.html">Read chapter 3</a><a class="active" aria-current="page" href="ch03-practice.html">Practice 3.1</a><a href="ch03a.html">Original answers</a></div></div><nav class="practice-section-nav" aria-label="Practice sections"><a href="#book-practice">Book questions</a><a href="#chapter-quiz">Extra quiz</a><button type="button" class="reset-all-quizzes">Reset all questions</button></nav><article class="prose practice-prose"><section class="chapter-quiz book-practice" id="book-practice" aria-labelledby="book-practice-title">
+    <h2 id="book-practice-title">Book practice questions</h2>
+    <p class="quiz-intro">7 questions from the chapter, with the book’s explanations. Single-answer questions show immediate feedback. For checkbox questions, select your answers, then choose Check answer. Reviewed corrections and clarifications are identified beside the question.</p>
+    <form class="quiz-form" data-quiz="book-ch03"><p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="book-q1" data-answer="2" aria-describedby="book-q1-feedback">
+          <legend>Question 1</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Consider the following record definition:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Employee</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> {}</code></pre></div><p>Which of the following statements is true about the <code>Employee</code> record?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q1-option-0" type="radio" name="book-q1" value="0" aria-labelledby="book-q1-option-0-letter book-q1-option-0-text"><span class="option-letter" id="book-q1-option-0-letter">A</span><div class="quiz-option-content" id="book-q1-option-0-text"><p>The <code>Employee</code> record explicitly defines a public constructor that initializes its fields.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-1" type="radio" name="book-q1" value="1" aria-labelledby="book-q1-option-1-letter book-q1-option-1-text"><span class="option-letter" id="book-q1-option-1-letter">B</span><div class="quiz-option-content" id="book-q1-option-1-text"><p>The fields <code>name</code> and <code>age</code> can be reassigned to new values after an <code>Employee</code> object is created.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-2" type="radio" name="book-q1" value="2" aria-labelledby="book-q1-option-2-letter book-q1-option-2-text"><span class="option-letter" id="book-q1-option-2-letter">C</span><div class="quiz-option-content" id="book-q1-option-2-text"><p>The <code>Employee</code> record implicitly creates a public constructor and private final fields for <code>name</code> and <code>age</code>.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-3" type="radio" name="book-q1" value="3" aria-labelledby="book-q1-option-3-letter book-q1-option-3-text"><span class="option-letter" id="book-q1-option-3-letter">D</span><div class="quiz-option-content" id="book-q1-option-3-text"><p>It is mandatory to define getters for the fields <code>name</code> and <code>age</code> in the <code>Employee</code> record.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> The <code>Employee</code> record explicitly defines a public constructor that initializes its fields. </p>
+<ul>
+<li>This option is incorrect because the record <code>Employee</code> does not explicitly define a <code>public</code> constructor. Records automatically generate a <code>public</code> constructor with the same parameters as the record&#39;s declaration.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The fields <code>name</code> and <code>age</code> can be reassigned to new values after an <code>Employee</code> object is created.</p>
+<ul>
+<li>This option is incorrect as the fields within a record are <code>final</code>, which means they cannot be reassigned to new values after an <code>Employee</code> object has been created. This immutability is one of the key characteristics of records.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>Employee</code> record implicitly creates a <code>public</code> constructor and <code>private</code> <code>final</code> fields for <code>name</code> and <code>age</code>.</p>
+<ul>
+<li>This is the correct option. Records implicitly create a public constructor for the record&#39;s fields and also make these fields <code>private</code> and <code>final</code>. This means you don&#39;t have to manually write boilerplate code for constructor, getters, or to ensure immutability.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> It is mandatory to define getters for the fields <code>name</code> and <code>age</code> in the <code>Employee</code> record.</p>
+<ul>
+<li>This option is incorrect because records automatically generate public methods to access the fields, known as accessor methods, which essentially act as getters. Therefore, it is not mandatory (or even possible) to define separate getters for the fields.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q2" data-answer="1" aria-describedby="book-q2-feedback">
+          <legend>Question 2</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Given the record definition below:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Account</span><span class="hljs-params">(String id, <span class="hljs-type">double</span> balance)</span> {}</code></pre></div><p>Which statement accurately describes the immutability of records?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q2-option-0" type="radio" name="book-q2" value="0" aria-labelledby="book-q2-option-0-letter book-q2-option-0-text"><span class="option-letter" id="book-q2-option-0-letter">A</span><div class="quiz-option-content" id="book-q2-option-0-text"><p>The <code>balance</code> field can be modified using a public setter method within the <code>Account</code> record.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-1" type="radio" name="book-q2" value="1" aria-labelledby="book-q2-option-1-letter book-q2-option-1-text"><span class="option-letter" id="book-q2-option-1-letter">B</span><div class="quiz-option-content" id="book-q2-option-1-text"><p>Once an <code>Account</code> object is created, its <code>id</code> and <code>balance</code> cannot be changed.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-2" type="radio" name="book-q2" value="2" aria-labelledby="book-q2-option-2-letter book-q2-option-2-text"><span class="option-letter" id="book-q2-option-2-letter">C</span><div class="quiz-option-content" id="book-q2-option-2-text"><p>Immutability of records can be bypassed by you define custom setter methods for the <code>id</code> and <code>balance</code> fields.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-3" type="radio" name="book-q2" value="3" aria-labelledby="book-q2-option-3-letter book-q2-option-3-text"><span class="option-letter" id="book-q2-option-3-letter">D</span><div class="quiz-option-content" id="book-q2-option-3-text"><p>Records allow field values to be modified if accessed directly, without using setter methods.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> The <code>balance</code> field can be modified using a public setter method within the <code>Account</code> record.</p>
+<ul>
+<li>This option is incorrect because records in Java do not support public setter methods for their fields. The fields of a record are <code>final</code> and cannot be modified after the object&#39;s construction, which is a key aspect of their design to enforce immutability.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Once an <code>Account</code> object is created, its <code>id</code> and <code>balance</code> cannot be changed.</p>
+<ul>
+<li>This is the correct option. Records are immutable by design, meaning that once a record object is created, the values of its fields (<code>id</code> and <code>balance</code> in this case) cannot be changed. This immutability is ensured by making the fields <code>private</code> and <code>final</code>, and by not providing setter methods.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Immutability of records can be bypassed by you define custom setter methods for the <code>id</code> and <code>balance</code> fields. </p>
+<ul>
+<li>This option is incorrect. Custom setter methods cannot be defined for the record fields because records do not allow defining mutators for their components.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Records allow field values to be modified if accessed directly, without using setter methods.</p>
+<ul>
+<li>This option is incorrect because the fields in a record are implicitly <code>final</code> and private, which means they cannot be modified directly or through setter methods. The design of records enforces this immutability to ensure that instances of records act as true carriers of immutable data.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q3" data-answer="3" aria-describedby="book-q3-feedback">
+          <legend>Question 3</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Consider the following record declaration:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Product</span><span class="hljs-params">(<span class="hljs-type">int</span> id, String name, <span class="hljs-type">double</span> price)</span> {}</code></pre></div><p>How can you correctly initialize an instance of the <code>Product</code> record?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q3-option-0" type="radio" name="book-q3" value="0" aria-labelledby="book-q3-option-0-letter book-q3-option-0-text"><span class="option-letter" id="book-q3-option-0-letter">A</span><div class="quiz-option-content" id="book-q3-option-0-text"><p><code>Product p = new Product();</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-1" type="radio" name="book-q3" value="1" aria-labelledby="book-q3-option-1-letter book-q3-option-1-text"><span class="option-letter" id="book-q3-option-1-letter">B</span><div class="quiz-option-content" id="book-q3-option-1-text"><p><code>Product p = Product(101, &quot;Coffee&quot;, 15.99);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-2" type="radio" name="book-q3" value="2" aria-labelledby="book-q3-option-2-letter book-q3-option-2-text"><span class="option-letter" id="book-q3-option-2-letter">C</span><div class="quiz-option-content" id="book-q3-option-2-text"><p><code>Product p = {101, &quot;Coffee&quot;, 15.99};</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-3" type="radio" name="book-q3" value="3" aria-labelledby="book-q3-option-3-letter book-q3-option-3-text"><span class="option-letter" id="book-q3-option-3-letter">D</span><div class="quiz-option-content" id="book-q3-option-3-text"><p><code>Product p = new Product(101, &quot;Coffee&quot;, 15.99);</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>Product p = new Product();</code></p>
+<ul>
+<li>This option is incorrect because the default constructor without parameters does not exist for records in Java. Records require all their fields to be specified at the time of instantiation.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Product p = Product(101, &quot;Coffee&quot;, 15.99);</code></p>
+<ul>
+<li>This option is incorrect because the syntax used here is not valid for creating a new instance of a record in Java. The correct syntax for instantiating a record involves using the <code>new</code> keyword followed by the record name and the parameters in parentheses.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Product p = {101, &quot;Coffee&quot;, 15.99};</code></p>
+<ul>
+<li>This option is incorrect as it mistakenly uses the syntax for array initialization. In Java, objects, including records, cannot be instantiated using curly braces without the <code>new</code> keyword and proper constructor.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Product p = new Product(101, &quot;Coffee&quot;, 15.99);</code></p>
+<ul>
+<li>This is the correct option. Records in Java are instantiated using the <code>new</code> keyword followed by the record&#39;s constructor, which requires passing all the fields defined in the record. This syntax correctly creates a new <code>Product</code> record with the given <code>id</code>, <code>name</code>, and <code>price</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q4" data-answer="1" aria-describedby="book-q4-feedback">
+          <legend>Question 4</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Consider a record that needs to implement the <code>Comparable</code> interface to allow sorting based on one of its fields. Given the following record definition:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Item</span><span class="hljs-params">(<span class="hljs-type">int</span> id, String name, <span class="hljs-type">double</span> price)</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Comparable</span>&lt;Item&gt; {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compareTo</span><span class="hljs-params">(Item other)</span> {
+        <span class="hljs-keyword">return</span> Double.compare(<span class="hljs-built_in">this</span>.price, other.price);
+    }
+}</code></pre></div><p>Which statement correctly describes how records can be customized by implementing interfaces?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q4-option-0" type="radio" name="book-q4" value="0" aria-labelledby="book-q4-option-0-letter book-q4-option-0-text"><span class="option-letter" id="book-q4-option-0-letter">A</span><div class="quiz-option-content" id="book-q4-option-0-text"><p>Records cannot implement interfaces because they are <code>final</code> and immutable by design, which prevents any form of behavior customization.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-1" type="radio" name="book-q4" value="1" aria-labelledby="book-q4-option-1-letter book-q4-option-1-text"><span class="option-letter" id="book-q4-option-1-letter">B</span><div class="quiz-option-content" id="book-q4-option-1-text"><p>This record correctly implements the <code>Comparable</code> interface, allowing <code>Item</code> objects to be sorted based on their <code>price</code>.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-2" type="radio" name="book-q4" value="2" aria-labelledby="book-q4-option-2-letter book-q4-option-2-text"><span class="option-letter" id="book-q4-option-2-letter">C</span><div class="quiz-option-content" id="book-q4-option-2-text"><p>Implementing interfaces in records is restricted only to functional interfaces due to their immutable nature.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-3" type="radio" name="book-q4" value="3" aria-labelledby="book-q4-option-3-letter book-q4-option-3-text"><span class="option-letter" id="book-q4-option-3-letter">D</span><div class="quiz-option-content" id="book-q4-option-3-text"><p>The <code>compareTo</code> method cannot be overridden in records because method overriding is not supported in record types.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> Records cannot implement interfaces because they are <code>final</code> and immutable by design, which prevents any form of behavior customization.</p>
+<ul>
+<li>This option is incorrect. Records in Java can implement interfaces. The finality and immutability of records do not preclude them from implementing interfaces, which can be used to add behaviors or contractual obligations to a record.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> This record correctly implements the <code>Comparable</code> interface, allowing <code>Item</code> objects to be sorted based on their <code>price</code>.</p>
+<ul>
+<li>This is the correct option. The provided record definition correctly implements the <code>Comparable&lt;Item&gt;</code> interface by overriding the <code>compareTo</code> method. This customization allows instances of the <code>Item</code> record to be sorted based on the <code>price</code> field, demonstrating that records can indeed implement interfaces and override their methods as needed.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Implementing interfaces in records is restricted only to functional interfaces due to their immutable nature.</p>
+<ul>
+<li>This option is incorrect. There is no such restriction that limits records to implementing only functional interfaces. Records can implement any interface, including those with multiple abstract methods, as long as the record provides implementations for the abstract methods defined in the interface.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>compareTo</code> method cannot be overridden in records because method overriding is not supported in record types.</p>
+<ul>
+<li>This option is incorrect. Records can override methods from the interfaces they implement, including the <code>compareTo</code> method from the <code>Comparable</code> interface in this example. Method overriding is a key aspect of implementing interfaces and is fully supported by record types in Java.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q5" data-answer="0,3" aria-describedby="book-q5-feedback">
+          <legend>Question 5</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Consider the ways to declare enums in Java. Which of the following declarations are valid? (Choose all that apply.)</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q5-option-0" type="checkbox" name="book-q5" value="0" aria-labelledby="book-q5-option-0-letter book-q5-option-0-text"><span class="option-letter" id="book-q5-option-0-letter">A</span><div class="quiz-option-content" id="book-q5-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Day</span> {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q5-option-1" type="checkbox" name="book-q5" value="1" aria-labelledby="book-q5-option-1-letter book-q5-option-1-text"><span class="option-letter" id="book-q5-option-1-letter">B</span><div class="quiz-option-content" id="book-q5-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Month</span> {
+    <span class="hljs-keyword">private</span> JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER;
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q5-option-2" type="checkbox" name="book-q5" value="2" aria-labelledby="book-q5-option-2-letter book-q5-option-2-text"><span class="option-letter" id="book-q5-option-2-letter">C</span><div class="quiz-option-content" id="book-q5-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Season</span> {
+    WINTER, SPRING, SUMMER, FALL
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q5-option-3" type="checkbox" name="book-q5" value="3" aria-labelledby="book-q5-option-3-letter book-q5-option-3-text"><span class="option-letter" id="book-q5-option-3-letter">D</span><div class="quiz-option-content" id="book-q5-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Status</span> {
+    ACTIVE, INACTIVE, DELETED;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">printStatus</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Current status: &quot;</span> + <span class="hljs-built_in">this</span>);
+    }
+}</code></pre></div></div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Day</span> {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}</code></pre></div><ul>
+<li><p>This option is correct. It demonstrates a valid declaration of an enum in Java. Enums are used to define a set of named constants, and this syntax is the standard way to declare them. The <code>public</code> access modifier makes this enum accessible from any other class.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Month</span> {
+    <span class="hljs-keyword">private</span> JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER;
+}</code></pre></div><ul>
+<li><p>This option is incorrect. Enums cannot have <code>private</code> access modifiers for their constants. Enum constants are implicitly <code>public</code>, <code>static</code>, and <code>final</code> and should be declared without access modifiers.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Season</span> {
+    WINTER, SPRING, SUMMER, FALL
+}</code></pre></div><ul>
+<li><p>This option is incorrect because enums cannot be declared with <code>protected</code> or <code>private</code> access levels. Enums are implicitly <code>public</code> if they are defined outside of a class. If defined within a class, they can have any access level, but the <code>protected</code> keyword cannot be used at the enum level itself.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Status</span> {
+    ACTIVE, INACTIVE, DELETED;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">printStatus</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Current status: &quot;</span> + <span class="hljs-built_in">this</span>);
+    }
+}</code></pre></div><ul>
+<li>This option is correct. It shows an enum <code>Status</code> with a method <code>printStatus()</code>. Enums in Java can contain methods, fields, constructors, and implement interfaces. This demonstrates the ability of enums to have methods, making this declaration valid.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q6" data-answer="0" aria-describedby="book-q6-feedback">
+          <legend>Question 6</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Consider the following enum declaration:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Color</span> {
+    RED, GREEN, BLUE;
+}</code></pre></div><p>What is the result of calling <code>Color.GREEN.ordinal()</code>?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q6-option-0" type="radio" name="book-q6" value="0" aria-labelledby="book-q6-option-0-letter book-q6-option-0-text"><span class="option-letter" id="book-q6-option-0-letter">A</span><div class="quiz-option-content" id="book-q6-option-0-text"><p><code>1</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-1" type="radio" name="book-q6" value="1" aria-labelledby="book-q6-option-1-letter book-q6-option-1-text"><span class="option-letter" id="book-q6-option-1-letter">B</span><div class="quiz-option-content" id="book-q6-option-1-text"><p><code>2</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-2" type="radio" name="book-q6" value="2" aria-labelledby="book-q6-option-2-letter book-q6-option-2-text"><span class="option-letter" id="book-q6-option-2-letter">C</span><div class="quiz-option-content" id="book-q6-option-2-text"><p><code>0</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-3" type="radio" name="book-q6" value="3" aria-labelledby="book-q6-option-3-letter book-q6-option-3-text"><span class="option-letter" id="book-q6-option-3-letter">D</span><div class="quiz-option-content" id="book-q6-option-3-text"><p><code>Color.GREEN</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>1</code></p>
+<ul>
+<li>This option is correct. The <code>ordinal()</code> method returns the ordinal of this enumeration constant (its position in its enum declaration, where the initial constant is assigned an ordinal of zero). Since <code>GREEN</code> is the second enum constant declared in the <code>Color</code> enum, its ordinal value is 1.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>2</code></p>
+<ul>
+<li>This option is incorrect. The ordinal value of <code>BLUE</code> would be 2, not <code>GREEN</code>, because <code>BLUE</code> is the third declared constant in the <code>Color</code> enum.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>0</code></p>
+<ul>
+<li>This option is incorrect. The ordinal value of <code>RED</code> is 0, as it is the first declared constant in the <code>Color</code> enum.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Color.GREEN</code></p>
+<ul>
+<li>This option is incorrect. The <code>ordinal()</code> method returns an integer representing the position of the enum constant in the declaration, not the enum constant itself.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q7" data-answer="3" aria-describedby="book-q7-feedback">
+          <legend>Question 7</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Consider an enum that needs to provide a custom method to display a message based on the enum constant. Which of the following implementations correctly defines such an enum?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q7-option-0" type="radio" name="book-q7" value="0" aria-labelledby="book-q7-option-0-letter book-q7-option-0-text"><span class="option-letter" id="book-q7-option-0-letter">A</span><div class="quiz-option-content" id="book-q7-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Size</span> {
+    SMALL, MEDIUM, LARGE;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">printSize</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;The size is &quot;</span> + <span class="hljs-built_in">this</span>.name());
+    }
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q7-option-1" type="radio" name="book-q7" value="1" aria-labelledby="book-q7-option-1-letter book-q7-option-1-text"><span class="option-letter" id="book-q7-option-1-letter">B</span><div class="quiz-option-content" id="book-q7-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Flavor</span> {
+    CHOCOLATE, VANILLA, STRAWBERRY;
+    <span class="hljs-type">void</span> <span class="hljs-title function_">printFlavor</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Flavor: &quot;</span> + Flavor.name);
+    }
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q7-option-2" type="radio" name="book-q7" value="2" aria-labelledby="book-q7-option-2-letter book-q7-option-2-text"><span class="option-letter" id="book-q7-option-2-letter">C</span><div class="quiz-option-content" id="book-q7-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Direction</span> {
+    NORTH, SOUTH, EAST, WEST;
+    <span class="hljs-type">private</span> <span class="hljs-title function_">printDirection</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Going &quot;</span> + <span class="hljs-built_in">this</span>.toString());
+    }
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q7-option-3" type="radio" name="book-q7" value="3" aria-labelledby="book-q7-option-3-letter book-q7-option-3-text"><span class="option-letter" id="book-q7-option-3-letter">D</span><div class="quiz-option-content" id="book-q7-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Season</span> {
+    WINTER, SPRING, SUMMER, FALL;
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">printSeason</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;The season is &quot;</span> + <span class="hljs-built_in">this</span>.name());
+    }
+}</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Size</span> {
+    SMALL, MEDIUM, LARGE;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">printSize</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;The size is &quot;</span> + <span class="hljs-built_in">this</span>.name());
+    }
+}</code></pre></div><ul>
+<li><p>This option is incorrect because the method <code>printSize()</code> is defined as <code>static</code>, which means it cannot access the <code>this</code> reference. Static methods in enums can&#39;t directly access the enum constants without specifying the constant explicitly or being passed a reference.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Flavor</span> {
+    CHOCOLATE, VANILLA, STRAWBERRY;
+    <span class="hljs-type">void</span> <span class="hljs-title function_">printFlavor</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Flavor: &quot;</span> + Flavor.name);
+    }
+}</code></pre></div><ul>
+<li><p>This option is incorrect because the <code>name</code> property of an enum constant is <code>private</code>. You can only access it using the <code>this</code> reference and the <code>name()</code> method (<code>this.name()</code>).</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Direction</span> {
+    NORTH, SOUTH, EAST, WEST;
+    <span class="hljs-type">private</span> <span class="hljs-title function_">printDirection</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Going &quot;</span> + <span class="hljs-built_in">this</span>.toString());
+    }
+}</code></pre></div><ul>
+<li><p>This option is incorrect for two reasons. First, <code>protected</code> is not a valid access modifier for a top-level enum, top-level enums can only be <code>public</code> or package-private (no modifier). Second, <code>printDirection()</code> method is missing a return type (e.g., <code>void</code>).</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Season</span> {
+    WINTER, SPRING, SUMMER, FALL;
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">printSeason</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;The season is &quot;</span> + <span class="hljs-built_in">this</span>.name());
+    }
+}</code></pre></div><ul>
+<li>This is the correct option. The <code>printSeason()</code> method is properly defined: it&#39;s <code>public</code>, non-static, and utilizes the <code>this</code> reference to access the name of the current enum constant. This method correctly provides custom behavior for each enum constant, allowing it to print a message indicating the current season.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart book practice</button></div>
+    </form>
+  </section><section class="chapter-quiz" id="chapter-quiz" aria-labelledby="quiz-title">
+    <h2 id="quiz-title">Extra quiz</h2>
+    <p class="quiz-intro">Choose an answer to see its explanation immediately. Correct choices appear in green; incorrect selections appear in red. For checkbox questions, select your answers, then choose Check answer.</p>
+    <details class="practice-context"><summary>About these questions</summary><p>11 original learning exercises, not official exam questions. Use Java 21 without preview features. Assume standard imports and a valid enclosing class or method, which may declare checked exceptions.</p></details>
+    <p class="quiz-saving">Your selections and feedback are saved in this browser.</p>
+    <noscript><p>Enable JavaScript for scoring. The book’s practice questions and separate answer sheet remain available without it.</p></noscript>
+    <form class="quiz-form" data-quiz="ch03">
+      <p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="quiz-q1" data-answer="2" aria-describedby="quiz-q1-feedback">
+          <legend><span class="quiz-number">1.</span> For <code>record Point(int x, int y) {}</code>, how do you read x?</legend>
+          <div class="quiz-question-meta">Accessors · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q1" value="0"><span class="option-letter">A</span><span>p.getX()</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="1"><span class="option-letter">B</span><span>p.x</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="2"><span class="option-letter">C</span><span>p.x()</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="3"><span class="option-letter">D</span><span>Point.x(p)</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">A record component generates an accessor named exactly after the component: x(), not getX().</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q2" data-answer="0" aria-describedby="quiz-q2-feedback">
+          <legend><span class="quiz-number">2.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Record equality · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Point</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> {}
+<span class="hljs-comment">// inside a method:</span>
+System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Point</span>(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>).equals(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Point</span>(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)));</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q2" value="0"><span class="option-letter">A</span><span>true</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="1"><span class="option-letter">B</span><span>false</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="2"><span class="option-letter">C</span><span>A hash code</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Generated record equals compares the record type and component values. Matching primitive component values make these records equal.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q3" data-answer="3" aria-describedby="quiz-q3-feedback">
+          <legend><span class="quiz-number">3.</span> What is printed? Assume <code>java.util</code> is imported.</legend>
+          <div class="quiz-question-meta">Shallow immutability · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Bag</span><span class="hljs-params">(List&lt;String&gt; items)</span> {}
+<span class="hljs-comment">// inside a method:</span>
+<span class="hljs-type">var</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;String&gt;();
+<span class="hljs-type">var</span> <span class="hljs-variable">bag</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Bag</span>(list);
+list.add(<span class="hljs-string">&quot;tea&quot;</span>);
+System.out.println(bag.items().size());</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q3" value="0"><span class="option-letter">A</span><span>0</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="1"><span class="option-letter">B</span><span>It does not compile</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="2"><span class="option-letter">C</span><span>It throws UnsupportedOperationException</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="3"><span class="option-letter">D</span><span>1</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">A final component reference does not freeze the referenced ArrayList. The record did not defensively copy its input.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q4" data-answer="1" aria-describedby="quiz-q4-feedback">
+          <legend><span class="quiz-number">4.</span> What does <code>new Label(&quot;  tea  &quot;).text()</code> return?</legend>
+          <div class="quiz-question-meta">Compact constructors · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Label</span><span class="hljs-params">(String text)</span> {
+    Label { text = text.strip(); }
+}</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q4" value="0"><span class="option-letter">A</span><span>&quot;  tea  &quot;</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="1"><span class="option-letter">B</span><span>&quot;tea&quot;</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="2"><span class="option-letter">C</span><span>null</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">A compact constructor can normalize component parameters. The implicit field assignment uses the updated parameter afterward.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q5" data-answer="2" aria-describedby="quiz-q5-feedback">
+          <legend><span class="quiz-number">5.</span> Which statement is correct?</legend>
+          <div class="quiz-question-meta">Record inheritance · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q5" value="0"><span class="option-letter">A</span><span>A record can extend any class</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="1"><span class="option-letter">B</span><span>A record cannot implement interfaces</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="2"><span class="option-letter">C</span><span>A record is final and can implement interfaces</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="3"><span class="option-letter">D</span><span>A record must be abstract</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">A record cannot be subclassed and implicitly extends java.lang.Record, but may implement interfaces.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q6" data-answer="0" aria-describedby="quiz-q6-feedback">
+          <legend><span class="quiz-number">6.</span> Which extra declaration is allowed inside a record?</legend>
+          <div class="quiz-question-meta">Extra state · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q6" value="0"><span class="option-letter">A</span><span>static int count;</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="1"><span class="option-letter">B</span><span>int cached;</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="2"><span class="option-letter">C</span><span>An instance initializer block</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="3"><span class="option-letter">D</span><span>A second non-final instance field</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Records may declare static fields. Extra instance fields and instance initializer blocks are not permitted.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q7" data-answer="3" aria-describedby="quiz-q7-feedback">
+          <legend><span class="quiz-number">7.</span> What does <code>Level.MEDIUM.ordinal()</code> return?</legend>
+          <div class="quiz-question-meta">Enum ordinal · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Level</span> { LOW, MEDIUM, HIGH }</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q7" value="0"><span class="option-letter">A</span><span>2</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="1"><span class="option-letter">B</span><span>MEDIUM</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="2"><span class="option-letter">C</span><span>0</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="3"><span class="option-letter">D</span><span>1</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Ordinals start at zero in declaration order. Avoid using ordinal values as stable identifiers for persisted data.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q8" data-answer="1" aria-describedby="quiz-q8-feedback">
+          <legend><span class="quiz-number">8.</span> What happens with <code>Level.valueOf(&quot;low&quot;)</code> for <code>enum Level { LOW, HIGH }</code>?</legend>
+          <div class="quiz-question-meta">Enum lookup · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q8" value="0"><span class="option-letter">A</span><span>It returns LOW</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="1"><span class="option-letter">B</span><span>It throws IllegalArgumentException</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="2"><span class="option-letter">C</span><span>It returns null</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Enum name lookup is case-sensitive. No constant has the exact name low.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q9" data-answer="2" aria-describedby="quiz-q9-feedback">
+          <legend><span class="quiz-number">9.</span> Which access modifier is allowed on an explicitly declared enum constructor?</legend>
+          <div class="quiz-question-meta">Enum constructors · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q9" value="0"><span class="option-letter">A</span><span>public</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="1"><span class="option-letter">B</span><span>protected</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="2"><span class="option-letter">C</span><span>private</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="3"><span class="option-letter">D</span><span>public static</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">An enum constructor may be private or have no explicit access modifier. It cannot be public or protected.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q10" data-answer="0" aria-describedby="quiz-q10-feedback">
+          <legend><span class="quiz-number">10.</span> Which expression lists the constants in declaration order?</legend>
+          <div class="quiz-question-meta">Enum collections · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q10" value="0"><span class="option-letter">A</span><span>Level.values()</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="1"><span class="option-letter">B</span><span>Level.constants()</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="2"><span class="option-letter">C</span><span>new Level<a href=""></a></span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="3"><span class="option-letter">D</span><span>Level.all()</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q10-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Each enum declaration gets a generated static values() method that returns an array of its constants.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q11" data-answer="1,2" aria-describedby="quiz-q11-feedback">
+          <legend><span class="quiz-number">11.</span> Which two can a record declare?</legend>
+          <div class="quiz-question-meta">Record members · Select 2 answers</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="0"><span class="option-letter">A</span><span>An additional instance field</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="1"><span class="option-letter">B</span><span>A static method</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="2"><span class="option-letter">C</span><span>An implemented interface</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="3"><span class="option-letter">D</span><span>An explicit superclass other than Record</span></label></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="quiz-q11-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Records support static methods and interfaces. Their component state is restricted, and their superclass is fixed.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart extra quiz</button></div>
+    </form>
+  </section>
+  <section class="study-resources" id="free-resources" aria-labelledby="resources-title"><h2 id="resources-title">Free resources</h2><p>Use these to revisit the rules or try more examples. Links open in a new tab and need an internet connection. Some tutorials also cover Java versions newer than 21.</p>
+    <ul><li><a href="https://javaalmanac.io/snippets/" target="_blank" rel="noopener noreferrer">Record examples you can run<span class="sr-only"> (opens in a new tab)</span></a><p>Free Java 21 sandboxes; choose Records under Java Language.</p></li><li><a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html" target="_blank" rel="noopener noreferrer">Java 21 record and enum declarations<span class="sr-only"> (opens in a new tab)</span></a><p>See sections 8.9 and 8.10 for enum and record rules.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Enum.html" target="_blank" rel="noopener noreferrer">Enum API<span class="sr-only"> (opens in a new tab)</span></a><p>Reference for name, ordinal, and valueOf behavior.</p></li></ul>
+    <p class="resource-date">Links reviewed 31 October 2026.</p>
+  </section></article><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch03.html"><small>Previous · Chapter 3</small>Working with Records and Enums</a><a href="ch04.html"><small>Next · Chapter 4</small>Working with Data <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>Practice sections</summary><nav aria-label="On this page"><a class="toc-link" href="#book-practice">Book questions · 7</a><a class="toc-link" href="#chapter-quiz">Extra quiz · 11</a><a class="toc-link" href="#free-resources">Free resources</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

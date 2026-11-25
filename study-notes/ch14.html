@@ -1,0 +1,572 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Localization</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch14"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch14.html" aria-current="page" data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Localization</h1><div class="document-meta">Chapter 14<span>·</span>12 min read</div><div class="chapter-actions"><a class="active" href="ch14.html">Read chapter</a><a href="ch14.html#key-points">Key points</a><a href="ch14-practice.html#book-practice">Book questions</a><a href="ch14-practice.html#chapter-quiz">Extra quiz</a><a class="" href="ch14a.html">Original answers</a></div></div><details class="objectives" open><summary>Exam objectives</summary><ul><li>Implement localization using locales and resource bundles. Parse and format messages, dates, times, and numbers, including currency and percentage values.</li></ul></details><article class="prose"><h2 id="introduction-to-localization">Introduction to Localization<a class="heading-anchor" href="#introduction-to-localization" aria-label="Link to Introduction to Localization">#</a></h2><p>It&#39;s common for software applications to be used by people all around the globe who speak different languages and live in various countries and cultures. To make an application globally accessible and user-friendly, it needs to adapt to the user&#39;s language and cultural norms. This is where localization comes into play.</p>
+<p>Localization refers to the process of designing and developing your application in a way that it can be adapted to various locales without requiring engineering changes. Think of it like creating a &quot;world-ready&quot; app.</p>
+<p>A locale represents a specific geographical, political, or cultural region. It is made up of a language code, a country code, and optionally, a variant.</p>
+<p>Here&#39;s an example of a locale representation:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">fr_CA</code></pre></div><p>Notice that:</p>
+<ul>
+<li>The language part is required</li>
+<li>The country part is optional (But if you choose to include it, it must follow the proper format)</li>
+<li>The language part is in lower case</li>
+<li>The country part is in upper case</li>
+<li>The language and the country are separated by an underscore</li>
+</ul>
+<p>For example, <code>en</code> represents English, <code>en_US</code> represents English as used in the United States, which might differ from <code>en_UK</code> (English as used in the United Kingdom) in things like spelling (color vs colour), vocabulary (truck vs lorry), or currency ($100 vs £100).</p>
+<h2 id="the-locale-class">The <code>Locale</code> Class<a class="heading-anchor" href="#the-locale-class" aria-label="Link to The Locale Class">#</a></h2><p>Locales are represented by the <code>java.util.Locale</code> class. Basically, this class represents a language and a country although, to be precise, a locale can have the following information:</p>
+<ul>
+<li>An ISO 639 alpha-2 or alpha-3 language code, like <em>ja</em> (Japanese)</li>
+<li>An ISO 3166 alpha-2 country code or UN M.49 numeric-3 area code, like <em>JP</em> (Japan)</li>
+<li>A variant name, usually empty but can be any string.</li>
+<li>An ISO 15924 alpha-4 script code, like <em>Latn</em> (Latin)</li>
+<li>A set of extensions represented by single characters, like <em>u</em>.</li>
+</ul>
+<p>There are several ways to get or create a <code>Locale</code> object in Java.</p>
+<p>To get the default locale of the Java Virtual Machine (JVM), you use:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Locale</span> <span class="hljs-variable">locale</span> <span class="hljs-operator">=</span> Locale.getDefault();</code></pre></div><p>The <code>Locale</code> class provides several built-in constants for commonly used locales. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Locale</span> <span class="hljs-variable">usLocale</span> <span class="hljs-operator">=</span> Locale.US;  <span class="hljs-comment">// English as used in the US</span>
+<span class="hljs-type">Locale</span> <span class="hljs-variable">frLocale</span> <span class="hljs-operator">=</span> Locale.FRANCE; <span class="hljs-comment">// French as used in France </span></code></pre></div><p>You can also create a new <code>Locale</code> object using one of its constructors:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">Locale(String language)
+Locale(String language, String country)
+Locale(String language, String country, String variant)</code></pre></div><p>For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Locale</span> <span class="hljs-variable">locale</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Locale</span>(<span class="hljs-string">&quot;fr&quot;</span>, <span class="hljs-string">&quot;CA&quot;</span>, <span class="hljs-string">&quot;POSIX&quot;</span>);</code></pre></div><p>This creates a new <code>Locale</code> object representing French as used in Canada with the POSIX variant.</p>
+<p>The first parameter is the language code, the second is the country code, and the third (optional) is the variant code. Language codes are two or three letter lowercase codes as defined by ISO 639. Country codes are two-letter uppercase codes as defined by ISO 3166. Variants are any arbitrary value used to indicate any kind of variation, not just language variations.</p>
+<p>You can also use the <code>forLanguageTag(String)</code> factory method. This method expects a language code, for example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Locale</span> <span class="hljs-variable">german</span> <span class="hljs-operator">=</span> Locale.forLanguageTag(<span class="hljs-string">&quot;de&quot;</span>);</code></pre></div><p>Additionally, by using <code>Locale.Builder</code>, you can set the properties you need and build the object at the end, for example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Locale</span> <span class="hljs-variable">japan</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Locale</span>.Builder()
+                 .setRegion(<span class="hljs-string">&quot;JP&quot;</span>)
+                 .setLanguage(<span class="hljs-string">&quot;ja&quot;</span>)
+                 .build();</code></pre></div><p>Passing an invalid argument to any of the above constructors and methods will not throw an exception, it will just create an object with invalid options that will make your program behave incorrectly:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Locale</span> <span class="hljs-variable">badLocale</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Locale</span>(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;A&quot;</span>); <span class="hljs-comment">// No error</span>
+System.out.println(badLocale); <span class="hljs-comment">// It prints a_A</span></code></pre></div><p>The <code>getDefault()</code> method returns the current value of the default locale for this instance of the Java Virtual Machine (JVM). The JVM sets the default locale during startup based on the host environment. It is used by many locale-sensitive methods if no locale is explicitly specified. However, it can be changed using the <code>setDefault(Locale)</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">System.out.println(Locale.getDefault()); <span class="hljs-comment">// Let&#x27;s say it prints en_GB</span>
+Locale.setDefault(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Locale</span>(<span class="hljs-string">&quot;en&quot;</span>, <span class="hljs-string">&quot;US&quot;</span>));
+System.out.println(Locale.getDefault()); <span class="hljs-comment">// Now prints en_US</span></code></pre></div><h3 id="locale-categories">Locale Categories<a class="heading-anchor" href="#locale-categories" aria-label="Link to Locale Categories">#</a></h3><p>The <code>Locale.Category</code> enum defines two categories used to differentiate the purposes for which a <code>Locale</code> might be used: <code>Locale.Category.DISPLAY</code> and <code>Locale.Category.FORMAT</code>. These categories help specify which locale settings to apply in different contexts.</p>
+<ol>
+<li><p><strong>Locale.Category.DISPLAY</strong>:</p>
+<ul>
+<li>This category is used for user interface strings, such as messages, labels, and menus.</li>
+<li>It is applied when you need to localize the content that is displayed to the user.</li>
+<li>For instance, when an application needs to show date, time, or currency in a localized manner, it uses the <code>DISPLAY</code> locale to ensure the formats and messages are appropriate for the user&#39;s language and region.</li>
+</ul>
+</li>
+<li><p><strong>Locale.Category.FORMAT</strong>:</p>
+<ul>
+<li>This category is used for formatting dates, numbers, and other values that are part of the data processing or backend systems.</li>
+<li>It is applied when you need to parse, format, or validate locale-sensitive data.</li>
+<li>For instance, when you need to format a date for storage or further processing, the <code>FORMAT</code> locale is used to ensure the data follows the correct localized format.</li>
+</ul>
+</li>
+</ol>
+<p>Here&#39;s an example showing how to use these categories:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Setting the DISPLAY locale</span>
+Locale.setDefault(Locale.Category.DISPLAY, Locale.FRANCE);
+
+<span class="hljs-comment">// Setting the FORMAT locale</span>
+Locale.setDefault(Locale.Category.FORMAT, Locale.US);
+
+<span class="hljs-comment">// Getting the DISPLAY locale</span>
+<span class="hljs-type">Locale</span> <span class="hljs-variable">displayLocale</span> <span class="hljs-operator">=</span> Locale.getDefault(Locale.Category.DISPLAY);
+System.out.println(<span class="hljs-string">&quot;DISPLAY Locale: &quot;</span> + displayLocale);
+
+<span class="hljs-comment">// Getting the FORMAT locale</span>
+<span class="hljs-type">Locale</span> <span class="hljs-variable">formatLocale</span> <span class="hljs-operator">=</span> Locale.getDefault(Locale.Category.FORMAT);
+System.out.println(<span class="hljs-string">&quot;FORMAT Locale: &quot;</span> + formatLocale);</code></pre></div><p>In this example, the <code>DISPLAY</code> locale is set to <code>Locale.FRANCE</code>, meaning that user interface elements will be localized for French users. The <code>FORMAT</code> locale is set to <code>Locale.US</code>, meaning that any date or number formatting will follow the conventions used in the United States.</p>
+<p>This is the output:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">DISPLAY Locale: fr_FR
+FORMAT Locale: en_US</code></pre></div><p>Here&#39;s a diagram that summarizes the structure of a locale:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">┌──────────────────────────────────────────┐
+│              Locale Structure            │
+│                                          │
+│  ┌───────────────────────────────────┐   │
+│  │              Locale               │   │
+│  │  ┌─────────────┐ ┌─────────────┐  │   │
+│  │  │  Language   │ │  Country    │  │   │
+│  │  │   (en)      │ │   (US)      │  │   │
+│  │  └─────────────┘ └─────────────┘  │   │
+│  │         ┌─────────────┐           │   │
+│  │         │  Variant    │           │   │
+│  │         │ (Optional)  │           │   │
+│  │         └─────────────┘           │   │
+│  └───────────────────────────────────┘   │
+│                                          │
+│  Locale Categories:                      │
+│  ┌─────────────┐ ┌─────────────┐         │
+│  │ DISPLAY     │ │ FORMAT      │         │
+│  │             │ │             │         │
+│  └─────────────┘ └─────────────┘         │
+│                                          │
+│  Examples:                               │
+│  - en_US                                 │
+│  - fr_FR                                 │
+│  - de_DE_EURO                            │
+│                                          │
+└──────────────────────────────────────────┘
+
+Key Points:
+- Language is required, country and variant are optional
+- Language codes are lowercase, country codes are uppercase
+- Variant is used for further distinction (such as dialect)
+- DISPLAY category affects how the locale itself is displayed
+- FORMAT category affects formatting of dates, numbers, etc.</code></pre></div><h2 id="resource-bundles">Resource Bundles<a class="heading-anchor" href="#resource-bundles" aria-label="Link to Resource Bundles">#</a></h2><p>A resource bundle is a way to organize and access locale-specific data such as messages or labels in your application. Think of it as a collection of key-value pairs, where the keys are the same across all locales but the values are locale-specific.</p>
+<p>To support this, we have an abstract class <code>java.util.ResourceBundle</code> with two subclasses:</p>
+<ul>
+<li><p><code>java.util.PropertyResourceBundle</code>: Each locale is represented by a property file. Keys and values are of type <code>String</code>.</p>
+</li>
+<li><p><code>java.util.ListResourceBundle</code>: Each locale is represented by a subclass of this class that overrides the method <code>Object[][] getContents()</code>. The returned array represents the keys and values. Keys must be of type <code>String</code>, but values can be any object.</p>
+</li>
+</ul>
+<p>In Java, resource bundles are typically implemented as property files. A property file is a plain text file that contains key-value pairs separated by an equals sign (<code>=</code>). For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">greeting=Hello
+farewell=Goodbye</code></pre></div><p>The name of the property file is important. It should be in the format <code>&lt;basename&gt;_&lt;language&gt;_&lt;country&gt;_&lt;variant&gt;.properties</code>, where:</p>
+<ul>
+<li><code>&lt;basename&gt;</code> is the name you give to the resource bundle</li>
+<li><code>&lt;language&gt;</code> is the lowercase two-letter ISO-639 language code</li>
+<li><code>&lt;country&gt;</code> is the uppercase two-letter ISO-3166 country code </li>
+<li><code>&lt;variant&gt;</code> is an optional vendor or browser-specific code</li>
+</ul>
+<p>For example, we can have bundles with the following names (assuming we&#39;re working with property files, although it&#39;s the same with classes):</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">MyBundle.properties
+MyBundle_en.properties
+MyBundle_en_NZ.properties
+MyBundle_en_US.properties</code></pre></div><p>In this case, <code>MyBundle_en_US.properties</code> would contain messages for English as used in the United States.</p>
+<p>To create a resource bundle, you first create the property files for each locale you want to support. Then, you use the <code>java.util.ResourceBundle</code> class to load the appropriate property file for the current locale:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ResourceBundle</span> <span class="hljs-variable">bundle</span> <span class="hljs-operator">=</span> ResourceBundle.getBundle(<span class="hljs-string">&quot;MyBundle&quot;</span>, locale);</code></pre></div><p>This loads the resource bundle named <code>MyBundle</code> for the given locale. Java will search for the property file that best matches the requested locale based on the following priority:</p>
+<ol>
+<li>Language + Country + Variant</li>
+<li>Language + Country</li>
+<li>Language</li>
+<li>Default locale (as returned by <code>Locale.getDefault()</code>)</li>
+<li>Root resource bundle (basename only, no locale info)</li>
+</ol>
+<p>If no matching property file is found, a <code>MissingResourceException</code> is thrown.</p>
+<p>Once you have a <code>ResourceBundle</code>, you can retrieve the locale-specific value for a given key using the <code>getString</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">greeting</span> <span class="hljs-operator">=</span> bundle.getString(<span class="hljs-string">&quot;greeting&quot;</span>);</code></pre></div><p>To get an object value, use:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Integer</span> <span class="hljs-variable">num</span> <span class="hljs-operator">=</span> (Integer) bundle.getObject(<span class="hljs-string">&quot;number&quot;</span>);</code></pre></div><p>It&#39;s important to note that <code>getString(key)</code> is effectively a shortcut to:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">val</span> <span class="hljs-operator">=</span> (String) bundle.getObject(key);</code></pre></div><p>You can use the keys of the matching resource bundle and any of its parents.</p>
+<p>The parents of a resource bundle are the ones with the same name but fewer components. For example, the parents of <code>MyBundle_es_ES</code> are:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">MyBundle_es
+MyBundle</code></pre></div><p>Let&#39;s assume the default locale is <code>en_US</code>, and that your program is using these and other property files, all in the default package, with the values:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">MyBundle_en.properties
+s = buddy
+
+MyBundle_es_ES.properties
+s = tío
+
+MyBundle_es.properties
+s = amigo
+
+MyBundle.properties
+hi = Hola</code></pre></div><p>We can create a resource bundle like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Locale</span> <span class="hljs-variable">spain</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Locale</span>(<span class="hljs-string">&quot;es&quot;</span>, <span class="hljs-string">&quot;ES&quot;</span>);
+<span class="hljs-type">Locale</span> <span class="hljs-variable">spanish</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Locale</span>(<span class="hljs-string">&quot;es&quot;</span>);
+
+<span class="hljs-type">ResourceBundle</span> <span class="hljs-variable">rb</span> <span class="hljs-operator">=</span> ResourceBundle.getBundle(<span class="hljs-string">&quot;MyBundle&quot;</span>, spain);
+System.out.format(<span class="hljs-string">&quot;%s %s\n&quot;</span>,
+    rb.getString(<span class="hljs-string">&quot;hi&quot;</span>), rb.getString(<span class="hljs-string">&quot;s&quot;</span>));
+
+rb = ResourceBundle.getBundle(<span class="hljs-string">&quot;MyBundle&quot;</span>, spanish);
+System.out.format(<span class="hljs-string">&quot;%s %s\n&quot;</span>,
+    rb.getString(<span class="hljs-string">&quot;hi&quot;</span>), rb.getString(<span class="hljs-string">&quot;s&quot;</span>));</code></pre></div><p>This would be the output:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Hola tío
+Hola amigo</code></pre></div><p>As you can see, each locale picks different values for key <code>s</code>, but they both use the same for <code>hi</code> since this key is defined in their parent.</p>
+<p>If you don&#39;t specify a locale, the <code>ResourceBundle</code> class will use the default locale of your system:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ResourceBundle</span> <span class="hljs-variable">rb</span> <span class="hljs-operator">=</span> ResourceBundle.getBundle(<span class="hljs-string">&quot;MyBundle&quot;</span>);
+System.out.format(<span class="hljs-string">&quot;%s %s\n&quot;</span>,
+    rb.getString(<span class="hljs-string">&quot;hi&quot;</span>), rb.getString(<span class="hljs-string">&quot;s&quot;</span>));</code></pre></div><p>Since we&#39;re assuming that the default locale is <code>en_US</code>, the output is:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Hola buddy</code></pre></div><p>We can also get all the keys in a resource bundle with the method <code>keySet()</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ResourceBundle</span> <span class="hljs-variable">rb</span> <span class="hljs-operator">=</span>
+    ResourceBundle.getBundle(<span class="hljs-string">&quot;MyBundle&quot;</span>, spain);
+<span class="hljs-type">Set</span>&lt;String&gt; <span class="hljs-variable">keys</span> <span class="hljs-operator">=</span> rb.keySet();
+keys.stream()
+    .forEach(key -&gt;
+        System.out.format(<span class="hljs-string">&quot;%s %s\n&quot;</span>, key, rb.getString(key)));</code></pre></div><p>This is the output (notice it also prints the parent key):</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">hi Hola
+s tío</code></pre></div><h2 id="the-messageformat-class">The <code>MessageFormat</code> Class<a class="heading-anchor" href="#the-messageformat-class" aria-label="Link to The MessageFormat Class">#</a></h2><p>Sometimes, you need to format messages that include variable data. For example, you might want to display a personalized greeting that includes the user&#39;s name, or an error message that includes specific details about the error. </p>
+<p>The <code>java.text.MessageFormat</code> class provides a powerful way to create localized messages by combining a pattern string with arguments. It allows you to define a message template with placeholders for variable data, and then replace those placeholders with actual values at runtime.</p>
+<p>The key method in the <code>MessageFormat</code> class is <code>format</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-title function_">format</span><span class="hljs-params">(String pattern, Object... arguments)</span></code></pre></div><p>This static method takes a message pattern and an array of arguments, and returns the formatted message as a string. However, there are two other <code>format</code> methods defined as instance methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">final</span> <span class="hljs-type">StringBuffer</span> <span class="hljs-title function_">format</span><span class="hljs-params">(Object[] arguments, StringBuffer result, FieldPosition pos)</span>
+<span class="hljs-keyword">final</span> <span class="hljs-type">StringBuffer</span> <span class="hljs-title function_">format</span><span class="hljs-params">(Object arguments, StringBuffer result, FieldPosition pos)</span></code></pre></div><p>These methods format an array of objects and append the pattern of the <code>MessageFormat</code> instance, with format elements replaced by the formatted objects, to the provided <code>StringBuffer</code>.</p>
+<p>Additionally, its parent class, <code>java.text.Format</code>, defines another <code>format</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-title function_">format</span><span class="hljs-params">(Object obj)</span></code></pre></div><p>This method formats an object to produce a string. It is equivalent to:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">format(obj, <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuffer</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title class_">FieldPosition</span>(<span class="hljs-number">0</span>)).toString();</code></pre></div><p>The message pattern is a string that includes the static text of the message, as well as placeholders for the variable parts. The placeholders are marked with curly braces <code>{}</code> and a number that indicates the position of the argument in the argument array.</p>
+<p>The syntax of a message format pattern follows this structure:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Literal text {argumentIndex,formatType,formatStyle} Literal text</code></pre></div><p>Where:</p>
+<ul>
+<li><p><strong>Literal Text</strong>: This is any text you want to include directly in the message. For example, in <code>Hello, {0}</code>, <code>Hello, </code> is literal text.</p>
+</li>
+<li><p><strong>Argument Index</strong>: <code>{argumentIndex}</code> specifies where to insert an argument. The number inside the curly braces corresponds to the position of the argument in the list you provide when formatting the message. For instance, <code>{0}</code> will be replaced by the first argument, <code>{1}</code> by the second argument, and so on.</p>
+</li>
+</ul>
+<p>-. <strong>Format Type</strong>: <code>{argumentIndex,formatType}</code> adds a format type to the argument. Common format types include:</p>
+<ul>
+<li><p><code>number</code>: Formats the argument as a number.</p>
+</li>
+<li><p><code>date</code>: Formats the argument as a date.</p>
+</li>
+<li><p><code>time</code>: Formats the argument as a time.</p>
+</li>
+<li><p><code>choice</code>: Uses a choice format for the argument.</p>
+</li>
+<li><p><strong>Format Style</strong>: <code>{argumentIndex,formatType,formatStyle}</code> further refines the format type with a specific style. For example:</p>
+<ul>
+<li><code>number,currency</code>: Formats the number as a currency.</li>
+<li><code>date,short</code>: Formats the date in a short style.</li>
+<li><code>number,percent</code>: Formats the number as a percentage.</li>
+</ul>
+</li>
+</ul>
+<p>Text can be quoted using single quotes <code>&#39;</code>, which are escaped as <code>&#39;&#39;</code>. Any unmatched curly braces must be escaped with a single quote. For example:</p>
+<ul>
+<li><code>&quot;&#39;{0}&#39;&quot;</code> represents the literal string <code>&quot;{0}&quot;</code> </li>
+<li><code>&quot;&#39;{&#39;&quot;</code> represents the literal string <code>&quot;{&quot;</code> </li>
+<li><code>&quot;&#39;}&#39;&quot;</code> represents the literal string <code>&quot;}&quot;</code></li>
+</ul>
+<p>Here are some examples of valid message format patterns:</p>
+<ul>
+<li><p><strong>Simple Argument Insertion</strong>:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">&quot;The value is {0}&quot;</code></pre></div><p>If the argument is <code>42</code>, the result will be &quot;The value is 42&quot;.</p>
+</li>
+<li><p><strong>Number Formatting</strong>:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">&quot;The total amount is {0,number,currency}&quot;</code></pre></div><p>If the argument is <code>1234.56</code>, the result will be &quot;The total amount is $1,234.56&quot;.</p>
+</li>
+<li><p><strong>Date Formatting</strong>:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">&quot;The date today is {0,date,full}&quot;</code></pre></div><p>If the argument is a date, the result might be &quot;The date today is Thursday, July 25, 2024&quot;.</p>
+</li>
+<li><p><strong>Choice Formatting</strong>:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">&quot;There are {0,choice,0#no files|1#one file|1&lt;many files}&quot;</code></pre></div><p>If the argument is <code>0</code>, <code>1</code>, or <code>2</code>, the results will be <code>There are no files</code>, <code>There is one file</code>, or <code>There are many files</code> respectively.</p>
+</li>
+</ul>
+<p>However, instead of using the static <code>format</code> method, you can create a <code>MessageFormat</code> instance by passing to the constructor of the class a pattern string and optionally a <code>Locale</code> to its constructor:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;The disk \&quot;{1}\&quot; contains {0} file(s).&quot;</span>;
+<span class="hljs-type">MessageFormat</span> <span class="hljs-variable">messageFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MessageFormat</span>(pattern, Locale.US);</code></pre></div><p>You can also set the <code>Locale</code> for the <code>MessageFormat</code> instance using <code>setLocale()</code>. This determines how the arguments are formatted.</p>
+<p>In any case, to create a formatted message string, call <code>format()</code> with an array of argument objects:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Object</span>[] <span class="hljs-variable">arguments</span> <span class="hljs-operator">=</span> {<span class="hljs-number">42</span>, <span class="hljs-string">&quot;MyDisk&quot;</span>};
+<span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> messageFormat.format(arguments);
+<span class="hljs-comment">// result: &quot;The disk &quot;MyDisk&quot; contains 42 file(s).&quot;</span></code></pre></div><p>There are some rules about argument indexes:</p>
+<ul>
+<li><code>format()</code> replaces each format element <code>{argumentIndex}</code> with the corresponding object from the <code>arguments</code> array.  </li>
+<li>If an argument index is used multiple times, all occurrences are replaced with the same formatted value.</li>
+<li>Unused arguments are ignored. Missing or extra arguments cause an exception.</li>
+</ul>
+<p>Suppose we have the following message format pattern and arguments:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello, {0}. Today is {1,date,long}. Your balance is {2,number,currency}. Hello again, {0}!&quot;</span>;
+<span class="hljs-type">Object</span>[] <span class="hljs-variable">arguments</span> <span class="hljs-operator">=</span> {<span class="hljs-string">&quot;John&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(), <span class="hljs-number">1234.56</span>};</code></pre></div><p>When we format this pattern with the <code>arguments</code> array, here’s how it works:</p>
+<ul>
+<li><code>{0}</code> is replaced with <code>John</code>.</li>
+<li><code>{1,date,long}</code> is replaced with the current date in long format (for example, <code>July 25, 2024</code>).</li>
+<li><code>{2,number,currency}</code> is replaced with the currency formatted number (for example, <code>$1,234.56</code>).</li>
+<li>The second occurrence of <code>{0}</code> is also replaced with <code>John</code>.</li>
+</ul>
+<p>Here is the resulting formatted message:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">&quot;Hello, John. Today is July 25, 2024. Your balance is $1,234.56. Hello again, John!&quot;</code></pre></div><p>About the format types and styles :</p>
+<ul>
+<li>If a format type is not specified, a default based on the argument type is used (for example, numbers use <code>NumberFormat</code>).</li>
+<li>Custom format types can be defined by passing a subformat pattern string, for example, <code>{0,number,#,##0.0}</code>.</li>
+<li>The <code>formatStyle</code> is optional and can specify a predefined style like <code>short</code>, <code>long</code>, <code>integer</code>, <code>currency</code>, etc.</li>
+</ul>
+<p>Consider the following message format pattern and arguments:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;The item costs {0}. The item costs {0,number,currency}. Custom format: {0,number,#,##0.0}. Today is {1,date,long}. Short date: {1,date,short}&quot;</span>;
+<span class="hljs-type">Object</span>[] <span class="hljs-variable">arguments</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1234.567</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>()};</code></pre></div><p>When formatted with the <code>arguments</code> array, it works as follows:</p>
+<ul>
+<li><code>{0}</code> without a format type defaults to a number format (for example, <code>1234.567</code>).</li>
+<li><code>{0,number,currency}</code> specifies the <code>number</code> format type with the <code>currency</code> style (for example, <code>$1,234.57</code>).</li>
+<li><code>{0,number,#,##0.0}</code> uses a custom number format pattern (for example, <code>1,234.6</code>).</li>
+<li><code>{1,date,long}</code> specifies the <code>date</code> format type with the <code>long</code> style (for example, <code>July 25, 2024</code>).</li>
+<li><code>{1,date,short}</code> specifies the <code>date</code> format type with the <code>short</code> style (for example, <code>7/25/24</code>).</li>
+</ul>
+<p>Here is the resulting formatted message:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">&quot;The item costs 1234.567. The item costs $1,234.57. Custom format: 1,234.6. Today is July 25, 2024. Short date: 7/25/24&quot;</code></pre></div><p>In addition to <code>MessageFormat</code>, there are two other subclasses of <code>Format</code>: <code>java.text.NumberFormat</code> and <code>java.text.DateFormat</code>, for formatting numbers and dates, respectively.</p>
+<p>The format type and style values are used to create a <code>Format</code> instance for the format element. The following table shows how the values map to <code>Format</code> instances. Combinations not shown in the table are illegal. A <em>SubformatPattern</em> must be a valid pattern string for the <code>Format</code> subclass used.</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>FormatType</th><th>FormatStyle</th><th>Subformat Created</th></tr></thead><tbody><tr><td><em>(none)</em></td><td><em>(none)</em></td><td><code>null</code></td></tr><tr><td><code>number</code></td><td><em>(none)</em></td><td><code>NumberFormat.getInstance(getLocale())</code></td></tr><tr><td></td><td><code>integer</code></td><td><code>NumberFormat.getIntegerInstance(getLocale())</code></td></tr><tr><td></td><td><code>currency</code></td><td><code>NumberFormat.getCurrencyInstance(getLocale())</code></td></tr><tr><td></td><td><code>percent</code></td><td><code>NumberFormat.getPercentInstance(getLocale())</code></td></tr><tr><td></td><td><em>SubformatPattern</em></td><td><code>new</code> <code>DecimalFormat(subformatPattern, DecimalFormatSymbols.getInstance(getLocale()))</code></td></tr><tr><td><code>date</code></td><td><em>(none)</em></td><td><code>DateFormat.getDateInstance(DateFormat.DEFAULT, getLocale())</code></td></tr><tr><td></td><td><code>short</code></td><td><code>DateFormat.getDateInstance(DateFormat.SHORT, getLocale())</code></td></tr><tr><td></td><td><code>medium</code></td><td><code>DateFormat.getDateInstance(DateFormat.DEFAULT, getLocale())</code></td></tr><tr><td></td><td><code>long</code></td><td><code>DateFormat.getDateInstance(DateFormat.LONG, getLocale())</code></td></tr><tr><td></td><td><code>full</code></td><td><code>DateFormat.getDateInstance(DateFormat.FULL, getLocale())</code></td></tr><tr><td></td><td><em>SubformatPattern</em></td><td><code>new</code> <code>SimpleDateFormat(subformatPattern, getLocale())</code></td></tr><tr><td><code>time</code></td><td><em>(none)</em></td><td><code>DateFormat.getTimeInstance(DateFormat.DEFAULT, getLocale())</code></td></tr><tr><td></td><td><code>short</code></td><td><code>DateFormat.getTimeInstance(DateFormat.SHORT, getLocale())</code></td></tr><tr><td></td><td><code>medium</code></td><td><code>DateFormat.getTimeInstance(DateFormat.DEFAULT, getLocale())</code></td></tr><tr><td></td><td><code>long</code></td><td><code>DateFormat.getTimeInstance(DateFormat.LONG, getLocale())</code></td></tr><tr><td></td><td><code>full</code></td><td><code>DateFormat.getTimeInstance(DateFormat.FULL, getLocale())</code></td></tr><tr><td></td><td><em>SubformatPattern</em></td><td><code>new</code> <code>SimpleDateFormat(subformatPattern, getLocale())</code></td></tr><tr><td><code>choice</code></td><td><em>SubformatPattern</em></td><td><code>new</code> <code>ChoiceFormat(subformatPattern)</code></td></tr></tbody></table></div><p>In the next sections, we&#39;ll review in more detail the <code>NumberFormat</code> and <code>DateFormat</code> classes.</p>
+<h2 id="the-numberformat-class">The <code>NumberFormat</code> Class<a class="heading-anchor" href="#the-numberformat-class" aria-label="Link to The NumberFormat Class">#</a></h2><p><code>NumberFormat</code> is the abstract base class for formatting and parsing numbers in Java. It provides a way to handle numeric values in a locale-sensitive manner, allowing you to format and parse numbers, currencies, and percentages according to the conventions of different locales.</p>
+<p>To get a <code>NumberFormat</code> instance for a specific locale, you typically use one of its factory methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">NumberFormat</span> <span class="hljs-variable">defaultFormat</span> <span class="hljs-operator">=</span> NumberFormat.getInstance();
+<span class="hljs-type">NumberFormat</span> <span class="hljs-variable">currencyFormat</span> <span class="hljs-operator">=</span> NumberFormat.getCurrencyInstance();
+<span class="hljs-type">NumberFormat</span> <span class="hljs-variable">percentFormat</span> <span class="hljs-operator">=</span> NumberFormat.getPercentInstance();</code></pre></div><p>These methods return a locale-specific formatter based on the default <code>FORMAT</code> locale. You can also specify a locale explicitly:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Locale</span> <span class="hljs-variable">franceLocale</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Locale</span>(<span class="hljs-string">&quot;fr&quot;</span>, <span class="hljs-string">&quot;FR&quot;</span>);
+<span class="hljs-type">NumberFormat</span> <span class="hljs-variable">franceFormat</span> <span class="hljs-operator">=</span> NumberFormat.getInstance(franceLocale);</code></pre></div><p>To format a number, use one of the <code>format()</code> methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">double</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> <span class="hljs-number">1234.56</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">formattedValue</span> <span class="hljs-operator">=</span> defaultFormat.format(value);  <span class="hljs-comment">// &quot;1,234.56&quot;</span></code></pre></div><p><code>NumberFormat</code> also provides methods for formatting <code>long</code> and <code>double</code> values directly into a <code>StringBuffer</code>, which can be more efficient for heavy-duty formatting:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">abstract StringBuffer format(double number, StringBuffer toAppendTo, FieldPosition pos)
+abstract StringBuffer format(long number, StringBuffer toAppendTo, FieldPosition pos)</code></pre></div><p>On the other hand, to parse a string into a number, use the <code>parse()</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">text</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;1,234.56&quot;</span>;
+<span class="hljs-type">Number</span> <span class="hljs-variable">number</span> <span class="hljs-operator">=</span> defaultFormat.parse(text);  <span class="hljs-comment">// Returns a Long or Double</span></code></pre></div><p>The <code>parse()</code> method is locale-sensitive and will recognize the locale-specific decimal and grouping separators.</p>
+<p><code>NumberFormat</code> also provides several methods to control the formatting output:</p>
+<ul>
+<li><code>setMinimumIntegerDigits()</code> and <code>setMaximumIntegerDigits()</code>: Controls the number of digits in the integer part.</li>
+<li><code>setMinimumFractionDigits()</code> and <code>setMaximumFractionDigits()</code>: Controls the number of digits in the fraction part.</li>
+<li><code>setGroupingUsed()</code>: Enables or disables grouping separators.</li>
+<li><code>setRoundingMode()</code>: Sets the rounding mode for the formatter.</li>
+</ul>
+<p>For more control, <code>NumberFormat</code> has several concrete subclasses for specific formatting needs:</p>
+<ul>
+<li><code>DecimalFormat</code>: A general-purpose formatter for decimal numbers.</li>
+<li><code>CompactNumberFormat</code>: Formats numbers in a compact, locale-sensitive way, like &quot;1.2K&quot; for 1200.</li>
+<li><code>ChoiceFormat</code>: Allows you to map numbers to strings based on a set of ranges.</li>
+</ul>
+<h3 id="the-decimalformat-class">The <code>DecimalFormat</code> Class<a class="heading-anchor" href="#the-decimalformat-class" aria-label="Link to The DecimalFormat Class">#</a></h3><p>The most commonly used subclass is <code>DecimalFormat</code>, which provides a high degree of control over the formatting pattern. You can create a <code>DecimalFormat</code> with a specific pattern and symbols:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">format</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;#,##0.00&quot;</span>, DecimalFormatSymbols.getInstance(Locale.US));</code></pre></div><p>The second parameter (<code>DecimalFormatSymbols</code>) is optional. The pattern specifies the format of the output, with special characters representing the digit positions, decimals, grouping, etc. The <code>DecimalFormatSymbols</code> object defines the specific characters to use for these special characters based on a locale.</p>
+<p>A <code>DecimalFormat</code> pattern contains a positive and negative subpattern, for example, <code>#,##0.00;(#,##0.00)</code>. Each subpattern has a prefix, numeric part, and suffix. The negative subpattern is optional, if absent, then the positive subpattern prefixed with the minus sign (<code>&#39;-&#39; U+002D HYPHEN-MINUS</code>) is used as the negative subpattern. </p>
+<p>Many characters in a pattern are taken literally, they are matched during parsing and are unchanged in the output during formatting. On the other hand, special characters stand for other characters, strings, or classes of characters and they must be quoted.</p>
+<p>The characters listed in the following table are used in non-localized patterns. Localized patterns use the corresponding characters taken from this formatter&#39;s <code>DecimalFormatSymbols</code> object instead, and these characters lose their special status. Two exceptions are the currency sign and quote, which are not localized:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Symbol</th><th>Location</th><th>Localized?</th><th>Meaning</th></tr></thead><tbody><tr><td><code>0</code></td><td>Number</td><td>Yes</td><td>Digit</td></tr><tr><td><code>#</code></td><td>Number</td><td>Yes</td><td>Digit, zero shows as absent</td></tr><tr><td><code>.</code></td><td>Number</td><td>Yes</td><td>Decimal separator or monetary decimal separator</td></tr><tr><td><code>-</code></td><td>Number</td><td>Yes</td><td>Minus sign</td></tr><tr><td><code>,</code></td><td>Number</td><td>Yes</td><td>Grouping separator or monetary grouping separator</td></tr><tr><td><code>E</code></td><td>Number</td><td>Yes</td><td>Separates mantissa and exponent in scientific notation. <em>Need not be quoted in prefix or suffix.</em></td></tr><tr><td><code>;</code></td><td>Subpattern boundary</td><td>Yes</td><td>Separates positive and negative subpatterns</td></tr><tr><td><code>%</code></td><td>Prefix or suffix</td><td>Yes</td><td>Multiply by 100 and show as percentage</td></tr><tr><td><code>&amp;#92;u2030</code></td><td>Prefix or suffix</td><td>Yes</td><td>Multiply by 1000 and show as per mille value</td></tr><tr><td><code>&amp;#164;</code> (<code>&amp;#92;u00A4</code>)</td><td>Prefix or suffix</td><td>No</td><td>Currency sign, replaced by currency symbol. If doubled, replaced by international currency symbol. If present in a pattern, the monetary decimal and grouping separators are used instead of the decimal and grouping separators.</td></tr><tr><td><code>&#39;</code></td><td>Prefix or suffix</td><td>No</td><td>Used to quote special characters in a prefix or suffix, for example, <code>&quot; &#39;#&#39; &quot;</code> formats 123 to <code>&quot;#123&quot;</code>. To create a single quote itself, use two in a row: <code>&quot;# o&#39;&#39;clock&quot;</code>.</td></tr></tbody></table></div><p>Here are some examples:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Number Formatting</span>
+<span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">numberFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;###,###.##&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Number Formatting: &quot;</span> + numberFormat.format(<span class="hljs-number">1234567.89</span>));
+
+<span class="hljs-comment">// Percentage Formatting</span>
+<span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">percentFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;##.##%&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Percentage Formatting: &quot;</span> + percentFormat.format(<span class="hljs-number">0.1234</span>));
+
+<span class="hljs-comment">// Per Mille Formatting</span>
+<span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">perMilleFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;##.##‰&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Per Mille Formatting: &quot;</span> + perMilleFormat.format(<span class="hljs-number">0.1234</span>));
+
+<span class="hljs-comment">// Currency Formatting</span>
+<span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">currencyFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;$###,###.##&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Currency Formatting: &quot;</span> + currencyFormat.format(<span class="hljs-number">1234.56</span>));
+
+<span class="hljs-comment">// Scientific Notation</span>
+<span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">scientificFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;0.###E0&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Scientific Notation: &quot;</span> + scientificFormat.format(<span class="hljs-number">12345</span>));
+
+<span class="hljs-comment">// Positive and Negative Subpatterns</span>
+<span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">positiveNegativeFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;###.##;(#.##)&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Positive Number: &quot;</span> + positiveNegativeFormat.format(<span class="hljs-number">1234.56</span>));
+System.out.println(<span class="hljs-string">&quot;Negative Number: &quot;</span> + positiveNegativeFormat.format(-<span class="hljs-number">1234.56</span>));
+
+<span class="hljs-comment">// Custom Text with Numbers</span>
+<span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">customTextFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;&#x27;Number: &#x27;###&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Custom Text with Numbers: &quot;</span> + customTextFormat.format(<span class="hljs-number">123</span>));
+
+<span class="hljs-comment">// Custom Grouping and Decimal Separators</span>
+<span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">customGroupingFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;&#x27;Amount: &#x27;###,###.##&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Custom Grouping and Decimal Separators: &quot;</span> + customGroupingFormat.format(<span class="hljs-number">1234567.89</span>));
+
+<span class="hljs-comment">//  Quoting Special Characters</span>
+<span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">quotingSpecialFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;&#x27;&#x27;#&#x27;&#x27;###&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Quoting Special Characters: &quot;</span> + quotingSpecialFormat.format(<span class="hljs-number">123</span>));
+
+<span class="hljs-comment">// Integer Formatting</span>
+<span class="hljs-type">DecimalFormat</span> <span class="hljs-variable">integerFormat</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DecimalFormat</span>(<span class="hljs-string">&quot;###&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Integer Formatting: &quot;</span> + integerFormat.format(<span class="hljs-number">1234.56</span>));</code></pre></div><p>This is the output:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Number Formatting: 1,234,567.89
+Percentage Formatting: 12.34%
+Per Mille Formatting: 123.4‰
+Currency Formatting: $1,234.56
+Scientific Notation: 1.234E4
+Positive Number: 1234.56
+Negative Number: (1234.56)
+Custom Text with Numbers: Number: 123
+Custom Grouping and Decimal Separators: Amount: 1,234,567.89
+Quoting Special Characters: &#x27;123&#x27;
+Integer Formatting: 1235</code></pre></div><h3 id="the-compactnumberformat-class">The <code>CompactNumberFormat</code> Class<a class="heading-anchor" href="#the-compactnumberformat-class" aria-label="Link to The CompactNumberFormat Class">#</a></h3><p><code>CompactNumberFormat</code> provides support for compact number formatting. This format is particularly useful for displaying large numbers in a more readable, locale-sensitive way.</p>
+<p>This class supports two styles:</p>
+<ol>
+<li><code>NumberFormat.Style.SHORT</code>: Uses abbreviations (for example, <code>K</code> for thousand, <code>M</code> for million, <code>B</code> for billion, and so on)</li>
+<li><code>NumberFormat.Style.LONG</code>: Uses full words (for example, &quot;thousand&quot;, &quot;million&quot;)</li>
+</ol>
+<p>To get a <code>CompactNumberFormat</code> instance, you use the <code>getCompactNumberInstance()</code> factory method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">NumberFormat</span> <span class="hljs-variable">shortFormat</span> <span class="hljs-operator">=</span> NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.SHORT);
+<span class="hljs-type">NumberFormat</span> <span class="hljs-variable">longFormat</span> <span class="hljs-operator">=</span> NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.LONG);</code></pre></div><p>Here are some examples of how <code>CompactNumberFormat</code> works:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">double</span> <span class="hljs-variable">number</span> <span class="hljs-operator">=</span> <span class="hljs-number">1_234_567.89</span>;
+
+System.out.println(shortFormat.format(number));  <span class="hljs-comment">// Output: 1M</span>
+System.out.println(longFormat.format(number));   <span class="hljs-comment">// Output: 1 million</span>
+
+number = <span class="hljs-number">1_234</span>;
+System.out.println(shortFormat.format(number));  <span class="hljs-comment">// Output: 1K</span>
+System.out.println(longFormat.format(number));   <span class="hljs-comment">// Output: 1 thousand</span></code></pre></div><p><code>CompactNumberFormat</code> automatically adjusts the number of displayed digits based on the magnitude of the number. It also handles different locales appropriately:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">NumberFormat</span> <span class="hljs-variable">frFormat</span> <span class="hljs-operator">=</span> NumberFormat.getCompactNumberInstance(Locale.FRANCE, NumberFormat.Style.SHORT);
+System.out.println(frFormat.format(<span class="hljs-number">1_234_567.89</span>));  <span class="hljs-comment">// Output: 1 M</span></code></pre></div><p>By default, <code>CompactNumberFormat</code> doesn&#39;t display fractional digits. However, you can modify this behavior using <code>setMinimumFractionDigits()</code> and <code>setMaximumFractionDigits()</code> methods. </p>
+<p>Also, the class also supports various rounding modes by using <code>setRoundingMode</code> and the <code>java.math.RoundingMode</code> enum, with <code>RoundingMode.HALF_EVEN</code> as the default:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Enum Constant</th><th>Description</th></tr></thead><tbody><tr><td><code>CEILING</code></td><td>Rounding mode to round towards positive infinity.</td></tr><tr><td><code>DOWN</code></td><td>Rounding mode to round towards zero.</td></tr><tr><td><code>FLOOR</code></td><td>Rounding mode to round towards negative infinity.</td></tr><tr><td><code>HALF_DOWN</code></td><td>Rounding mode to round towards &quot;nearest neighbor&quot; unless both neighbors are equidistant, in which case round down.</td></tr><tr><td><code>HALF_EVEN</code></td><td>Rounding mode to round towards the &quot;nearest neighbor&quot; unless both neighbors are equidistant, in which case, round towards the even neighbor.</td></tr><tr><td><code>HALF_UP</code></td><td>Rounding mode to round towards &quot;nearest neighbor&quot; unless both neighbors are equidistant, in which case round up.</td></tr><tr><td><code>UNNECESSARY</code></td><td>Rounding mode to assert that the requested operation has an exact result, hence no rounding is necessary.</td></tr><tr><td><code>UP</code></td><td>Rounding mode to round away from zero.</td></tr></tbody></table></div><p>Here are some examples:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">double</span> <span class="hljs-variable">number</span> <span class="hljs-operator">=</span> <span class="hljs-number">1_234_567.89</span>;
+<span class="hljs-type">NumberFormat</span> <span class="hljs-variable">shortFormat</span> <span class="hljs-operator">=</span> NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.SHORT);
+
+<span class="hljs-comment">// Default behavior (no fractional digits)</span>
+System.out.println(shortFormat.format(number));  <span class="hljs-comment">// Output: 1M</span>
+
+<span class="hljs-comment">// Adding fractional digits</span>
+shortFormat.setMinimumFractionDigits(<span class="hljs-number">1</span>);
+shortFormat.setMaximumFractionDigits(<span class="hljs-number">2</span>);
+System.out.println(shortFormat.format(number));  <span class="hljs-comment">// Output: 1.23M</span>
+
+<span class="hljs-comment">// Changing rounding mode</span>
+shortFormat.setRoundingMode(RoundingMode.DOWN);
+System.out.println(shortFormat.format(number));  <span class="hljs-comment">// Output: 1.23M</span>
+
+shortFormat.setRoundingMode(RoundingMode.UP);
+System.out.println(shortFormat.format(number));  <span class="hljs-comment">// Output: 1.24M</span>
+
+<span class="hljs-comment">// Behavior with smaller numbers</span>
+number = <span class="hljs-number">1234.56</span>;
+System.out.println(shortFormat.format(number));  <span class="hljs-comment">// Output: 1.24K</span>
+
+<span class="hljs-comment">// Resetting to default behavior</span>
+shortFormat = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.SHORT);
+System.out.println(shortFormat.format(number));  <span class="hljs-comment">// Output: 1K</span></code></pre></div><h2 id="the-datetimeformatter-class">The <code>DateTimeFormatter</code> Class<a class="heading-anchor" href="#the-datetimeformatter-class" aria-label="Link to The DateTimeFormatter Class">#</a></h2><p>In the <a href="ch11.html#parsing-and-formatting">The Date API</a> chapter, we covered the <code>java.time.format.DateTimeFormatter</code> class, which provides a flexible and modern way to format dates and times represented by <code>java.time</code> classes like <code>LocalDate</code>, <code>LocalTime</code>, and <code>LocalDateTime</code>.</p>
+<p>However, one of the key features of <code>DateTimeFormatter</code> is its ability to create localized formatters using the <code>ofLocalized...()</code> methods:</p>
+<ul>
+<li><code>static DateTimeFormatter ofLocalizedDate(FormatStyle dateStyle)</code>: Creates a formatter that formats a date in the specified style for the current locale.</li>
+<li><code>static DateTimeFormatter ofLocalizedTime(FormatStyle timeStyle)</code>: Creates a formatter that formats a time in the specified style for the current locale.</li>
+<li><code>static DateTimeFormatter ofLocalizedDateTime(FormatStyle dateStyle, FormatStyle timeStyle)</code>: Creates a formatter that formats a date and time in the specified styles for the current locale.</li>
+<li><code>static DateTimeFormatter ofLocalizedDateTime(FormatStyle dateTimeStyle)</code>: Creates a formatter that formats a date and time in the specified combined style for the current locale.</li>
+</ul>
+<p>The <code>FormatStyle</code> enum defines the available styles: <code>SHORT</code>, <code>MEDIUM</code>, <code>LONG</code>, and <code>FULL</code>.</p>
+<p>Here&#39;s an example of using these methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalDate</span> <span class="hljs-variable">date</span> <span class="hljs-operator">=</span> LocalDate.now();
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">time</span> <span class="hljs-operator">=</span> LocalTime.now();
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dateTime</span> <span class="hljs-operator">=</span> LocalDateTime.now();
+
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">dateFormatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL);
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">timeFormatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM);
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">dateTimeFormatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT);
+
+<span class="hljs-type">String</span> <span class="hljs-variable">formattedDate</span> <span class="hljs-operator">=</span> date.format(dateFormatter);
+<span class="hljs-type">String</span> <span class="hljs-variable">formattedTime</span> <span class="hljs-operator">=</span> time.format(timeFormatter);
+<span class="hljs-type">String</span> <span class="hljs-variable">formattedDateTime</span> <span class="hljs-operator">=</span> dateTime.format(dateTimeFormatter);
+
+System.out.println(<span class="hljs-string">&quot;Formatted date: &quot;</span> + formattedDate);
+System.out.println(<span class="hljs-string">&quot;Formatted time: &quot;</span> + formattedTime);
+System.out.println(<span class="hljs-string">&quot;Formatted date-time: &quot;</span> + formattedDateTime);</code></pre></div><p>The <code>ofLocalized...()</code> methods automatically use the current locale to determine the appropriate formatting. If you want to specify a different locale, you can use the <code>withLocale()</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">frenchDateFormatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(Locale.FRANCE);
+<span class="hljs-type">String</span> <span class="hljs-variable">formattedDateInFrench</span> <span class="hljs-operator">=</span> date.format(frenchDateFormatter);
+System.out.println(<span class="hljs-string">&quot;Formatted date in French: &quot;</span> + formattedDateInFrench);</code></pre></div><p>These localized formatters provide an easy way to format dates and times according to the conventions of a specific locale without having to specify the format pattern manually.</p>
+<p>You can also use a pattern to create a <code>DateTimeFormatter</code> instance using the <code>ofPattern(String)</code> and <code>ofPattern(String, Locale)</code> methods. For example, <code>&quot;d MMM uuuu&quot;</code> will format <code>2011-12-03</code> as <code>&#39;3 Dec 2011&#39;</code>. A formatter created from a pattern can be used as many times as necessary. It is immutable and thread-safe.</p>
+<p>Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalDate</span> <span class="hljs-variable">date</span> <span class="hljs-operator">=</span> LocalDate.now();
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yy MM dd&quot;</span>);
+
+<span class="hljs-comment">// Format the date</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">text</span> <span class="hljs-operator">=</span> date.format(formatter);
+System.out.println(<span class="hljs-string">&quot;Formatted date: &quot;</span> + text);
+
+<span class="hljs-comment">// Parse the date</span>
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">parsedDate</span> <span class="hljs-operator">=</span> LocalDate.parse(text, formatter);
+System.out.println(<span class="hljs-string">&quot;Parsed date: &quot;</span> + parsedDate);</code></pre></div><p>Here&#39;s a sample output:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Formatted date: 24 07 25
+Parsed date: 2024-07-25</code></pre></div><p>The following table shows all the pattern letters defined (all letters &#39;A&#39; to &#39;Z&#39; and &#39;a&#39; to &#39;z&#39; are reserved):</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Symbol</th><th>Meaning</th><th>Presentation</th><th>Examples</th></tr></thead><tbody><tr><td><code>G</code></td><td>era</td><td>text</td><td><code>AD</code>; <code>Anno Domini</code>; <code>A</code></td></tr><tr><td><code>u</code></td><td>year</td><td>year</td><td><code>2004</code>; <code>04</code></td></tr><tr><td><code>y</code></td><td>year-of-era</td><td>year</td><td><code>2004</code>; <code>04</code></td></tr><tr><td><code>D</code></td><td>day-of-year</td><td>number</td><td><code>189</code></td></tr><tr><td><code>M/L</code></td><td>month-of-year</td><td>number/text</td><td><code>7</code>; <code>07</code>; <code>Jul</code>; <code>July</code>; <code>J</code></td></tr><tr><td><code>d</code></td><td>day-of-month</td><td>number</td><td><code>10</code></td></tr><tr><td><code>g</code></td><td>modified-julian-day</td><td>number</td><td><code>2451334</code></td></tr><tr><td><code>Q/q</code></td><td>quarter-of-year</td><td>number/text</td><td><code>3</code>; <code>03</code>; <code>Q3</code>; <code>3rd quarter</code></td></tr><tr><td><code>Y</code></td><td>week-based-year</td><td>year</td><td><code>1996</code>; <code>96</code></td></tr><tr><td><code>w</code></td><td>week-of-week-based-year</td><td>number</td><td><code>27</code></td></tr><tr><td><code>W</code></td><td>week-of-month</td><td>number</td><td><code>4</code></td></tr><tr><td><code>E</code></td><td>day-of-week</td><td>text</td><td><code>Tue</code>; <code>Tuesday</code>; <code>T</code></td></tr><tr><td><code>e/c</code></td><td>localized day-of-week</td><td>number/text</td><td><code>2</code>; <code>02</code>; <code>Tue</code>; <code>Tuesday</code>; <code>T</code></td></tr><tr><td><code>F</code></td><td>day-of-week-in-month</td><td>number</td><td><code>3</code></td></tr><tr><td><code>a</code></td><td>am-pm-of-day</td><td>text</td><td><code>PM</code></td></tr><tr><td><code>B</code></td><td>period-of-day</td><td>text</td><td><code>in the morning</code></td></tr><tr><td><code>h</code></td><td>clock-hour-of-am-pm (1-12)</td><td>number</td><td><code>12</code></td></tr><tr><td><code>K</code></td><td>hour-of-am-pm (0-11)</td><td>number</td><td><code>0</code></td></tr><tr><td><code>k</code></td><td>clock-hour-of-day (1-24)</td><td>number</td><td><code>24</code></td></tr><tr><td><code>H</code></td><td>hour-of-day (0-23)</td><td>number</td><td><code>0</code></td></tr><tr><td><code>m</code></td><td>minute-of-hour</td><td>number</td><td><code>30</code></td></tr><tr><td><code>s</code></td><td>second-of-minute</td><td>number</td><td><code>55</code></td></tr><tr><td><code>S</code></td><td>fraction-of-second</td><td>fraction</td><td><code>978</code></td></tr><tr><td><code>A</code></td><td>milli-of-day</td><td>number</td><td><code>1234</code></td></tr><tr><td><code>n</code></td><td>nano-of-second</td><td>number</td><td><code>987654321</code></td></tr><tr><td><code>N</code></td><td>nano-of-day</td><td>number</td><td><code>1234000000</code></td></tr><tr><td><code>V</code></td><td>time-zone ID</td><td>zone-id</td><td><code>America/Los_Angeles</code>; <code>Z</code>; <code>-08:30</code></td></tr><tr><td><code>v</code></td><td>generic time-zone name</td><td>zone-name</td><td><code>Pacific Time</code>; <code>PT</code></td></tr><tr><td><code>z</code></td><td>time-zone name</td><td>zone-name</td><td><code>Pacific Standard Time</code>; <code>PST</code></td></tr><tr><td><code>O</code></td><td>localized zone-offset</td><td>offset-O</td><td><code>GMT+8</code>; <code>GMT+08:00</code>; <code>UTC-08:00</code></td></tr><tr><td><code>X</code></td><td>zone-offset &#39;Z&#39; for zero</td><td>offset-X</td><td><code>Z</code>; <code>-08</code>; <code>-0830</code>; <code>-08:30</code>; <code>-083015</code>; <code>-08:30:15</code></td></tr><tr><td><code>x</code></td><td>zone-offset</td><td>offset-x</td><td><code>+0000</code>; <code>-08</code>; <code>-0830</code>; <code>-08:30</code>; <code>-083015</code>; <code>-08:30:15</code></td></tr><tr><td><code>Z</code></td><td>zone-offset</td><td>offset-Z</td><td><code>+0000</code>; <code>-0800</code>; <code>-08:00</code></td></tr><tr><td><code>p</code></td><td>pad next</td><td>pad modifier</td><td><code>1</code></td></tr><tr><td><code>&#39;</code></td><td>escape for text</td><td>delimiter</td><td></td></tr><tr><td><code>&#39;&#39;</code></td><td>single quote</td><td>literal</td><td><code>&#39;</code></td></tr><tr><td><code>[</code></td><td>optional section start</td><td></td><td></td></tr><tr><td><code>]</code></td><td>optional section end</td><td></td><td></td></tr><tr><td><code>#</code></td><td>reserved for future use</td><td></td><td></td></tr><tr><td><code>{</code></td><td>reserved for future use</td><td></td><td></td></tr><tr><td><code>}</code></td><td>reserved for future use</td><td></td><td></td></tr></tbody></table></div><p>Here are examples using many of those patterns:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalDate</span> <span class="hljs-variable">date</span> <span class="hljs-operator">=</span> LocalDate.now();
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">time</span> <span class="hljs-operator">=</span> LocalTime.now();
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zonedDateTime</span> <span class="hljs-operator">=</span> ZonedDateTime.now();
+
+<span class="hljs-comment">// Era</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter1</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;G&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Era: &quot;</span> + date.format(formatter1));
+
+<span class="hljs-comment">// Year</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter2</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Year: &quot;</span> + date.format(formatter2));
+
+<span class="hljs-comment">// Day of Year</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter3</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;D&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Day of Year: &quot;</span> + date.format(formatter3));
+
+<span class="hljs-comment">// Month of Year</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter4</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;MMMM&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Month of Year: &quot;</span> + date.format(formatter4));
+
+<span class="hljs-comment">// Day of Month</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter5</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;d&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Day of Month: &quot;</span> + date.format(formatter5));
+
+<span class="hljs-comment">// Day of Week</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter6</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;EEEE&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Day of Week: &quot;</span> + date.format(formatter6));
+
+<span class="hljs-comment">// AM/PM of Day</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter7</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;a&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;AM/PM of Day: &quot;</span> + time.format(formatter7));
+
+<span class="hljs-comment">// Hour of Day (0-23)</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter8</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;H&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Hour of Day (0-23): &quot;</span> + time.format(formatter8));
+
+<span class="hljs-comment">// Minute of Hour</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter9</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;m&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Minute of Hour: &quot;</span> + time.format(formatter9));
+
+<span class="hljs-comment">// Second of Minute</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter10</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;s&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Second of Minute: &quot;</span> + time.format(formatter10));
+
+<span class="hljs-comment">// Time Zone Name</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter11</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;z&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;Time Zone Name: &quot;</span> + zonedDateTime.format(formatter11));
+
+<span class="hljs-comment">// ISO 8601 Time Zone</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter12</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;X&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;ISO 8601 Time Zone: &quot;</span> + zonedDateTime.format(formatter12));</code></pre></div><p>The output should be similar to this:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Era: AD
+Year: 2024
+Day of Year: 207
+Month of Year: July
+Day of Month: 25
+Day of Week: Thursday
+AM/PM of Day: PM
+Hour of Day (0-23): 20
+Minute of Hour: 31
+Second of Minute: 16
+Time Zone Name: CDT
+ISO 8601 Time Zone: -05</code></pre></div><p>For the Java certification exam, you don&#39;t need to memorize every single pattern, but you should be familiar with the key ones that are likely to appear on the exam. Here&#39;s a list of patterns and you should concentrate on:</p>
+<ul>
+<li><strong>Era</strong>: <code>G</code></li>
+<li><strong>Year of Era</strong>: <code>y</code></li>
+<li><strong>Month</strong>: <code>M</code></li>
+<li><strong>Day of Month</strong>: <code>d</code></li>
+<li><strong>Hour (0-23)</strong>: <code>H</code></li>
+<li><strong>Hour (1-12)</strong>: <code>h</code></li>
+<li><strong>Minute</strong>: <code>m</code></li>
+<li><strong>Second</strong>: <code>s</code></li>
+<li><strong>AM/PM</strong>: <code>a</code></li>
+<li><strong>Week-based-year</strong>: <code>Y</code></li>
+<li><strong>Day-of-year</strong>: <code>D</code></li>
+<li><strong>Day-of-week</strong>: <code>E</code>, <code>e</code></li>
+<li><strong>Period-of-day</strong>: <code>B</code></li>
+<li><strong>Fraction-of-second</strong>: <code>S</code></li>
+<li><strong>Nano-of-second</strong>: <code>n</code></li>
+<li><strong>Nano-of-day</strong>: <code>N</code></li>
+<li><strong>Time Zone ID</strong>: <code>V</code></li>
+<li><strong>Time Zone Name</strong>: <code>z</code></li>
+<li><strong>ISO 8601 Time Zone</strong>: <code>X</code></li>
+<li><strong>Localized Zone Offset</strong>: <code>O</code></li>
+</ul>
+<h2 id="key-points">Key Points<a class="heading-anchor" href="#key-points" aria-label="Link to Key Points">#</a></h2><ul>
+<li><p>Localization is the process of designing and developing an application so that it can be adapted to various locales without requiring engineering changes. A locale represents a specific geographical, political, or cultural region.</p>
+</li>
+<li><p>Locales are represented by the <code>java.util.Locale</code> class. You can get the default locale of the Java Virtual Machine using <code>Locale.getDefault()</code>, use built-in constants like <code>Locale.US</code>, or create a new <code>Locale</code> object using a constructor or the <code>forLanguageTag()</code> method.</p>
+</li>
+<li><p>The <code>Locale.Category</code> enum defines two categories: <code>DISPLAY</code> (for user interface elements) and <code>FORMAT</code> (for parsing and formatting data). You can set and get the default locale for each category using <code>Locale.setDefault()</code> and <code>Locale.getDefault()</code>.</p>
+</li>
+<li><p>Resource bundles are used to organize and access locale-specific data. They are typically implemented as property files named in the format <code>&lt;basename&gt;_&lt;language&gt;_&lt;country&gt;_&lt;variant&gt;.properties</code>.</p>
+</li>
+<li><p>The <code>java.util.ResourceBundle</code> class is used to load the appropriate property file for the current locale. You can retrieve locale-specific values using <code>getString()</code> or <code>getObject()</code>.</p>
+</li>
+<li><p>The <code>java.text.MessageFormat</code> class is used to create localized messages by combining a pattern string with arguments. The pattern includes placeholders marked with <code>{}</code> and argument indexes. Format types (like <code>number</code> or <code>date</code>) and styles can be specified.</p>
+</li>
+<li><p>The <code>java.text.Format</code> class has subclasses to format arguments based on their type and the specified format style. The main subclasses are <code>java.text.NumberFormat</code> for numbers and <code>java.text.DateFormat</code> for dates.</p>
+</li>
+<li><p><code>java.text.NumberFormat</code> is the abstract base class for formatting and parsing numbers in Java. It provides factory methods for getting locale-specific formatters for numbers, currencies, and percentages.</p>
+</li>
+<li><p><code>java.text.DecimalFormat</code> is a concrete subclass of <code>NumberFormat</code> that allows for more detailed control over the formatting of decimal numbers using patterns. The pattern can include special characters representing digit positions, decimals, grouping, etc.</p>
+</li>
+<li><p><code>java.time.format.DateTimeFormatter</code> is a class for formatting dates and times from the <code>java.time</code> package. It works with the modern date/time classes like <code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>.</p>
+</li>
+<li><p><code>DateTimeFormatter</code> provides <code>ofLocalized...()</code> methods for creating locale-specific formatters in different styles, similar to <code>DateFormat</code>. It also allows creating formatters from custom patterns using <code>ofPattern()</code>.</p>
+</li>
+<li><p>For the certification exam, focus on common patterns like era (<code>G</code>), year of era (<code>y</code>), month (<code>M</code>), day of month (<code>d</code>), hours (<code>H</code>, <code>h</code>), minutes (<code>m</code>), seconds (<code>s</code>), AM/PM (<code>a</code>), among others.</p>
+</li>
+</ul>
+<h2 id="practice-questions">Practice Questions<a class="heading-anchor" href="#practice-questions" aria-label="Link to Practice Questions">#</a></h2><p><a href="ch14-practice.html#book-practice">Open the interactive book questions on the Chapter 14.1 Practice page</a>.</p>
+</article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this chapter.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><div class="finish-chapter"><button class="primary-button" id="complete-chapter" data-id="ch14" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg><span>Mark chapter complete</span></button><a href="ch14a.html">Review the answers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch13-practice.html"><small>Previous</small>Chapter 13.1 Practice</a><a href="ch14-practice.html"><small>Next chapter</small>Chapter 14.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#introduction-to-localization">Introduction to Localization</a><a class="toc-link" href="#the-locale-class">The Locale Class</a><a class="toc-link" href="#resource-bundles">Resource Bundles</a><a class="toc-link" href="#the-messageformat-class">The MessageFormat Class</a><a class="toc-link" href="#the-numberformat-class">The NumberFormat Class</a><a class="toc-link" href="#the-datetimeformatter-class">The DateTimeFormatter Class</a><a class="toc-link" href="#key-points">Key Points</a><a class="toc-link" href="#practice-questions">Practice Questions</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

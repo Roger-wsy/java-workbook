@@ -1,0 +1,685 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Chapter 12.1 Practice</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch12-practice"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link selected" href="ch12-practice.html" aria-current="page"><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Chapter 12.1 Practice</h1><p class="practice-subtitle">File I/O</p><div class="document-meta">9 book questions <span>·</span> 11 extra quiz questions</div><div class="chapter-actions"><a href="ch12.html">Read chapter 12</a><a class="active" aria-current="page" href="ch12-practice.html">Practice 12.1</a><a href="ch12a.html">Original answers</a></div></div><nav class="practice-section-nav" aria-label="Practice sections"><a href="#book-practice">Book questions</a><a href="#chapter-quiz">Extra quiz</a><button type="button" class="reset-all-quizzes">Reset all questions</button></nav><article class="prose practice-prose"><section class="chapter-quiz book-practice" id="book-practice" aria-labelledby="book-practice-title">
+    <h2 id="book-practice-title">Book practice questions</h2>
+    <p class="quiz-intro">9 questions from the chapter, with the book’s explanations. Single-answer questions show immediate feedback. For checkbox questions, select your answers, then choose Check answer. Reviewed corrections and clarifications are identified beside the question.</p>
+    <form class="quiz-form" data-quiz="book-ch12"><p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="book-q1" data-answer="3" aria-describedby="book-q1-feedback">
+          <legend>Question 1</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>What is the result of the following code snippet?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.nio.file.Path;
+<span class="hljs-keyword">import</span> java.nio.file.Paths;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PathExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">Path</span> <span class="hljs-variable">basePath</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home/user&quot;</span>);
+        <span class="hljs-type">Path</span> <span class="hljs-variable">relativePath</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;documents/notes.txt&quot;</span>);
+        <span class="hljs-type">Path</span> <span class="hljs-variable">resultPath</span> <span class="hljs-operator">=</span> basePath.resolve(relativePath);
+        System.out.println(resultPath);
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q1-option-0" type="radio" name="book-q1" value="0" aria-labelledby="book-q1-option-0-letter book-q1-option-0-text"><span class="option-letter" id="book-q1-option-0-letter">A</span><div class="quiz-option-content" id="book-q1-option-0-text"><p><code>/home/user</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-1" type="radio" name="book-q1" value="1" aria-labelledby="book-q1-option-1-letter book-q1-option-1-text"><span class="option-letter" id="book-q1-option-1-letter">B</span><div class="quiz-option-content" id="book-q1-option-1-text"><p><code>/home/user/documents</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-2" type="radio" name="book-q1" value="2" aria-labelledby="book-q1-option-2-letter book-q1-option-2-text"><span class="option-letter" id="book-q1-option-2-letter">C</span><div class="quiz-option-content" id="book-q1-option-2-text"><p><code>/documents/notes.txt</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-3" type="radio" name="book-q1" value="3" aria-labelledby="book-q1-option-3-letter book-q1-option-3-text"><span class="option-letter" id="book-q1-option-3-letter">D</span><div class="quiz-option-content" id="book-q1-option-3-text"><p><code>/home/user/documents/notes.txt</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>/home/user</code></p>
+<ul>
+<li>This option is incorrect. The <code>resolve</code> method appends the given path to the base path. It does not return the base path alone.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>/home/user/documents</code> </p>
+<ul>
+<li>This option is incorrect. The <code>resolve</code> method includes the entire relative path provided as an argument, not just part of it.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>/documents/notes.txt</code></p>
+<ul>
+<li>This option is incorrect. The <code>resolve</code> method combines the base path with the given relative path; it does not replace the base path with the relative path.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>/home/user/documents/notes.txt</code></p>
+<ul>
+<li>This option is correct. The <code>resolve</code> method appends the relative path to the base path, resulting in <code>/home/user/documents/notes.txt</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q2" data-answer="2" aria-describedby="book-q2-feedback">
+          <legend>Question 2</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>What is the result of the following code snippet?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.nio.file.Path;
+<span class="hljs-keyword">import</span> java.nio.file.Paths;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PathExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/home/user/../documents/./notes.txt&quot;</span>);
+        <span class="hljs-type">Path</span> <span class="hljs-variable">normalizedPath</span> <span class="hljs-operator">=</span> path.normalize();
+        System.out.println(normalizedPath);
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q2-option-0" type="radio" name="book-q2" value="0" aria-labelledby="book-q2-option-0-letter book-q2-option-0-text"><span class="option-letter" id="book-q2-option-0-letter">A</span><div class="quiz-option-content" id="book-q2-option-0-text"><p><code>/home/user/../documents/./notes.txt</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-1" type="radio" name="book-q2" value="1" aria-labelledby="book-q2-option-1-letter book-q2-option-1-text"><span class="option-letter" id="book-q2-option-1-letter">B</span><div class="quiz-option-content" id="book-q2-option-1-text"><p><code>/home/user/documents/notes.txt</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-2" type="radio" name="book-q2" value="2" aria-labelledby="book-q2-option-2-letter book-q2-option-2-text"><span class="option-letter" id="book-q2-option-2-letter">C</span><div class="quiz-option-content" id="book-q2-option-2-text"><p><code>/home/documents/notes.txt</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-3" type="radio" name="book-q2" value="3" aria-labelledby="book-q2-option-3-letter book-q2-option-3-text"><span class="option-letter" id="book-q2-option-3-letter">D</span><div class="quiz-option-content" id="book-q2-option-3-text"><p><code>/documents/notes.txt</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>/home/user/../documents/./notes.txt</code> </p>
+<ul>
+<li>This option is incorrect. The <code>normalize</code> method removes redundant <code>.</code> and <code>..</code> elements, so it wouldn&#39;t leave the path as is.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>/home/user/documents/notes.txt</code></p>
+<ul>
+<li>This option is incorrect. While the <code>.</code> is removed, the <code>..</code> navigates one directory up, resulting in an incorrect final path.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>/home/documents/notes.txt</code></p>
+<ul>
+<li>This option is correct. The <code>normalize</code> method processes the path by removing the <code>.</code> and moving one directory up due to <code>..</code>, resulting in <code>/home/documents/notes.txt</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>/documents/notes.txt</code></p>
+<ul>
+<li>This option is incorrect. The <code>normalize</code> method does not completely remove the leading part of the path up to <code>documents</code>. It only processes the <code>.</code> and <code>..</code> elements.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q3" data-answer="1" aria-describedby="book-q3-feedback">
+          <legend>Question 3</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following classes is used for reading character streams in Java?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q3-option-0" type="radio" name="book-q3" value="0" aria-labelledby="book-q3-option-0-letter book-q3-option-0-text"><span class="option-letter" id="book-q3-option-0-letter">A</span><div class="quiz-option-content" id="book-q3-option-0-text"><p><code>FileOutputStream</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-1" type="radio" name="book-q3" value="1" aria-labelledby="book-q3-option-1-letter book-q3-option-1-text"><span class="option-letter" id="book-q3-option-1-letter">B</span><div class="quiz-option-content" id="book-q3-option-1-text"><p><code>FileReader</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-2" type="radio" name="book-q3" value="2" aria-labelledby="book-q3-option-2-letter book-q3-option-2-text"><span class="option-letter" id="book-q3-option-2-letter">C</span><div class="quiz-option-content" id="book-q3-option-2-text"><p><code>BufferedOutputStream</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-3" type="radio" name="book-q3" value="3" aria-labelledby="book-q3-option-3-letter book-q3-option-3-text"><span class="option-letter" id="book-q3-option-3-letter">D</span><div class="quiz-option-content" id="book-q3-option-3-text"><p><code>ObjectInputStream</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>FileOutputStream</code></p>
+<ul>
+<li>This option is incorrect. <code>FileOutputStream</code> is used for writing binary data to a file, not for reading character streams.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>FileReader</code></p>
+<ul>
+<li>This option is correct. <code>FileReader</code> is designed for reading character streams from a file, making it the appropriate class for this purpose.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>BufferedOutputStream</code></p>
+<ul>
+<li>This option is incorrect. <code>BufferedOutputStream</code> is used to write binary data to an output stream, buffering the data for efficient writing. It is not used for reading character streams.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>ObjectInputStream</code></p>
+<ul>
+<li>This option is incorrect. <code>ObjectInputStream</code> is used for deserializing objects from an input stream, not for reading character streams.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q4" data-answer="2" aria-describedby="book-q4-feedback">
+          <legend>Question 4</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following code snippets correctly copies a file using the <code>Files</code> class, ensuring that an existing target file is overwritten?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q4-option-0" type="radio" name="book-q4" value="0" aria-labelledby="book-q4-option-0-letter book-q4-option-0-text"><span class="option-letter" id="book-q4-option-0-letter">A</span><div class="quiz-option-content" id="book-q4-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;source.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;target.txt&quot;</span>);
+Files.copy(source, target, StandardCopyOption.ATOMIC_MOVE);</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q4-option-1" type="radio" name="book-q4" value="1" aria-labelledby="book-q4-option-1-letter book-q4-option-1-text"><span class="option-letter" id="book-q4-option-1-letter">B</span><div class="quiz-option-content" id="book-q4-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;source.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;target.txt&quot;</span>);
+Files.move(source, target, StandardCopyOption.REPLACE_EXISTING);</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q4-option-2" type="radio" name="book-q4" value="2" aria-labelledby="book-q4-option-2-letter book-q4-option-2-text"><span class="option-letter" id="book-q4-option-2-letter">C</span><div class="quiz-option-content" id="book-q4-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;source.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;target.txt&quot;</span>);
+Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q4-option-3" type="radio" name="book-q4" value="3" aria-labelledby="book-q4-option-3-letter book-q4-option-3-text"><span class="option-letter" id="book-q4-option-3-letter">D</span><div class="quiz-option-content" id="book-q4-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;source.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;target.txt&quot;</span>);
+Files.copy(source, target, StandardCopyOption.APPEND);</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;source.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;target.txt&quot;</span>);
+Files.copy(source, target, StandardCopyOption.ATOMIC_MOVE);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>StandardCopyOption.ATOMIC_MOVE</code> is used for moving files atomically, not for copying. It does not ensure that an existing file is overwritten.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;source.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;target.txt&quot;</span>);
+Files.move(source, target, StandardCopyOption.REPLACE_EXISTING);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>Files.move</code> is used to move or rename a file, not to copy it. <code>StandardCopyOption.REPLACE_EXISTING</code> ensures the target file is overwritten during a move, not a copy.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;source.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;target.txt&quot;</span>);
+Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);</code></pre></div><ul>
+<li><p>This option is correct. <code>Files.copy</code> with <code>StandardCopyOption.REPLACE_EXISTING</code> ensures the target file is overwritten if it exists, which is the correct way to copy a file with overwriting.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">source</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;source.txt&quot;</span>);
+<span class="hljs-type">Path</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;target.txt&quot;</span>);
+Files.copy(source, target, StandardCopyOption.APPEND);</code></pre></div><ul>
+<li>This option is incorrect. <code>StandardCopyOption.APPEND</code> does not exist in the <code>StandardCopyOption</code> enum, making this code snippet invalid.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q5" data-answer="3" aria-describedby="book-q5-feedback">
+          <legend>Question 5</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following code snippets correctly reads all lines from a file into a <code>List&lt;String&gt;</code> using the <code>java.nio.file</code> API?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q5-option-0" type="radio" name="book-q5" value="0" aria-labelledby="book-q5-option-0-letter book-q5-option-0-text"><span class="option-letter" id="book-q5-option-0-letter">A</span><div class="quiz-option-content" id="book-q5-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;file.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.readAllBytes(path);</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q5-option-1" type="radio" name="book-q5" value="1" aria-labelledby="book-q5-option-1-letter book-q5-option-1-text"><span class="option-letter" id="book-q5-option-1-letter">B</span><div class="quiz-option-content" id="book-q5-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;file.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.readString(path);</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q5-option-2" type="radio" name="book-q5" value="2" aria-labelledby="book-q5-option-2-letter book-q5-option-2-text"><span class="option-letter" id="book-q5-option-2-letter">C</span><div class="quiz-option-content" id="book-q5-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;file.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.lines(path);</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q5-option-3" type="radio" name="book-q5" value="3" aria-labelledby="book-q5-option-3-letter book-q5-option-3-text"><span class="option-letter" id="book-q5-option-3-letter">D</span><div class="quiz-option-content" id="book-q5-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;file.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.readAllLines(path);</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;file.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.readAllBytes(path);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>Files.readAllBytes(path)</code> returns a byte array, not a <code>List&lt;String&gt;</code>.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;file.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.readString(path);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>Files.readString(path)</code> returns a single <code>String</code> containing the entire content of the file, not a <code>List&lt;String&gt;</code>.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;file.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.lines(path);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>Files.lines(path)</code> returns a <code>Stream&lt;String&gt;</code>, not a <code>List&lt;String&gt;</code>. It provides a lazy-loaded stream of lines.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;file.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Files.readAllLines(path);</code></pre></div><ul>
+<li>This option is correct. <code>Files.readAllLines(path)</code> reads all lines from the file and returns them as a <code>List&lt;String&gt;</code>, which is the desired behavior.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q6" data-answer="0" aria-describedby="book-q6-feedback">
+          <legend>Question 6</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following code snippets correctly writes a <code>List&lt;String&gt;</code> to a file using the <code>Files</code> class in Java?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q6-option-0" type="radio" name="book-q6" value="0" aria-labelledby="book-q6-option-0-letter book-q6-option-0-text"><span class="option-letter" id="book-q6-option-0-letter">A</span><div class="quiz-option-content" id="book-q6-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;output.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;line1&quot;</span>, <span class="hljs-string">&quot;line2&quot;</span>, <span class="hljs-string">&quot;line3&quot;</span>);
+Files.write(path, lines);</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q6-option-1" type="radio" name="book-q6" value="1" aria-labelledby="book-q6-option-1-letter book-q6-option-1-text"><span class="option-letter" id="book-q6-option-1-letter">B</span><div class="quiz-option-content" id="book-q6-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;output.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;line1&quot;</span>, <span class="hljs-string">&quot;line2&quot;</span>, <span class="hljs-string">&quot;line3&quot;</span>);
+Files.writeString(path, lines);</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q6-option-2" type="radio" name="book-q6" value="2" aria-labelledby="book-q6-option-2-letter book-q6-option-2-text"><span class="option-letter" id="book-q6-option-2-letter">C</span><div class="quiz-option-content" id="book-q6-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;output.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;line1&quot;</span>, <span class="hljs-string">&quot;line2&quot;</span>, <span class="hljs-string">&quot;line3&quot;</span>);
+Files.writeLines(path, lines);</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q6-option-3" type="radio" name="book-q6" value="3" aria-labelledby="book-q6-option-3-letter book-q6-option-3-text"><span class="option-letter" id="book-q6-option-3-letter">D</span><div class="quiz-option-content" id="book-q6-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;output.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;line1&quot;</span>, <span class="hljs-string">&quot;line2&quot;</span>, <span class="hljs-string">&quot;line3&quot;</span>);
+Files.write(path, lines, StandardOpenOption.READ);</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;output.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;line1&quot;</span>, <span class="hljs-string">&quot;line2&quot;</span>, <span class="hljs-string">&quot;line3&quot;</span>);
+Files.write(path, lines);</code></pre></div><ul>
+<li><p>This option is correct. <code>Files.write(path, lines)</code> writes the given list of strings to the file at the specified path, creating the file if it does not exist.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;output.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;line1&quot;</span>, <span class="hljs-string">&quot;line2&quot;</span>, <span class="hljs-string">&quot;line3&quot;</span>);
+Files.writeString(path, lines);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>Files.writeString(path, lines)</code> does not exist. <code>Files.writeString</code> expects a single <code>String</code> as the second argument, not a <code>List&lt;String&gt;</code>.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;output.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;line1&quot;</span>, <span class="hljs-string">&quot;line2&quot;</span>, <span class="hljs-string">&quot;line3&quot;</span>);
+Files.writeLines(path, lines);</code></pre></div><ul>
+<li><p>This option is incorrect. <code>Files.writeLines(path, lines)</code> does not exist. There is no such method in the <code>Files</code> class.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">path</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;output.txt&quot;</span>);
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;line1&quot;</span>, <span class="hljs-string">&quot;line2&quot;</span>, <span class="hljs-string">&quot;line3&quot;</span>);
+Files.write(path, lines, StandardOpenOption.READ);</code></pre></div><ul>
+<li>This option is incorrect. <code>StandardOpenOption.READ</code> is not a valid option for writing files. It is used for reading files.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q7" data-answer="1" aria-describedby="book-q7-feedback">
+          <legend>Question 7</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following methods from the <code>BasicFileAttributes</code> class retrieves the creation time of a file?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q7-option-0" type="radio" name="book-q7" value="0" aria-labelledby="book-q7-option-0-letter book-q7-option-0-text"><span class="option-letter" id="book-q7-option-0-letter">A</span><div class="quiz-option-content" id="book-q7-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+attrs.lastModifiedTime();</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q7-option-1" type="radio" name="book-q7" value="1" aria-labelledby="book-q7-option-1-letter book-q7-option-1-text"><span class="option-letter" id="book-q7-option-1-letter">B</span><div class="quiz-option-content" id="book-q7-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+attrs.creationTime();</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q7-option-2" type="radio" name="book-q7" value="2" aria-labelledby="book-q7-option-2-letter book-q7-option-2-text"><span class="option-letter" id="book-q7-option-2-letter">C</span><div class="quiz-option-content" id="book-q7-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+attrs.lastAccessTime();</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q7-option-3" type="radio" name="book-q7" value="3" aria-labelledby="book-q7-option-3-letter book-q7-option-3-text"><span class="option-letter" id="book-q7-option-3-letter">D</span><div class="quiz-option-content" id="book-q7-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+attrs.size();</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+attrs.lastModifiedTime();</code></pre></div><ul>
+<li><p>This option is incorrect. <code>attrs.lastModifiedTime()</code> retrieves the last modified time of the file, not the creation time.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+attrs.creationTime();</code></pre></div><ul>
+<li><p>This option is correct. <code>attrs.creationTime()</code> retrieves the creation time of the file, which is the correct method from <code>BasicFileAttributes</code> for this purpose.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+attrs.lastAccessTime();</code></pre></div><ul>
+<li><p>This option is incorrect. <code>attrs.lastAccessTime()</code> retrieves the last access time of the file, not the creation time.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">BasicFileAttributes</span> <span class="hljs-variable">attrs</span> <span class="hljs-operator">=</span> Files.readAttributes(path, BasicFileAttributes.class);
+attrs.size();</code></pre></div><ul>
+<li>This option is incorrect. <code>attrs.size()</code> retrieves the size of the file, not the creation time.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q8" data-answer="3" aria-describedby="book-q8-feedback">
+          <legend>Question 8</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following code snippets correctly traverses a directory tree using the <code>Files.walkFileTree</code> method in Java?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q8-option-0" type="radio" name="book-q8" value="0" aria-labelledby="book-q8-option-0-letter book-q8-option-0-text"><span class="option-letter" id="book-q8-option-0-letter">A</span><div class="quiz-option-content" id="book-q8-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;start_directory&quot;</span>);
+Files.walkFileTree(start, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">return</span> FileVisitResult.SKIP_SUBTREE;
+    }
+});</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q8-option-1" type="radio" name="book-q8" value="1" aria-labelledby="book-q8-option-1-letter book-q8-option-1-text"><span class="option-letter" id="book-q8-option-1-letter">B</span><div class="quiz-option-content" id="book-q8-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;start_directory&quot;</span>);
+Files.walkFileTree(start, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IOException</span>(<span class="hljs-string">&quot;Error visiting file&quot;</span>);
+    }
+});</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q8-option-2" type="radio" name="book-q8" value="2" aria-labelledby="book-q8-option-2-letter book-q8-option-2-text"><span class="option-letter" id="book-q8-option-2-letter">C</span><div class="quiz-option-content" id="book-q8-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;start_directory&quot;</span>);
+Files.walkFileTree(start, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        System.out.println(<span class="hljs-string">&quot;Visited file: &quot;</span> + file);
+        <span class="hljs-keyword">return</span> FileVisitResult.TERMINATE;
+    }
+});</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q8-option-3" type="radio" name="book-q8" value="3" aria-labelledby="book-q8-option-3-letter book-q8-option-3-text"><span class="option-letter" id="book-q8-option-3-letter">D</span><div class="quiz-option-content" id="book-q8-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;start_directory&quot;</span>);
+Files.walkFileTree(start, EnumSet.noneOf(FileVisitOption.class), Integer.MAX_VALUE, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        System.out.println(<span class="hljs-string">&quot;Visited file: &quot;</span> + file);
+        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">preVisitDirectory</span><span class="hljs-params">(Path dir, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFileFailed</span><span class="hljs-params">(Path file, IOException exc)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">postVisitDirectory</span><span class="hljs-params">(Path dir, IOException exc)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+    }
+});</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;start_directory&quot;</span>);
+Files.walkFileTree(start, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">return</span> FileVisitResult.SKIP_SUBTREE;
+    }
+});</code></pre></div><ul>
+<li><p>This option is incorrect. <code>FileVisitResult.SKIP_SUBTREE</code> will skip the traversal of the entire subtree, not allowing the complete traversal of the directory tree.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;start_directory&quot;</span>);
+Files.walkFileTree(start, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IOException</span>(<span class="hljs-string">&quot;Error visiting file&quot;</span>);
+    }
+});</code></pre></div><ul>
+<li><p>This option is incorrect. Throwing an <code>IOException</code> inside <code>visitFile</code> will stop the traversal due to an unhandled exception.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;start_directory&quot;</span>);
+Files.walkFileTree(start, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        System.out.println(<span class="hljs-string">&quot;Visited file: &quot;</span> + file);
+        <span class="hljs-keyword">return</span> FileVisitResult.TERMINATE;
+    }
+});</code></pre></div><ul>
+<li><p>This option is incorrect. The use of <code>FileVisitResult.TERMINATE</code> will stop the traversal after visiting the first file, not allowing the complete traversal of the directory tree.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">Path</span> <span class="hljs-variable">start</span> <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;start_directory&quot;</span>);
+Files.walkFileTree(start, EnumSet.noneOf(FileVisitOption.class), Integer.MAX_VALUE, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleFileVisitor</span>&lt;Path&gt;() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFile</span><span class="hljs-params">(Path file, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        System.out.println(<span class="hljs-string">&quot;Visited file: &quot;</span> + file);
+        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">preVisitDirectory</span><span class="hljs-params">(Path dir, BasicFileAttributes attrs)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">visitFileFailed</span><span class="hljs-params">(Path file, IOException exc)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">FileVisitResult</span> <span class="hljs-title function_">postVisitDirectory</span><span class="hljs-params">(Path dir, IOException exc)</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">return</span> FileVisitResult.CONTINUE;
+    }
+});</code></pre></div><ul>
+<li>This option is correct. It uses <code>Files.walkFileTree</code> with <code>SimpleFileVisitor</code>, specifying no special <code>FileVisitOption</code> and setting the maximum depth to <code>Integer.MAX_VALUE</code>, ensuring full traversal of the directory tree. Additionally, it correctly handles directory pre-visit, file visit, file visit failure, and directory post-visit events.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q9" data-answer="1" aria-describedby="book-q9-feedback">
+          <legend>Question 9</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following code snippets correctly serializes an object to a file?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q9-option-0" type="radio" name="book-q9" value="0" aria-labelledby="book-q9-option-0-letter book-q9-option-0-text"><span class="option-letter" id="book-q9-option-0-letter">A</span><div class="quiz-option-content" id="book-q9-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+    <span class="hljs-keyword">private</span> String species;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Animal</span><span class="hljs-params">(String species, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.species = species;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+}
+
+<span class="hljs-type">Animal</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&quot;Lion&quot;</span>, <span class="hljs-number">5</span>);
+<span class="hljs-keyword">try</span> (<span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">ois</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;animal.ser&quot;</span>))) {
+    ois.writeObject(animal);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q9-option-1" type="radio" name="book-q9" value="1" aria-labelledby="book-q9-option-1-letter book-q9-option-1-text"><span class="option-letter" id="book-q9-option-1-letter">B</span><div class="quiz-option-content" id="book-q9-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+    <span class="hljs-keyword">private</span> String species;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Animal</span><span class="hljs-params">(String species, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.species = species;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+}
+
+<span class="hljs-type">Animal</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&quot;Lion&quot;</span>, <span class="hljs-number">5</span>);
+<span class="hljs-keyword">try</span> (<span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;animal.ser&quot;</span>))) {
+    oos.writeObject(animal);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q9-option-2" type="radio" name="book-q9" value="2" aria-labelledby="book-q9-option-2-letter book-q9-option-2-text"><span class="option-letter" id="book-q9-option-2-letter">C</span><div class="quiz-option-content" id="book-q9-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> {
+    <span class="hljs-keyword">private</span> String species;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Animal</span><span class="hljs-params">(String species, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.species = species;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+}
+
+<span class="hljs-type">Animal</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&quot;Lion&quot;</span>, <span class="hljs-number">5</span>);
+<span class="hljs-keyword">try</span> (<span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;animal.ser&quot;</span>))) {
+    oos.writeObject(animal);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q9-option-3" type="radio" name="book-q9" value="3" aria-labelledby="book-q9-option-3-letter book-q9-option-3-text"><span class="option-letter" id="book-q9-option-3-letter">D</span><div class="quiz-option-content" id="book-q9-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+    <span class="hljs-keyword">private</span> String species;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Animal</span><span class="hljs-params">(String species, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.species = species;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+}
+
+<span class="hljs-type">Animal</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&quot;Lion&quot;</span>, <span class="hljs-number">5</span>);
+<span class="hljs-keyword">try</span> (<span class="hljs-type">BufferedOutputStream</span> <span class="hljs-variable">bos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;animal.ser&quot;</span>))) {
+    bos.write(animal);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> </p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+    <span class="hljs-keyword">private</span> String species;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Animal</span><span class="hljs-params">(String species, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.species = species;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+}
+
+<span class="hljs-type">Animal</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&quot;Lion&quot;</span>, <span class="hljs-number">5</span>);
+<span class="hljs-keyword">try</span> (<span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">ois</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;animal.ser&quot;</span>))) {
+    ois.writeObject(animal);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><ul>
+<li>This option is incorrect. <code>ObjectInputStream</code> is used for deserialization (reading objects from a stream), not serialization. It should be <code>ObjectOutputStream</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> </p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+    <span class="hljs-keyword">private</span> String species;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Animal</span><span class="hljs-params">(String species, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.species = species;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+}
+
+<span class="hljs-type">Animal</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&quot;Lion&quot;</span>, <span class="hljs-number">5</span>);
+<span class="hljs-keyword">try</span> (<span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;animal.ser&quot;</span>))) {
+    oos.writeObject(animal);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><ul>
+<li>This option is correct. <code>ObjectOutputStream</code> is used to serialize an object to a file, which is what this code snippet does correctly.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> </p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> {
+    <span class="hljs-keyword">private</span> String species;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Animal</span><span class="hljs-params">(String species, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.species = species;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+}
+
+<span class="hljs-type">Animal</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&quot;Lion&quot;</span>, <span class="hljs-number">5</span>);
+<span class="hljs-keyword">try</span> (<span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;animal.ser&quot;</span>))) {
+    oos.writeObject(animal);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><ul>
+<li>This option is incorrect. The <code>Animal</code> class does not implement <code>Serializable</code>, so it cannot be serialized using <code>ObjectOutputStream</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> </p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;
+    <span class="hljs-keyword">private</span> String species;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Animal</span><span class="hljs-params">(String species, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.species = species;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+}
+
+<span class="hljs-type">Animal</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-string">&quot;Lion&quot;</span>, <span class="hljs-number">5</span>);
+<span class="hljs-keyword">try</span> (<span class="hljs-type">BufferedOutputStream</span> <span class="hljs-variable">bos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;animal.ser&quot;</span>))) {
+    bos.write(animal);
+} <span class="hljs-keyword">catch</span> (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><ul>
+<li>This option is incorrect. <code>BufferedOutputStream</code> cannot be used to write objects directly; <code>ObjectOutputStream</code> should be used for serialization.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart book practice</button></div>
+    </form>
+  </section><section class="chapter-quiz" id="chapter-quiz" aria-labelledby="quiz-title">
+    <h2 id="quiz-title">Extra quiz</h2>
+    <p class="quiz-intro">Choose an answer to see its explanation immediately. Correct choices appear in green; incorrect selections appear in red. For checkbox questions, select your answers, then choose Check answer.</p>
+    <details class="practice-context"><summary>About these questions</summary><p>11 original learning exercises, not official exam questions. Use Java 21 without preview features. Assume standard imports and a valid enclosing class or method, which may declare checked exceptions.</p></details>
+    <p class="quiz-saving">Your selections and feedback are saved in this browser.</p>
+    <noscript><p>Enable JavaScript for scoring. The book’s practice questions and separate answer sheet remain available without it.</p></noscript>
+    <form class="quiz-form" data-quiz="ch12">
+      <p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="quiz-q1" data-answer="1" aria-describedby="quiz-q1-feedback">
+          <legend><span class="quiz-number">1.</span> What does <code>Path.of(&quot;notes.txt&quot;)</code> do by itself?</legend>
+          <div class="quiz-question-meta">Path creation · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q1" value="0"><span class="option-letter">A</span><span>Creates an empty file</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="1"><span class="option-letter">B</span><span>Creates a path representation without creating a file</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="2"><span class="option-letter">C</span><span>Opens the file</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="3"><span class="option-letter">D</span><span>Fails if the file does not exist</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Creating a Path models a location. It does not itself create or open a filesystem entry.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q2" data-answer="2" aria-describedby="quiz-q2-feedback">
+          <legend><span class="quiz-number">2.</span> What is <code>Path.of(&quot;a&quot;, &quot;..&quot;, &quot;b&quot;).normalize()</code> equivalent to?</legend>
+          <div class="quiz-question-meta">Normalization · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q2" value="0"><span class="option-letter">A</span><span>Path.of(&quot;a&quot;, &quot;b&quot;)</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="1"><span class="option-letter">B</span><span>Path.of(&quot;..&quot;, &quot;b&quot;)</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="2"><span class="option-letter">C</span><span>Path.of(&quot;b&quot;)</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="3"><span class="option-letter">D</span><span>It must access the filesystem</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">normalize removes redundant name elements lexically. It does not check the real filesystem or resolve symbolic links.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q3" data-answer="3" aria-describedby="quiz-q3-feedback">
+          <legend><span class="quiz-number">3.</span> If other is absolute, what does <code>base.resolve(other)</code> return?</legend>
+          <div class="quiz-question-meta">Absolute resolution · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q3" value="0"><span class="option-letter">A</span><span>base followed by other</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="1"><span class="option-letter">B</span><span>An empty path</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="2"><span class="option-letter">C</span><span>It always throws an exception</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="3"><span class="option-letter">D</span><span>other</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">An absolute other is returned by resolve. It is not appended to base.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q4" data-answer="0" aria-describedby="quiz-q4-feedback">
+          <legend><span class="quiz-number">4.</span> What type does <code>Files.readString(path)</code> return?</legend>
+          <div class="quiz-question-meta">Text reading · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q4" value="0"><span class="option-letter">A</span><span>String</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="1"><span class="option-letter">B</span><span>Stream&lt;String&gt;</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="2"><span class="option-letter">C</span><span>List&lt;String&gt;</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="3"><span class="option-letter">D</span><span>byte[]</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">readString loads text into a String. Files.lines instead creates a lazy Stream of lines.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q5" data-answer="2" aria-describedby="quiz-q5-feedback">
+          <legend><span class="quiz-number">5.</span> Which result should normally be enclosed in try-with-resources?</legend>
+          <div class="quiz-question-meta">Resource lifetime · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q5" value="0"><span class="option-letter">A</span><span>Path.of(&quot;a&quot;)</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="1"><span class="option-letter">B</span><span>Files.readAllLines(path)</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="2"><span class="option-letter">C</span><span>Files.lines(path)</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="3"><span class="option-letter">D</span><span>Files.exists(path)</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The stream from Files.lines holds an open file resource and must be closed. readAllLines handles its file access internally.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q6" data-answer="0" aria-describedby="quiz-q6-feedback">
+          <legend><span class="quiz-number">6.</span> Does closing the Stream returned by Files.walk matter?</legend>
+          <div class="quiz-question-meta">Directory traversal · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q6" value="0"><span class="option-letter">A</span><span>Yes, it releases open directory resources</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="1"><span class="option-letter">B</span><span>No, streams can never own resources</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="2"><span class="option-letter">C</span><span>Only if the directory is empty</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="3"><span class="option-letter">D</span><span>Only on Windows</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">A traversal stream can retain open directories. Close it with try-with-resources after traversal.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q7" data-answer="1" aria-describedby="quiz-q7-feedback">
+          <legend><span class="quiz-number">7.</span> What does <code>Files.deleteIfExists(path)</code> return when the path is absent?</legend>
+          <div class="quiz-question-meta">Deletion · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q7" value="0"><span class="option-letter">A</span><span>true</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="1"><span class="option-letter">B</span><span>false</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="2"><span class="option-letter">C</span><span>null</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="3"><span class="option-letter">D</span><span>It always throws NoSuchFileException</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">An absent path produces false. Other failures, such as permission errors, can still throw exceptions.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q8" data-answer="3" aria-describedby="quiz-q8-feedback">
+          <legend><span class="quiz-number">8.</span> Which class is intended for byte input rather than character input?</legend>
+          <div class="quiz-question-meta">Byte streams · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q8" value="0"><span class="option-letter">A</span><span>BufferedReader</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="1"><span class="option-letter">B</span><span>StringReader</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="2"><span class="option-letter">C</span><span>FileReader</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="3"><span class="option-letter">D</span><span>FileInputStream</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">InputStream types read bytes. Reader types read characters and involve character decoding where needed.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q9" data-answer="2" aria-describedby="quiz-q9-feedback">
+          <legend><span class="quiz-number">9.</span> A serializable object has a <code>transient int count = 7</code>. Without custom serialization, what is count after deserialization?</legend>
+          <div class="quiz-question-meta">Transient fields · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q9" value="0"><span class="option-letter">A</span><span>7</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="1"><span class="option-letter">B</span><span>A random value</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="2"><span class="option-letter">C</span><span>0</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="3"><span class="option-letter">D</span><span>Deserialization is impossible</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Transient instance fields are omitted from default serialization. Serializable-class field initializers do not run during normal deserialization.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q10" data-answer="1" aria-describedby="quiz-q10-feedback">
+          <legend><span class="quiz-number">10.</span> During ordinary deserialization of a Serializable subclass, which constructor runs?</legend>
+          <div class="quiz-question-meta">Non-serializable superclass · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q10" value="0"><span class="option-letter">A</span><span>Every constructor in the hierarchy</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="1"><span class="option-letter">B</span><span>The accessible no-arg constructor of its first non-serializable superclass</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="2"><span class="option-letter">C</span><span>Only the Serializable subclass’s no-arg constructor</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="3"><span class="option-letter">D</span><span>No constructor of any superclass</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q10-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The first non-serializable superclass must have an accessible no-argument constructor, which initializes that superclass’s state.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q11" data-answer="0,2" aria-describedby="quiz-q11-feedback">
+          <legend><span class="quiz-number">11.</span> Which two Files operations return streams that should be explicitly closed?</legend>
+          <div class="quiz-question-meta">Filesystem streams · Select 2 answers</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="0"><span class="option-letter">A</span><span>lines(path)</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="1"><span class="option-letter">B</span><span>readAllLines(path)</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="2"><span class="option-letter">C</span><span>walk(path)</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="3"><span class="option-letter">D</span><span>readString(path)</span></label></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="quiz-q11-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Files.lines and Files.walk can retain filesystem resources. readAllLines and readString complete and close their file access internally.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart extra quiz</button></div>
+    </form>
+  </section>
+  <section class="study-resources" id="free-resources" aria-labelledby="resources-title"><h2 id="resources-title">Free resources</h2><p>Use these to revisit the rules or try more examples. Links open in a new tab and need an internet connection. Some tutorials also cover Java versions newer than 21.</p>
+    <ul><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Path.html" target="_blank" rel="noopener noreferrer">Path API — Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>Path resolution, normalization, and filesystem-independent operations.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html" target="_blank" rel="noopener noreferrer">Files API — Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>File operations and streams that need closing.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/Serializable.html" target="_blank" rel="noopener noreferrer">Serializable API — Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>Serialization fields and constructor behavior.</p></li><li><a href="https://javaalmanac.io/snippets/" target="_blank" rel="noopener noreferrer">Runnable I/O examples<span class="sr-only"> (opens in a new tab)</span></a><p>Choose Input/Output to modify and run Java 21 examples.</p></li></ul>
+    <p class="resource-date">Links reviewed 31 October 2026.</p>
+  </section></article><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch12.html"><small>Previous · Chapter 12</small>File I/O</a><a href="ch13.html"><small>Next · Chapter 13</small>The Java Platform Module System <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>Practice sections</summary><nav aria-label="On this page"><a class="toc-link" href="#book-practice">Book questions · 9</a><a class="toc-link" href="#chapter-quiz">Extra quiz · 11</a><a class="toc-link" href="#free-resources">Free resources</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

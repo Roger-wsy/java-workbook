@@ -1,0 +1,384 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Working with Records and Enums</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch03"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch03.html" aria-current="page" data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Working with Records and Enums</h1><div class="document-meta">Chapter 03<span>·</span>19 min read</div><div class="chapter-actions"><a class="active" href="ch03.html">Read chapter</a><a href="ch03.html#key-points">Key points</a><a href="ch03-practice.html#book-practice">Book questions</a><a href="ch03-practice.html#chapter-quiz">Extra quiz</a><a class="" href="ch03a.html">Original answers</a></div></div><details class="objectives" open><summary>Exam objectives</summary><ul><li>Create classes and records, and define and use instance and static fields and methods, constructors, and instance and static initializers.</li><li>Create and use enum types with fields, methods, and constructors.</li></ul></details><article class="prose"><h2 id="records">Records<a class="heading-anchor" href="#records" aria-label="Link to Records">#</a></h2><h3 id="introducing-records">Introducing Records<a class="heading-anchor" href="#introducing-records" aria-label="Link to Introducing Records">#</a></h3><p>Records provide a more concise way to declare classes that are primarily intended as simple data carriers. You can think of records as a special type of class that is specifically designed to store immutable data, kind of like a sturdy, tamper-proof safe for your information.</p>
+<p>But what exactly are records? Well, essentially, a record is a final class that automatically generates a constructor, <code>private</code> <code>final</code> fields for the parameters you define, and implementations of the <code>equals()</code>, <code>hashCode()</code>, and <code>toString()</code> methods based on those fields. This means that records give you a shorthand way to create a class that encapsulates data, without having to write a lot of repetitive boilerplate code.</p>
+<p>Here&#39;s a diagram that shows the basic structure and components of a record declaration:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">┌─────────────────────────────────────────────────┐
+│ public record Person(String name, int age) {    │
+│                                                 │
+│  ┌─────────────────────────────────────────┐    │
+│  │ Implicit Components                     │    │
+│  │ ● Private final fields                  │    │
+│  │ ● Public constructor                    │    │
+│  │ ● Public accessor methods               │    │
+│  │ ● equals(), hashCode(), toString()      │    │
+│  └─────────────────────────────────────────┘    │
+│                                                 │
+│  ┌─────────────────────────────────────────┐    │
+│  │ Customizable Components                 │    │
+│  │ ● Compact constructor                   │    │
+│  │ ● Additional methods                    │    │
+│  │ ● Static fields and methods             │    │
+│  └─────────────────────────────────────────┘    │
+│                                                 │
+└─────────────────────────────────────────────────┘</code></pre></div><p>And here&#39;s an example of a record definition:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Person</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> {}</code></pre></div><p>With just this one line, we&#39;ve defined a <code>Person</code> record that has two fields: <code>name</code> and <code>age</code>. The record automatically generates a constructor that takes those fields as parameters, so we can create instances of the record like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Person</span> <span class="hljs-variable">john</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;John Doe&quot;</span>, <span class="hljs-number">30</span>);</code></pre></div><p>One important thing to understand about records is that they are not just a shorthand for writing classes. While they do provide a more concise syntax, records have some unique characteristics that set them apart from regular classes. One of the most significant is that records are implicitly final, which means they cannot be extended by other classes. This reinforces their purpose as simple, immutable data carriers.</p>
+<p>Additionally, records are implicitly static when they are declared as nested types. This means that they do not have a reference to the instance of the enclosing class:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OuterClass</span> {
+
+    <span class="hljs-comment">// Nested record</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">NestedRecord</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span> {
+    }
+
+    <span class="hljs-comment">// ...</span>
+}</code></pre></div><p>In the example, <code>NestedRecord</code> is a record nested inside <code>OuterClass</code>. It is implicitly static, meaning it can be instantiated without an instance of <code>OuterClass</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">OuterClass.<span class="hljs-type">NestedRecord</span> <span class="hljs-variable">nestedRecord</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OuterClass</span>.NestedRecord(<span class="hljs-number">8</span>);</code></pre></div><p>So, when should you use a record instead of a class? Records are ideal for situations where you need to represent a simple, immutable data structure, like a point with x and y coordinates, or a person with a name and age. In these cases, using a record can save you a lot of time and reduce the verbosity of your code:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Point</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> {}</code></pre></div><p>On the other hand, if you need a more complex data structure that requires additional behavior or mutable state, a regular class is still the way to go. Records are not meant to replace classes entirely, but rather to complement them by providing a streamlined solution for a specific use case.</p>
+<h3 id="record-immutability">Record Immutability<a class="heading-anchor" href="#record-immutability" aria-label="Link to Record Immutability">#</a></h3><p>One of the defining characteristics of records is their immutability. When we say that records are immutable, it means that once an instance of a record is created, its state cannot be changed. This is enforced by the fact that all fields in a record are implicitly final, which means they must be initialized when the record is instantiated and cannot be modified afterward.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Person</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">birthday</span><span class="hljs-params">()</span> {
+        age++; <span class="hljs-comment">// Compile-time error: Cannot assign a value to final variable age</span>
+    }
+}</code></pre></div><p>Since records are designed to be immutable, there&#39;s no way to make individual fields mutable. If you find yourself needing to modify the values of fields after instantiation, it&#39;s a good indication that a record might not be the right choice for your use case, and a regular class would be more appropriate.</p>
+<p>Regarding immutability, there are some reasons why records are often preferred over mutable objects:</p>
+<ol>
+<li>Records are inherently thread-safe because their state cannot be modified after creation, eliminating the risk of concurrent access issues.</li>
+<li>Records are simpler to reason about and less prone to bugs because their state remains constant throughout their lifetime.</li>
+<li>Records can be safely shared and reused without the need for defensive copying.</li>
+</ol>
+<p>However, it&#39;s important to note that immutability in records only applies to the record itself and its fields. If a record contains a reference to a mutable object, such as a list or an array, that object can still be modified even though the record itself is immutable:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Numbers</span><span class="hljs-params">(List&lt;Integer&gt; values)</span> {}
+
+<span class="hljs-type">Numbers</span> <span class="hljs-variable">numbers</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Numbers</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(List.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)));
+numbers.values().add(<span class="hljs-number">4</span>); <span class="hljs-comment">// The list can still be modified</span></code></pre></div><p>In this example, even though the <code>Numbers</code> record is immutable, the <code>List</code> stored in its <code>values</code> field can still be modified because it is a mutable object.</p>
+<p>So, when designing your records, it&#39;s important to consider the immutability of the objects they contain. If you want to ensure complete immutability, you should use immutable objects or defensive copying techniques when storing mutable objects inside your records.</p>
+<h3 id="initializing-records">Initializing Records<a class="heading-anchor" href="#initializing-records" aria-label="Link to Initializing Records">#</a></h3><p>Previously, you saw how records automatically generate a constructor based on the record components. This default constructor is sufficient for many use cases, but there are times when you might need more control over the initialization process. Fortunately, records provide several ways to customize the constructor and add your own initialization logic.</p>
+<p>The long constructor, also known as the canonical constructor, is the default constructor generated by the record. It takes all the record components as parameters in the order they are declared.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Person</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> {}
+
+<span class="hljs-type">Person</span> <span class="hljs-variable">john</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;John Doe&quot;</span>, <span class="hljs-number">30</span>);</code></pre></div><p>In this example, the <code>Person</code> record has a default constructor that takes a <code>String</code> for the <code>name</code> and an <code>int</code> for the <code>age</code>.</p>
+<p>If you need to validate or preprocess any of the fields before they are assigned, you can use a compact constructor. This constructor does not specify parameters explicitly. Instead, you write the constructor without parameters, and the compiler understands that it should use the record&#39;s parameters. Inside the compact constructor, you can add validation or transformation logic. However, unlike the canonical constructor, you don&#39;t assign values to the fields directly, this is handled automatically.</p>
+<p>Here&#39;s an example of a compact constructor for the <code>Person</code> record:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Person</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> {
+    <span class="hljs-keyword">public</span> Person {
+        <span class="hljs-keyword">if</span> (age &lt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;Age cannot be negative&quot;</span>);
+        }
+    }
+}</code></pre></div><p>The constructor body contains a validation check to ensure that the <code>age</code> is not negative. If an invalid age is provided, an <code>IllegalArgumentException</code> is thrown.</p>
+<p>Records also support constructor overloading, which means you can define multiple constructors with different parameter lists. This can be useful when you want to provide alternative ways to initialize a record.</p>
+<p>However, each of these constructors must delegate to the canonical constructor (either directly or indirectly through another custom constructor) to ensure all fields are initialized. This is usually done with the <code>this()</code> call, passing the necessary parameters.</p>
+<p>Here&#39;s an example of a custom/overloaded constructor:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Person</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> {
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Person</span><span class="hljs-params">(String name)</span> {
+        <span class="hljs-built_in">this</span>(name, <span class="hljs-number">0</span>);
+    }
+}
+
+<span class="hljs-type">Person</span> <span class="hljs-variable">john</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;John Doe&quot;</span>, <span class="hljs-number">30</span>);
+<span class="hljs-type">Person</span> <span class="hljs-variable">jane</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;Jane Smith&quot;</span>);</code></pre></div><p>In this example, we&#39;ve added an overloaded constructor that takes only the <code>name</code> parameter. Inside the constructor, we call the canonical constructor using <code>this()</code>, passing the provided <code>name</code> and a default <code>age</code> of <code>0</code>.</p>
+<p>This approach allows you to:</p>
+<ul>
+<li>Define custom constructors to initialize the record in different ways, giving you flexibility in how you create instances of the record.</li>
+<li>Add your own initialization logic and validation checks using compact constructors or overloaded constructors.</li>
+</ul>
+<h3 id="customizing-records">Customizing Records<a class="heading-anchor" href="#customizing-records" aria-label="Link to Customizing Records">#</a></h3><p>While records are straightforward to use out of the box, Java provides a few ways to customize them to fit your needs.</p>
+<h4 id="instance-methods">Instance Methods<a class="heading-anchor" href="#instance-methods" aria-label="Link to Instance Methods">#</a></h4><p>Although records are primarily designed to carry data, this doesn&#39;t mean they can&#39;t have behavior. Just like regular classes, you can add instance methods to records to encapsulate logic that operates on the record&#39;s components. Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Point</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">distance</span><span class="hljs-params">(Point other)</span> {
+        <span class="hljs-type">int</span> <span class="hljs-variable">dx</span> <span class="hljs-operator">=</span> x - other.x;
+        <span class="hljs-type">int</span> <span class="hljs-variable">dy</span> <span class="hljs-operator">=</span> y - other.y;
+        <span class="hljs-keyword">return</span> Math.sqrt(dx * dx + dy * dy);
+    }
+}</code></pre></div><p>In this case, the <code>Point</code> record has an instance method <code>distance()</code> that calculates the Euclidean distance between itself and another <code>Point</code>. The method can access the record&#39;s components <code>x</code> and <code>y</code> directly.</p>
+<p>You can also override methods inherited from the <code>Object</code> class, such as <code>equals()</code>, <code>hashCode()</code>, and <code>toString()</code>. By default, records provide sensible implementations of these methods based on the record&#39;s components, but you can customize them if needed:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Person</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">String</span> <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> name + <span class="hljs-string">&quot; (&quot;</span> + age + <span class="hljs-string">&quot; years old)&quot;</span>;
+    }
+}</code></pre></div><p>In this example, <code>toString()</code> is overridden to offer a more human-readable representation of a <code>Person</code> record.</p>
+<p>However, when overriding <code>equals()</code> and <code>hashCode()</code>, be careful to maintain consistency with the automatically generated implementations. The record&#39;s components should be included in the equality comparison and hash code computation to ensure that two records with the same component values are considered equal and have the same hash code.</p>
+<h4 id="nested-types">Nested Types<a class="heading-anchor" href="#nested-types" aria-label="Link to Nested Types">#</a></h4><p>Records can contain nested classes, interfaces, annotations, enums, and even other records. This allows you to group related types together within the record, enhancing encapsulation and readability. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Employee</span><span class="hljs-params">(String name, Department department)</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Department</span> { 
+        <span class="hljs-comment">// Implementation of the class</span>
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Manager</span><span class="hljs-params">(String name)</span> {
+        <span class="hljs-comment">// Additional fields and methods for managers</span>
+    }
+}</code></pre></div><p>In this example, the <code>Employee</code> record has a nested class <code>Department</code> representing, for example, the different departments an employee can belong to. It also has a nested static record <code>Manager</code>, which may have additional fields and methods specific to managers.</p>
+<p>Nested types declared within a record are implicitly static, so they can be accessed using the record name followed by the type name, like <code>Employee.Department</code> or <code>Employee.Manager</code>.</p>
+<h4 id="generics-and-type-parameters">Generics and Type Parameters<a class="heading-anchor" href="#generics-and-type-parameters" aria-label="Link to Generics and Type Parameters">#</a></h4><p>Records can be generic and accept type parameters, just like classes and interfaces. This allows you to create records that can work with different data types while still maintaining type safety. Here&#39;s an example of a generic <code>Pair</code> record:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Pair</span>&lt;T, U&gt;(T first, U second) { }</code></pre></div><p>You can then create instances of the <code>Pair</code> record with specific types:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Pair</span>&lt;String, Integer&gt; <span class="hljs-variable">nameAge</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Pair</span>&lt;&gt;(<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-number">30</span>);</code></pre></div><p>Generic records work seamlessly with Java&#39;s type system, including wildcards, bounded type parameters, and type inference. We&#39;ll talk more about generics in another chapter.</p>
+<h4 id="local-records">Local Records<a class="heading-anchor" href="#local-records" aria-label="Link to Local Records">#</a></h4><p>In addition to being declared at the class level, records can also be declared locally within methods. This can be handy when you need a temporary data structure with a limited scope. Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">processCoordinates</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">record</span> <span class="hljs-title class_">Coordinate</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> { }
+    
+    <span class="hljs-type">Coordinate</span> <span class="hljs-variable">point1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Coordinate</span>(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>);
+    <span class="hljs-type">Coordinate</span> <span class="hljs-variable">point2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Coordinate</span>(<span class="hljs-number">30</span>, <span class="hljs-number">40</span>);
+    
+    <span class="hljs-comment">// Process the coordinates...</span>
+}</code></pre></div><p>The <code>Coordinate</code> record is declared inside the <code>processCoordinates()</code> method and is only accessible within that method.</p>
+<h4 id="implementing-interfaces">Implementing Interfaces<a class="heading-anchor" href="#implementing-interfaces" aria-label="Link to Implementing Interfaces">#</a></h4><p>Although records are primarily designed for data encapsulation, they can still implement interfaces. This allows records to satisfy contracts and be used in contexts where a specific interface is required. Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Drawable</span> {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span>;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">ColoredPoint</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, String color)</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Drawable</span> {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">draw</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;Drawing a &quot;</span> + color + <span class="hljs-string">&quot; point at (&quot;</span> + x + <span class="hljs-string">&quot;, &quot;</span> + y + <span class="hljs-string">&quot;)&quot;</span>);
+    }
+}</code></pre></div><p>In this case, the <code>ColoredPoint</code> record implements the <code>Drawable</code> interface and provides an implementation for the <code>draw()</code> method.</p>
+<h4 id="restrictions">Restrictions<a class="heading-anchor" href="#restrictions" aria-label="Link to Restrictions">#</a></h4><p>First of all, records cannot extend classes or be extended by other classes. This restriction enforces the idea that records are standalone data carriers and not part of an inheritance hierarchy. However, records can implement interfaces, as shown earlier.</p>
+<p>Another important restriction is that records do not allow additional instance fields outside of the ones defined in the record declaration. The record&#39;s components are the only instance fields allowed. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Point</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> z; <span class="hljs-comment">// Compilation error: field declaration must be static</span>
+}</code></pre></div><p>Adding extra instance fields like <code>z</code> in this example will result in a compilation error. The purpose of this restriction is to maintain the record&#39;s immutability and keep its state tied solely to its components.</p>
+<p>The need for additional instance fields indicates that a regular class may be more suitable than a record. Records are meant to be lightweight data carriers, not complex objects with mutable state.</p>
+<p>However, it&#39;s important to note that the error message specifically mentions that the field declaration must be static. So, if we modify the example to make <code>z</code> a <code>static</code> field:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Point</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> z; <span class="hljs-comment">// Compiles successfully</span>
+}</code></pre></div><p>This version of the <code>Point</code> record will compile without issues. However, keep in mind that static fields are shared across all instances of the record, so they don&#39;t contribute to the record&#39;s individual state.</p>
+<p>Another thing to keep in mind is that records do not support instance initializers. If you try to add an instance initializer block to a record, like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Point</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> {
+    <span class="hljs-comment">// Instance initializer block</span>
+    { 
+        System.out.println(<span class="hljs-string">&quot;Initializing Point...&quot;</span>);
+    } <span class="hljs-comment">// Compiler error: instance initializers not allowed in records</span>
+}</code></pre></div><p>The Java compiler will throw an error. The reason behind this restriction is that records are designed to be simple and immutable, and instance initializers can introduce complex initialization logic that may violate these principles.</p>
+<p>If you need to perform additional initialization logic, you can use a compact constructor instead:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Point</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> {
+    <span class="hljs-keyword">public</span> Point {
+        System.out.println(<span class="hljs-string">&quot;Initializing Point...&quot;</span>);
+    }
+}</code></pre></div><p>A compact constructor allows you to execute code at the time of the record&#39;s instantiation while still ensuring that the record&#39;s components are properly initialized.</p>
+<p>However, static initializers are allowed. The following will compile without errors:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Point</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> {
+    <span class="hljs-comment">// Static initializer block</span>
+    <span class="hljs-keyword">static</span> { 
+        System.out.println(<span class="hljs-string">&quot;Initializing Point...&quot;</span>);
+    }
+}</code></pre></div><p>Why?</p>
+<p>Static initializers are allowed in records for the same reasons they are allowed in other classes: to initialize static fields or to perform static initialization blocks that run when the class is loaded. </p>
+<p>So while you can add instance methods and static fields and static initializer blocks, you can&#39;t add instance fields or instance initializer blocks, because these could break immutability.</p>
+<p>Remember, records are not a replacement for regular classes but rather a complementary feature for specific use cases where immutable data carriers are needed.</p>
+<h2 id="enums">Enums<a class="heading-anchor" href="#enums" aria-label="Link to Enums">#</a></h2><h3 id="introducing-enums">Introducing Enums<a class="heading-anchor" href="#introducing-enums" aria-label="Link to Introducing Enums">#</a></h3><p>In Java, an enumeration (or enum) is a special type of class used to define a set of predefined constants. It&#39;s a way to give names to numeric values, making your code more readable and maintainable.</p>
+<p>Think of an enum like a VIP list for an exclusive event. The list (enum) defines who&#39;s allowed in (the predefined constants), but each person on the list can also have their own unique attributes (fields) and actions they can perform (methods). The process of adding someone to the list with their specific attributes is similar to using a constructor in an enumeration.</p>
+<p>Let&#39;s say you&#39;re creating an application to manage a pet shop. You might have a variable to represent the type of animal:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">String animalType;
+<span class="hljs-comment">//...</span>
+<span class="hljs-keyword">if</span>(animalType.equals(<span class="hljs-string">&quot;DOG&quot;</span>)) { 
+    <span class="hljs-comment">// process dog</span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(animalType.equals(<span class="hljs-string">&quot;CAT&quot;</span>)) {
+    <span class="hljs-comment">// process cat</span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(animalType.equals(<span class="hljs-string">&quot;BIRD&quot;</span>)) {
+    <span class="hljs-comment">// process bird</span>
+}</code></pre></div><p>But this approach has some problems. First, it&#39;s error-prone. What if you mistype &quot;DOG&quot; as &quot;DIG&quot; somewhere? The compiler won&#39;t catch that. Second, it&#39;s not very readable. Someone reading this code might not immediately know what &quot;BIRD&quot; means in the context of your application.</p>
+<p>Here&#39;s where enums come in:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">AnimalType</span> {
+    DOG, CAT, BIRD
+}</code></pre></div><p>Now you can use the enum like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">AnimalType animalType;
+<span class="hljs-comment">//...  </span>
+<span class="hljs-keyword">if</span>(animalType == AnimalType.DOG) {
+    <span class="hljs-comment">// process dog</span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(animalType == AnimalType.CAT) {
+    <span class="hljs-comment">// process cat  </span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(animalType == AnimalType.BIRD) {
+    <span class="hljs-comment">// process bird</span>
+}</code></pre></div><p>If you mistype <code>DOG</code>, the compiler will catch it. And it&#39;s much more readable.</p>
+<p>So in essence, enums provide a way to define a set of named constants, which can make your code more readable, maintainable, and less error-prone.</p>
+<p>Here&#39;s a diagram that shows the basic structure and components of an enum declaration:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">┌─────────────────────────────────────────────────┐
+│ public enum DayOfWeek {                         │
+│     MONDAY, TUESDAY, WEDNESDAY, THURSDAY,       │
+│     FRIDAY, SATURDAY, SUNDAY;                   │
+│                                                 │
+│  ┌─────────────────────────────────────────┐    │
+│  │ Implicit Components                     │    │
+│  │ ● ordinal() : int                       │    │
+│  │ ● name() : String                       │    │
+│  │ ● values() : DayOfWeek[]                │    │
+│  │ ● valueOf(String) : DayOfWeek           │    │
+│  └─────────────────────────────────────────┘    │
+│                                                 │
+│  ┌─────────────────────────────────────────┐    │
+│  │ Customizable Components                 │    │
+│  │ ● Fields                                │    │
+│  │ ● Constructors                          │    │
+│  │ ● Methods                               │    │
+│  └─────────────────────────────────────────┘    │
+│                                                 │
+└─────────────────────────────────────────────────┘</code></pre></div><h3 id="declaring-an-enum">Declaring an Enum<a class="heading-anchor" href="#declaring-an-enum" aria-label="Link to Declaring an Enum">#</a></h3><p>Declaring an enum is similar to declaring a class, but you use the <code>enum</code> keyword instead of <code>class</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">AnimalType</span> {
+    DOG, CAT, BIRD
+}</code></pre></div><p>Each constant (<code>DOG</code>, <code>CAT</code>, <code>BIRD</code>) is implicitly <code>public</code>, <code>static</code>, and <code>final</code>. The convention is to use all caps for their names.</p>
+<p>It&#39;s important to note that enums can only have <code>public</code> or default (package-private) access when declaring outside of a class, they cannot be declared with <code>protected</code> or <code>private</code> access. If an enum is defined within a class, it can have any access level that a regular inner class can have.</p>
+<p>Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PetStore</span> {
+    <span class="hljs-comment">// This is okay</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">EmployeeLevel</span> {
+        TRAINEE, MANAGER, DIRECTOR
+    }
+    
+    <span class="hljs-comment">// This is okay</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">AnimalBreed</span> {
+        LABRADOR, SIAMESE, PARROT
+    }
+}
+
+<span class="hljs-comment">// This is okay  </span>
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">AnimalType</span> {
+    DOG, CAT, BIRD
+}
+
+<span class="hljs-comment">// This will not compile</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">FoodType</span> {
+    KIBBLE, CANNED, SEEDS
+}</code></pre></div><p>As you can see, enums declared within a class (<code>EmployeeLevel</code>) can have any access modifier that a regular inner class can have. And when an enum is declared outside a class, it must be public or have default access, it cannot be private (<code>FoodType</code>).</p>
+<p>Also, if you declare an enum in its own file, the enum name should match the filename.</p>
+<p>But enums aren&#39;t just a list of constants. They can have constructors, methods, and fields, just like a regular class. However, the constructor of an enum is always private, either explicitly or implicitly. By default, if no access modifier is specified, the constructor is implicitly private. Enum constructors cannot be <code>public</code> or <code>protected</code>. This is because you don&#39;t create instances of an enum using <code>new</code>. Instead, the instances are predefined.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">AnimalType</span> {
+    DOG(<span class="hljs-string">&quot;Dog&quot;</span>), CAT(<span class="hljs-string">&quot;Cat&quot;</span>), BIRD(<span class="hljs-string">&quot;Bird&quot;</span>);
+
+    <span class="hljs-keyword">private</span> String displayName;
+
+    AnimalType(String displayName) {
+        <span class="hljs-built_in">this</span>.displayName = displayName;  
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">String</span> <span class="hljs-title function_">getDisplayName</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> displayName;
+    }
+}</code></pre></div><p>In this example, each constant is created with a display name, which is passed to the constructor. The constructor is private, which is the default for enums. Each constant is essentially an instance of the enum class.</p>
+<p>This answers a few common questions about enums:</p>
+<ul>
+<li>Enums can have methods, constructors, and fields in addition to the predefined constants.  </li>
+<li>The constructors in an enum are always private (or package-private), even if not explicitly declared so. That&#39;s why you can&#39;t instantiate an enum using <code>new</code>. If you mark the constructor as <code>public</code> or <code>protected</code>, the compiler will generate an error.</li>
+<li>Enums aren&#39;t just a list of integer constants. Each enum constant is actually an instance of the enum class, which can have its own state (fields) and behavior (methods).</li>
+</ul>
+<p>Another important thing to note is that all enums implicitly extend <code>java.lang.Enum</code>. This is a special class in Java that provides some built-in methods for enums.  </p>
+<p>Because of this implicit extension, an enum can&#39;t extend any other class. However, it can implement interfaces.</p>
+<h3 id="special-methods-of-an-enum">Special Methods of an Enum<a class="heading-anchor" href="#special-methods-of-an-enum" aria-label="Link to Special Methods of an Enum">#</a></h3><p>An enum class implicitly declares some <code>public static</code> methods that are quite useful and that are not obvious at first sight, like the <code>values()</code> and <code>valueOf()</code> methods.</p>
+<p>For example, assuming we have this enum:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Season</span> {
+    WINTER, SPRING, SUMMER, FALL;
+}</code></pre></div><p>The <code>public static T[] values()</code> method returns an array containing all the constants of the enum class, in the same order they are declared. This method is commonly used to iterate over all the constants. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">for</span>(Season s : Season.values()) {
+    System.out.println(s);
+}</code></pre></div><p>Outputs:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">WINTER
+SPRING
+SUMMER
+FALL</code></pre></div><p>You might be wondering where this method comes from, as it is not mentioned on the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Enum.html">javadoc for the enum class</a>. The answer is that the Java compiler automatically adds it to the enum class during compilation. So in a way, it&#39;s like syntactic sugar provided by the language.</p>
+<p>The <code>public static T valueOf(String)</code> method returns the enum constant with the specified name. The name must match exactly an identifier used to declare the constant in the enum class. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Season</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> Season.valueOf(<span class="hljs-string">&quot;SUMMER&quot;</span>);</code></pre></div><p>Apart from those, each enum constant also has a <code>name()</code> method to get the name of the constant as declared in the enum, and an <code>ordinal()</code> method to get its position in the declaration order (starting from <code>0</code>). For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">Season.WINTER.name();    <span class="hljs-comment">// &quot;WINTER&quot;</span>
+Season.SPRING.ordinal(); <span class="hljs-comment">// 1</span></code></pre></div><p>The <code>compareTo(E o)</code> method is another important method available for all enum types. This method compares the enum constant with another enum constant of the same enum type based on their ordinal values. It returns a negative integer, zero, or a positive integer if this enum constant is considered less than, equal to, or greater than the specified enum constant, respectively. This method allows enum constants to be used in sorted collections or for any comparison-based operations. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">Season.WINTER.compareTo(Season.SUMMER); <span class="hljs-comment">// Returns a negative number</span>
+Season.FALL.compareTo(Season.SPRING);   <span class="hljs-comment">// Returns a positive number</span>
+Season.SPRING.compareTo(Season.SPRING); <span class="hljs-comment">// Returns 0</span></code></pre></div><p>It&#39;s worth noting that the natural ordering provided by <code>compareTo()</code> for enum constants is based on their declaration order, which may not always be the most meaningful ordering for your specific use case. In such situations, you might need to implement a custom <code>Comparator</code> for your enum type.</p>
+<p>Here&#39;s a table that not only summarizes all these methods but also provides a bit more depth into how they can be used and what to be aware of when using them:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Method</th><th>Description</th><th>Return Type</th><th>Remarks</th></tr></thead><tbody><tr><td><code>values()</code></td><td>Returns an array containing all of the enum constants in the order they&#39;re declared.</td><td><code>EnumType[]</code></td><td>Useful for iterating over all constants in an enum.</td></tr><tr><td><code>valueOf(String name)</code></td><td>Returns the enum constant of the specified name.</td><td><code>EnumType</code></td><td>Throws <code>IllegalArgumentException</code> if the specified name doesn&#39;t match any of the enum constants.</td></tr><tr><td><code>name()</code></td><td>Returns the name of this enum constant, exactly as declared in its enum declaration.</td><td><code>String</code></td><td>Identical to calling <code>toString()</code>, but <code>name()</code> is final and cannot be overridden.</td></tr><tr><td><code>ordinal()</code></td><td>Returns the ordinal of this enumeration constant (its position in the enum declaration, where the initial constant is assigned an ordinal of zero).</td><td><code>int</code></td><td>Can be used to associate array or list indices directly with enum constants. If you have an array where each position corresponds to a specific enum constant, <code>ordinal()</code> helps in directly accessing these array elements based on the enum constants&#39; order.</td></tr><tr><td><code>compareTo(E o)</code></td><td>Compares this enum with the specified object for order.</td><td><code>int</code></td><td>Returns a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object. The natural ordering is based on the ordinal values of the enum constants.</td></tr></tbody></table></div><h3 id="customizing-enums">Customizing Enums<a class="heading-anchor" href="#customizing-enums" aria-label="Link to Customizing Enums">#</a></h3><p>As mentioned before, you can add your own constructors to an enum class. The only requisite is that the constructors must be <code>private</code> or package-private. However, you can also add fields and methods to customize the enum class.</p>
+<p>Let&#39;s say we want to associate a minimum and maximum average temperature to each season:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Season</span> {
+    WINTER(-<span class="hljs-number">5</span>, <span class="hljs-number">10</span>), 
+    SPRING(<span class="hljs-number">11</span>, <span class="hljs-number">20</span>), 
+    SUMMER(<span class="hljs-number">21</span>, <span class="hljs-number">35</span>), 
+    FALL(<span class="hljs-number">5</span>, <span class="hljs-number">20</span>);
+
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> minTemp;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> maxTemp;
+    
+    Season(<span class="hljs-type">int</span> minTemp, <span class="hljs-type">int</span> maxTemp) {
+        <span class="hljs-built_in">this</span>.minTemp = minTemp;
+        <span class="hljs-built_in">this</span>.maxTemp = maxTemp;
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getMinTemp</span><span class="hljs-params">()</span> { <span class="hljs-keyword">return</span> minTemp; }
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getMaxTemp</span><span class="hljs-params">()</span> { <span class="hljs-keyword">return</span> maxTemp; }
+}</code></pre></div><p>The example adds a constructor that receives the temperatures. It&#39;s package-private, as required. Also, it declares the fields to store the values and public getters for them.</p>
+<p>With this, we can consult the temperatures associated with a season:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">Season.WINTER.getMaxTemp(); <span class="hljs-comment">// 10</span></code></pre></div><p>We can add any other fields and methods we want to make our enum more interesting. </p>
+<p>The only thing we have to remember is to declare the enum constants first in the class. We can declare fields and constructors in the middle, but no other constants below them, or we&#39;ll get a compile error.</p>
+<p>The following example attempts to declare fields in the middle of enum constants. This will lead to a compile error:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Season</span> {
+    WINTER(-<span class="hljs-number">5</span>, <span class="hljs-number">10</span>), 
+    SPRING(<span class="hljs-number">11</span>, <span class="hljs-number">20</span>),
+    
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> minTemp; <span class="hljs-comment">// Compile error: enum constant expected here</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> maxTemp;
+
+    SUMMER(<span class="hljs-number">21</span>, <span class="hljs-number">35</span>), 
+    FALL(<span class="hljs-number">5</span>, <span class="hljs-number">20</span>);
+    
+    Season(<span class="hljs-type">int</span> minTemp, <span class="hljs-type">int</span> maxTemp) {
+        <span class="hljs-built_in">this</span>.minTemp = minTemp;
+        <span class="hljs-built_in">this</span>.maxTemp = maxTemp;
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getMinTemp</span><span class="hljs-params">()</span> { <span class="hljs-keyword">return</span> minTemp; }
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getMaxTemp</span><span class="hljs-params">()</span> { <span class="hljs-keyword">return</span> maxTemp; }
+}</code></pre></div><p>So be careful, declaring enum constants after any fields or constructors is a common pitfall when defining enums with customized constructors and fields.</p>
+<h2 id="key-points">Key Points<a class="heading-anchor" href="#key-points" aria-label="Link to Key Points">#</a></h2><ul>
+<li><p>Records provide a concise way to declare classes that are primarily intended as simple, immutable data carriers.</p>
+</li>
+<li><p>A record automatically generates a constructor, private final fields for the parameters, and implementations of <code>equals()</code>, <code>hashCode()</code>, and <code>toString()</code> based on those fields.</p>
+</li>
+<li><p>Records are implicitly final and cannot be extended by other classes.</p>
+</li>
+<li><p>All fields in a record are implicitly final, enforcing immutability. The state of a record cannot be changed after instantiation.</p>
+</li>
+<li><p>Records provide a default canonical constructor that takes all record components as parameters.</p>
+</li>
+<li><p>Compact constructors allow adding validation or preprocessing logic without explicitly specifying parameters.</p>
+</li>
+<li><p>Records support constructor overloading, but each constructor must delegate to the canonical constructor to ensure field initialization.</p>
+</li>
+<li><p>Instance methods can be added to records to encapsulate behavior that operates on the record&#39;s components.</p>
+</li>
+<li><p>Records can contain nested classes, interfaces, annotations, enums, and other records.</p>
+</li>
+<li><p>Records can be generic and accept type parameters, allowing them to work with different data types while maintaining type safety.</p>
+</li>
+<li><p>Local records can be declared within methods for temporary data structures with limited scope.</p>
+</li>
+<li><p>Records can implement interfaces to satisfy contracts and be used where a specific interface is required.</p>
+</li>
+<li><p>Records cannot extend classes or be extended, cannot have additional instance fields beyond the record components, and do not support instance initializers.</p>
+</li>
+<li><p>Static fields and static initializers are allowed in records.</p>
+</li>
+<li><p>An enum is a special type of class used to define a set of predefined constants, making code more readable and maintainable.</p>
+</li>
+<li><p>Each enum constant is implicitly <code>public</code>, <code>static</code>, and <code>final</code>, and by convention, their names are in all caps.</p>
+</li>
+<li><p>Enum constructors are always <code>private</code> (or package-private), so enum instances cannot be created using <code>new</code>.</p>
+</li>
+<li><p>All enums implicitly extend <code>java.lang.Enum</code>, which provides built-in methods like <code>valueOf()</code>.</p>
+</li>
+<li><p>The <code>values()</code> method returns an array of all the enum constants in the order they are declared.</p>
+</li>
+<li><p>The <code>valueOf()</code> method returns the enum constant with the specified name.</p>
+</li>
+<li><p>Each enum constant also has a <code>name()</code> method to get its declared name and an <code>ordinal()</code> method to get its position.</p>
+</li>
+<li><p>Enums can be customized with fields, constructors, and methods to associate additional data and behavior with each constant.</p>
+</li>
+<li><p>When defining an enum with custom fields and constructors, all enum constants must be declared before any fields or constructors.</p>
+</li>
+</ul>
+<h2 id="practice-questions">Practice Questions<a class="heading-anchor" href="#practice-questions" aria-label="Link to Practice Questions">#</a></h2><p><a href="ch03-practice.html#book-practice">Open the interactive book questions on the Chapter 3.1 Practice page</a>.</p>
+</article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this chapter.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><div class="finish-chapter"><button class="primary-button" id="complete-chapter" data-id="ch03" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg><span>Mark chapter complete</span></button><a href="ch03a.html">Review the answers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch02-practice.html"><small>Previous</small>Chapter 2.1 Practice</a><a href="ch03-practice.html"><small>Next chapter</small>Chapter 3.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#records">Records</a><a class="toc-link" href="#enums">Enums</a><a class="toc-link" href="#key-points">Key Points</a><a class="toc-link" href="#practice-questions">Practice Questions</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

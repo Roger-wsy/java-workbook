@@ -1,0 +1,323 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Controlling Program Flow</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch05a"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Controlling Program Flow<span class="answer-title">Answers & explanations</span></h1><div class="document-meta">Chapter 05 / Answer sheet<span>·</span>8 min read</div><div class="chapter-actions"><a class="" href="ch05.html">Read chapter</a><a href="ch05.html#key-points">Key points</a><a href="ch05-practice.html#book-practice">Book questions</a><a href="ch05-practice.html#chapter-quiz">Extra quiz</a><a class="active" href="ch05a.html">Original answers</a></div></div><article class="prose"><h2 id="answers">Answers<a class="heading-anchor" href="#answers" aria-label="Link to Answers">#</a></h2><details class="answer-item" id="answer-1"><summary><span>Question 1</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>x is between 5 and 20</code></p>
+<ul>
+<li>This option is correct. The value of <code>x</code> is 10, which satisfies both conditions in the nested <code>if</code> statements (<code>x &gt; 5</code> and <code>x &lt; 20</code>). Therefore, the program prints <code>&quot;x is between 5 and 20&quot;</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>x is 5 or less</code> </p>
+<ul>
+<li>This option is incorrect. The value of <code>x</code> is 10, which does not satisfy the condition <code>x &lt;= 5</code> in the <code>else</code> block. Therefore, this message will not be printed.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>x is greater than 20</code></p>
+<ul>
+<li>This option is incorrect. The value of <code>x</code> is 10, which does not satisfy the condition <code>x &gt; 20</code>. Therefore, this message will not be printed.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The program does not compile </p>
+<ul>
+<li>This option is incorrect. The program compiles successfully without any errors.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> The program compiles but does not produce any output</p>
+<ul>
+<li>This option is incorrect. The program produces output because the value of <code>x</code> satisfies the conditions within the nested <code>if</code> statements, leading to the output <code>&quot;x is between 5 and 20&quot;</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-2"><summary><span>Question 2</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (emp <span class="hljs-keyword">instanceof</span> Employee) {
+    <span class="hljs-keyword">var</span> (id, Person(name, age)) = emp;
+    System.out.println(name + <span class="hljs-string">&quot; is &quot;</span> + age + <span class="hljs-string">&quot; years old.&quot;</span>);
+}</code></pre></div><ul>
+<li><p>This option is incorrect. While it attempts to use destructuring, this syntax is not valid in Java. Java doesn&#39;t support destructuring assignment in this way.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (emp <span class="hljs-type">instanceof</span> <span class="hljs-title function_">Employee</span><span class="hljs-params">(_, Person(<span class="hljs-keyword">var</span> name, <span class="hljs-keyword">var</span> age)</span>)) {
+    System.out.println(name + <span class="hljs-string">&quot; is &quot;</span> + age + <span class="hljs-string">&quot; years old.&quot;</span>);
+}</code></pre></div><ul>
+<li><p>This option is incorrect. It uses the underscore (<code>_</code>) to ignore the <code>id</code> field, which is not a valid technique in Java 21.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (emp <span class="hljs-keyword">instanceof</span> Employee e) {
+    System.out.println(e.person().name() + <span class="hljs-string">&quot; is &quot;</span> + e.person().age() + <span class="hljs-string">&quot; years old.&quot;</span>);
+}</code></pre></div><ul>
+<li><p>This option is incorrect. It uses traditional <code>instanceof</code> without pattern matching, relying on accessor methods to extract the data.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (emp <span class="hljs-type">instanceof</span> <span class="hljs-title function_">Employee</span><span class="hljs-params">(<span class="hljs-keyword">var</span> id, Person(<span class="hljs-keyword">var</span> name, <span class="hljs-keyword">var</span> age)</span>)) {
+    System.out.println(name + <span class="hljs-string">&quot; is &quot;</span> + age + <span class="hljs-string">&quot; years old.&quot;</span>);
+}</code></pre></div><ul>
+<li><p>This option is correct. It uses nested record pattern matching to extract both the <code>Employee</code> and <code>Person</code> data in a single step. It uses <code>var</code> for type inference and correctly names the variables <code>name</code> and <code>age</code> as required.</p>
+</li>
+<li><p><strong>E)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (emp <span class="hljs-type">instanceof</span> <span class="hljs-title function_">Employee</span><span class="hljs-params">(<span class="hljs-keyword">var</span> id, <span class="hljs-keyword">var</span> person)</span>) {
+    System.out.println(person.name() + <span class="hljs-string">&quot; is &quot;</span> + person.age() + <span class="hljs-string">&quot; years old.&quot;</span>);
+}</code></pre></div><ul>
+<li>This option is incorrect. While it uses pattern matching for the <code>Employee</code> record, it doesn&#39;t nest the pattern matching for the <code>Person</code> record, so it still requires calling accessor methods on <code>person</code>.</li>
+</ul>
+</div></details><details class="answer-item" id="answer-3"><summary><span>Question 3</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> Code snippet 1</p>
+<ul>
+<li>This option is incorrect. The variable <code>y</code> is declared inside the first <code>if</code> statement and is not accessible outside its block. Therefore, trying to print <code>y</code> outside its scope results in a compilation error.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Code snippet 2</p>
+<ul>
+<li>This option is incorrect. The variable <code>z</code> is declared inside the second <code>if</code> statement and is not accessible outside its block. Therefore, attempting to use <code>z</code> outside its scope results in a compilation error.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Code snippet 3</p>
+<ul>
+<li>This option is correct. The variable <code>a</code> is declared outside the <code>if</code> statement, so it is accessible both inside and outside the <code>if</code> block. Reassigning a inside the <code>if</code> block is allowed.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> None of the above</p>
+<ul>
+<li>This option is incorrect. While it&#39;s true that code snippets 1, 2 and 4 will not compile, code snippet 3 does compile without any errors. Therefore, the answer cannot be &quot;none of the above&quot;.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-4"><summary><span>Question 4</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>Weekend</code> </p>
+<ul>
+<li>This option is incorrect. The value of <code>dayOfWeek</code> is 3, which does not match cases 1 or 7, so it does not print <code>&quot;Weekend&quot;</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Invalid day</code></p>
+<ul>
+<li>This option is incorrect. The default case is not executed because the value of <code>dayOfWeek</code> matches one of the specific cases (2, 3, 4, 5, or 6).</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Weekday</code></p>
+<ul>
+<li>This option is correct. The value of <code>dayOfWeek</code> is 3, which matches case 3. Therefore, the variable <code>dayType</code> is set to <code>&quot;Weekday&quot;</code>, and this value is printed.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The program does not compile</p>
+<ul>
+<li>This option is incorrect. The program compiles without errors.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> The program compiles but does not produce any output</p>
+<ul>
+<li>This option is incorrect. The program compiles and produces output, which is <code>&quot;Weekday&quot;</code> based on the given <code>dayOfWeek</code> value.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-5"><summary><span>Question 5</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>A</code></p>
+<ul>
+<li>This option is incorrect. The value of <code>score</code> is 85, which does not match the cases for 90 or 100. Therefore, it does not print <code>&quot;A&quot;</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>F</code></p>
+<ul>
+<li>This option is correct. The default case is executed because the value of <code>score</code> doesn&#39;t match any of the other <code>case</code> statements.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The program does not compile </p>
+<ul>
+<li>This option is incorrect. The program uses a <code>switch</code> expression correctly, compiling without errors.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>B</code></p>
+<ul>
+<li>This option is incorrect. The value of <code>score</code> is 85, which doesn&#39;t match the case for 80 or 89.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> The program compiles but does not produce any output</p>
+<ul>
+<li>This option is incorrect. The program compiles and produces output, which is <code>&quot;F&quot;</code> based on the given <code>score</code> value.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-6"><summary><span>Question 6</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">case</span> CarType.SEDAN, CarType.HATCHBACK -&gt; System.out.println(<span class="hljs-string">&quot;Compact vehicle&quot;</span>);
+<span class="hljs-keyword">case</span> CarType.SUV -&gt; System.out.println(<span class="hljs-string">&quot;Large vehicle&quot;</span>);
+<span class="hljs-keyword">case</span> CarType.CONVERTIBLE -&gt; System.out.println(<span class="hljs-string">&quot;Open-top vehicle&quot;</span>);</code></pre></div><ul>
+<li><p>This option is correct. In Java 21, you can use fully qualified names of enum constants in switch statements, even when the selector expression is of a type that&#39;s assignment-compatible with the enum type (in this case, <code>Vehicle</code> is assignment-compatible with <code>CarType</code>).</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">case</span> SEDAN, HATCHBACK -&gt; System.out.println(<span class="hljs-string">&quot;Compact vehicle&quot;</span>);
+<span class="hljs-keyword">case</span> SUV -&gt; System.out.println(<span class="hljs-string">&quot;Large vehicle&quot;</span>);
+<span class="hljs-keyword">case</span> CONVERTIBLE -&gt; System.out.println(<span class="hljs-string">&quot;Open-top vehicle&quot;</span>);</code></pre></div><ul>
+<li><p>This option is incorrect. When using an interface type (<code>Vehicle</code>) as the selector expression, you must use fully qualified names for the enum constants. Using unqualified names (<code>SEDAN</code>, <code>HATCHBACK</code>, etc.) will result in a compilation error.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">case</span> CarType.SEDAN || CarType.HATCHBACK -&gt; System.out.println(<span class="hljs-string">&quot;Compact vehicle&quot;</span>);
+<span class="hljs-keyword">case</span> CarType.SUV -&gt; System.out.println(<span class="hljs-string">&quot;Large vehicle&quot;</span>);
+<span class="hljs-keyword">case</span> CarType.CONVERTIBLE -&gt; System.out.println(<span class="hljs-string">&quot;Open-top vehicle&quot;</span>);</code></pre></div><ul>
+<li><p>This option is incorrect. It attempts to use the logical OR operator (<code>||</code>) in the case label, which is not valid syntax for switch statements. Multiple case labels should be separated by commas, not logical operators.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">case</span> Vehicle.SEDAN, Vehicle.HATCHBACK -&gt; System.out.println(<span class="hljs-string">&quot;Compact vehicle&quot;</span>);
+<span class="hljs-keyword">case</span> Vehicle.SUV -&gt; System.out.println(<span class="hljs-string">&quot;Large vehicle&quot;</span>);
+<span class="hljs-keyword">case</span> Vehicle.CONVERTIBLE -&gt; System.out.println(<span class="hljs-string">&quot;Open-top vehicle&quot;</span>);</code></pre></div><ul>
+<li>This option is incorrect. Although it uses fully qualified names, it incorrectly prefixes the enum constants with <code>Vehicle</code> instead of <code>CarType</code>. The enum constants belong to the <code>CarType</code> enum, not the <code>Vehicle</code> interface, so this will result in a compilation error.</li>
+</ul>
+</div></details><details class="answer-item" id="answer-7"><summary><span>Question 7</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">case</span> Circle c -&gt; Math.PI * c.radius() * c.radius();
+<span class="hljs-keyword">case</span> Square s -&gt; s.side() * s.side();
+<span class="hljs-keyword">case</span> <span class="hljs-literal">null</span> -&gt; <span class="hljs-number">0</span>;</code></pre></div><ul>
+<li><p>This option is incorrect. It doesn&#39;t compile because the <code>switch</code> expression is not exhaustive, it does not cover all possible <code>Shape</code> values.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">default</span> -&gt; <span class="hljs-number">0</span>;
+<span class="hljs-keyword">case</span> Circle c -&gt; Math.PI * c.radius() * c.radius();
+<span class="hljs-keyword">case</span> Square s -&gt; s.side() * s.side();
+<span class="hljs-keyword">case</span> Triangle t -&gt; <span class="hljs-number">0.5</span> * t.base() * t.height();</code></pre></div><ul>
+<li><p>This option is incorrect. It doesn&#39;t compile because the (unnecessary) <code>default</code> case comes before the rest of the <code>case</code> statements.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">case</span> Shape s <span class="hljs-keyword">when</span> s <span class="hljs-keyword">instanceof</span> Circle -&gt;
+        Math.PI * ((Circle)s).radius() * ((Circle)s).radius();
+<span class="hljs-keyword">case</span> Shape s <span class="hljs-keyword">when</span> s <span class="hljs-keyword">instanceof</span> Square -&gt;
+        ((Square)s).side() * ((Square)s).side();
+<span class="hljs-keyword">case</span> Shape s <span class="hljs-keyword">when</span> s <span class="hljs-keyword">instanceof</span> Triangle -&gt;
+        <span class="hljs-number">0.5</span> * ((Triangle)s).base() * ((Triangle)s).height();</code></pre></div><ul>
+<li><p>This option is incorrect. It doesn&#39;t compile because it&#39;s not exhaustive. Since it uses verbose <code>instanceof</code> checks instead of leveraging pattern matching, it&#39;s missing a <code>default</code> branch.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">case</span> Circle c -&gt; Math.PI * c.radius() * c.radius();
+<span class="hljs-keyword">case</span> Square s -&gt; s.side() * s.side();
+<span class="hljs-keyword">case</span> Triangle t -&gt; <span class="hljs-number">0.5</span> * t.base() * t.height();</code></pre></div><ul>
+<li>This option is correct. It covers all possible subtypes of the sealed <code>Shape</code> interface without an unnecessary <code>default</code> case.</li>
+</ul>
+</div></details><details class="answer-item" id="answer-8"><summary><span>Question 8</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>2</code></p>
+<ul>
+<li>This option is incorrect. The value of <code>count</code> is incremented until it reaches 3. The labeled <code>break</code> statement breaks out of the outer loop when <code>count</code> equals 3.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>3</code></p>
+<ul>
+<li>This option is correct. The value of <code>count</code> is incremented inside the inner <code>while</code> loop. When <code>count</code> reaches 3, the labeled <code>break</code> statement (<code>break outerLoop</code>) is executed, causing the control to exit the outer loop. Therefore, <code>count</code> is 3 when printed.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>4</code></p>
+<ul>
+<li>This option is incorrect. The loop does not continue incrementing <code>count</code> to 4 because the labeled <code>break</code> statement exits the loop when <code>count</code> is 3.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>5</code></p>
+<ul>
+<li>This option is incorrect. The loop does not continue incrementing <code>count</code> to 5 because the labeled <code>break</code> statement exits the loop when <code>count</code> is 3.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> The program does not compile</p>
+<ul>
+<li>This option is incorrect. The program compiles successfully and runs without errors.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-9"><summary><span>Question 9</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>5</code></p>
+<ul>
+<li>This option is incorrect. The value 5 is just the upper limit of the loop and not the sum of the integers from 1 to 5.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>10</code></p>
+<ul>
+<li>This option is incorrect. The value 10 is less than the sum of the integers from 1 to 5.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>15</code></p>
+<ul>
+<li>This option is correct. The loop iterates from 1 to 5, adding each value of <code>i</code> to <code>sum</code>. The calculations are as follows: 1 + 2 + 3 + 4 + 5 = 15.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>20</code></p>
+<ul>
+<li>This option is incorrect. The value 20 is more than the sum of the integers from 1 to 5.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> The program does not compile</p>
+<ul>
+<li>This option is incorrect. The program compiles successfully and runs without errors.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-10"><summary><span>Question 10</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>9</code></p>
+<ul>
+<li>This option is correct. The <code>continue</code> statement skips the current iteration when the number is even (<code>num % 2 == 0</code>). The odd numbers in the array are 1, 3, and 5. Their sum is 1 + 3 + 5 = 9.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>10</code></p>
+<ul>
+<li>This option is incorrect. The sum of the odd numbers (1, 3, and 5) is 9, not 10.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>12</code></p>
+<ul>
+<li>This option is incorrect. The sum of the odd numbers (1, 3, and 5) is 9, not 12.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>15</code></p>
+<ul>
+<li>This option is incorrect. The sum of all the numbers in the array (1 + 2 + 3 + 4 + 5) is 15, but the <code>continue</code> statement causes the loop to skip adding the even numbers.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> The program does not compile</p>
+<ul>
+<li>This option is incorrect. The program compiles successfully and runs without errors.</li>
+</ul>
+</li>
+</ul>
+</div></details></article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this answer sheet.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch05.html"><small>Previous</small>Controlling Program Flow</a><a href="ch05-practice.html"><small>Next chapter</small>Chapter 5.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#answers">Answers</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

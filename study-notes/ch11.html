@@ -1,0 +1,844 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · The Date/Time API</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch11"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch11.html" aria-current="page" data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>The Date/Time API</h1><div class="document-meta">Chapter 11<span>·</span>35 min read</div><div class="chapter-actions"><a class="active" href="ch11.html">Read chapter</a><a href="ch11.html#key-points">Key points</a><a href="ch11-practice.html#book-practice">Book questions</a><a href="ch11-practice.html#chapter-quiz">Extra quiz</a><a class="" href="ch11a.html">Original answers</a></div></div><details class="objectives" open><summary>Exam objectives</summary><ul><li>Manipulate date, time, duration, period, instant and time-zone objects including daylight saving time using Date-Time API.</li></ul></details><article class="prose"><h2 id="core-datetime-classes">Core Date/Time Classes<a class="heading-anchor" href="#core-datetime-classes" aria-label="Link to Core Date/Time Classes">#</a></h2><p>Java 8 introduced a new Date/Time API in the <code>java.time</code> package. The classes that belong to this API are immutable and thread-safe. </p>
+<p>In this section, we&#39;ll review the following classes:</p>
+<ul>
+<li><p><strong>LocalDate:</strong> Represents a date with the year, month, and day of the month information. For example, <code>2025-08-25</code>.</p>
+</li>
+<li><p><strong>LocalTime:</strong> Represents a time with hour, minute, second, and nanosecond information. For example, <code>13:21:05.123456789</code>.</p>
+</li>
+<li><p><strong>LocalDateTime:</strong> A combination of the above. For example, <code>2025-08-25T13:21:05.123456789</code>.</p>
+</li>
+<li><p><strong>Instant:</strong> Represents a single point in time with seconds and nanoseconds. For example, <code>1970-01-01T00:00:00Z (seconds since epoch: 923456789, nanoseconds: 186,054,812)</code>.</p>
+</li>
+<li><p><strong>Period:</strong> Represents an amount of time in terms of years, months, and days. For example, <code>5 years, 2 months, and 9 days</code>.</p>
+</li>
+<li><p><strong>Duration:</strong> Represents an amount of time in terms of seconds and nanoseconds. For example, <code>12.87656 seconds</code>.</p>
+</li>
+</ul>
+<p>With the exception of <code>Instant</code>, these classes don&#39;t store or represent a time zone.</p>
+<p>Also, <code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>, and <code>Instant</code> implement the interface <code>java.time.temporal.Temporal</code>, so they all have similar methods. <code>Period</code> and <code>Duration</code> implement the interface <code>java.time.temporal.TemporalAmount</code>, which also makes them very similar.</p>
+<p>Here&#39;s a diagram to help you visualize the classes of the Date/Time API:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">┌─────────────────────────────────────────────────────────┐
+│                  Java Date/Time API                     │
+│                                                         │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
+│  │  LocalDate  │    │  LocalTime  │    │LocalDateTime│  │
+│  │ (Date only) │    │ (Time only) │    │(Date + Time)│  │
+│  └──────┬──────┘    └──────┬──────┘    └──────┬──────┘  │
+│         │                  │                  │         │
+│         └──────────────────┼──────────────────┘         │
+│                            │                            │
+│                     ┌──────┴──────┐                     │
+│                     │   Instant   │                     │
+│                     │ (Time-stamp)│                     │
+│                     └──────┬──────┘                     │
+│                            │                            │
+│              ┌─────────────┴─────────────┐              │
+│              │                           │              │
+│        ┌─────┴─────┐               ┌─────┴─────┐        │
+│        │  Period   │               │ Duration  │        │
+│        │(Date-based│               │(Time-based│        │
+│        │  amount)  │               │  amount)  │        │
+│        └───────────┘               └───────────┘        │
+│                                                         │
+└─────────────────────────────────────────────────────────┘</code></pre></div><h3 id="the-localdate-class">The <code>LocalDate</code> Class<a class="heading-anchor" href="#the-localdate-class" aria-label="Link to The LocalDate Class">#</a></h3><p>The key to learning how to use this class is to understand that it holds the year, month, day, and derived information of a date. All of its methods use this information or have a version to work with each of these components.</p>
+<p>The following are the most important methods of this class.</p>
+<p>To create an instance, we can use the static method <code>of</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// With year (-999999999 to 999999999), month (1 to 12), day of the month (1 - 31)</span>
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">newYear2001</span> <span class="hljs-operator">=</span> LocalDate.of(<span class="hljs-number">2001</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+<span class="hljs-comment">// This version uses the enum java.time.Month</span>
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">newYear2002</span> <span class="hljs-operator">=</span> LocalDate.of(<span class="hljs-number">2002</span>, Month.JANUARY, <span class="hljs-number">1</span>);</code></pre></div><p>Notice that, unlike <code>java.util.Date</code>, months start from one. If you try to create a date with invalid values (like February 29 on a non-leap year), an exception will be thrown. For today&#39;s date, use <code>now()</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalDate</span> <span class="hljs-variable">today</span> <span class="hljs-operator">=</span> LocalDate.now();</code></pre></div><p>Once we have an instance of <code>LocalDate</code>, we can get the year, the month, and the day with methods like the following:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">year</span> <span class="hljs-operator">=</span> today.getYear();
+<span class="hljs-type">int</span> <span class="hljs-variable">month</span> <span class="hljs-operator">=</span> today.getMonthValue();
+<span class="hljs-type">Month</span> <span class="hljs-variable">monthAsEnum</span> <span class="hljs-operator">=</span> today.getMonth(); <span class="hljs-comment">// As an enum: JANUARY, FEBRUARY, etc.</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">dayYear</span> <span class="hljs-operator">=</span> today.getDayOfYear();
+<span class="hljs-type">int</span> <span class="hljs-variable">dayMonth</span> <span class="hljs-operator">=</span> today.getDayOfMonth();
+<span class="hljs-type">DayOfWeek</span> <span class="hljs-variable">dayWeekEnum</span> <span class="hljs-operator">=</span> today.getDayOfWeek(); <span class="hljs-comment">// As an enum: MONDAY, TUESDAY, etc.</span></code></pre></div><p>We can also use the <code>get</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-title function_">get</span><span class="hljs-params">(java.time.temporal.TemporalField field)</span>; <span class="hljs-comment">// value as int</span>
+<span class="hljs-type">long</span> <span class="hljs-title function_">getLong</span><span class="hljs-params">(java.time.temporal.TemporalField field)</span>; <span class="hljs-comment">// value as long</span></code></pre></div><p>This method takes an implementation of the interface <code>java.time.temporal.TemporalField</code> to access a specific field of a date. <code>java.time.temporal.ChronoField</code> is an enumeration that implements this interface, so we can have, for example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">year2</span> <span class="hljs-operator">=</span> today.get(ChronoField.YEAR);
+<span class="hljs-type">int</span> <span class="hljs-variable">month2</span> <span class="hljs-operator">=</span> today.get(ChronoField.MONTH_OF_YEAR);
+<span class="hljs-type">int</span> <span class="hljs-variable">dayYear2</span> <span class="hljs-operator">=</span> today.get(ChronoField.DAY_OF_YEAR);
+<span class="hljs-type">int</span> <span class="hljs-variable">dayMonth2</span> <span class="hljs-operator">=</span> today.get(ChronoField.DAY_OF_MONTH);
+<span class="hljs-type">int</span> <span class="hljs-variable">dayWeek</span> <span class="hljs-operator">=</span> today.get(ChronoField.DAY_OF_WEEK);
+<span class="hljs-type">long</span> <span class="hljs-variable">dayEpoch</span> <span class="hljs-operator">=</span> today.getLong(ChronoField.EPOCH_DAY);</code></pre></div><p>The supported values for <code>ChronoField</code> are:</p>
+<ul>
+<li><code>DAY_OF_WEEK</code></li>
+<li><code>ALIGNED_DAY_OF_WEEK_IN_MONTH</code></li>
+<li><code>ALIGNED_DAY_OF_WEEK_IN_YEAR</code></li>
+<li><code>DAY_OF_MONTH</code></li>
+<li><code>DAY_OF_YEAR</code></li>
+<li><code>EPOCH_DAY</code></li>
+<li><code>ALIGNED_WEEK_OF_MONTH</code></li>
+<li><code>ALIGNED_WEEK_OF_YEAR</code></li>
+<li><code>MONTH_OF_YEAR</code></li>
+<li><code>PROLEPTIC_MONTH</code></li>
+<li><code>YEAR_OF_ERA</code></li>
+<li><code>YEAR</code></li>
+<li><code>ERA</code></li>
+</ul>
+<p>Using an unsupported value will throw an exception. The same is true when getting a value that doesn&#39;t fit into an <code>int</code> with <code>get(TemporalField)</code>.</p>
+<p>To compare a <code>LocalDate</code> against another instance, we have three methods and another one for leap years:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">boolean</span> <span class="hljs-variable">after</span> <span class="hljs-operator">=</span> newYear2001.isAfter(newYear2002); <span class="hljs-comment">// false</span>
+<span class="hljs-type">boolean</span> <span class="hljs-variable">before</span> <span class="hljs-operator">=</span> newYear2001.isBefore(newYear2002); <span class="hljs-comment">// true</span>
+<span class="hljs-type">boolean</span> <span class="hljs-variable">equal</span> <span class="hljs-operator">=</span> newYear2001.equals(newYear2002); <span class="hljs-comment">// false</span>
+<span class="hljs-type">boolean</span> <span class="hljs-variable">leapYear</span> <span class="hljs-operator">=</span> newYear2001.isLeapYear(); <span class="hljs-comment">// false</span></code></pre></div><p>Once an instance of this class is created, it cannot be modified, but we can create another instance from an existing one.</p>
+<p>One way is by using the <code>with()</code> method and its variations:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalDate</span> <span class="hljs-variable">newYear2003</span> <span class="hljs-operator">=</span> newYear2001.with(ChronoField.YEAR, <span class="hljs-number">2003</span>);
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">newYear2004</span> <span class="hljs-operator">=</span> newYear2001.withYear(<span class="hljs-number">2004</span>);
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">december2001</span> <span class="hljs-operator">=</span> newYear2001.withMonth(<span class="hljs-number">12</span>);
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">february2001</span> <span class="hljs-operator">=</span> newYear2001.withDayOfYear(<span class="hljs-number">32</span>);
+<span class="hljs-comment">// Since these methods return a new instance, we can chain them!</span>
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">xmas2001</span> <span class="hljs-operator">=</span> newYear2001.withMonth(<span class="hljs-number">12</span>).withDayOfMonth(<span class="hljs-number">25</span>);</code></pre></div><p>Another way is by adding or subtracting years, months, days, or even weeks:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Adding</span>
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">newYear2005</span> <span class="hljs-operator">=</span> newYear2001.plusYears(<span class="hljs-number">4</span>);
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">march2001</span> <span class="hljs-operator">=</span> newYear2001.plusMonths(<span class="hljs-number">2</span>);
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">january15_2001</span> <span class="hljs-operator">=</span> newYear2001.plusDays(<span class="hljs-number">14</span>);
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">lastWeekJanuary2001</span> <span class="hljs-operator">=</span> newYear2001.plusWeeks(<span class="hljs-number">3</span>);
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">newYear2006</span> <span class="hljs-operator">=</span> newYear2001.plus(<span class="hljs-number">5</span>, ChronoUnit.YEARS);
+
+<span class="hljs-comment">// Subtracting</span>
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">newYear2000</span> <span class="hljs-operator">=</span> newYear2001.minusYears(<span class="hljs-number">1</span>);
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">nov2000</span> <span class="hljs-operator">=</span> newYear2001.minusMonths(<span class="hljs-number">2</span>);
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">dec30_2000</span> <span class="hljs-operator">=</span> newYear2001.minusDays(<span class="hljs-number">2</span>);
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">lastWeekDec2000</span> <span class="hljs-operator">=</span> newYear2001.minusWeeks(<span class="hljs-number">1</span>);
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">newYear1999</span> <span class="hljs-operator">=</span> newYear2001.minus(<span class="hljs-number">2</span>, ChronoUnit.YEARS);</code></pre></div><p>Notice that the plus and minus methods take a <code>java.time.temporal.ChronoUnit</code> enumeration, which is different from <code>java.time.temporal.ChronoField</code>. The supported values are:</p>
+<ul>
+<li><code>DAYS</code></li>
+<li><code>WEEKS</code></li>
+<li><code>MONTHS</code></li>
+<li><code>YEARS</code></li>
+<li><code>DECADES</code></li>
+<li><code>CENTURIES</code></li>
+<li><code>MILLENNIA</code></li>
+<li><code>ERAS</code></li>
+</ul>
+<p>Finally, the method <code>toString()</code> returns the date in the format <code>uuuu-MM-dd</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">System.out.println(newYear2001.toString()); <span class="hljs-comment">// Prints 2001-01-01</span></code></pre></div><h3 id="the-localtime-class">The <code>LocalTime</code> Class<a class="heading-anchor" href="#the-localtime-class" aria-label="Link to The LocalTime Class">#</a></h3><p>The key to learning how to use this class is to keep in mind that it holds the hour, minutes, seconds, and nanoseconds. All of its methods use this information or have a version to work with each of them.</p>
+<p>The following are the most important methods of this class. As you can see, they are the same (or very similar) methods as <code>LocalDate</code>, adapted to work with time (hours, minutes, seconds) instead of date (days, months, years).</p>
+<p>To create an instance, we can use the <code>static</code> method <code>of</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// With hour (0-23) and minutes (0-59)</span>
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">fiveThirty</span> <span class="hljs-operator">=</span> LocalTime.of(<span class="hljs-number">5</span>, <span class="hljs-number">30</span>);
+<span class="hljs-comment">// With hour, minutes, and seconds (0-59)</span>
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">noon</span> <span class="hljs-operator">=</span> LocalTime.of(<span class="hljs-number">12</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+<span class="hljs-comment">// With hour, minutes, seconds, and nanoseconds (0-999_999_999)</span>
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">almostMidnight</span> <span class="hljs-operator">=</span> LocalTime.of(<span class="hljs-number">23</span>, <span class="hljs-number">59</span>, <span class="hljs-number">59</span>, <span class="hljs-number">999_999_999</span>);</code></pre></div><p>If you try to create a time with an invalid value (like <code>LocalTime.of(24, 0)</code>), an exception will be thrown. To get the current time, use <code>now()</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalTime</span> <span class="hljs-variable">now</span> <span class="hljs-operator">=</span> LocalTime.now();</code></pre></div><p>Once we have an instance of <code>LocalTime</code>, we can get the hour, the minutes, and other information with methods like the following:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">hour</span> <span class="hljs-operator">=</span> now.getHour();
+<span class="hljs-type">int</span> <span class="hljs-variable">minute</span> <span class="hljs-operator">=</span> now.getMinute();
+<span class="hljs-type">int</span> <span class="hljs-variable">second</span> <span class="hljs-operator">=</span> now.getSecond();
+<span class="hljs-type">int</span> <span class="hljs-variable">nanosecond</span> <span class="hljs-operator">=</span> now.getNano();</code></pre></div><p>We can also use the <code>get()</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> now.get(java.time.temporal.TemporalField field); <span class="hljs-comment">// value as int</span>
+<span class="hljs-type">long</span> <span class="hljs-variable">valueLong</span> <span class="hljs-operator">=</span> now.getLong(java.time.temporal.TemporalField field); <span class="hljs-comment">// value as long</span></code></pre></div><p>Just like in the case of <code>LocalDate</code>, we can have, for example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">hourAMPM</span> <span class="hljs-operator">=</span> now.get(ChronoField.HOUR_OF_AMPM); <span class="hljs-comment">// 0 - 11</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">hourDay</span> <span class="hljs-operator">=</span> now.get(ChronoField.HOUR_OF_DAY); <span class="hljs-comment">// 0 - 23</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">minuteDay</span> <span class="hljs-operator">=</span> now.get(ChronoField.MINUTE_OF_DAY); <span class="hljs-comment">// 0 - 1,439</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">minuteHour</span> <span class="hljs-operator">=</span> now.get(ChronoField.MINUTE_OF_HOUR); <span class="hljs-comment">// 0 - 59</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">secondDay</span> <span class="hljs-operator">=</span> now.get(ChronoField.SECOND_OF_DAY); <span class="hljs-comment">// 0 - 86,399</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">secondMinute</span> <span class="hljs-operator">=</span> now.get(ChronoField.SECOND_OF_MINUTE); <span class="hljs-comment">// 0 - 59</span>
+<span class="hljs-type">long</span> <span class="hljs-variable">nanoDay</span> <span class="hljs-operator">=</span> now.getLong(ChronoField.NANO_OF_DAY); <span class="hljs-comment">// 0-86_399_999_999</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">nanoSecond</span> <span class="hljs-operator">=</span> now.get(ChronoField.NANO_OF_SECOND); <span class="hljs-comment">// 0-999_999_999</span></code></pre></div><p>The supported values for <code>ChronoField</code> are:</p>
+<ul>
+<li><code>NANO_OF_SECOND</code></li>
+<li><code>NANO_OF_DAY</code></li>
+<li><code>MICRO_OF_SECOND</code></li>
+<li><code>MICRO_OF_DAY</code></li>
+<li><code>MILLI_OF_SECOND</code></li>
+<li><code>MILLI_OF_DAY</code></li>
+<li><code>SECOND_OF_MINUTE</code></li>
+<li><code>SECOND_OF_DAY</code></li>
+<li><code>MINUTE_OF_HOUR</code></li>
+<li><code>MINUTE_OF_DAY</code></li>
+<li><code>HOUR_OF_AMPM</code></li>
+<li><code>CLOCK_HOUR_OF_AMPM</code></li>
+<li><code>HOUR_OF_DAY</code></li>
+<li><code>CLOCK_HOUR_OF_DAY</code></li>
+<li><code>AMPM_OF_DAY</code></li>
+</ul>
+<p>Using a different value will throw an exception. The same is true when getting a value that doesn&#39;t fit into an <code>int</code> using <code>get(TemporalField)</code>.</p>
+<p>To check a time object against another one, we have three methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">boolean</span> <span class="hljs-variable">after</span> <span class="hljs-operator">=</span> fiveThirty.isAfter(noon); <span class="hljs-comment">// false</span>
+<span class="hljs-type">boolean</span> <span class="hljs-variable">before</span> <span class="hljs-operator">=</span> fiveThirty.isBefore(noon); <span class="hljs-comment">// true</span>
+<span class="hljs-type">boolean</span> <span class="hljs-variable">equal</span> <span class="hljs-operator">=</span> noon.equals(almostMidnight); <span class="hljs-comment">// false</span></code></pre></div><p>Like <code>LocalDate</code>, once an instance of <code>LocalTime</code> is created we cannot modify it, but we can create another instance from an existing one.</p>
+<p>One way is through the <code>with</code> method and its versions:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalTime</span> <span class="hljs-variable">ten</span> <span class="hljs-operator">=</span> noon.with(ChronoField.HOUR_OF_DAY, <span class="hljs-number">10</span>);
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">eight</span> <span class="hljs-operator">=</span> noon.withHour(<span class="hljs-number">8</span>);
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">twelveThirty</span> <span class="hljs-operator">=</span> noon.withMinute(<span class="hljs-number">30</span>);
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">thirtyTwoSeconds</span> <span class="hljs-operator">=</span> noon.withSecond(<span class="hljs-number">32</span>);
+<span class="hljs-comment">// Since these methods return a new instance, we can chain them!</span>
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">secondsNano</span> <span class="hljs-operator">=</span> noon.withSecond(<span class="hljs-number">20</span>).withNano(<span class="hljs-number">999_999</span>);</code></pre></div><p>Of course, another way is by adding or subtracting hours, minutes, seconds, or nanoseconds:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Adding</span>
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">sixThirty</span> <span class="hljs-operator">=</span> fiveThirty.plusHours(<span class="hljs-number">1</span>);
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">fiveForty</span> <span class="hljs-operator">=</span> fiveThirty.plusMinutes(<span class="hljs-number">10</span>);
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">plusSeconds</span> <span class="hljs-operator">=</span> fiveThirty.plusSeconds(<span class="hljs-number">14</span>);
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">plusNanos</span> <span class="hljs-operator">=</span> fiveThirty.plusNanos(<span class="hljs-number">99_999_999</span>);
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">sevenThirty</span> <span class="hljs-operator">=</span> fiveThirty.plus(<span class="hljs-number">2</span>, ChronoUnit.HOURS);
+
+<span class="hljs-comment">// Subtracting</span>
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">fourThirty</span> <span class="hljs-operator">=</span> fiveThirty.minusHours(<span class="hljs-number">1</span>);
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">fiveTen</span> <span class="hljs-operator">=</span> fiveThirty.minusMinutes(<span class="hljs-number">20</span>);
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">minusSeconds</span> <span class="hljs-operator">=</span> fiveThirty.minusSeconds(<span class="hljs-number">2</span>);
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">minusNanos</span> <span class="hljs-operator">=</span> fiveThirty.minusNanos(<span class="hljs-number">1</span>);
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">fiveTwenty</span> <span class="hljs-operator">=</span> fiveThirty.minus(<span class="hljs-number">10</span>, ChronoUnit.MINUTES);</code></pre></div><p>Notice that the <code>plus</code> and <code>minus</code> versions take a <code>java.time.temporal.ChronoUnit</code> enumeration, which is different from <code>java.time.temporal.ChronoField</code>. The supported values are:</p>
+<ul>
+<li><code>NANOS</code></li>
+<li><code>MICROS</code></li>
+<li><code>MILLIS</code></li>
+<li><code>SECONDS</code></li>
+<li><code>MINUTES</code></li>
+<li><code>HOURS</code></li>
+<li><code>HALF_DAYS</code></li>
+</ul>
+<p>Finally, the method <code>toString()</code> returns the time in the format <code>HH:mm:ss.SSSSSSSSS</code>, omitting the parts with value zero (for example, just returning <code>HH:mm</code> if it has zero seconds/nanoseconds):</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">System.out.println(fiveThirty.toString()); <span class="hljs-comment">// Prints 05:30</span></code></pre></div><h3 id="the-localdatetime-class">The <code>LocalDateTime</code> Class<a class="heading-anchor" href="#the-localdatetime-class" aria-label="Link to The LocalDateTime Class">#</a></h3><p>The key to learning how to use this class is to remember that it combines <code>LocalDate</code> and <code>LocalTime</code> classes.</p>
+<p>It represents both a date and a time, with information like year, month, day, hours, minutes, seconds, and nanoseconds. Other fields, such as day of the year, day of the week, and week of year can also be accessed.</p>
+<p>To create an instance, we can use either the static method <code>of()</code> or from a <code>LocalDate</code> or <code>LocalTime</code> instance:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Setting seconds and nanoseconds to zero</span>
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt1</span> <span class="hljs-operator">=</span> LocalDateTime.of(<span class="hljs-number">2024</span>, <span class="hljs-number">9</span>, <span class="hljs-number">19</span>, <span class="hljs-number">14</span>, <span class="hljs-number">5</span>);
+<span class="hljs-comment">// Setting nanoseconds to zero</span>
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt2</span> <span class="hljs-operator">=</span> LocalDateTime.of(<span class="hljs-number">2024</span>, <span class="hljs-number">9</span>, <span class="hljs-number">19</span>, <span class="hljs-number">14</span>, <span class="hljs-number">5</span>, <span class="hljs-number">20</span>);
+<span class="hljs-comment">// Setting all fields</span>
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt3</span> <span class="hljs-operator">=</span> LocalDateTime.of(<span class="hljs-number">2024</span>, <span class="hljs-number">9</span>, <span class="hljs-number">19</span>, <span class="hljs-number">14</span>, <span class="hljs-number">5</span>, <span class="hljs-number">20</span>, <span class="hljs-number">9</span>);
+<span class="hljs-comment">// Assuming this date</span>
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">date</span> <span class="hljs-operator">=</span> LocalDate.now();
+<span class="hljs-comment">// And this time</span>
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">time</span> <span class="hljs-operator">=</span> LocalTime.now();
+<span class="hljs-comment">// Combine the above date with the given time like this</span>
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt4</span> <span class="hljs-operator">=</span> date.atTime(<span class="hljs-number">14</span>, <span class="hljs-number">30</span>, <span class="hljs-number">59</span>, <span class="hljs-number">999999</span>);
+<span class="hljs-comment">// Or this</span>
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt5</span> <span class="hljs-operator">=</span> date.atTime(time);
+<span class="hljs-comment">// Combine this time with the given date. Notice that LocalTime</span>
+<span class="hljs-comment">// only has this method to be combined with a LocalDate</span>
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt6</span> <span class="hljs-operator">=</span> time.atDate(date);</code></pre></div><p>If you try to create an instance with an invalid value or date, an exception will be thrown. To get the current date/time use <code>now()</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">now</span> <span class="hljs-operator">=</span> LocalDateTime.now();</code></pre></div><p>Once we have an instance of <code>LocalDateTime</code>, we can get the information with the methods we know from <code>LocalDate</code> and <code>LocalTime</code>, such as:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">year</span> <span class="hljs-operator">=</span> now.getYear();
+<span class="hljs-type">int</span> <span class="hljs-variable">dayYear</span> <span class="hljs-operator">=</span> now.getDayOfYear();
+<span class="hljs-type">int</span> <span class="hljs-variable">hour</span> <span class="hljs-operator">=</span> now.getHour();
+<span class="hljs-type">int</span> <span class="hljs-variable">minute</span> <span class="hljs-operator">=</span> now.getMinute();</code></pre></div><p>We can also use the <code>get()</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-title function_">get</span><span class="hljs-params">(java.time.temporal.TemporalField field)</span>
+<span class="hljs-type">long</span> <span class="hljs-title function_">getLong</span><span class="hljs-params">(java.time.temporal.TemporalField field)</span></code></pre></div><p>For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">month</span> <span class="hljs-operator">=</span> now.get(ChronoField.MONTH_OF_YEAR);
+<span class="hljs-type">int</span> <span class="hljs-variable">minuteHour</span> <span class="hljs-operator">=</span> now.get(ChronoField.MINUTE_OF_HOUR);</code></pre></div><p>The supported values for <code>ChronoField</code> are:</p>
+<ul>
+<li><code>NANO_OF_SECOND</code></li>
+<li><code>NANO_OF_DAY</code></li>
+<li><code>MICRO_OF_SECOND</code></li>
+<li><code>MICRO_OF_DAY</code></li>
+<li><code>MILLI_OF_SECOND</code></li>
+<li><code>MILLI_OF_DAY</code></li>
+<li><code>SECOND_OF_MINUTE</code></li>
+<li><code>SECOND_OF_DAY</code></li>
+<li><code>MINUTE_OF_HOUR</code></li>
+<li><code>MINUTE_OF_DAY</code></li>
+<li><code>HOUR_OF_AMPM</code></li>
+<li><code>CLOCK_HOUR_OF_AMPM</code></li>
+<li><code>HOUR_OF_DAY</code></li>
+<li><code>CLOCK_HOUR_OF_DAY</code></li>
+<li><code>AMPM_OF_DAY</code></li>
+<li><code>DAY_OF_WEEK</code></li>
+<li><code>ALIGNED_DAY_OF_WEEK_IN_MONTH</code></li>
+<li><code>ALIGNED_DAY_OF_WEEK_IN_YEAR</code></li>
+<li><code>DAY_OF_MONTH</code></li>
+<li><code>DAY_OF_YEAR</code></li>
+<li><code>EPOCH_DAY</code></li>
+<li><code>ALIGNED_WEEK_OF_MONTH</code></li>
+<li><code>ALIGNED_WEEK_OF_YEAR</code></li>
+<li><code>MONTH_OF_YEAR</code></li>
+<li><code>PROLEPTIC_MONTH</code></li>
+<li><code>YEAR_OF_ERA</code></li>
+<li><code>YEAR</code></li>
+<li><code>ERA</code></li>
+</ul>
+<p>Using a different value will throw an exception. The same is true when getting a value that doesn&#39;t fit into an <code>int</code> with <code>get(TemporalField)</code>.</p>
+<p>To check a <code>LocalDateTime</code> object against another one, we have three methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">boolean</span> <span class="hljs-variable">after</span> <span class="hljs-operator">=</span> now.isAfter(dt1); <span class="hljs-comment">// true</span>
+<span class="hljs-type">boolean</span> <span class="hljs-variable">before</span> <span class="hljs-operator">=</span> now.isBefore(dt1); <span class="hljs-comment">// false</span>
+<span class="hljs-type">boolean</span> <span class="hljs-variable">equal</span> <span class="hljs-operator">=</span> now.equals(dt1); <span class="hljs-comment">// false</span></code></pre></div><p>Once an instance of <code>LocalTime</code> is created, we cannot modify it, but we can create another instance from an existing one.</p>
+<p>One way is through the with method and its versions:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt7</span> <span class="hljs-operator">=</span> now.with(ChronoField.HOUR_OF_DAY, <span class="hljs-number">10</span>);
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt8</span> <span class="hljs-operator">=</span> now.withMonth(<span class="hljs-number">8</span>);
+<span class="hljs-comment">// Since these methods return a new instance, we can chain them!</span>
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt9</span> <span class="hljs-operator">=</span> now.withYear(<span class="hljs-number">2013</span>).withMinute(<span class="hljs-number">0</span>);</code></pre></div><p>Another way is by adding or subtracting years, months, days, weeks, hours, minutes, seconds, or nanoseconds:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Adding</span>
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt10</span> <span class="hljs-operator">=</span> now.plusYears(<span class="hljs-number">4</span>);
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt11</span> <span class="hljs-operator">=</span> now.plusWeeks(<span class="hljs-number">3</span>);
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt12</span> <span class="hljs-operator">=</span> now.plus(<span class="hljs-number">2</span>, ChronoUnit.HOURS);
+
+<span class="hljs-comment">// Subtracting</span>
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt13</span> <span class="hljs-operator">=</span> now.minusMonths(<span class="hljs-number">2</span>);
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt14</span> <span class="hljs-operator">=</span> now.minusNanos(<span class="hljs-number">1</span>);
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dt15</span> <span class="hljs-operator">=</span> now.minus(<span class="hljs-number">10</span>, ChronoUnit.SECONDS);</code></pre></div><p>In this case, the supported values for <code>ChronoUnit</code> are:</p>
+<ul>
+<li><code>NANOS</code></li>
+<li><code>MICROS</code></li>
+<li><code>MILLIS</code></li>
+<li><code>SECONDS</code></li>
+<li><code>MINUTES</code></li>
+<li><code>HOURS</code></li>
+<li><code>HALF_DAYS</code></li>
+<li><code>DAYS</code></li>
+<li><code>WEEKS</code></li>
+<li><code>MONTHS</code></li>
+<li><code>YEARS</code></li>
+<li><code>DECADES</code></li>
+<li><code>CENTURIES</code></li>
+<li><code>MILLENNIA</code></li>
+<li><code>ERAS</code></li>
+</ul>
+<p>Finally, the method <code>toString()</code> returns the date-time in the format <code>uuuu-MM-dd&#39;T&#39;HH:mm:ss.SSSSSSSSS</code>, omitting the parts with value zero, for example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">System.out.println(dt1.toString()); <span class="hljs-comment">// Prints 2024-09-19T14:05</span></code></pre></div><h3 id="the-instant-class">The <code>Instant</code> Class<a class="heading-anchor" href="#the-instant-class" aria-label="Link to The Instant Class">#</a></h3><p>Although in practical terms, a <code>LocalDateTime</code> instance represents an instant in the timeline, there is another class that may be more appropriate.</p>
+<p>The <code>java.time.Instant</code> class represents an instant in the number of seconds that have passed since the epoch, a convention used in UNIX/POSIX systems and set at midnight of January 1, 1970 UTC time.</p>
+<p>From that date, time is measured in 86,400 seconds per day. This information is stored as a <code>long</code>. The class also supports nanosecond precision, stored as an <code>int</code>.</p>
+<p>You can create an instance of this class with the following methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Setting seconds</span>
+<span class="hljs-type">Instant</span> <span class="hljs-variable">fiveSecondsAfterEpoch</span> <span class="hljs-operator">=</span> Instant.ofEpochSecond(<span class="hljs-number">5</span>);
+<span class="hljs-comment">// Setting seconds and nanoseconds (can be negative)</span>
+<span class="hljs-type">Instant</span> <span class="hljs-variable">sixSecTwoNanBeforeEpoch</span> <span class="hljs-operator">=</span> Instant.ofEpochSecond(-<span class="hljs-number">6</span>, -<span class="hljs-number">2</span>);
+<span class="hljs-comment">// Setting milliseconds after (can be before also) epoch</span>
+<span class="hljs-type">Instant</span> <span class="hljs-variable">fiftyMilliSecondsAfterEpoch</span> <span class="hljs-operator">=</span> Instant.ofEpochMilli(<span class="hljs-number">50</span>);</code></pre></div><p>For the current instance of the system clock use:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Instant</span> <span class="hljs-variable">now</span> <span class="hljs-operator">=</span> Instant.now();</code></pre></div><p>Once we have an instance of <code>Instant</code>, we can get the information with the following methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">long</span> <span class="hljs-variable">seconds</span> <span class="hljs-operator">=</span> now.getEpochSecond(); <span class="hljs-comment">// Gets the seconds</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">nanos1</span> <span class="hljs-operator">=</span> now.getNano(); <span class="hljs-comment">// Gets the nanoseconds</span>
+<span class="hljs-comment">// Gets the value as an int</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">millis</span> <span class="hljs-operator">=</span> now.get(ChronoField.MILLI_OF_SECOND);
+<span class="hljs-comment">// Gets the value as a long</span>
+<span class="hljs-type">long</span> <span class="hljs-variable">nanos2</span> <span class="hljs-operator">=</span> now.getLong(ChronoField.NANO_OF_SECOND);</code></pre></div><p>The supported <code>ChronoField</code> values are:</p>
+<ul>
+<li><code>NANO_OF_SECOND</code></li>
+<li><code>MICRO_OF_SECOND</code></li>
+<li><code>MILLI_OF_SECOND</code></li>
+<li><code>INSTANT_SECONDS</code></li>
+</ul>
+<p>Using any other value will throw an exception. The same is true when getting a value that doesn&#39;t fit into an <code>int</code> using <code>get(TemporalField)</code>.</p>
+<p>To check an <code>Instant</code> object against another one, we have three methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">boolean</span> <span class="hljs-variable">after</span> <span class="hljs-operator">=</span> now.isAfter(fiveSecondsAfterEpoch); <span class="hljs-comment">// true</span>
+<span class="hljs-type">boolean</span> <span class="hljs-variable">before</span> <span class="hljs-operator">=</span> now.isBefore(fiveSecondsAfterEpoch); <span class="hljs-comment">// false</span>
+<span class="hljs-type">boolean</span> <span class="hljs-variable">equal</span> <span class="hljs-operator">=</span> now.equals(fiveSecondsAfterEpoch); <span class="hljs-comment">// false</span></code></pre></div><p>Once an instance of this object is created, we cannot modify it, but we can create another instance from an existing one.</p>
+<p>One way is by using the <code>with</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Instant</span> <span class="hljs-variable">i1</span> <span class="hljs-operator">=</span> now.with(ChronoField.NANO_OF_SECOND, <span class="hljs-number">10</span>);</code></pre></div><p>Another way is by adding or subtracting seconds, milliseconds, or nanoseconds:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Adding</span>
+<span class="hljs-type">Instant</span> <span class="hljs-variable">i10</span> <span class="hljs-operator">=</span> now.plusSeconds(<span class="hljs-number">400</span>);
+<span class="hljs-type">Instant</span> <span class="hljs-variable">i11</span> <span class="hljs-operator">=</span> now.plusMillis(<span class="hljs-number">98622200</span>);
+<span class="hljs-type">Instant</span> <span class="hljs-variable">i12</span> <span class="hljs-operator">=</span> now.plusNanos(<span class="hljs-number">300013890</span>);
+<span class="hljs-type">Instant</span> <span class="hljs-variable">i13</span> <span class="hljs-operator">=</span> now.plus(<span class="hljs-number">2</span>, ChronoUnit.MINUTES);
+
+<span class="hljs-comment">// Subtracting</span>
+<span class="hljs-type">Instant</span> <span class="hljs-variable">i14</span> <span class="hljs-operator">=</span> now.minusSeconds(<span class="hljs-number">2</span>);
+<span class="hljs-type">Instant</span> <span class="hljs-variable">i15</span> <span class="hljs-operator">=</span> now.minusMillis(<span class="hljs-number">1</span>);
+<span class="hljs-type">Instant</span> <span class="hljs-variable">i16</span> <span class="hljs-operator">=</span> now.minusNanos(<span class="hljs-number">1</span>);
+<span class="hljs-type">Instant</span> <span class="hljs-variable">i17</span> <span class="hljs-operator">=</span> now.minus(<span class="hljs-number">10</span>, ChronoUnit.SECONDS);</code></pre></div><p>The supported <code>ChronoUnit</code> values are:</p>
+<ul>
+<li><code>NANOS</code></li>
+<li><code>MICROS</code></li>
+<li><code>MILLIS</code></li>
+<li><code>SECONDS</code></li>
+<li><code>MINUTES</code></li>
+<li><code>HOURS</code></li>
+<li><code>HALF_DAYS</code></li>
+<li><code>DAYS</code></li>
+</ul>
+<p>Finally, the method <code>toString()</code> returns a representation of the <code>Instant</code> in the format <code>uuuu-MM-dd&#39;T&#39;HH:mm:ss.SSSSSSSSS</code>, for example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Prints 1970-01-01T00:00:00.050Z</span>
+System.out.println(fiftyMilliSecondsAfterEpoch.toString());</code></pre></div><p>Notice that it contains zone time information (<code>Z</code>). This is because <code>Instant</code> represents a point in time from the epoch of <code>1970-01-01Z</code> in the UTC zone time.</p>
+<h3 id="the-period-class">The <code>Period</code> Class<a class="heading-anchor" href="#the-period-class" aria-label="Link to The Period Class">#</a></h3><p>The <code>java.time.Period</code> class represents an amount of time in terms of years, months, and days.</p>
+<p>You can create an instance of this class with the following methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Setting years, months, days (can be negative)</span>
+<span class="hljs-type">Period</span> <span class="hljs-variable">period5y4m3d</span> <span class="hljs-operator">=</span> Period.of(<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>);
+<span class="hljs-comment">// Setting days (can be negative), years and months will be zero</span>
+<span class="hljs-type">Period</span> <span class="hljs-variable">period2d</span> <span class="hljs-operator">=</span> Period.ofDays(<span class="hljs-number">2</span>);
+<span class="hljs-comment">// Setting months (can be negative), years and days will be zero</span>
+<span class="hljs-type">Period</span> <span class="hljs-variable">period2m</span> <span class="hljs-operator">=</span> Period.ofMonths(<span class="hljs-number">2</span>);
+<span class="hljs-comment">// Setting weeks (can be negative). The resulting period will</span>
+<span class="hljs-comment">// be in days (1 week = 7 days). Years and months will be zero</span>
+<span class="hljs-type">Period</span> <span class="hljs-variable">period14d</span> <span class="hljs-operator">=</span> Period.ofWeeks(<span class="hljs-number">2</span>);
+<span class="hljs-comment">// Setting years (can be negative), days and months will be zero</span>
+<span class="hljs-type">Period</span> <span class="hljs-variable">period2y</span> <span class="hljs-operator">=</span> Period.ofYears(<span class="hljs-number">2</span>);</code></pre></div><p>A <code>Period</code> can also be thought of as the difference between two <code>LocalDates</code>. Luckily, there&#39;s a method that supports this concept:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalDate</span> <span class="hljs-variable">march2003</span> <span class="hljs-operator">=</span> LocalDate.of(<span class="hljs-number">2003</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>);
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">may2003</span> <span class="hljs-operator">=</span> LocalDate.of(<span class="hljs-number">2003</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>);
+<span class="hljs-type">Period</span> <span class="hljs-variable">dif</span> <span class="hljs-operator">=</span> Period.between(march2003, may2003); <span class="hljs-comment">// 2 months</span></code></pre></div><p>The start date is included, but not the end date.</p>
+<p>Be careful about how the date is calculated.</p>
+<p>First, complete months are counted, and then the remaining number of days is calculated. The number of months is then split into years (1 year equals 12 months). A month is considered if the end day of the month is greater than or equal to the start day of the month.</p>
+<p>The result of this method can be a negative period if the end is before the start (year, month, and day will have a negative sign).</p>
+<p>Here are some examples:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// dif1 will be 1 year 2 months 2 days</span>
+<span class="hljs-type">Period</span> <span class="hljs-variable">dif1</span> <span class="hljs-operator">=</span> Period.between(LocalDate.of(<span class="hljs-number">2000</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>), LocalDate.of(<span class="hljs-number">2001</span>, <span class="hljs-number">4</span>, <span class="hljs-number">12</span>));
+<span class="hljs-comment">// dif2 will be 25 days</span>
+<span class="hljs-type">Period</span> <span class="hljs-variable">dif2</span> <span class="hljs-operator">=</span> Period.between(LocalDate.of(<span class="hljs-number">2013</span>, <span class="hljs-number">5</span>, <span class="hljs-number">9</span>), LocalDate.of(<span class="hljs-number">2013</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>));
+<span class="hljs-comment">// dif3 will be -2 years -3 days</span>
+<span class="hljs-type">Period</span> <span class="hljs-variable">dif3</span> <span class="hljs-operator">=</span> Period.between(LocalDate.of(<span class="hljs-number">2014</span>, <span class="hljs-number">11</span>, <span class="hljs-number">3</span>), LocalDate.of(<span class="hljs-number">2012</span>, <span class="hljs-number">10</span>, <span class="hljs-number">31</span>));</code></pre></div><p>Once we have an instance of <code>Period</code>, we can get the information with the following methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">days</span> <span class="hljs-operator">=</span> period5y4m3d.getDays();
+<span class="hljs-type">int</span> <span class="hljs-variable">months</span> <span class="hljs-operator">=</span> period5y4m3d.getMonths();
+<span class="hljs-type">int</span> <span class="hljs-variable">year</span> <span class="hljs-operator">=</span> period5y4m3d.getYears();
+<span class="hljs-type">long</span> <span class="hljs-variable">days2</span> <span class="hljs-operator">=</span> period5y4m3d.get(ChronoUnit.DAYS);</code></pre></div><p>Notice that the <code>get</code> method returns a <code>long</code> type.</p>
+<p>Also, the supported <code>ChronoUnit</code> values are:</p>
+<ul>
+<li><code>DAYS</code></li>
+<li><code>MONTHS</code></li>
+<li><code>YEARS</code></li>
+</ul>
+<p>Using any other value will throw an exception.</p>
+<p>Once an instance of <code>Period</code> is created, we cannot modify it, but we can create another instance based on an existing one.</p>
+<p>One way is by using the <code>with</code> method and its versions:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Period</span> <span class="hljs-variable">period8d</span> <span class="hljs-operator">=</span> period2d.withDays(<span class="hljs-number">8</span>);
+<span class="hljs-comment">// Since these methods return a new instance, we can chain them!</span>
+<span class="hljs-type">Period</span> <span class="hljs-variable">period2y1m2d</span> <span class="hljs-operator">=</span> period2d.withYears(<span class="hljs-number">2</span>).withMonths(<span class="hljs-number">1</span>);</code></pre></div><p>Another way is by adding or subtracting years, months, or days:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Adding</span>
+<span class="hljs-type">Period</span> <span class="hljs-variable">period9y4m3d</span> <span class="hljs-operator">=</span> period5y4m3d.plusYears(<span class="hljs-number">4</span>);
+<span class="hljs-type">Period</span> <span class="hljs-variable">period5y7m3d</span> <span class="hljs-operator">=</span> period5y4m3d.plusMonths(<span class="hljs-number">3</span>);
+<span class="hljs-type">Period</span> <span class="hljs-variable">period5y4m6d</span> <span class="hljs-operator">=</span> period5y4m3d.plusDays(<span class="hljs-number">3</span>);
+<span class="hljs-type">Period</span> <span class="hljs-variable">period7y4m3d</span> <span class="hljs-operator">=</span> period5y4m3d.plus(period2y);
+
+<span class="hljs-comment">// Subtracting</span>
+<span class="hljs-type">Period</span> <span class="hljs-variable">period5y4m1d</span> <span class="hljs-operator">=</span> period5y4m3d.minusYears(<span class="hljs-number">2</span>);
+<span class="hljs-type">Period</span> <span class="hljs-variable">period5y3m3d</span> <span class="hljs-operator">=</span> period5y4m3d.minusMonths(<span class="hljs-number">1</span>);
+<span class="hljs-type">Period</span> <span class="hljs-variable">period5y4m2d</span> <span class="hljs-operator">=</span> period5y4m3d.minusDays(<span class="hljs-number">1</span>);
+<span class="hljs-type">Period</span> <span class="hljs-variable">period3y4m3d</span> <span class="hljs-operator">=</span> period5y4m3d.minus(period2y);</code></pre></div><p>The methods <code>plus</code> and <code>minus</code> take an implementation of the interface <code>java.time.temporal.TemporalAmount</code> (another instance of <code>Period</code> or an instance of <code>Duration</code>).</p>
+<p>Finally, the <code>toString()</code> method returns the period in the format <code>P&lt;years&gt;Y&lt;months&gt;M&lt;days&gt;D</code>, for example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">System.out.println(period5y4m3d.toString()); <span class="hljs-comment">// Prints P5Y4M3D</span></code></pre></div><p>A zero period will be represented as zero days, <code>P0D</code>.</p>
+<h3 id="the-duration-class">The <code>Duration</code> Class<a class="heading-anchor" href="#the-duration-class" aria-label="Link to The Duration Class">#</a></h3><p>The <code>java.time.Duration</code> class is similar to the <code>Period</code> class, the only thing is that it represents an amount of time in terms of seconds and nanoseconds.</p>
+<p>You can create an instance of this class with the following methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Duration</span> <span class="hljs-variable">oneDay</span> <span class="hljs-operator">=</span> Duration.ofDays(<span class="hljs-number">1</span>); <span class="hljs-comment">// 1 day = 86400 seconds</span>
+<span class="hljs-type">Duration</span> <span class="hljs-variable">oneHour</span> <span class="hljs-operator">=</span> Duration.ofHours(<span class="hljs-number">1</span>); <span class="hljs-comment">// 1 hour = 3600 seconds</span>
+<span class="hljs-type">Duration</span> <span class="hljs-variable">oneMin</span> <span class="hljs-operator">=</span> Duration.ofMinutes(<span class="hljs-number">1</span>); <span class="hljs-comment">// 1 minute = 60 seconds</span>
+<span class="hljs-type">Duration</span> <span class="hljs-variable">tenSeconds</span> <span class="hljs-operator">=</span> Duration.ofSeconds(<span class="hljs-number">10</span>);
+<span class="hljs-comment">// Set seconds and nanoseconds (if they are outside the range</span>
+<span class="hljs-comment">// 0 to 999,999,999, the seconds will be altered, like below)</span>
+<span class="hljs-type">Duration</span> <span class="hljs-variable">twoSeconds</span> <span class="hljs-operator">=</span> Duration.ofSeconds(<span class="hljs-number">1</span>, <span class="hljs-number">1000000000</span>);
+<span class="hljs-comment">// Seconds and nanoseconds are extracted from the passed millisecs</span>
+<span class="hljs-type">Duration</span> <span class="hljs-variable">oneSecondFromMillis</span> <span class="hljs-operator">=</span> Duration.ofMillis(<span class="hljs-number">2</span>);
+<span class="hljs-comment">// Seconds and nanoseconds are extracted from the passed nanos</span>
+<span class="hljs-type">Duration</span> <span class="hljs-variable">oneSecondFromNanos</span> <span class="hljs-operator">=</span> Duration.ofNanos(<span class="hljs-number">1000000000</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">oneSecond</span> <span class="hljs-operator">=</span> Duration.of(<span class="hljs-number">1</span>, ChronoUnit.SECONDS);</code></pre></div><p>Valid values of <code>ChronoUnit</code> for the method <code>Duration.of(long amount, TemporalUnit unit)</code> are:</p>
+<ul>
+<li><code>NANOS</code></li>
+<li><code>MICROS</code></li>
+<li><code>MILLIS</code></li>
+<li><code>SECONDS</code></li>
+<li><code>MINUTES</code></li>
+<li><code>HOURS</code></li>
+<li><code>HALF_DAYS</code></li>
+<li><code>DAYS</code></li>
+</ul>
+<p>A <code>Duration</code> can also be created as the difference between two implementations of the interface <code>java.time.temporal.Temporal</code>, as long as they support seconds (and for more accuracy, nanoseconds), like <code>LocalTime</code>, <code>LocalDateTime</code>, and <code>Instant</code>. So we can have something like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Duration</span> <span class="hljs-variable">diff</span> <span class="hljs-operator">=</span> Duration.between(Instant.ofEpochSecond(<span class="hljs-number">123456789</span>), Instant.ofEpochSecond(<span class="hljs-number">99999</span>));</code></pre></div><p>The result can be negative if the end is before the start. A negative duration is indicated by a negative sign in the seconds part. For example, a duration of -100 nanoseconds is stored as -1 second plus 999,999,900 nanoseconds.</p>
+<p>If the objects are of different types, then the duration is calculated based on the type of the first object. This only works if the first argument is a <code>LocalTime</code> and the second is a <code>LocalDateTime</code> (because it can be converted to <code>LocalTime</code>). Otherwise, an exception is thrown.</p>
+<p>Once we have an instance of <code>Duration</code>, we can get the information with the following methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// The nanoseconds part the duration, from 0 to 999,999,999</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">nanos</span> <span class="hljs-operator">=</span> oneSecond.getNano();
+<span class="hljs-comment">// The seconds part of the duration, positive or negative</span>
+<span class="hljs-type">long</span> <span class="hljs-variable">seconds</span> <span class="hljs-operator">=</span> oneSecond.getSeconds();
+<span class="hljs-comment">// It supports SECONDS and NANOS. Other units throw an exception</span>
+<span class="hljs-type">long</span> <span class="hljs-variable">oneSec</span> <span class="hljs-operator">=</span> oneSecond.get(ChronoUnit.SECONDS);</code></pre></div><p>Note that the methods <code>getSeconds()</code> and <code>get(TemporalUnit)</code> return a <code>long</code> type. Additionally, the latter only supports <code>SECONDS</code> and <code>NANOS</code> as arguments.</p>
+<p>Once an instance of <code>Duration</code> is created, we cannot modify it, but we can create another instance from an existing one. One way is to use the <code>withNanos</code> and <code>withSeconds</code> methods:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Duration</span> <span class="hljs-variable">duration1sec8nan</span> <span class="hljs-operator">=</span> oneSecond.withNanos(<span class="hljs-number">8</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">duration2sec1nan</span> <span class="hljs-operator">=</span> oneSecond.withSeconds(<span class="hljs-number">2</span>).withNanos(<span class="hljs-number">1</span>);</code></pre></div><p>Another way is by adding or subtracting days, hours, minutes, seconds, milliseconds, or nanoseconds:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Adding</span>
+<span class="hljs-type">Duration</span> <span class="hljs-variable">plus4Days</span> <span class="hljs-operator">=</span> oneSecond.plusDays(<span class="hljs-number">4</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">plus3Hours</span> <span class="hljs-operator">=</span> oneSecond.plusHours(<span class="hljs-number">3</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">plus3Minutes</span> <span class="hljs-operator">=</span> oneSecond.plusMinutes(<span class="hljs-number">3</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">plus3Seconds</span> <span class="hljs-operator">=</span> oneSecond.plusSeconds(<span class="hljs-number">3</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">plus3Millis</span> <span class="hljs-operator">=</span> oneSecond.plusMillis(<span class="hljs-number">3</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">plus3Nanos</span> <span class="hljs-operator">=</span> oneSecond.plusNanos(<span class="hljs-number">3</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">plusAnotherDuration</span> <span class="hljs-operator">=</span> oneSecond.plus(twoSeconds);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">plusChronoUnits</span> <span class="hljs-operator">=</span> oneSecond.plus(<span class="hljs-number">1</span>, ChronoUnit.DAYS); 
+
+<span class="hljs-comment">// Subtracting</span>
+<span class="hljs-type">Duration</span> <span class="hljs-variable">minus4Days</span> <span class="hljs-operator">=</span> oneSecond.minusDays(<span class="hljs-number">4</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">minus3Hours</span> <span class="hljs-operator">=</span> oneSecond.minusHours(<span class="hljs-number">3</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">minus3Minutes</span> <span class="hljs-operator">=</span> oneSecond.minusMinutes(<span class="hljs-number">3</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">minus3Seconds</span> <span class="hljs-operator">=</span> oneSecond.minusSeconds(<span class="hljs-number">3</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">minus3Millis</span> <span class="hljs-operator">=</span> oneSecond.minusMillis(<span class="hljs-number">3</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">minus3Nanos</span> <span class="hljs-operator">=</span> oneSecond.minusNanos(<span class="hljs-number">3</span>);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">minusAnotherDuration</span> <span class="hljs-operator">=</span> oneSecond.minus(twoSeconds);
+<span class="hljs-type">Duration</span> <span class="hljs-variable">minusChronoUnits</span> <span class="hljs-operator">=</span> oneSecond.minus(<span class="hljs-number">1</span>, ChronoUnit.DAYS);</code></pre></div><p>Methods <code>plus</code> and <code>minus</code> take either another <code>Duration</code> or a valid <code>ChronoUnit</code> value (the same values used to create an instance).</p>
+<p>Finally, the method <code>toString()</code> returns the duration with the format <code>PTnHnMnS</code>. Any fractional seconds are placed after a decimal point in the seconds section. If a section has a zero value, it&#39;s omitted. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-number">2</span> days <span class="hljs-number">4</span> minutes PT48H4M
+<span class="hljs-number">45</span> seconds <span class="hljs-number">99</span> milliseconds PT45.099S</code></pre></div><h2 id="time-zones-and-daylight-savings">Time Zones and Daylight Savings<a class="heading-anchor" href="#time-zones-and-daylight-savings" aria-label="Link to Time Zones and Daylight Savings">#</a></h2><p>If you want to work with time zone information, the Date/Time API has the following classes:</p>
+<ul>
+<li><p><strong>ZoneId:</strong> Represents the ID of time zone. For example, <code>Asia/Tokyo</code>.</p>
+</li>
+<li><p><strong>ZoneOffset:</strong> Represents a time zone offset. It&#39;s a subclass of <code>ZoneId</code>. For example, <code>-06:00</code>.</p>
+</li>
+<li><p><strong>ZonedDateTime:</strong> Represents a date/time with time zone information. For example, <code>2025-08-30T20:05:12.463-05:00[America/Mexico_City]</code>.</p>
+</li>
+<li><p><strong>OffsetDateTime:</strong> Represents a date/time with an offset from UTC/Greenwich. For example, <code>2025-08-30T20:05:12.463-05:00</code>.</p>
+</li>
+<li><p><strong>OffsetTime:</strong> Represents a time with an offset from UTC/Greenwich. For example, <code>20:05:12.463-05:00</code>.</p>
+</li>
+</ul>
+<p>Just like the classes in the previous section, these are located in the <code>java.time</code> package and are immutable.</p>
+<p>Here&#39;s a diagram to visualize the zone-aware classes:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">┌────────────────────────────────────────────────────────┐
+│             Java Time Zone-Aware Classes               │
+│                                                        │
+│  ┌─────────────┐    ┌─────────────┐                    │
+│  │  ZoneId     │    │ ZoneOffset  │                    │
+│  │ (Time zone) │    │(UTC offset) │                    │
+│  └──────┬──────┘    └──────┬──────┘                    │
+│         │                  │                           │
+│         └──────────────────┼────────────────┐          │
+│                            │                │          │
+│                     ┌──────┴──────┐  ┌──────┴───────┐  │
+│                     │ZonedDateTime│  │OffsetDateTime│  │
+│                     │(Date + Time │  │ (Date + Time │  │
+│                     │ + Time Zone)│  │ + UTC offset)│  │
+│                     └─────────────┘  └──────┬───────┘  │
+│                                             │          │
+│                                       ┌─────┴─────┐    │
+│                                       │OffsetTime │    │
+│                                       │ (Time +   │    │
+│                                       │UTC offset)│    │
+│                                       └───────────┘    │
+│                                                        │
+└────────────────────────────────────────────────────────┘
+
+Key Points:
+- ZoneId represents a time zone (like &quot;America/New_York&quot;)
+- ZoneOffset represents a fixed offset from UTC (like &quot;+05:00&quot;)
+- ZonedDateTime combines LocalDateTime with a ZoneId
+- OffsetDateTime combines LocalDateTime with a ZoneOffset
+- OffsetTime combines LocalTime with a ZoneOffset</code></pre></div><h3 id="the-zoneid-and-zoneoffset-classes">The <code>ZoneId</code> and <code>ZoneOffset</code> Classes<a class="heading-anchor" href="#the-zoneid-and-zoneoffset-classes" aria-label="Link to The ZoneId and ZoneOffset Classes">#</a></h3><p>The world is divided into time zones in which the same standard time is kept. By convention, a time zone is expressed as the number of hours different from the Coordinated Universal Time (<em>UTC</em>). Since the Greenwich Mean Time (<em>GMT</em>) and the Zulu time (<em>Z</em>), used in the military, have no offset from <em>UTC</em>, they&#39;re often used as synonyms.</p>
+<p>Java uses the Internet Assigned Numbers Authority (IANA) database of time zones, which keeps a record of all known time zones around the world and is updated many times per year.</p>
+<p>Each time zone has an ID, represented by the class <code>java.time.ZoneId</code>. There are three types of ID:</p>
+<p>The first type just states the offset from UTC/GMT time. They are represented by the class <code>ZoneOffset</code> and they consist of digits starting with <code>+</code> or <code>-</code>, for example, <code>+02:00</code>.</p>
+<p>The second type also states the offset from UTC/GMT time, but with one of the following prefixes: <em>UTC</em>, <em>GMT</em>, and <em>UT</em>, for example, <code>UTC+11:00</code>. They are also represented by the class <code>ZoneOffset</code>.</p>
+<p>The third type is region-based. These IDs have the format <em>area/city</em>, for example, <code>Europe/London</code>.</p>
+<p>You can get all the available zone IDs with the <code>static</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Set</span>&lt;String&gt; <span class="hljs-title function_">getAvailableZoneIds</span><span class="hljs-params">()</span></code></pre></div><p>For example, to print them to the console:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">ZoneId.getAvailableZoneIds().stream().forEach(System.out::println);</code></pre></div><p>To get the zone ID of your system, use the <code>static</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">ZoneId.systemDefault()</code></pre></div><p>Under the hood, it uses <code>java.util.TimeZone.getDefault()</code> to find the default time zone and converts it to a <code>ZoneId</code>.</p>
+<p>If you want to create a specific <code>ZoneId</code> object use the method <code>of()</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ZoneId</span> <span class="hljs-variable">singaporeZoneId</span> <span class="hljs-operator">=</span> ZoneId.of(<span class="hljs-string">&quot;Asia/Singapore&quot;</span>);</code></pre></div><p>This method parses the ID producing a <code>ZoneId</code> or a <code>ZoneOffset</code> (which extends from <code>ZoneId</code>). A <code>ZoneOffset</code> is returned if, for example, ID is <code>Z</code>, or starts with <code>+</code> or <code>-</code>. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ZoneId</span> <span class="hljs-variable">zoneId</span> <span class="hljs-operator">=</span> ZoneId.of(<span class="hljs-string">&quot;Z&quot;</span>); <span class="hljs-comment">// Z represents the zone ID for UTC</span>
+<span class="hljs-type">ZoneId</span> <span class="hljs-variable">zoneId2</span> <span class="hljs-operator">=</span> ZoneId.of(<span class="hljs-string">&quot;-2&quot;</span>); <span class="hljs-comment">// -02:00</span></code></pre></div><p>The rules for this method are:</p>
+<ul>
+<li>If the zone ID equals <code>Z</code>, the result is <code>ZoneOffset.UTC</code>. Any other letter will throw an exception.</li>
+<li>If the zone ID starts with <code>+</code> or <code>-</code>, the ID is parsed as a <code>ZoneOffset</code> using <code>ZoneOffset.of(String)</code>.</li>
+<li>If the zone ID equals <code>GMT</code>, <code>UTC</code> or <code>UT</code> then the result is a <code>ZoneId</code> with the same ID and rules equivalent to <code>ZoneOffset.UTC</code>.</li>
+<li>If the zone ID starts with <code>UTC+</code>, <code>UTC-</code>, <code>GMT+</code>, <code>GMT-</code>, <code>UT+</code> or <code>UT-</code> then the ID is split in two, with a two or three letter prefix and a suffix starting with the sign. The suffix is parsed as a <code>ZoneOffset</code>. The result will be a <code>ZoneId</code> with the specified prefix and the normalized offset ID.</li>
+<li>All other IDs are parsed as region-based zone IDs. If the format is invalid (it has to match the expression <code>[A-Za-z][A-Za-z0-9~/._+-]+)</code> or is not found, an exception is thrown.</li>
+</ul>
+<p>Remember that a <code>ZoneOffset</code> represents an offset, generally from UTC. This class has a lot more constructors than <code>ZoneId</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// The offset must be in the range of -18 to +18</span>
+<span class="hljs-type">ZoneOffset</span> <span class="hljs-variable">offsetHours</span> <span class="hljs-operator">=</span> ZoneOffset.ofHours(<span class="hljs-number">1</span>);
+<span class="hljs-comment">// The range is -18 to +18 for hours and 0 to ± 59 for minutes</span>
+<span class="hljs-comment">// If the hours are negative, the minutes must be negative or zero</span>
+<span class="hljs-type">ZoneOffset</span> <span class="hljs-variable">offsetHrMin</span> <span class="hljs-operator">=</span> ZoneOffset.ofHoursMinutes(<span class="hljs-number">1</span>, <span class="hljs-number">30</span>);
+<span class="hljs-comment">// The range is -18 to +18 for hours and 0 to ± 59 for mins and secs</span>
+<span class="hljs-comment">// If the hours are negative, mins and secs must be negative or zero</span>
+<span class="hljs-type">ZoneOffset</span> <span class="hljs-variable">offsetHrMinSe</span> <span class="hljs-operator">=</span> ZoneOffset.ofHoursMinutesSeconds(<span class="hljs-number">1</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>);
+<span class="hljs-comment">// The offset must be in the range -18:00 to +18:00</span>
+<span class="hljs-comment">// Which corresponds to -64800 to +64800</span>
+<span class="hljs-type">ZoneOffset</span> <span class="hljs-variable">offsetTotalSeconds</span> <span class="hljs-operator">=</span> ZoneOffset.ofTotalSeconds(<span class="hljs-number">3600</span>);
+<span class="hljs-comment">// The range must be from +18:00 to -18:00</span>
+<span class="hljs-type">ZoneOffset</span> <span class="hljs-variable">offset</span> <span class="hljs-operator">=</span> ZoneOffset.of(<span class="hljs-string">&quot;+01:30:00&quot;</span>);</code></pre></div><p>The formats accepted by the <code>of()</code> method are:</p>
+<ul>
+<li><em>Z (for UTC)</em></li>
+<li><em>+h</em></li>
+<li><em>+hh</em></li>
+<li><em>+hh:mm</em></li>
+<li><em>-hh:mm</em></li>
+<li><em>+hhmm</em></li>
+<li><em>-hhmm</em></li>
+<li><em>+hh:mm:ss</em></li>
+<li><em>-hh:mm:ss</em></li>
+<li><em>+hhmmss</em></li>
+<li><em>-hhmmss</em></li>
+</ul>
+<p>If you pass an invalid format or an out-of-range value to any of these methods, an exception is thrown.</p>
+<p>To get the value of the offset, you can use:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Gets the offset as int</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">offsetInt</span> <span class="hljs-operator">=</span> offset.get(ChronoField.OFFSET_SECONDS);
+<span class="hljs-comment">// Gets the offset as long</span>
+<span class="hljs-type">long</span> <span class="hljs-variable">offsetLong</span><span class="hljs-operator">=</span> offset.getLong(ChronoField.OFFSET_SECONDS);
+<span class="hljs-comment">// Gets the offset in seconds</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">offsetSeconds</span> <span class="hljs-operator">=</span> offset.getTotalSeconds();</code></pre></div><p><code>ChronoField.OFFSET_SECONDS</code> is the only accepted value of <code>ChronoField</code>, so the three statements above return the same result. Other values throw an exception.</p>
+<p>Anyway, once you have a <code>ZoneId</code> object, you can use it to create a <code>ZonedDateTime</code> instance.</p>
+<h3 id="the-zoneddatetime-class">The <code>ZonedDateTime</code> Class<a class="heading-anchor" href="#the-zoneddatetime-class" aria-label="Link to The ZonedDateTime Class">#</a></h3><p>A <code>java.time.ZonedDateTime</code> object represents a point in time relative to a time zone.</p>
+<p>A <code>ZonedDateTime</code> object has three parts:</p>
+<ul>
+<li>A date</li>
+<li>A time</li>
+<li>A time zone</li>
+</ul>
+<p>This means that it stores all date and time fields to a precision of nanoseconds, and a time zone with a zone offset.</p>
+<p>Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">2025-08-31 T08:45:20.000 +02:00[Africa/Cairo]</code></pre></div><p>Where the parts are as follows:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Date</th><th>Time</th><th>Offset</th><th>Time zone</th></tr></thead><tbody><tr><td><code>2025-08-31</code></td><td><code>T08:45:20.000</code></td><td><code>+02:00</code></td><td><code>[Africa/Cairo]</code></td></tr></tbody></table></div><p>Once you have a <code>ZoneId</code> object, you can combine it with a <code>LocalDate</code>, a <code>LocalDateTime</code>, or an <code>Instant</code> to transform it into <code>ZonedDateTime</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ZoneId</span> <span class="hljs-variable">australiaZone</span> <span class="hljs-operator">=</span> ZoneId.of(<span class="hljs-string">&quot;Australia/Victoria&quot;</span>);
+
+<span class="hljs-type">LocalDate</span> <span class="hljs-variable">date</span> <span class="hljs-operator">=</span> LocalDate.of(<span class="hljs-number">2020</span>, <span class="hljs-number">7</span>, <span class="hljs-number">3</span>);
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zonedDate</span> <span class="hljs-operator">=</span> date.atStartOfDay(australiaZone);
+
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">dateTime</span> <span class="hljs-operator">=</span> LocalDateTime.of(<span class="hljs-number">2020</span>, <span class="hljs-number">7</span>, <span class="hljs-number">3</span>, <span class="hljs-number">9</span>, <span class="hljs-number">0</span>);
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zonedDateTime</span> <span class="hljs-operator">=</span> dateTime.atZone(australiaZone);
+
+<span class="hljs-type">Instant</span> <span class="hljs-variable">instant</span> <span class="hljs-operator">=</span> Instant.now();
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zonedInstant</span> <span class="hljs-operator">=</span> instant.atZone(australiaZone);</code></pre></div><p>Or using the <code>of</code> method:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zonedDateTime2</span> <span class="hljs-operator">=</span> 
+    ZonedDateTime.of(LocalDate.now(), LocalTime.now(), australiaZone);
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zonedDateTime3</span> <span class="hljs-operator">=</span> 
+    ZonedDateTime.of(LocalDateTime.now(), australiaZone);
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zonedDateTime4</span> <span class="hljs-operator">=</span> 
+    ZonedDateTime.ofInstant(Instant.now(), australiaZone);
+<span class="hljs-comment">// year, month, day, hours, minutes, seconds, nanoseconds, zoneId</span>
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zonedDateTime5</span> <span class="hljs-operator">=</span> 
+    ZonedDateTime.of(<span class="hljs-number">2025</span>, <span class="hljs-number">1</span>, <span class="hljs-number">30</span>, <span class="hljs-number">13</span>, <span class="hljs-number">59</span>, <span class="hljs-number">59</span>, <span class="hljs-number">999</span>, australiaZone);</code></pre></div><p>You can also get the current date/time from the system clock in the default time zone with:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">now</span> <span class="hljs-operator">=</span> ZonedDateTime.now();</code></pre></div><p>From a <code>ZonedDateTime</code> you can get <code>LocalDate</code>, <code>LocalTime</code>, or a <code>LocalDateTime</code> (without the time zone part) with:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalDate</span> <span class="hljs-variable">currentDate</span> <span class="hljs-operator">=</span> now.toLocalDate();
+<span class="hljs-type">LocalTime</span> <span class="hljs-variable">currentTime</span> <span class="hljs-operator">=</span> now.toLocalTime();
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">currentDateTime</span> <span class="hljs-operator">=</span> now.toLocalDateTime();</code></pre></div><p><code>ZonedDateTime</code> also has most of the methods of <code>LocalDateTime</code> that we reviewed in the previous section:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// To get the value of a specified field</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">day</span> <span class="hljs-operator">=</span> now.getDayOfMonth();
+<span class="hljs-type">int</span> <span class="hljs-variable">dayYear</span> <span class="hljs-operator">=</span> now.getDayOfYear();
+<span class="hljs-type">int</span> <span class="hljs-variable">nanos</span> <span class="hljs-operator">=</span> now.getNano();
+<span class="hljs-type">Month</span> <span class="hljs-variable">monthEnum</span> <span class="hljs-operator">=</span> now.getMonth();
+<span class="hljs-type">int</span> <span class="hljs-variable">year</span> <span class="hljs-operator">=</span> now.get(ChronoField.YEAR);
+<span class="hljs-type">long</span> <span class="hljs-variable">micro</span> <span class="hljs-operator">=</span> now.getLong(ChronoField.MICRO_OF_DAY);
+<span class="hljs-comment">// This is new, gets the zone offset such as &quot;-03:00&quot;</span>
+<span class="hljs-type">ZoneOffset</span> <span class="hljs-variable">offset</span> <span class="hljs-operator">=</span> now.getOffset();
+<span class="hljs-comment">// To create another instance</span>
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt1</span> <span class="hljs-operator">=</span> now.with(ChronoField.HOUR_OF_DAY, <span class="hljs-number">10</span>);
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt2</span> <span class="hljs-operator">=</span> now.withSecond(<span class="hljs-number">49</span>);
+<span class="hljs-comment">// Since these methods return a new instance, we can chain them!</span>
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt3</span> <span class="hljs-operator">=</span> now.withYear(<span class="hljs-number">2023</span>).withMonth(<span class="hljs-number">12</span>);
+
+<span class="hljs-comment">// The following two methods are specific to ZonedDateTime</span>
+<span class="hljs-comment">// Returns a copy of the date/time with a different zone, retaining the instant</span>
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt4</span> <span class="hljs-operator">=</span> now.withZoneSameInstant(australiaZone);
+<span class="hljs-comment">// Returns a copy of this date/time with a different time zone,</span>
+<span class="hljs-comment">// retaining the local date/time if it&#x27;s valid for the new time zone</span>
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt5</span> <span class="hljs-operator">=</span> now.withZoneSameLocal(australiaZone);
+
+<span class="hljs-comment">// Adding</span>
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt6</span> <span class="hljs-operator">=</span> now.plusDays(<span class="hljs-number">4</span>);
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt7</span> <span class="hljs-operator">=</span> now.plusWeeks(<span class="hljs-number">3</span>);
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt8</span> <span class="hljs-operator">=</span> now.plus(<span class="hljs-number">2</span>, ChronoUnit.HOURS);
+
+<span class="hljs-comment">// Subtracting</span>
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt9</span> <span class="hljs-operator">=</span> now.minusMinutes(<span class="hljs-number">20</span>);
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt10</span> <span class="hljs-operator">=</span> now.minusNanos(<span class="hljs-number">99999</span>);
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt11</span> <span class="hljs-operator">=</span> now.minus(<span class="hljs-number">10</span>, ChronoUnit.SECONDS);</code></pre></div><p>The <code>toString()</code> method returns the date/time in the format of a <code>LocalDateTime</code> followed by a <code>ZoneOffset</code>, optionally, a <code>ZoneId</code> if it is not the same as the offset, and omitting the parts with value zero:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Prints 2024-09-19T00:30Z</span>
+System.out.println(
+    ZonedDateTime.of(<span class="hljs-number">2024</span>, <span class="hljs-number">9</span>, <span class="hljs-number">19</span>, <span class="hljs-number">0</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ZoneId.of(<span class="hljs-string">&quot;Z&quot;</span>)));
+<span class="hljs-comment">// Prints, for example, 2024-06-17T19:48:39.113332-04:00[America/Montreal]</span>
+System.out.println(
+    ZonedDateTime.now(ZoneId.of(<span class="hljs-string">&quot;America/Montreal&quot;</span>)));</code></pre></div><h3 id="daylight-savings">Daylight Savings<a class="heading-anchor" href="#daylight-savings" aria-label="Link to Daylight Savings">#</a></h3><p>Many countries in the world adopt what is called Daylight Saving Time (DST), the practice of advancing the clock by an hour when daylight saving time starts, typically in spring but sometimes in late winter or early autumn, depending on the region.</p>
+<p>When daylight saving time ends, clocks are set back by an hour. This is done to make better use of natural daylight.</p>
+<p><code>ZonedDateTime</code> is fully aware of DST.</p>
+<p>For example, let&#39;s take a country where DST is fully observed, like Italy (UTC+1 in standard time, UTC+2 in daylight saving time).</p>
+<p>In 2023, DST started in Italy on March 26th and ended on October 29th. This means that on:</p>
+<p><em>March 26, 2023 at <strong>2:00:00</strong> A.M. clocks were turned <strong>forward</strong> 1 hour to</em><br><em>March 26, 2023 at <strong>3:00:00</strong> A.M. local daylight time instead</em><br>(So a time like March 26, 2023 2:30:00 A.M. didn&#39;t actually exist!)</p>
+<p><em>October 29, 2023 at <strong>3:00:00</strong> A.M. clocks were turned <strong>backward</strong> 1 hour to</em><br><em>October 29, 2023 at <strong>2:00:00</strong> A.M. local daylight time instead</em><br>(So a time like October 29, 2023 2:30:00 A.M. actually existed twice!)</p>
+<p>If we create an instance of <code>LocalDateTime</code> with this date/time and print it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">ldt</span> <span class="hljs-operator">=</span> LocalDateTime.of(<span class="hljs-number">2023</span>, <span class="hljs-number">3</span>, <span class="hljs-number">26</span>, <span class="hljs-number">2</span>, <span class="hljs-number">30</span>);
+System.out.println(ldt);</code></pre></div><p>The result will be:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-number">2023</span>-<span class="hljs-number">03</span>-26T02:<span class="hljs-number">30</span> <span class="hljs-comment">// Wrong</span></code></pre></div><p>But if we create an instance of <code>ZonedDateTime</code> for Italy (notice that the format uses a city, not a country) and print it:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt</span> <span class="hljs-operator">=</span> ZonedDateTime.of(
+   <span class="hljs-number">2023</span>, <span class="hljs-number">3</span>, <span class="hljs-number">26</span>, <span class="hljs-number">2</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ZoneId.of(<span class="hljs-string">&quot;Europe/Rome&quot;</span>));
+System.out.println(zdt);</code></pre></div><p>The result will be just like in the real world when using DST:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-number">2023</span>-<span class="hljs-number">03</span>-26T03:<span class="hljs-number">30</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>[Europe/Rome] <span class="hljs-comment">// Correct</span></code></pre></div><p>But be careful. We have to use a regional <code>ZoneId</code>, a <code>ZoneOffset</code> won&#39;t do the trick because this class doesn&#39;t have the zone rules information to account for DST:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt1</span> <span class="hljs-operator">=</span> ZonedDateTime.of(
+   <span class="hljs-number">2023</span>, <span class="hljs-number">3</span>, <span class="hljs-number">26</span>, <span class="hljs-number">2</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ZoneOffset.ofHours(<span class="hljs-number">2</span>));
+System.out.println(zdt1);
+
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt2</span> <span class="hljs-operator">=</span> ZonedDateTime.of(
+   <span class="hljs-number">2023</span>, <span class="hljs-number">3</span>, <span class="hljs-number">26</span>, <span class="hljs-number">2</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ZoneId.of(<span class="hljs-string">&quot;UTC+2&quot;</span>));
+System.out.println(zdt2);</code></pre></div><p>The result will be:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-number">2023</span>-<span class="hljs-number">03</span>-26T02:<span class="hljs-number">30</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>              <span class="hljs-comment">// Wrong</span>
+<span class="hljs-number">2023</span>-<span class="hljs-number">03</span>-26T02:<span class="hljs-number">30</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>[UTC+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>]   <span class="hljs-comment">// Wrong</span></code></pre></div><p>When we create an instance of <code>ZonedDateTime</code> for Italy, we have to add an hour to see the effect:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt3</span> <span class="hljs-operator">=</span> ZonedDateTime.of(
+   <span class="hljs-number">2023</span>, <span class="hljs-number">10</span>, <span class="hljs-number">29</span>, <span class="hljs-number">2</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ZoneId.of(<span class="hljs-string">&quot;Europe/Rome&quot;</span>));
+System.out.println(zdt3);
+
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt4</span> <span class="hljs-operator">=</span> zdt3.plusHours(<span class="hljs-number">1</span>);
+System.out.println(zdt4);</code></pre></div><p>The result will be:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-number">2023</span>-<span class="hljs-number">10</span>-29T02:<span class="hljs-number">30</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>[Europe/Rome]
+<span class="hljs-number">2023</span>-<span class="hljs-number">10</span>-29T02:<span class="hljs-number">30</span>+<span class="hljs-number">01</span>:<span class="hljs-number">00</span>[Europe/Rome]</code></pre></div><p>Otherwise we will be creating the <code>ZonedDateTime</code> at 3:00 of the new time:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt5</span> <span class="hljs-operator">=</span> ZonedDateTime.of(
+        <span class="hljs-number">2023</span>, <span class="hljs-number">10</span>, <span class="hljs-number">29</span>, <span class="hljs-number">3</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ZoneId.of(<span class="hljs-string">&quot;Europe/Rome&quot;</span>));
+System.out.println(zdt5); <span class="hljs-comment">// Prints 2023-10-29T03:30+01:00[Europe/Rome]</span></code></pre></div><p>We also need to be careful when adjusting the time across the DST boundary using the <code>plus()</code> and <code>minus()</code> methods that take a <code>TemporalAmount</code> implementation, in other words, a <code>Period</code> or a <code>Duration</code>. This is because both differ in their treatment of daylight savings time.</p>
+<p>Consider one hour before the start of DST in Italy:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zdt6</span> <span class="hljs-operator">=</span> ZonedDateTime.of(
+   <span class="hljs-number">2023</span>, <span class="hljs-number">3</span>, <span class="hljs-number">26</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ZoneId.of(<span class="hljs-string">&quot;Europe/Rome&quot;</span>));</code></pre></div><p>When we add a <code>Duration</code> of one day:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">System.out.println(zdt6.plus(Duration.ofDays(<span class="hljs-number">1</span>)));</code></pre></div><p>The result is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-number">2023</span>-<span class="hljs-number">03</span>-27T02:<span class="hljs-number">00</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>[Europe/Rome]</code></pre></div><p>When we add a <code>Period</code> of one day:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">System.out.println(zdt6.plus(Period.ofDays(<span class="hljs-number">1</span>)));</code></pre></div><p>The result is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-number">2023</span>-<span class="hljs-number">03</span>-27T01:<span class="hljs-number">00</span>+<span class="hljs-number">02</span>:<span class="hljs-number">00</span>[Europe/Rome]</code></pre></div><p>The reason is that <code>Period</code> adds a <em>conceptual</em> date, while <code>Duration</code> adds <em>exactly</em> one day (24 hours or 86,400 seconds) and when it crosses the DST boundary, one hour is added, and the final time is <em>02:00</em> instead of <em>01:00</em>.</p>
+<h3 id="the-offsetdatetime-and-offsettime-classes">The <code>OffsetDateTime</code> and <code>OffsetTime</code> Classes<a class="heading-anchor" href="#the-offsetdatetime-and-offsettime-classes" aria-label="Link to The OffsetDateTime and OffsetTime Classes">#</a></h3><p><code>OffsetDateTime</code> represents an object with date/time information and an offset from UTC, for example, <code>2025-01-01T11:30-06:00</code>.</p>
+<p>You may think <code>Instant</code>, <code>OffsetDateTime</code>, and <code>ZonedDateTime</code> are very much alike, after all, they all store the date and time to a nanosecond precision. However, there are subtle but important differences:</p>
+<ul>
+<li><code>Instant</code> represents a point in time in the UTC time zone.</li>
+<li><code>OffsetDateTime</code> represents a point in time with an offset (any offset).</li>
+<li><code>ZonedDateTime</code> represents a point in time in a time zone (any time zone), adding full time zone rules like daylight saving time adjustments.</li>
+</ul>
+<p><code>OffsetTime</code> represents a time with an offset from UTC, for example, <code>11:30-06:00</code>. The common way to create an instance of these classes is:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">OffsetDateTime</span> <span class="hljs-variable">odt</span> <span class="hljs-operator">=</span> OffsetDateTime.of(
+    LocalDateTime.now(), ZoneOffset.of(<span class="hljs-string">&quot;+03:00&quot;</span>));
+<span class="hljs-type">OffsetTime</span> <span class="hljs-variable">ot</span> <span class="hljs-operator">=</span> OffsetTime.of(
+    LocalTime.now(), ZoneOffset.of(<span class="hljs-string">&quot;-08:00&quot;</span>));
+
+System.out.println(odt);
+System.out.println(ot);</code></pre></div><p>If you run the above example, the output would be similar to this:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">2024-06-17T19:19:32.645941+03:00
+19:19:32.648413-08:00</code></pre></div><p>Both classes have practically the same methods as their <code>LocalDateTime</code>, <code>ZonedDateTime</code>, and <code>LocalTime</code> counterparts. With an offset from UTC and without time zone variations, they always represent an exact instant in time, which may be more suitable for certain types of applications (the Java documentation recommends <code>OffsetDateTime</code> when communicating with a database or in a network protocol).</p>
+<h2 id="parsing-and-formatting">Parsing and Formatting<a class="heading-anchor" href="#parsing-and-formatting" aria-label="Link to Parsing and Formatting">#</a></h2><p><code>java.time.format.DateTimeFormatter</code> is the class used for parsing and formatting dates. It can be used in two ways:</p>
+<ul>
+<li><p>The date/time classes (represented by <code>T</code>) <code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>, <code>ZonedDateTime</code>, and <code>OffsetDateTime</code> all have the following three methods: </p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Formats the date/time object using the specified formatter</span>
+<span class="hljs-type">String</span> <span class="hljs-title function_">format</span><span class="hljs-params">(DateTimeFormatter formatter)</span>
+
+<span class="hljs-comment">// Obtains an instance of a date/time object (of type T) from a string with a default format</span>
+<span class="hljs-keyword">static</span> <span class="hljs-type">T</span> <span class="hljs-title function_">parse</span><span class="hljs-params">(CharSequence text)</span>
+
+<span class="hljs-comment">// Obtains an instance of a date/time object (of type T) from a string using a specific formatter</span>
+<span class="hljs-keyword">static</span> <span class="hljs-type">T</span> <span class="hljs-title function_">parse</span><span class="hljs-params">(CharSequence text, DateTimeFormatter formatter)</span></code></pre></div></li>
+<li><p><code>DateTimeFormatter</code> has the following two methods: </p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Formats a date/time object using the formatter instance</span>
+<span class="hljs-type">String</span> <span class="hljs-title function_">format</span><span class="hljs-params">(TemporalAccessor temporal)</span>
+
+<span class="hljs-comment">// Parses the text producing a temporal object</span>
+<span class="hljs-type">TemporalAccessor</span> <span class="hljs-title function_">parse</span><span class="hljs-params">(CharSequence text)</span></code></pre></div></li>
+</ul>
+<p>All format methods throw the runtime exception <code>java.time.DateTimeException</code>.</p>
+<p>All parse methods throw the runtime exception <code>java.time.format.DateTimeParseException</code>.</p>
+<p><code>DateTimeFormatter</code> provides three ways to format date/time objects:</p>
+<ul>
+<li>Predefined formatters</li>
+<li>Locale-specific formatters</li>
+<li>Formatters with custom patterns</li>
+</ul>
+<p><strong>Predefined Formatters</strong></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Formatter</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>BASIC_ISO_DATE</code></td><td>Date fields without separators</td><td><em>20250803</em></td></tr><tr><td><code>ISO_LOCAL_DATE</code><br><code>ISO_LOCAL_TIME</code><br><code>ISO_LOCAL_DATE_TIME</code></td><td>Date fields with separators</td><td><em>2025-08-03</em><br><em>13:40:10</em><br><em>2025-08-03T13:40:10</em></td></tr><tr><td><code>ISO_OFFSET_DATE</code><br><code>ISO_OFFSET_TIME</code><br><code>ISO_OFFSET_DATE_TIME</code></td><td>Date fields with separators and zone offset</td><td><em>2025-08-03+07:00</em><br><em>13:40:10+07:00</em><br><em>2025-08-03T13:40:10+07:00</em></td></tr><tr><td><code>ISO_ZONED_DATE_TIME</code></td><td>A zoned date and time</td><td><em>2025-08-03T13:40:10+07:00[Asia/Bangkok]</em></td></tr><tr><td><code>ISO_DATE</code><br><code>ISO_TIME</code><br><code>ISO_DATE_TIME</code></td><td>Date or Time with or without offset<br>DateTime with ZoneId</td><td><em>2025-08-03+07:00</em><br><em>13:40:10</em><br><em>2025-08-03T13:40:10+07:00[Asia/Bangkok]</em></td></tr><tr><td><code>ISO_INSTANT</code></td><td>Date and Time of an Instant</td><td><em>2025-08-03T13:40:10Z</em></td></tr><tr><td><code>ISO_ORDINAL_DATE</code></td><td>Year and day of the year</td><td><em>2025-200</em></td></tr><tr><td><code>ISO_WEEK_DATE</code></td><td>Year, week and day of the week</td><td><em>2025-W34-2</em></td></tr><tr><td><code>RFC_1123_DATE_TIME</code></td><td>RFC 1123 / RFC 822 date format</td><td><em>Sun, 3 Aug 2025 13:40:10 GMT</em></td></tr></tbody></table></div><p><strong>Locale-specific Formatters</strong></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Style</th><th>Date</th><th>Time</th></tr></thead><tbody><tr><td><code>SHORT</code></td><td>8/3/15</td><td><em>1:40 PM</em></td></tr><tr><td><code>MEDIUM</code></td><td>Aug 03, 2025</td><td><em>1:40:00 PM</em></td></tr><tr><td><code>LONG</code></td><td>August 03, 2025</td><td><em>1:40:00 PM PDT</em></td></tr><tr><td><code>FULL</code></td><td>Monday, August 03, 2025</td><td><em>1:40:00 PM PDT</em></td></tr></tbody></table></div><p><strong>Custom Patterns</strong></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Symbol</th><th>Meaning</th><th>Examples</th></tr></thead><tbody><tr><td><code>G</code></td><td>Era</td><td><em>AD; Anno Domini; A</em></td></tr><tr><td><code>u</code></td><td>Year</td><td><em>2025; 15</em></td></tr><tr><td><code>y</code></td><td>Year of Era</td><td><em>2025; 15</em></td></tr><tr><td><code>D</code></td><td>Day of Year</td><td><em>150</em></td></tr><tr><td><code>M / L</code></td><td>Month of Year</td><td><em>7; 07; Jul; July; J</em></td></tr><tr><td><code>d</code></td><td>Day of Month</td><td><em>20</em></td></tr><tr><td><code>Q / q</code></td><td>Quarter of year</td><td><em>2; 02; Q2; 2nd quarter</em></td></tr><tr><td><code>Y</code></td><td>Week-based Year</td><td><em>2025; 15</em></td></tr><tr><td><code>w</code></td><td>Week of Week-based Year</td><td><em>30</em></td></tr><tr><td><code>W</code></td><td>Week of Month</td><td><em>2</em></td></tr><tr><td><code>E</code></td><td>Day of Week</td><td><em>Tue; Tuesday; T</em></td></tr><tr><td><code>e / c</code></td><td>Localized Day of Week</td><td><em>2; 02; Tue; Tuesday; T</em></td></tr><tr><td><code>F</code></td><td>Week of Month</td><td><em>2</em></td></tr><tr><td><code>a</code></td><td>AM/PM of Day</td><td><em>AM</em></td></tr><tr><td><code>h</code></td><td>Hour (1-12)</td><td><em>10</em></td></tr><tr><td><code>K</code></td><td>Hour (0-11)</td><td><em>1</em></td></tr><tr><td><code>k</code></td><td>Hour (1-24)</td><td><em>20</em></td></tr><tr><td><code>H</code></td><td>Hour (0-23)</td><td><em>23</em></td></tr><tr><td><code>m</code></td><td>Minute</td><td><em>10</em></td></tr><tr><td><code>s</code></td><td>Second</td><td><em>11</em></td></tr><tr><td><code>S</code></td><td>Fraction of Second</td><td><em>999</em></td></tr><tr><td><code>A</code></td><td>Milli of Day</td><td><em>2345</em></td></tr><tr><td><code>n</code></td><td>Nano of Second</td><td><em>865437987</em></td></tr><tr><td><code>N</code></td><td>Nano of Day</td><td><em>12986497300</em></td></tr><tr><td><code>V</code></td><td>Time Zone ID</td><td><em>Asia/Manila; Z; -06:00</em></td></tr><tr><td><code>z</code></td><td>Time Zone Name</td><td><em>Pacific Standard Time; PST</em></td></tr><tr><td><code>O</code></td><td>Localized Zone Offset</td><td><em>GMT+4; GMT+04:00; UTC-04:00;</em></td></tr><tr><td><code>X</code></td><td>Zone Offset (&#39;Z&#39; for zero)</td><td><em>Z; -08; -0830; -08:30</em></td></tr><tr><td><code>x</code></td><td>Zone Offset</td><td><em>+0000; -08; -0830; -08:30</em></td></tr><tr><td><code>Z</code></td><td>Zone Offset</td><td><em>+0000; -0800; -08:00</em></td></tr><tr><td><code>&#39;</code></td><td>Escape for Text</td><td></td></tr><tr><td><code>&#39;&#39;</code></td><td>Single Quote</td><td></td></tr><tr><td><code>[ ]</code></td><td>Optional Section Start / End</td><td></td></tr><tr><td><code># { }</code></td><td>Reserved for future use</td><td></td></tr></tbody></table></div><p>Assuming:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">LocalDate</span> <span class="hljs-variable">ldt</span> <span class="hljs-operator">=</span> LocalDate.of(<span class="hljs-number">2025</span>, <span class="hljs-number">1</span>, <span class="hljs-number">20</span>);</code></pre></div><p>These are examples of using a predefined formatter:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">System.out.println(DateTimeFormatter.ISO_DATE.format(ldt));
+System.out.println(ldt.format(DateTimeFormatter.ISO_DATE));</code></pre></div><p>The output will be:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-number">2025</span>-<span class="hljs-number">01</span>-<span class="hljs-number">20</span>
+<span class="hljs-number">2025</span>-<span class="hljs-number">01</span>-<span class="hljs-number">20</span></code></pre></div><p>These are examples of using a localized style:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+<span class="hljs-comment">// With the current locale</span>
+System.out.println(formatter.format(ldt));
+System.out.println(ldt.format(formatter));
+<span class="hljs-comment">// With another locale</span>
+System.out.println(formatter.withLocale(Locale.GERMAN).format(ldt));</code></pre></div><p>One output can be:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-number">1</span>/<span class="hljs-number">20</span>/<span class="hljs-number">25</span>
+<span class="hljs-number">1</span>/<span class="hljs-number">20</span>/<span class="hljs-number">25</span>
+<span class="hljs-number">20.01</span><span class="hljs-number">.25</span></code></pre></div><p>And these are examples of using a custom pattern:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;QQQQ Y&quot;</span>);
+<span class="hljs-comment">// With the current locale</span>
+System.out.println(formatter.format(ldt));
+System.out.println(ldt.format(formatter));
+<span class="hljs-comment">// With another locale</span>
+System.out.println(formatter.withLocale(Locale.GERMAN).format(ldt));</code></pre></div><p>One output can be:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">1st quarter <span class="hljs-number">2025</span>
+1st quarter <span class="hljs-number">2025</span>
+<span class="hljs-number">1.</span> Quartal <span class="hljs-number">2025</span></code></pre></div><p>If the formatter uses information that is not available, a <code>DateTimeException</code> will be thrown. For example, using a <code>DateTimeFormatter.ISO_OFFSET_DATE</code> with a <code>LocalDate</code> instance (it doesn&#39;t have offset information).</p>
+<p>To parse a date and/or time value from a string, use one of the <code>parse</code> methods. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-comment">// Format according to ISO-8601</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">dateTimeStr1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;2025-06-29T14:45:30&quot;</span>;
+<span class="hljs-comment">// Custom format</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">dateTimeStr2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;2025/06/29 14:45:30&quot;</span>;
+<span class="hljs-type">LocalDateTime</span> <span class="hljs-variable">ldt</span> <span class="hljs-operator">=</span> LocalDateTime.parse(dateTimeStr1);
+<span class="hljs-comment">// Using DateTimeFormatter</span>
+<span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">formatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy/MM/dd HH:mm:ss&quot;</span>);
+<span class="hljs-comment">// DateTimeFormatter returns a TemporalAccessor instance</span>
+<span class="hljs-type">TemporalAccessor</span> <span class="hljs-variable">ta</span> <span class="hljs-operator">=</span> formatter.parse(dateTimeStr2);
+<span class="hljs-comment">// LocalDateTime returns an instance of the same type</span>
+ldt = LocalDateTime.parse(dateTimeStr2, formatter);</code></pre></div><p>The version of <code>parse()</code> of the date/time objects takes a string in a format according to ISO-8601, which is:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table><thead><tr><th>Class</th><th>Format</th><th>Example</th></tr></thead><tbody><tr><td><code>LocalDate</code></td><td><code>uuuu-MM-dd</code></td><td><em>2024-12-03</em></td></tr><tr><td><code>LocalTime</code></td><td><code>HH:mm:ss</code></td><td><em>10:15</em></td></tr><tr><td><code>LocalDateTime</code></td><td><code>uuuu-MM-dd&#39;T&#39;HH:mm:ss</code></td><td><em>2024-12-03T10:15:30</em></td></tr><tr><td><code>ZonedDateTime</code></td><td><code>uuuu-MM-dd&#39;T&#39;HH:mm:ssXXXXX[VV]</code></td><td><em>2023-12-03T10:15:30+01:00[Europe/Paris]</em></td></tr><tr><td><code>OffsetDateTime</code></td><td><code>uuuu-MM-dd&#39;T&#39;HH:mm:ssXXXXX</code></td><td><em>2023-12-03T10:15:30+01:00</em></td></tr><tr><td><code>OffsetTime</code></td><td><code>HH:mm:ssXXXXX</code></td><td><em>10:15:30+01:00</em></td></tr></tbody></table></div><p>If the formatter uses information that is not available or if the pattern of the format is invalid, a <code>DateTimeParseException</code> will be thrown.</p>
+<p>In the <a href="ch14.html#the-datetimeformatter-class">Localization</a> chapter, we&#39;ll revisit the <code>DateTimeFormatter</code> class, focusing on its application in localization.</p>
+<h2 id="key-points">Key Points<a class="heading-anchor" href="#key-points" aria-label="Link to Key Points">#</a></h2><ul>
+<li><p><code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>, <code>Instant</code>, <code>Period</code>, and <code>Duration</code> are the core classes of the new Java Date/Time API, located in the package <code>java.time</code>. They are immutable, thread-safe, and with the exception of <code>Instant</code>, they don&#39;t store or represent a time-zone.</p>
+</li>
+<li><p><code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>, and <code>Instant</code> implement interface <code>java.time.temporal.Temporal</code>, so they all have similar methods. While <code>Period</code> and <code>Duration</code> implement interface <code>java.time.temporal.TemporalAmount</code>, which also makes them very similar.</p>
+</li>
+<li><p><code>LocalDate</code> represents a date with the year, month, and day of the month information. You can create an instance using:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">LocalDate.of(<span class="hljs-number">2025</span>, <span class="hljs-number">8</span>, <span class="hljs-number">1</span>);</code></pre></div></li>
+<li><p>Valid <code>ChronoField</code> values to use with the <code>get()</code> method are: <code>DAY_OF_WEEK, ALIGNED_DAY_OF_WEEK_IN_MONTH, ALIGNED_DAY_OF_WEEK_IN_YEAR, DAY_OF_MONTH, DAY_OF_YEAR, EPOCH_DAY, ALIGNED_WEEK_OF_MONTH, ALIGNED_WEEK_OF_YEAR, MONTH_OF_YEAR, PROLEPTIC_MONTH, YEAR_OF_ERA, YEAR,</code> and <code>ERA</code>.</p>
+</li>
+<li><p>Valid <code>ChronoUnits</code> values to use with the <code>plus()</code> and <code>minus()</code> methods are: <code>DAYS, WEEKS, MONTHS, YEARS, DECADES, CENTURIES, MILLENNIA,</code> and <code>ERAS</code>.</p>
+</li>
+<li><p><code>LocalTime</code> represents a time with hour, minutes, seconds, and nanoseconds information. You can create an instance using:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">LocalTime.of(<span class="hljs-number">14</span>, <span class="hljs-number">20</span>, <span class="hljs-number">50</span>, <span class="hljs-number">99999</span>);</code></pre></div></li>
+<li><p>Valid <code>ChronoField</code> values to use with the <code>get()</code> method are: <code>NANO_OF_SECOND, NANO_OF_DAY, MICRO_OF_SECOND, MICRO_OF_DAY, MILLI_OF_SECOND, MILLI_OF_DAY, SECOND_OF_MINUTE, SECOND_OF_DAY, MINUTE_OF_HOUR, MINUTE_OF_DAY, HOUR_OF_AMPM, CLOCK_HOUR_OF_AMPM, HOUR_OF_DAY, CLOCK_HOUR_OF_DAY,</code> and <code>AMPM_OF_DAY</code>.</p>
+</li>
+<li><p>Valid <code>ChronoUnits</code> values to use with the <code>plus()</code> and <code>minus()</code> methods are: <code>NANOS, MICROS, MILLIS, SECONDS, MINUTES, HOURS,</code> and <code>HALF_DAYS</code>.</p>
+</li>
+<li><p><code>LocalDateTime</code> is a combination of <code>LocalDate</code> and <code>LocalTime</code>. You can create an instance using:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">LocalDateTime.of(<span class="hljs-number">2025</span>, <span class="hljs-number">8</span>, <span class="hljs-number">1</span>, <span class="hljs-number">14</span>, <span class="hljs-number">20</span>, <span class="hljs-number">50</span>, <span class="hljs-number">99999</span>);</code></pre></div></li>
+<li><p>Valid <code>ChronoField</code> and <code>ChronoUnits</code> values are a combination of the ones used for <code>LocalDate</code> and <code>LocalTime</code>.</p>
+</li>
+<li><p><code>Instant</code> represents a single point in time in seconds and nanoseconds. You can create an instance using:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">Instant.ofEpochSecond(<span class="hljs-number">134556767</span>, <span class="hljs-number">999999999</span>);</code></pre></div></li>
+<li><p>Valid <code>ChronoField</code> values to use with the <code>get()</code> method are: <code>NANO_OF_SECOND, MICRO_OF_SECOND, MILLI_OF_SECOND,</code> and <code>INSTANT_SECONDS</code>.</p>
+</li>
+<li><p>Valid <code>ChronoUnit</code> values to use with the <code>plus()</code> and <code>minus()</code> methods are: <code>NANOS, MICROS, MILLIS, SECONDS, MINUTES, HOURS, HALF_DAYS,</code> and <code>DAYS</code>.</p>
+</li>
+<li><p><code>Period</code> represents an amount of time in terms of years, months and days. You can create an instance using:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">Period.of(<span class="hljs-number">3</span>, <span class="hljs-number">12</span>, <span class="hljs-number">30</span>);</code></pre></div></li>
+<li><p>Valid <code>ChronoUnits</code> values to use with the <code>get()</code> method are: <code>DAYS, MONTHS, YEARS</code>.</p>
+</li>
+<li><p><code>Duration</code> represents an amount of time in terms of seconds and nanoseconds. You can create an instance using:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">Duration.ofSeconds(<span class="hljs-number">50</span>, <span class="hljs-number">999999</span>);</code></pre></div></li>
+<li><p>Valid <code>ChronoUnits</code> values to use with the <code>of()</code> method are: <code>NANOS, MICROS, MILLIS, SECONDS, MINUTES, HOURS, HALF_DAYS,</code> and <code>DAYS</code>. With the <code>get()</code> method, only <code>NANOS</code> and <code>SECONDS</code> are valid.</p>
+</li>
+<li><p><code>ZoneId</code>, <code>ZoneOffset</code>, <code>ZonedDateTime</code>, <code>OffsetDateTime</code>, and <code>OffsetTime</code> are the classes of the Java Date/Time API that store information about time zones and time offsets. They are located in the <code>java.time</code> package and are immutable.</p>
+</li>
+<li><p>Each time zone has an ID, represented by the class <code>ZoneId</code>. There are three types of ID.</p>
+</li>
+<li><p>The first type just states the offset from UTC/GMT time. They are represented by the class <code>ZoneOffset</code> and they consist of digits starting with <code>+</code> or <code>-</code>, for example <code>+02:00</code>.</p>
+</li>
+<li><p>The second type also states the offset from UTC/GMT time, but with one of the following prefixes: UTC, GMT and UT, for example, <code>UTC+11:00</code>. They are also represented by the class <code>ZoneOffset</code>.</p>
+</li>
+<li><p>The third type is region based. These IDs have the format <em>area/city</em>, for example, <em>Europe/London</em>.</p>
+</li>
+<li><p>If you want to create a specific <code>ZoneId</code> object, use the method <code>of</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">ZoneId.of(<span class="hljs-string">&quot;Asia/Singapore&quot;</span>);
+ZoneId.of(<span class="hljs-string">&quot;+3&quot;</span>);
+ZoneId.of(<span class="hljs-string">&quot;Z&quot;</span>);</code></pre></div></li>
+<li><p>The first method above methods produces an object of type <code>ZoneId</code>. The other two produce an object of type <code>ZoneOffset</code>.</p>
+</li>
+<li><p>A <code>java.time.ZonedDateTime</code> object represents a point in time relative to a time zone.</p>
+</li>
+<li><p>A <code>ZonedDateTime</code> object has three parts: a date, a time, and a time zone. It can be created with either:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">ZoneId</span> <span class="hljs-variable">australiaZone</span> <span class="hljs-operator">=</span> ZoneId.of(<span class="hljs-string">&quot;Australia/Victoria&quot;</span>);
+<span class="hljs-type">ZonedDateTime</span> <span class="hljs-variable">zonedDateTime5</span> <span class="hljs-operator">=</span>
+    ZonedDateTime.of(<span class="hljs-number">2025</span>, <span class="hljs-number">1</span>, <span class="hljs-number">30</span>, <span class="hljs-number">13</span>, <span class="hljs-number">59</span>, <span class="hljs-number">59</span>, <span class="hljs-number">999</span>, australiaZone);</code></pre></div></li>
+<li><p>Or by using <code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>, or <code>Instant</code> plus <code>ZoneId</code>.</p>
+</li>
+<li><p>If we create an instance of <code>ZonedDateTime</code> for a region where a Daylight Saving Time (DST) is observed, the instance will support it, advancing the clock one hour when DST starts, and setting it back when DST ends.</p>
+</li>
+<li><p><code>Period</code> and <code>Duration</code> differ in their treatment of DST.</p>
+</li>
+<li><p><code>Period</code> adds a conceptual day to a date, while <code>Duration</code> adds an exact day to a date, without taking into account DST.</p>
+</li>
+<li><p><code>OffsetDateTime</code> represents an object with date/time information and an offset from UTC, for example, <code>2025-01-01T11:30-06:00</code>.</p>
+</li>
+<li><p><code>OffsetTime</code> represents a time with an offset from UTC, for example, <code>11:30-06:00</code>.</p>
+</li>
+<li><p><code>java.time.format.DateTimeFormatter</code> is a class for parsing and formatting dates. It can be used in two ways:</p>
+<ul>
+<li>The date/time classes <code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>, <code>ZonedDateTime</code>, <code>OffsetDateTime</code> all have the methods:<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-title function_">format</span><span class="hljs-params">(DateTimeFormatter formatter)</span>
+<span class="hljs-keyword">static</span> <span class="hljs-type">T</span> <span class="hljs-title function_">parse</span><span class="hljs-params">(CharSequence text)</span>
+<span class="hljs-keyword">static</span> <span class="hljs-type">T</span> <span class="hljs-title function_">parse</span><span class="hljs-params">(CharSequence text, DateTimeFormatter formatter)</span></code></pre></div></li>
+<li><code>DateTimeFormatter</code> has the following two methods:<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-title function_">format</span><span class="hljs-params">(TemporalAccessor temporal)</span>
+<span class="hljs-type">TemporalAccessor</span> <span class="hljs-title function_">parse</span><span class="hljs-params">(CharSequence text)</span></code></pre></div></li>
+</ul>
+</li>
+<li><p>All <code>format</code> methods throw the runtime exception <code>java.time.DateTimeException</code>, while all <code>parse</code> methods throw the runtime exception <code>java.time.format.DateTimeParseException</code>.</p>
+</li>
+</ul>
+<h2 id="practice-questions">Practice Questions<a class="heading-anchor" href="#practice-questions" aria-label="Link to Practice Questions">#</a></h2><p><a href="ch11-practice.html#book-practice">Open the interactive book questions on the Chapter 11.1 Practice page</a>.</p>
+</article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this chapter.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><div class="finish-chapter"><button class="primary-button" id="complete-chapter" data-id="ch11" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg><span>Mark chapter complete</span></button><a href="ch11a.html">Review the answers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch10-practice.html"><small>Previous</small>Chapter 10.1 Practice</a><a href="ch11-practice.html"><small>Next chapter</small>Chapter 11.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#core-datetime-classes">Core Date/Time Classes</a><a class="toc-link" href="#time-zones-and-daylight-savings">Time Zones and Daylight Savings</a><a class="toc-link" href="#parsing-and-formatting">Parsing and Formatting</a><a class="toc-link" href="#key-points">Key Points</a><a class="toc-link" href="#practice-questions">Practice Questions</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

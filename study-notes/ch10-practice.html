@@ -1,0 +1,603 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Chapter 10.1 Practice</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch10-practice"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link selected" href="ch10-practice.html" aria-current="page"><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Chapter 10.1 Practice</h1><p class="practice-subtitle">Concurrency and Multithreading</p><div class="document-meta">9 book questions <span>·</span> 11 extra quiz questions</div><div class="chapter-actions"><a href="ch10.html">Read chapter 10</a><a class="active" aria-current="page" href="ch10-practice.html">Practice 10.1</a><a href="ch10a.html">Original answers</a></div></div><nav class="practice-section-nav" aria-label="Practice sections"><a href="#book-practice">Book questions</a><a href="#chapter-quiz">Extra quiz</a><button type="button" class="reset-all-quizzes">Reset all questions</button></nav><article class="prose practice-prose"><section class="chapter-quiz book-practice" id="book-practice" aria-labelledby="book-practice-title">
+    <h2 id="book-practice-title">Book practice questions</h2>
+    <p class="quiz-intro">9 questions from the chapter, with the book’s explanations. Single-answer questions show immediate feedback. For checkbox questions, select your answers, then choose Check answer. Reviewed corrections and clarifications are identified beside the question.</p>
+    <form class="quiz-form" data-quiz="book-ch10"><p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="book-q1" data-answer="2" aria-describedby="book-q1-feedback">
+          <legend>Question 1</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following lines of code correctly creates and starts a new virtual thread?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">Runnable</span> <span class="hljs-variable">task</span> <span class="hljs-operator">=</span> () -&gt; {
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+                System.out.println(<span class="hljs-string">&quot;Task is running&quot;</span>);
+            }
+        };
+        <span class="hljs-comment">// Insert code here to create and start a new virtual thread</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q1-option-0" type="radio" name="book-q1" value="0" aria-labelledby="book-q1-option-0-letter book-q1-option-0-text"><span class="option-letter" id="book-q1-option-0-letter">A</span><div class="quiz-option-content" id="book-q1-option-0-text"><p><code>Thread thread = Thread.ofVirtual(); thread.start(task);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-1" type="radio" name="book-q1" value="1" aria-labelledby="book-q1-option-1-letter book-q1-option-1-text"><span class="option-letter" id="book-q1-option-1-letter">B</span><div class="quiz-option-content" id="book-q1-option-1-text"><p><code>Thread thread = Thread.ofVirtual().unstarted(task).run();</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-2" type="radio" name="book-q1" value="2" aria-labelledby="book-q1-option-2-letter book-q1-option-2-text"><span class="option-letter" id="book-q1-option-2-letter">C</span><div class="quiz-option-content" id="book-q1-option-2-text"><p><code>Thread thread = Thread.ofVirtual().start(task);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-3" type="radio" name="book-q1" value="3" aria-labelledby="book-q1-option-3-letter book-q1-option-3-text"><span class="option-letter" id="book-q1-option-3-letter">D</span><div class="quiz-option-content" id="book-q1-option-3-text"><p><code>Thread thread = Thread.ofVirtual(); task.run();</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-4" type="radio" name="book-q1" value="4" aria-labelledby="book-q1-option-4-letter book-q1-option-4-text"><span class="option-letter" id="book-q1-option-4-letter">E</span><div class="quiz-option-content" id="book-q1-option-4-text"><p><code>Thread thread = Thread.start(task);</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>Thread thread = Thread.ofVirtual(); thread.start(task);</code></p>
+<ul>
+<li>This option is incorrect because <code>Thread.ofVirtual()</code> returns a <code>Thread.Builder</code>, not a <code>Thread</code>. The <code>start()</code> method on <code>Thread.Builder</code> takes a <code>Runnable</code>, but this syntax is incorrect.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Thread thread = Thread.ofVirtual().unstarted(task).run();</code></p>
+<ul>
+<li>This option is incorrect because calling <code>run()</code> directly does not start a new thread. It executes the task in the current thread.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Thread thread = Thread.ofVirtual().start(task);</code></p>
+<ul>
+<li>This option is correct. It uses the new thread builder API in Java 21 to create and start a virtual thread in one step.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Thread thread = Thread.ofVirtual(); task.run();</code></p>
+<ul>
+<li>This option is incorrect because it doesn&#39;t actually start a new thread. It creates a thread builder but doesn&#39;t use it, and then runs the task in the current thread.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Thread thread = Thread.start(task);</code></p>
+<ul>
+<li>This option is incorrect because <code>Thread.start(task)</code> is not a valid static method in Java 21.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q2" data-answer="1" aria-describedby="book-q2-feedback">
+          <legend>Question 2</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the options correctly uses a <code>synchronized</code> block to ensure that only one thread at a time can execute a critical section that increments a shared counter?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-variable">counter</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">Runnable</span> <span class="hljs-variable">task</span> <span class="hljs-operator">=</span> () -&gt; {
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++) {
+                <span class="hljs-comment">// Insert synchronized block here</span>
+            }
+        };
+        <span class="hljs-type">Thread</span> <span class="hljs-variable">thread1</span> <span class="hljs-operator">=</span> Thread.ofPlatform().start(task);
+        <span class="hljs-type">Thread</span> <span class="hljs-variable">thread2</span> <span class="hljs-operator">=</span> Thread.ofPlatform().start(task);
+        <span class="hljs-keyword">try</span> {
+            thread1.join();
+            thread2.join();
+        } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(<span class="hljs-string">&quot;Final counter value: &quot;</span> + counter);
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q2-option-0" type="radio" name="book-q2" value="0" aria-labelledby="book-q2-option-0-letter book-q2-option-0-text"><span class="option-letter" id="book-q2-option-0-letter">A</span><div class="quiz-option-content" id="book-q2-option-0-text"><p><code>synchronized (this) { counter++; }</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-1" type="radio" name="book-q2" value="1" aria-labelledby="book-q2-option-1-letter book-q2-option-1-text"><span class="option-letter" id="book-q2-option-1-letter">B</span><div class="quiz-option-content" id="book-q2-option-1-text"><p><code>synchronized (Main.class) { counter++; }</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-2" type="radio" name="book-q2" value="2" aria-labelledby="book-q2-option-2-letter book-q2-option-2-text"><span class="option-letter" id="book-q2-option-2-letter">C</span><div class="quiz-option-content" id="book-q2-option-2-text"><p><code>synchronized (task) { counter++; }</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-3" type="radio" name="book-q2" value="3" aria-labelledby="book-q2-option-3-letter book-q2-option-3-text"><span class="option-letter" id="book-q2-option-3-letter">D</span><div class="quiz-option-content" id="book-q2-option-3-text"><p><code>synchronized (counter) { counter++; }</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-4" type="radio" name="book-q2" value="4" aria-labelledby="book-q2-option-4-letter book-q2-option-4-text"><span class="option-letter" id="book-q2-option-4-letter">E</span><div class="quiz-option-content" id="book-q2-option-4-text"><p><code>synchronized (System.out) { counter++; }</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>synchronized (this) { counter++; }</code></p>
+<ul>
+<li>This option is incorrect because <code>this</code> cannot be used in a static context. In the <code>main</code> method, <code>this</code> is not available. For a static field like <code>counter</code>, you need to synchronize on a static object or class.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>synchronized (Main.class) { counter++; }</code></p>
+<ul>
+<li>This option is correct because synchronizing on <code>Main.class</code> ensures that only one thread can enter the synchronized block at a time for all instances of <code>Main</code>, which is appropriate for protecting static fields like <code>counter</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>synchronized (task) { counter++; }</code></p>
+<ul>
+<li>This option is incorrect because <code>task</code> is a <code>Runnable</code> object, and synchronizing on it does not effectively control access to the shared static field <code>counter</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>synchronized (counter) { counter++; }</code></p>
+<ul>
+<li>This option is incorrect because <code>counter</code> is a primitive type (<code>int</code>), and you cannot synchronize on a primitive type. Synchronization requires an object.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>synchronized (System.out) { counter++; }</code></p>
+<ul>
+<li>This option is incorrect because synchronizing on <code>System.out</code> is not related to controlling access to <code>counter</code>. It would also interfere with other potential uses of <code>System.out</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q3" data-answer="1,2" aria-describedby="book-q3-feedback">
+          <legend>Question 3</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Which of the following statements about atomic classes is correct? (Choose all that apply)</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q3-option-0" type="checkbox" name="book-q3" value="0" aria-labelledby="book-q3-option-0-letter book-q3-option-0-text"><span class="option-letter" id="book-q3-option-0-letter">A</span><div class="quiz-option-content" id="book-q3-option-0-text"><p><code>AtomicInteger</code> is part of the <code>java.util.concurrent.atomic</code> package, but it does not provide atomic operations for increment and decrement.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-1" type="checkbox" name="book-q3" value="1" aria-labelledby="book-q3-option-1-letter book-q3-option-1-text"><span class="option-letter" id="book-q3-option-1-letter">B</span><div class="quiz-option-content" id="book-q3-option-1-text"><p><code>AtomicReference</code> can only be used with reference types, not primitive types.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-2" type="checkbox" name="book-q3" value="2" aria-labelledby="book-q3-option-2-letter book-q3-option-2-text"><span class="option-letter" id="book-q3-option-2-letter">C</span><div class="quiz-option-content" id="book-q3-option-2-text"><p><code>AtomicLong</code> supports atomic operations on <code>long</code> values, including <code>getAndIncrement()</code> and <code>compareAndSet()</code> methods.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-3" type="checkbox" name="book-q3" value="3" aria-labelledby="book-q3-option-3-letter book-q3-option-3-text"><span class="option-letter" id="book-q3-option-3-letter">D</span><div class="quiz-option-content" id="book-q3-option-3-text"><p><code>AtomicBoolean</code> can be used to perform atomic arithmetic operations on <code>boolean</code> values.</p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>AtomicInteger</code> is part of the <code>java.util.concurrent.atomic</code> package, but it does not provide atomic operations for increment and decrement.</p>
+<ul>
+<li>This statement is incorrect. <code>AtomicInteger</code> provides atomic operations for increment and decrement, such as <code>incrementAndGet()</code> and <code>decrementAndGet()</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>AtomicReference</code> can only be used with reference types, not primitive types.</p>
+<ul>
+<li>This statement is correct. <code>AtomicReference</code> is designed to work with reference types and cannot be used with primitive types directly.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>AtomicLong</code> supports atomic operations on <code>long</code> values, including <code>getAndIncrement()</code> and <code>compareAndSet()</code> methods. </p>
+<ul>
+<li>This statement is correct. <code>AtomicLong</code> provides atomic operations on <code>long</code> values, including <code>getAndIncrement()</code> and <code>compareAndSet()</code> methods.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>AtomicBoolean</code> can be used to perform atomic arithmetic operations on <code>boolean</code> values.</p>
+<ul>
+<li>This statement is incorrect. <code>AtomicBoolean</code> is used for atomic updates to <code>boolean</code> values, but it does not support atomic arithmetic operations.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q4" data-answer="0" aria-describedby="book-q4-feedback">
+          <legend>Question 4</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following code snippets correctly uses the <code>Lock</code> interface to ensure thread-safe access to a shared resource?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.concurrent.locks.Lock;
+<span class="hljs-keyword">import</span> java.util.concurrent.locks.ReentrantLock;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Counter</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">Lock</span> <span class="hljs-variable">lock</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReentrantLock</span>();
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">increment</span><span class="hljs-params">()</span> {
+        <span class="hljs-comment">// Insert code here</span>
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getCount</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> count;
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q4-option-0" type="radio" name="book-q4" value="0" aria-labelledby="book-q4-option-0-letter book-q4-option-0-text"><span class="option-letter" id="book-q4-option-0-letter">A</span><div class="quiz-option-content" id="book-q4-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs">lock.lock();
+<span class="hljs-keyword">try</span> {
+    count++;
+} <span class="hljs-keyword">finally</span> {
+    lock.unlock();
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q4-option-1" type="radio" name="book-q4" value="1" aria-labelledby="book-q4-option-1-letter book-q4-option-1-text"><span class="option-letter" id="book-q4-option-1-letter">B</span><div class="quiz-option-content" id="book-q4-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs">lock.lock();
+count++;
+lock.unlock();</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q4-option-2" type="radio" name="book-q4" value="2" aria-labelledby="book-q4-option-2-letter book-q4-option-2-text"><span class="option-letter" id="book-q4-option-2-letter">C</span><div class="quiz-option-content" id="book-q4-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> {
+    lock.lock(() -&gt; {
+        count++;
+    });
+} <span class="hljs-keyword">finally</span> {
+    lock.unlock();
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q4-option-3" type="radio" name="book-q4" value="3" aria-labelledby="book-q4-option-3-letter book-q4-option-3-text"><span class="option-letter" id="book-q4-option-3-letter">D</span><div class="quiz-option-content" id="book-q4-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">synchronized</span>(lock) {
+    count++;
+}</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">lock.lock();
+<span class="hljs-keyword">try</span> {
+    count++;
+} <span class="hljs-keyword">finally</span> {
+    lock.unlock();
+}</code></pre></div><ul>
+<li><p>This option correctly acquires the lock before modifying the shared resource and ensures the lock is released in the <code>finally</code> block, which is the proper use of the <code>Lock</code> interface.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">lock.lock();
+count++;
+lock.unlock();</code></pre></div><ul>
+<li><p>This option is incorrect because if an exception occurs between <code>lock.lock()</code> and <code>lock.unlock()</code>, the lock will not be released, potentially causing a deadlock.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> {
+    lock.lock(() -&gt; {
+        count++;
+    });
+} <span class="hljs-keyword">finally</span> {
+    lock.unlock();
+}</code></pre></div><ul>
+<li><p>This option is incorrect because that&#39;s not a valid <code>lock.lock()</code> call.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">synchronized</span>(lock) {
+    count++;
+}</code></pre></div><ul>
+<li>This option is incorrect because the <code>synchronized</code> block is used with the <code>lock</code> object itself, which is not the correct usage of the <code>Lock</code> interface and does not provide the intended functionality.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q5" data-answer="0" aria-describedby="book-q5-feedback">
+          <legend>Question 5</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following code snippets correctly demonstrates the usage of an <code>ExecutorService</code> with a <code>try-with-resources</code> block?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.concurrent.ExecutorService;
+<span class="hljs-keyword">import</span> java.util.concurrent.Executors;
+<span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ExecutorExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-comment">// Insert code here to create and use an ExecutorService with try-with-resources</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q5-option-0" type="radio" name="book-q5" value="0" aria-labelledby="book-q5-option-0-letter book-q5-option-0-text"><span class="option-letter" id="book-q5-option-0-letter">A</span><div class="quiz-option-content" id="book-q5-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    executor.submit(() -&gt; System.out.println(<span class="hljs-string">&quot;Task executed&quot;</span>));
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q5-option-1" type="radio" name="book-q5" value="1" aria-labelledby="book-q5-option-1-letter book-q5-option-1-text"><span class="option-letter" id="book-q5-option-1-letter">B</span><div class="quiz-option-content" id="book-q5-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    executor.submit(() -&gt; System.out.println(<span class="hljs-string">&quot;Task executed&quot;</span>));
+} <span class="hljs-keyword">finally</span> {
+    executor.shutdown();
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q5-option-2" type="radio" name="book-q5" value="2" aria-labelledby="book-q5-option-2-letter book-q5-option-2-text"><span class="option-letter" id="book-q5-option-2-letter">C</span><div class="quiz-option-content" id="book-q5-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor();
+<span class="hljs-keyword">try</span> {
+    executor.submit(() -&gt; System.out.println(<span class="hljs-string">&quot;Task executed&quot;</span>));
+} <span class="hljs-keyword">finally</span> {
+    executor.close();
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q5-option-3" type="radio" name="book-q5" value="3" aria-labelledby="book-q5-option-3-letter book-q5-option-3-text"><span class="option-letter" id="book-q5-option-3-letter">D</span><div class="quiz-option-content" id="book-q5-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">var</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    executor.submit(() -&gt; System.out.println(<span class="hljs-string">&quot;Task executed&quot;</span>));
+    executor.awaitTermination(<span class="hljs-number">1</span>, TimeUnit.SECONDS);
+}</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    executor.submit(() -&gt; System.out.println(<span class="hljs-string">&quot;Task executed&quot;</span>));
+}</code></pre></div><ul>
+<li><p>This option is correct. It uses the <code>try-with-resources</code> block with the new <code>Executors.newVirtualThreadPerTaskExecutor()</code> method introduced in Java 21. The <code>ExecutorService</code> will be automatically closed when the <code>try</code> block exits, eliminating the need for explicit shutdown calls.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    executor.submit(() -&gt; System.out.println(<span class="hljs-string">&quot;Task executed&quot;</span>));
+} <span class="hljs-keyword">finally</span> {
+    executor.shutdown();
+}</code></pre></div><ul>
+<li><p>This option is incorrect because it unnecessarily calls <code>shutdown()</code> in the finally block. With <code>try-with-resources</code>, the <code>ExecutorService</code> is automatically closed, making the explicit <code>shutdown()</code> call redundant and potentially harmful.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor();
+<span class="hljs-keyword">try</span> {
+    executor.submit(() -&gt; System.out.println(<span class="hljs-string">&quot;Task executed&quot;</span>));
+} <span class="hljs-keyword">finally</span> {
+    executor.close();
+}</code></pre></div><ul>
+<li><p>This option is incorrect because it doesn&#39;t use <code>the try-with-resources</code> syntax. While it does correctly close the <code>ExecutorService</code>, it doesn&#39;t take advantage of the automatic resource management provided by <code>try-with-resources</code>.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">var</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    executor.submit(() -&gt; System.out.println(<span class="hljs-string">&quot;Task executed&quot;</span>));
+    executor.awaitTermination(<span class="hljs-number">1</span>, TimeUnit.SECONDS);
+}</code></pre></div><ul>
+<li>This option is incorrect because it unnecessarily calls <code>awaitTermination()</code>. In a <code>try-with-resources</code> block, the <code>ExecutorService</code> is automatically closed when the block exits, making the explicit wait for termination unnecessary and potentially causing the thread to block for 1 second.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q6" data-answer="3" aria-describedby="book-q6-feedback">
+          <legend>Question 6</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following code snippets correctly demonstrates how to get a result from a <code>Callable</code> task using an <code>ExecutorService</code> with <code>try-with-resources</code>?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.concurrent.Callable;
+<span class="hljs-keyword">import</span> java.util.concurrent.ExecutionException;
+<span class="hljs-keyword">import</span> java.util.concurrent.ExecutorService;
+<span class="hljs-keyword">import</span> java.util.concurrent.Executors;
+<span class="hljs-keyword">import</span> java.util.concurrent.Future;
+<span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CallableExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">Callable</span>&lt;Integer&gt; <span class="hljs-variable">task</span> <span class="hljs-operator">=</span> () -&gt; {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">123</span>;
+        };
+        <span class="hljs-comment">// Insert code here</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q6-option-0" type="radio" name="book-q6" value="0" aria-labelledby="book-q6-option-0-letter book-q6-option-0-text"><span class="option-letter" id="book-q6-option-0-letter">A</span><div class="quiz-option-content" id="book-q6-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    <span class="hljs-type">Future</span>&lt;Integer&gt; <span class="hljs-variable">future</span> <span class="hljs-operator">=</span> executor.submit(task);
+    System.out.println(future.get());
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q6-option-1" type="radio" name="book-q6" value="1" aria-labelledby="book-q6-option-1-letter book-q6-option-1-text"><span class="option-letter" id="book-q6-option-1-letter">B</span><div class="quiz-option-content" id="book-q6-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">var</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    <span class="hljs-type">Future</span>&lt;Integer&gt; <span class="hljs-variable">future</span> <span class="hljs-operator">=</span> executor.submit(task);
+    <span class="hljs-type">Integer</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> future.get(<span class="hljs-number">1</span>, TimeUnit.SECONDS);
+    System.out.println(result);
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q6-option-2" type="radio" name="book-q6" value="2" aria-labelledby="book-q6-option-2-letter book-q6-option-2-text"><span class="option-letter" id="book-q6-option-2-letter">C</span><div class="quiz-option-content" id="book-q6-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    <span class="hljs-type">Future</span>&lt;Integer&gt; <span class="hljs-variable">future</span> <span class="hljs-operator">=</span> executor.submit(task);
+    executor.shutdown();
+    System.out.println(future.get());
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q6-option-3" type="radio" name="book-q6" value="3" aria-labelledby="book-q6-option-3-letter book-q6-option-3-text"><span class="option-letter" id="book-q6-option-3-letter">D</span><div class="quiz-option-content" id="book-q6-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">var</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    <span class="hljs-type">Future</span>&lt;Integer&gt; <span class="hljs-variable">future</span> <span class="hljs-operator">=</span> executor.submit(task);
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-type">Integer</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> future.get();
+        System.out.println(result);
+    } <span class="hljs-keyword">catch</span> (InterruptedException | ExecutionException e) {
+        <span class="hljs-comment">// Handle exceptions</span>
+    }
+}</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    <span class="hljs-type">Future</span>&lt;Integer&gt; <span class="hljs-variable">future</span> <span class="hljs-operator">=</span> executor.submit(task);
+    System.out.println(future.get());
+}</code></pre></div><ul>
+<li><p>This option is incorrect because it doesn&#39;t handle the potential <code>InterruptedException</code> and <code>ExecutionException</code> that <code>future.get()</code> can throw.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">var</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    <span class="hljs-type">Future</span>&lt;Integer&gt; <span class="hljs-variable">future</span> <span class="hljs-operator">=</span> executor.submit(task);
+    <span class="hljs-type">Integer</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> future.get(<span class="hljs-number">1</span>, TimeUnit.SECONDS);
+    System.out.println(result);
+}</code></pre></div><ul>
+<li><p>This option is incorrect because it doesn&#39;t handle the potential exceptions (<code>InterruptedException</code>, <code>ExecutionException</code>, and <code>TimeoutException</code>) that <code>future.get(long, TimeUnit)</code> can throw.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    <span class="hljs-type">Future</span>&lt;Integer&gt; <span class="hljs-variable">future</span> <span class="hljs-operator">=</span> executor.submit(task);
+    executor.shutdown();
+    System.out.println(future.get());
+}</code></pre></div><ul>
+<li><p>This option is incorrect because it unnecessarily calls <code>executor.shutdown()</code>. In a <code>try-with-resources</code> block, the <code>ExecutorService</code> is automatically closed when the block exits. Also, it doesn&#39;t handle the potential exceptions from <code>future.get()</code>.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">try</span> (<span class="hljs-type">var</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> Executors.newVirtualThreadPerTaskExecutor()) {
+    <span class="hljs-type">Future</span>&lt;Integer&gt; <span class="hljs-variable">future</span> <span class="hljs-operator">=</span> executor.submit(task);
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-type">Integer</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> future.get();
+        System.out.println(result);
+    } <span class="hljs-keyword">catch</span> (InterruptedException | ExecutionException e) {
+        e.printStackTrace();
+    }
+}</code></pre></div><ul>
+<li>This option is correct. It uses <code>try-with-resources</code> to automatically close the <code>ExecutorService</code>, properly submits the <code>Callable</code> task, retrieves the result using <code>Future.get()</code>, and handles the potential <code>InterruptedException</code> and <code>ExecutionException</code> that might be thrown.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q7" data-answer="0" aria-describedby="book-q7-feedback">
+          <legend>Question 7</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following statements about Java&#39;s concurrent collections is correct?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q7-option-0" type="radio" name="book-q7" value="0" aria-labelledby="book-q7-option-0-letter book-q7-option-0-text"><span class="option-letter" id="book-q7-option-0-letter">A</span><div class="quiz-option-content" id="book-q7-option-0-text"><p><code>ConcurrentHashMap</code> allows concurrent read and write operations, and retrieval operations do not block even when updates are being made.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-1" type="radio" name="book-q7" value="1" aria-labelledby="book-q7-option-1-letter book-q7-option-1-text"><span class="option-letter" id="book-q7-option-1-letter">B</span><div class="quiz-option-content" id="book-q7-option-1-text"><p><code>CopyOnWriteArrayList</code> is optimized for scenarios with a high number of write operations compared to read operations.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-2" type="radio" name="book-q7" value="2" aria-labelledby="book-q7-option-2-letter book-q7-option-2-text"><span class="option-letter" id="book-q7-option-2-letter">C</span><div class="quiz-option-content" id="book-q7-option-2-text"><p><code>ConcurrentSkipListSet</code> does not kept elements sorted.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-3" type="radio" name="book-q7" value="3" aria-labelledby="book-q7-option-3-letter book-q7-option-3-text"><span class="option-letter" id="book-q7-option-3-letter">D</span><div class="quiz-option-content" id="book-q7-option-3-text"><p><code>BlockingQueue</code> implementations like <code>LinkedBlockingQueue</code> allow elements to be added and removed concurrently without any internal locking mechanisms.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>ConcurrentHashMap</code> allows concurrent read and write operations, and retrieval operations do not block even when updates are being made.</p>
+<ul>
+<li>This statement is correct. <code>ConcurrentHashMap</code> is designed to handle concurrent access, allowing multiple threads to read and write simultaneously without blocking read operations during updates.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>CopyOnWriteArrayList</code> is optimized for scenarios with a high number of write operations compared to read operations. </p>
+<ul>
+<li>This statement is incorrect. <code>CopyOnWriteArrayList</code> is optimized for scenarios where read operations are far more frequent than write operations because it creates a new copy of the array on each write, which can be costly if writes are frequent.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>ConcurrentSkipListSet</code> does not kept elements sorted.</p>
+<ul>
+<li>This statement is incorrect. <code>ConcurrentSkipListSet</code> keep elements according to their natural ordering, or by a <code>Comparator</code> provided at set creation time.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>BlockingQueue</code> implementations like <code>LinkedBlockingQueue</code> allow elements to be added and removed concurrently without any internal locking mechanisms.</p>
+<ul>
+<li>This statement is incorrect. <code>BlockingQueue</code> implementations like <code>LinkedBlockingQueue</code> do use internal locking mechanisms to handle concurrent access safely.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q8" data-answer="1" aria-describedby="book-q8-feedback">
+          <legend>Question 8</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following statements about parallel streams is correct?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q8-option-0" type="radio" name="book-q8" value="0" aria-labelledby="book-q8-option-0-letter book-q8-option-0-text"><span class="option-letter" id="book-q8-option-0-letter">A</span><div class="quiz-option-content" id="book-q8-option-0-text"><p>Parallel streams always improve the performance of a program by utilizing multiple threads.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-1" type="radio" name="book-q8" value="1" aria-labelledby="book-q8-option-1-letter book-q8-option-1-text"><span class="option-letter" id="book-q8-option-1-letter">B</span><div class="quiz-option-content" id="book-q8-option-1-text"><p>Parallel streams can lead to incorrect results if the operations performed are not thread-safe.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-2" type="radio" name="book-q8" value="2" aria-labelledby="book-q8-option-2-letter book-q8-option-2-text"><span class="option-letter" id="book-q8-option-2-letter">C</span><div class="quiz-option-content" id="book-q8-option-2-text"><p>The order of elements in a parallel stream is always preserved compared to the original stream.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-3" type="radio" name="book-q8" value="3" aria-labelledby="book-q8-option-3-letter book-q8-option-3-text"><span class="option-letter" id="book-q8-option-3-letter">D</span><div class="quiz-option-content" id="book-q8-option-3-text"><p>Using parallel streams guarantees that the operations on elements will execute in a fixed order.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> Parallel streams always improve the performance of a program by utilizing multiple threads.</p>
+<ul>
+<li>This statement is incorrect because parallel streams do not always improve performance. The overhead of managing multiple threads can sometimes outweigh the benefits, especially for small datasets or simple operations.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Parallel streams can lead to incorrect results if the operations performed are not thread-safe.</p>
+<ul>
+<li>This statement is correct. When using parallel streams, care must be taken to ensure that the operations performed on the elements are thread-safe. Failure to do so can lead to race conditions and incorrect results.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The order of elements in a parallel stream is always preserved compared to the original stream.</p>
+<ul>
+<li>This statement is incorrect. The order of elements in a parallel stream is not guaranteed to be the same as in the original stream unless special care is taken to preserve the order, such as using ordered stream operations.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Using parallel streams guarantees that the operations on elements will execute in a fixed order.</p>
+<ul>
+<li>This statement is incorrect because parallel streams do not guarantee the order of execution of operations on elements. The operations may execute in a non-deterministic order due to the concurrent nature of parallel processing.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q9" data-answer="1" aria-describedby="book-q9-feedback">
+          <legend>Question 9</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following code snippets correctly demonstrates how to reduce a parallel stream to compute the sum of its elements?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.Arrays;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ParallelStreamExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">List</span>&lt;Integer&gt; <span class="hljs-variable">numbers</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>);
+        <span class="hljs-comment">// Insert code here</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q9-option-0" type="radio" name="book-q9" value="0" aria-labelledby="book-q9-option-0-letter book-q9-option-0-text"><span class="option-letter" id="book-q9-option-0-letter">A</span><div class="quiz-option-content" id="book-q9-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> numbers.parallelStream().reduce(<span class="hljs-number">1</span>, Integer::sum);
+System.out.println(sum);</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q9-option-1" type="radio" name="book-q9" value="1" aria-labelledby="book-q9-option-1-letter book-q9-option-1-text"><span class="option-letter" id="book-q9-option-1-letter">B</span><div class="quiz-option-content" id="book-q9-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> numbers.parallelStream().reduce(<span class="hljs-number">0</span>, Integer::sum);
+System.out.println(sum);</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q9-option-2" type="radio" name="book-q9" value="2" aria-labelledby="book-q9-option-2-letter book-q9-option-2-text"><span class="option-letter" id="book-q9-option-2-letter">C</span><div class="quiz-option-content" id="book-q9-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> numbers.stream().reduce(<span class="hljs-number">0</span>, Integer::sum);
+System.out.println(sum);</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q9-option-3" type="radio" name="book-q9" value="3" aria-labelledby="book-q9-option-3-letter book-q9-option-3-text"><span class="option-letter" id="book-q9-option-3-letter">D</span><div class="quiz-option-content" id="book-q9-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> numbers.parallelStream().collect(reduce(<span class="hljs-number">0</span>, Integer::sum));
+System.out.println(sum);</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> numbers.parallelStream().reduce(<span class="hljs-number">1</span>, Integer::sum);
+System.out.println(sum);</code></pre></div><ul>
+<li><p>This option is incorrect because it uses <code>1</code> as the identity value. The identity value for sum should be <code>0</code>, as it is the neutral element for addition. Starting the reduction with <code>1</code> will result in an incorrect sum that is incremented by <code>1</code>.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> numbers.parallelStream().reduce(<span class="hljs-number">0</span>, Integer::sum).collect();
+System.out.println(sum);</code></pre></div><ul>
+<li><p>This option is correct. It correctly uses <code>parallelStream()</code> to create a parallel stream and the <code>reduce</code> method with the identity value <code>0</code> and the method reference <code>Integer::sum</code> to sum the elements.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> numbers.stream().reduce(<span class="hljs-number">0</span>, Integer::sum);
+System.out.println(sum);</code></pre></div><ul>
+<li><p>This option is incorrect because it uses a sequential stream (<code>stream()</code>) instead of a parallel stream. While it correctly sums the elements, it does not demonstrate the use of a parallel stream as specified in the question.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> numbers.parallelStream().collect(reduce(<span class="hljs-number">0</span>, Integer::sum));
+System.out.println(sum);</code></pre></div><ul>
+<li>This option is incorrect because it attempts to use the <code>collect()</code> method in combination with <code>reduce()</code>, which is not the correct syntax. The <code>collect()</code> method is used for mutable reduction and is typically used with collectors, not with the <code>reduce()</code> operation directly.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart book practice</button></div>
+    </form>
+  </section><section class="chapter-quiz" id="chapter-quiz" aria-labelledby="quiz-title">
+    <h2 id="quiz-title">Extra quiz</h2>
+    <p class="quiz-intro">Choose an answer to see its explanation immediately. Correct choices appear in green; incorrect selections appear in red. For checkbox questions, select your answers, then choose Check answer.</p>
+    <details class="practice-context"><summary>About these questions</summary><p>11 original learning exercises, not official exam questions. Use Java 21 without preview features. Assume standard imports and a valid enclosing class or method, which may declare checked exceptions.</p></details>
+    <p class="quiz-saving">Your selections and feedback are saved in this browser.</p>
+    <noscript><p>Enable JavaScript for scoring. The book’s practice questions and separate answer sheet remain available without it.</p></noscript>
+    <form class="quiz-form" data-quiz="ch10">
+      <p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="quiz-q1" data-answer="1" aria-describedby="quiz-q1-feedback">
+          <legend><span class="quiz-number">1.</span> Which call requests execution on a newly started thread?</legend>
+          <div class="quiz-question-meta">Starting threads · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q1" value="0"><span class="option-letter">A</span><span>thread.run()</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="1"><span class="option-letter">B</span><span>thread.start()</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="2"><span class="option-letter">C</span><span>thread.wait()</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="3"><span class="option-letter">D</span><span>thread.toString()</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">start schedules a new thread to execute run. Calling run directly is an ordinary call on the current thread.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q2" data-answer="2" aria-describedby="quiz-q2-feedback">
+          <legend><span class="quiz-number">2.</span> Which starts a virtual thread in Java 21?</legend>
+          <div class="quiz-question-meta">Virtual thread creation · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q2" value="0"><span class="option-letter">A</span><span>new Thread(task).run()</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="1"><span class="option-letter">B</span><span>Thread.ofPlatform().start(task)</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="2"><span class="option-letter">C</span><span>Thread.startVirtualThread(task)</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="3"><span class="option-letter">D</span><span>Thread.startVirtual(task)</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">startVirtualThread starts a virtual thread running the Runnable. This feature is final in Java 21.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q3" data-answer="3" aria-describedby="quiz-q3-feedback">
+          <legend><span class="quiz-number">3.</span> Which operation waits for a specific thread to finish?</legend>
+          <div class="quiz-question-meta">Waiting for completion · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q3" value="0"><span class="option-letter">A</span><span>sleep(100)</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="1"><span class="option-letter">B</span><span>yield()</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="2"><span class="option-letter">C</span><span>interrupt()</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="3"><span class="option-letter">D</span><span>join()</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">join waits for that thread’s termination. Sleeping delays the current thread but does not establish that another thread has finished.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q4" data-answer="0" aria-describedby="quiz-q4-feedback">
+          <legend><span class="quiz-number">4.</span> Why can two threads lose updates with <code>count++</code>?</legend>
+          <div class="quiz-question-meta">Atomicity · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q4" value="0"><span class="option-letter">A</span><span>It combines a read, an addition, and a write</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="1"><span class="option-letter">B</span><span>int reads are never atomic</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="2"><span class="option-letter">C</span><span>It is illegal in threads</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="3"><span class="option-letter">D</span><span>It always executes twice</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">An increment is a compound operation. Threads can read the same old value and both write the same incremented value.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q5" data-answer="2" aria-describedby="quiz-q5-feedback">
+          <legend><span class="quiz-number">5.</span> Does declaring <code>volatile int count</code> make <code>count++</code> atomic?</legend>
+          <div class="quiz-question-meta">Volatile · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q5" value="0"><span class="option-letter">A</span><span>Yes, for all thread counts</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="1"><span class="option-letter">B</span><span>Yes, only for virtual threads</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="2"><span class="option-letter">C</span><span>No</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="3"><span class="option-letter">D</span><span>Only when count starts at zero</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">volatile provides visibility and ordering guarantees, but does not turn this read-modify-write sequence into one atomic operation.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q6" data-answer="0" aria-describedby="quiz-q6-feedback">
+          <legend><span class="quiz-number">6.</span> Which performs an atomic increment and returns the new value?</legend>
+          <div class="quiz-question-meta">Atomic integers · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q6" value="0"><span class="option-letter">A</span><span>atomic.incrementAndGet()</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="1"><span class="option-letter">B</span><span>atomic.getAndSet(1)</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="2"><span class="option-letter">C</span><span>atomic.get() + 1</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="3"><span class="option-letter">D</span><span>atomic.set(atomic.get() + 1)</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">AtomicInteger.incrementAndGet atomically increments the current value. Separate get and set calls do not provide that compound guarantee.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q7" data-answer="1" aria-describedby="quiz-q7-feedback">
+          <legend><span class="quiz-number">7.</span> Which methods synchronize on the same monitor for the same object instance?</legend>
+          <div class="quiz-question-meta">Synchronization · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q7" value="0"><span class="option-letter">A</span><span>A static method and an instance method</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="1"><span class="option-letter">B</span><span>Instance synchronized methods on that instance</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="2"><span class="option-letter">C</span><span>Instance methods on different instances</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="3"><span class="option-letter">D</span><span>All methods in the package</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">An instance synchronized method locks its receiver. Static synchronized methods instead lock the declaring class’s Class object.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q8" data-answer="3" aria-describedby="quiz-q8-feedback">
+          <legend><span class="quiz-number">8.</span> Which statement is correct?</legend>
+          <div class="quiz-question-meta">Callable vs Runnable · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q8" value="0"><span class="option-letter">A</span><span>Runnable returns a generic result</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="1"><span class="option-letter">B</span><span>Callable cannot throw checked exceptions</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="2"><span class="option-letter">C</span><span>Callable must start its own Thread</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="3"><span class="option-letter">D</span><span>Callable can return a value and throw checked exceptions</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Callable.call can return a result and declare Exception. Runnable.run returns void and does not declare checked exceptions.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q9" data-answer="2" aria-describedby="quiz-q9-feedback">
+          <legend><span class="quiz-number">9.</span> What does <code>ExecutorService.shutdown()</code> do?</legend>
+          <div class="quiz-question-meta">Executor shutdown · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q9" value="0"><span class="option-letter">A</span><span>Immediately kills all threads</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="1"><span class="option-letter">B</span><span>Cancels every submitted task</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="2"><span class="option-letter">C</span><span>Stops accepting new tasks while allowing submitted tasks to run</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="3"><span class="option-letter">D</span><span>Waits forever until tasks finish</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">shutdown initiates orderly shutdown and returns without waiting for termination. Use an appropriate waiting mechanism if completion matters.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q10" data-answer="1" aria-describedby="quiz-q10-feedback">
+          <legend><span class="quiz-number">10.</span> Does using virtual threads remove the need to protect shared mutable state?</legend>
+          <div class="quiz-question-meta">Thread safety · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q10" value="0"><span class="option-letter">A</span><span>Yes, because they run sequentially</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="1"><span class="option-letter">B</span><span>No, synchronization rules still apply</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="2"><span class="option-letter">C</span><span>Yes, if they are daemon threads</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="3"><span class="option-letter">D</span><span>Only when they are created with a builder</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q10-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Virtual threads can execute concurrently and access shared data. They do not make ordinary data structures or compound operations thread-safe.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q11" data-answer="0,2" aria-describedby="quiz-q11-feedback">
+          <legend><span class="quiz-number">11.</span> Which two statements about virtual threads in Java 21 are correct?</legend>
+          <div class="quiz-question-meta">Virtual threads · Select 2 answers</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="0"><span class="option-letter">A</span><span>They are daemon threads</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="1"><span class="option-letter">B</span><span>They guarantee race-free access to shared data</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="2"><span class="option-letter">C</span><span>They can run Runnable tasks</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="3"><span class="option-letter">D</span><span>They require preview mode</span></label></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="quiz-q11-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Virtual threads are daemon threads and execute Runnable tasks. They are final in Java 21 and do not eliminate data races.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart extra quiz</button></div>
+    </form>
+  </section>
+  <section class="study-resources" id="free-resources" aria-labelledby="resources-title"><h2 id="resources-title">Free resources</h2><p>Use these to revisit the rules or try more examples. Links open in a new tab and need an internet connection. Some tutorials also cover Java versions newer than 21.</p>
+    <ul><li><a href="https://dev.java/learn/api/virtual-threads/" target="_blank" rel="noopener noreferrer">Virtual threads — Dev.java<span class="sr-only"> (opens in a new tab)</span></a><p>Free explanation of virtual thread usage and tradeoffs.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html" target="_blank" rel="noopener noreferrer">Thread API — Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>Thread creation, virtual threads, start, and join.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/package-summary.html" target="_blank" rel="noopener noreferrer">Concurrency API overview<span class="sr-only"> (opens in a new tab)</span></a><p>Executors, futures, concurrent collections, and memory consistency.</p></li></ul>
+    <p class="resource-date">Links reviewed 31 October 2026.</p>
+  </section></article><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch10.html"><small>Previous · Chapter 10</small>Concurrency and Multithreading</a><a href="ch11.html"><small>Next · Chapter 11</small>The Date/Time API <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>Practice sections</summary><nav aria-label="On this page"><a class="toc-link" href="#book-practice">Book questions · 9</a><a class="toc-link" href="#chapter-quiz">Extra quiz · 11</a><a class="toc-link" href="#free-resources">Free resources</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

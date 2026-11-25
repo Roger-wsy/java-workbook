@@ -1,0 +1,446 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Chapter 7.1 Practice</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch07-practice"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link selected" href="ch07-practice.html" aria-current="page"><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Chapter 7.1 Practice</h1><p class="practice-subtitle">Error Handling and Exceptions</p><div class="document-meta">8 book questions <span>·</span> 11 extra quiz questions</div><div class="chapter-actions"><a href="ch07.html">Read chapter 7</a><a class="active" aria-current="page" href="ch07-practice.html">Practice 7.1</a><a href="ch07a.html">Original answers</a></div></div><nav class="practice-section-nav" aria-label="Practice sections"><a href="#book-practice">Book questions</a><a href="#chapter-quiz">Extra quiz</a><button type="button" class="reset-all-quizzes">Reset all questions</button></nav><article class="prose practice-prose"><section class="chapter-quiz book-practice" id="book-practice" aria-labelledby="book-practice-title">
+    <h2 id="book-practice-title">Book practice questions</h2>
+    <p class="quiz-intro">8 questions from the chapter, with the book’s explanations. Single-answer questions show immediate feedback. For checkbox questions, select your answers, then choose Check answer. Reviewed corrections and clarifications are identified beside the question.</p>
+    <form class="quiz-form" data-quiz="book-ch07"><p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="book-q1" data-answer="1" aria-describedby="book-q1-feedback">
+          <legend>Question 1</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following statements correctly describes a checked exception in Java?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q1-option-0" type="radio" name="book-q1" value="0" aria-labelledby="book-q1-option-0-letter book-q1-option-0-text"><span class="option-letter" id="book-q1-option-0-letter">A</span><div class="quiz-option-content" id="book-q1-option-0-text"><p>A checked exception is a type of exception that inherits from the <code>java.lang.RuntimeException</code> class.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-1" type="radio" name="book-q1" value="1" aria-labelledby="book-q1-option-1-letter book-q1-option-1-text"><span class="option-letter" id="book-q1-option-1-letter">B</span><div class="quiz-option-content" id="book-q1-option-1-text"><p>A checked exception must be either caught or declared in the method signature using the <code>throws</code> keyword.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-2" type="radio" name="book-q1" value="2" aria-labelledby="book-q1-option-2-letter book-q1-option-2-text"><span class="option-letter" id="book-q1-option-2-letter">C</span><div class="quiz-option-content" id="book-q1-option-2-text"><p>A checked exception is an error that is typically caused by the environment in which the application is running, and it cannot be handled by the application.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-3" type="radio" name="book-q1" value="3" aria-labelledby="book-q1-option-3-letter book-q1-option-3-text"><span class="option-letter" id="book-q1-option-3-letter">D</span><div class="quiz-option-content" id="book-q1-option-3-text"><p>A checked exception can be thrown by the Java Virtual Machine when a severe error occurs, such as an out-of-memory error.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A.</strong> A checked exception is a type of exception that inherits from the <code>java.lang.RuntimeException</code> class.</p>
+<ul>
+<li>This option is incorrect. A checked exception does not inherit from <code>java.lang.RuntimeException</code>. Checked exceptions are subclasses of <code>java.lang.Exception</code> but not of <code>java.lang.RuntimeException</code>.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> A checked exception must be either caught or declared in the method signature using the <code>throws</code> keyword.</p>
+<ul>
+<li>This option is correct. Checked exceptions must be either caught using a <code>try-catch</code> block or declared in the method signature with the <code>throws</code> keyword. This is to ensure that the exception is properly handled at some point in the code.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> A checked exception is an error that is typically caused by the environment in which the application is running, and it cannot be handled by the application.</p>
+<ul>
+<li>This option is incorrect. It describes errors more accurately than checked exceptions. Errors are typically caused by the environment and are not expected to be handled by the application.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> A checked exception can be thrown by the Java Virtual Machine when a severe error occurs, such as an out-of-memory error.</p>
+<ul>
+<li>This option is incorrect. It describes errors rather than checked exceptions. Errors like out-of-memory errors are thrown by the JVM and are not meant to be caught or handled by applications in most cases.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q2" data-answer="0" aria-describedby="book-q2-feedback">
+          <legend>Question 2</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following code snippets correctly defines and throws a custom checked exception?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Exception</span> {
+    <span class="hljs-type">public</span> <span class="hljs-title function_">CustomException</span><span class="hljs-params">(String message)</span> {
+        <span class="hljs-built_in">super</span>(message);
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestCustomException</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-keyword">try</span> {
+            methodThatThrowsException();
+        } <span class="hljs-keyword">catch</span> (CustomException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">methodThatThrowsException</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> CustomException {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomException</span>(<span class="hljs-string">&quot;This is a custom checked exception&quot;</span>);
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q2-option-0" type="radio" name="book-q2" value="0" aria-labelledby="book-q2-option-0-letter book-q2-option-0-text"><span class="option-letter" id="book-q2-option-0-letter">A</span><div class="quiz-option-content" id="book-q2-option-0-text"><p>This code defines a custom checked exception and correctly throws and handles it.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-1" type="radio" name="book-q2" value="1" aria-labelledby="book-q2-option-1-letter book-q2-option-1-text"><span class="option-letter" id="book-q2-option-1-letter">B</span><div class="quiz-option-content" id="book-q2-option-1-text"><p>This code defines a custom unchecked exception.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-2" type="radio" name="book-q2" value="2" aria-labelledby="book-q2-option-2-letter book-q2-option-2-text"><span class="option-letter" id="book-q2-option-2-letter">C</span><div class="quiz-option-content" id="book-q2-option-2-text"><p>This code will not compile because the custom exception is not declared correctly in the method signature.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-3" type="radio" name="book-q2" value="3" aria-labelledby="book-q2-option-3-letter book-q2-option-3-text"><span class="option-letter" id="book-q2-option-3-letter">D</span><div class="quiz-option-content" id="book-q2-option-3-text"><p>This code will compile but will not throw the custom exception at runtime.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A.</strong> This code defines a custom checked exception and correctly throws and handles it.</p>
+<ul>
+<li>This option is correct. The code defines a custom checked exception by extending <code>Exception</code>. The <code>methodThatThrowsException</code> method throws this custom exception, which is then caught and handled in the <code>main</code> method.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> This code defines a custom unchecked exception. </p>
+<ul>
+<li>This option is incorrect. The code extends <code>Exception</code>, not <code>RuntimeException</code>, making it a checked exception rather than an unchecked one.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> This code will not compile because the custom exception is not declared correctly in the method signature.</p>
+<ul>
+<li>This option is incorrect. The custom exception is correctly declared in the method signature of <code>methodThatThrowsException</code>, so it will compile without issues.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> This code will compile but will not throw the custom exception at runtime.</p>
+<ul>
+<li>This option is incorrect. The code will throw the custom exception at runtime as expected, and it will be caught and handled in the <code>catch</code> block.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q3" data-answer="1" aria-describedby="book-q3-feedback">
+          <legend>Question 3</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Given the following class, what is the result?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">myMethod</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>();
+        } <span class="hljs-keyword">catch</span>(RuntimeException e) {
+             <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        } <span class="hljs-keyword">finally</span> {
+             <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;
+        }
+    }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        System.out.println(myMethod());
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q3-option-0" type="radio" name="book-q3" value="0" aria-labelledby="book-q3-option-0-letter book-q3-option-0-text"><span class="option-letter" id="book-q3-option-0-letter">A</span><div class="quiz-option-content" id="book-q3-option-0-text"><p><code>1</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-1" type="radio" name="book-q3" value="1" aria-labelledby="book-q3-option-1-letter book-q3-option-1-text"><span class="option-letter" id="book-q3-option-1-letter">B</span><div class="quiz-option-content" id="book-q3-option-1-text"><p><code>2</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-2" type="radio" name="book-q3" value="2" aria-labelledby="book-q3-option-2-letter book-q3-option-2-text"><span class="option-letter" id="book-q3-option-2-letter">C</span><div class="quiz-option-content" id="book-q3-option-2-text"><p>Compilation fails</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-3" type="radio" name="book-q3" value="3" aria-labelledby="book-q3-option-3-letter book-q3-option-3-text"><span class="option-letter" id="book-q3-option-3-letter">D</span><div class="quiz-option-content" id="book-q3-option-3-text"><p>An exception occurs at runtime</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A.</strong> <code>1</code></p>
+<ul>
+<li>This option is incorrect. Although the <code>catch</code> block returns <code>1</code>, the <code>finally</code> block will override this return value with <code>2</code>.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> <code>2</code></p>
+<ul>
+<li>This option is correct. The <code>finally</code> block always executes and its return value overrides the return value from the <code>catch</code> block, resulting in <code>2</code> being printed.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> Compilation fails</p>
+<ul>
+<li>This option is incorrect. The code compiles without any errors.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> An exception occurs at runtime</p>
+<ul>
+<li>This option is incorrect. While a <code>RuntimeException</code> is thrown in the <code>try</code> block, it is caught by the <code>catch</code> block, and no exception propagates to cause a runtime error.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q4" data-answer="3" aria-describedby="book-q4-feedback">
+          <legend>Question 4</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Given the following class, which of the following statement is true?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-comment">// Do nothing</span>
+        } <span class="hljs-keyword">finally</span> {
+            <span class="hljs-comment">// Do nothing</span>
+        }
+    }
+}</code></pre></div></div>
+          <p class="question-review-note"><strong>Reviewed note:</strong> Choose the best description of the code as written. Adding a catch is unnecessary, although a suitable catch could also compile.</p>
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q4-option-0" type="radio" name="book-q4" value="0" aria-labelledby="book-q4-option-0-letter book-q4-option-0-text"><span class="option-letter" id="book-q4-option-0-letter">A</span><div class="quiz-option-content" id="book-q4-option-0-text"><p>The code doesn&#39;t compile correctly.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-1" type="radio" name="book-q4" value="1" aria-labelledby="book-q4-option-1-letter book-q4-option-1-text"><span class="option-letter" id="book-q4-option-1-letter">B</span><div class="quiz-option-content" id="book-q4-option-1-text"><p>The code would compile correctly if we add a <code>catch</code> block.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-2" type="radio" name="book-q4" value="2" aria-labelledby="book-q4-option-2-letter book-q4-option-2-text"><span class="option-letter" id="book-q4-option-2-letter">C</span><div class="quiz-option-content" id="book-q4-option-2-text"><p>The code would compile correctly if we remove the <code>finally</code> block.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-3" type="radio" name="book-q4" value="3" aria-labelledby="book-q4-option-3-letter book-q4-option-3-text"><span class="option-letter" id="book-q4-option-3-letter">D</span><div class="quiz-option-content" id="book-q4-option-3-text"><p>The code compiles correctly as it is.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A.</strong> The code doesn&#39;t compile correctly.</p>
+<ul>
+<li>This option is incorrect. The code does compile correctly. A <code>try</code> block can be followed by a <code>finally</code> block without a <code>catch</code> block.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> The code would compile correctly if we add a <code>catch</code> block.</p>
+<ul>
+<li>This option is incorrect. While adding a <code>catch</code> block is valid, it is not necessary for the code to compile. The <code>try</code> block can be used with only a <code>finally</code> block.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> The code would compile correctly if we remove the <code>finally</code> block.</p>
+<ul>
+<li>This option is incorrect. Removing the <code>finally</code> block is not necessary for the code to compile. The code is valid with the <code>finally</code> block present.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> The code compiles correctly as it is.</p>
+<ul>
+<li>This option is correct. The code compiles correctly as it is. A <code>try</code> block must be followed by either a <code>catch</code> block, a <code>finally</code> block, or both.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Includes a reviewed clarification or correction. <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-14.html#jls-14.20" target="_blank" rel="noopener noreferrer">Check the Java reference<span class="sr-only"> (opens in a new tab)</span></a></p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q5" data-answer="2" aria-describedby="book-q5-feedback">
+          <legend>Question 5</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following statements are true? (Choose all that apply)</p>
+</div>
+          <p class="question-review-note"><strong>Reviewed note:</strong> The book marks C and D, but D is too broad: an unchecked exception can be caught even when the try body does not throw it explicitly.</p>
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q5-option-0" type="radio" name="book-q5" value="0" aria-labelledby="book-q5-option-0-letter book-q5-option-0-text"><span class="option-letter" id="book-q5-option-0-letter">A</span><div class="quiz-option-content" id="book-q5-option-0-text"><p>In a <code>try-with-resources</code>, the <code>catch</code> block is required.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-1" type="radio" name="book-q5" value="1" aria-labelledby="book-q5-option-1-letter book-q5-option-1-text"><span class="option-letter" id="book-q5-option-1-letter">B</span><div class="quiz-option-content" id="book-q5-option-1-text"><p>The <code>throws</code> keyword is used to throw an exception.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-2" type="radio" name="book-q5" value="2" aria-labelledby="book-q5-option-2-letter book-q5-option-2-text"><span class="option-letter" id="book-q5-option-2-letter">C</span><div class="quiz-option-content" id="book-q5-option-2-text"><p>In a <code>try-with-resources</code> block, if you declare more than one resource, they have to be separated by a semicolon.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-3" type="radio" name="book-q5" value="3" aria-labelledby="book-q5-option-3-letter book-q5-option-3-text"><span class="option-letter" id="book-q5-option-3-letter">D</span><div class="quiz-option-content" id="book-q5-option-3-text"><p>If a <code>catch</code> block is defined for an exception that couldn&#39;t be thrown by the code in the <code>try</code> block, a compile-time error is generated.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><p><strong>C is correct:</strong> resources in a try-with-resources header are separated by semicolons. A is false because catch is optional. B confuses <code>throw</code> with <code>throws</code>. D is false as a general rule: catches for unchecked exceptions, and some broad exception types, are allowed without a matching checked throw in the try body.</p>
+</div><p class="answer-origin">Includes a reviewed clarification or correction. <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-11.html#jls-11.2.3" target="_blank" rel="noopener noreferrer">Check the Java reference<span class="sr-only"> (opens in a new tab)</span></a></p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q6" data-answer="4" aria-describedby="book-q6-feedback">
+          <legend>Question 6</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Given the following class, what is the result?:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Connection</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">java</span>.io.Closeable {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">close</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IOException</span>(<span class="hljs-string">&quot;Close Exception&quot;</span>);
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-keyword">try</span> (<span class="hljs-type">Connection</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Connection</span>()) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;RuntimeException&quot;</span>);
+        } <span class="hljs-keyword">catch</span> (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q6-option-0" type="radio" name="book-q6" value="0" aria-labelledby="book-q6-option-0-letter book-q6-option-0-text"><span class="option-letter" id="book-q6-option-0-letter">A</span><div class="quiz-option-content" id="book-q6-option-0-text"><p><code>Close Exception</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-1" type="radio" name="book-q6" value="1" aria-labelledby="book-q6-option-1-letter book-q6-option-1-text"><span class="option-letter" id="book-q6-option-1-letter">B</span><div class="quiz-option-content" id="book-q6-option-1-text"><p><code>RuntimeException</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-2" type="radio" name="book-q6" value="2" aria-labelledby="book-q6-option-2-letter book-q6-option-2-text"><span class="option-letter" id="book-q6-option-2-letter">C</span><div class="quiz-option-content" id="book-q6-option-2-text"><p><code>RuntimeException</code> and then <code>CloseException</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-3" type="radio" name="book-q6" value="3" aria-labelledby="book-q6-option-3-letter book-q6-option-3-text"><span class="option-letter" id="book-q6-option-3-letter">D</span><div class="quiz-option-content" id="book-q6-option-3-text"><p>Compilation fails</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-4" type="radio" name="book-q6" value="4" aria-labelledby="book-q6-option-4-letter book-q6-option-4-text"><span class="option-letter" id="book-q6-option-4-letter">E</span><div class="quiz-option-content" id="book-q6-option-4-text"><p>The stack trace of an uncaught exception is printed</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A.</strong> <code>Close Exception</code></p>
+<ul>
+<li>This option is incorrect. While the <code>IOException</code> from <code>close()</code> will occur, it will be suppressed by the <code>RuntimeException</code>.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> <code>RuntimeException</code></p>
+<ul>
+<li>This option is incorrect. The primary exception is <code>RuntimeException</code>, but it will not print its message directly because the catch block does not handle it.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> <code>RuntimeException</code> and then <code>CloseException</code> </p>
+<ul>
+<li>This option is incorrect. Although both exceptions occur, the <code>RuntimeException</code> is primary, and the <code>IOException</code> is suppressed. Both messages are not printed in sequence.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> Compilation fails</p>
+<ul>
+<li>This option is incorrect. The code compiles without any errors.</li>
+</ul>
+</li>
+<li><p><strong>E.</strong> The stack trace of an uncaught exception is printed.</p>
+<ul>
+<li>This option is correct. The <code>RuntimeException</code> thrown in the try block is not caught by the <code>catch (IOException e)</code> block. Hence, the stack trace of the <code>RuntimeException</code> is printed.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q7" data-answer="1,2" aria-describedby="book-q7-feedback">
+          <legend>Question 7</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Which of the following exceptions are direct subclasses of <code>RuntimeException</code>?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q7-option-0" type="checkbox" name="book-q7" value="0" aria-labelledby="book-q7-option-0-letter book-q7-option-0-text"><span class="option-letter" id="book-q7-option-0-letter">A</span><div class="quiz-option-content" id="book-q7-option-0-text"><p><code>java.io.FileNotFoundException</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-1" type="checkbox" name="book-q7" value="1" aria-labelledby="book-q7-option-1-letter book-q7-option-1-text"><span class="option-letter" id="book-q7-option-1-letter">B</span><div class="quiz-option-content" id="book-q7-option-1-text"><p><code>java.lang.ArithmeticException</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-2" type="checkbox" name="book-q7" value="2" aria-labelledby="book-q7-option-2-letter book-q7-option-2-text"><span class="option-letter" id="book-q7-option-2-letter">C</span><div class="quiz-option-content" id="book-q7-option-2-text"><p><code>java.lang.ClassCastException</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-3" type="checkbox" name="book-q7" value="3" aria-labelledby="book-q7-option-3-letter book-q7-option-3-text"><span class="option-letter" id="book-q7-option-3-letter">D</span><div class="quiz-option-content" id="book-q7-option-3-text"><p><code>java.lang.InterruptedException</code></p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A.</strong> <code>java.io.FileNotFoundException</code> is incorrect. It is a subclass of <code>java.io.IOException</code>, which in turn is a subclass of <code>java.lang.Exception</code>, making it a checked exception.</p>
+</li>
+<li><p><strong>B.</strong> <code>java.lang.ArithmeticException</code> is correct. It is a direct subclass of <code>java.lang.RuntimeException</code> and represents arithmetic errors such as division by zero.</p>
+</li>
+<li><p><strong>C.</strong> <code>java.lang.ClassCastException</code> is correct. It is a direct subclass of <code>java.lang.RuntimeException</code> and indicates an invalid cast operation.</p>
+</li>
+<li><p><strong>D.</strong> <code>java.lang.InterruptedException</code> is incorrect. It is a direct subclass of <code>java.lang.Exception</code>, making it a checked exception. It indicates that a thread has been interrupted.</p>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q8" data-answer="3" aria-describedby="book-q8-feedback">
+          <legend>Question 8</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Given the following code, what is the result?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyResource</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">AutoCloseable</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">close</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;Close Exception&quot;</span>);
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-keyword">try</span> (<span class="hljs-type">MyResource</span> <span class="hljs-variable">resource</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyResource</span>()) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;Try Block Exception&quot;</span>);
+        } <span class="hljs-keyword">catch</span> (RuntimeException e) {
+            <span class="hljs-type">Throwable</span>[] <span class="hljs-variable">suppressed</span> <span class="hljs-operator">=</span> e.getSuppressed();
+            <span class="hljs-keyword">if</span> (suppressed.length &gt; <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">for</span> (Throwable t : suppressed) {
+                    System.out.println(<span class="hljs-string">&quot;Suppressed: &quot;</span> + t.getMessage());
+                }
+            } <span class="hljs-keyword">else</span> {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q8-option-0" type="radio" name="book-q8" value="0" aria-labelledby="book-q8-option-0-letter book-q8-option-0-text"><span class="option-letter" id="book-q8-option-0-letter">A</span><div class="quiz-option-content" id="book-q8-option-0-text"><p>Only <code>&quot;Try Block Exception&quot;</code> is printed.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-1" type="radio" name="book-q8" value="1" aria-labelledby="book-q8-option-1-letter book-q8-option-1-text"><span class="option-letter" id="book-q8-option-1-letter">B</span><div class="quiz-option-content" id="book-q8-option-1-text"><p>Only <code>&quot;Close Exception&quot;</code> is printed.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-2" type="radio" name="book-q8" value="2" aria-labelledby="book-q8-option-2-letter book-q8-option-2-text"><span class="option-letter" id="book-q8-option-2-letter">C</span><div class="quiz-option-content" id="book-q8-option-2-text"><p>Both <code>&quot;Try Block Exception&quot;</code> and <code>&quot;Close Exception&quot;</code> are printed.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-3" type="radio" name="book-q8" value="3" aria-labelledby="book-q8-option-3-letter book-q8-option-3-text"><span class="option-letter" id="book-q8-option-3-letter">D</span><div class="quiz-option-content" id="book-q8-option-3-text"><p><code>&quot;Suppressed: Close Exception&quot;</code> is printed.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A.</strong> Only <code>&quot;Try Block Exception&quot;</code> is printed.</p>
+<ul>
+<li>This option is incorrect. The <code>Try Block Exception</code> is the main exception and is not directly printed because the <code>catch</code> block checks for suppressed exceptions first.</li>
+</ul>
+</li>
+<li><p><strong>B.</strong> Only <code>&quot;Close Exception&quot;</code> is printed.</p>
+<ul>
+<li>This option is incorrect. The <code>Close Exception</code> is not directly printed; it is suppressed and accessed via the <code>getSuppressed</code> method.</li>
+</ul>
+</li>
+<li><p><strong>C.</strong> Both <code>&quot;Try Block Exception&quot;</code> and <code>&quot;Close Exception&quot;</code> are printed.</p>
+<ul>
+<li>This option is incorrect. The code only prints suppressed exceptions, not the main exception message directly.</li>
+</ul>
+</li>
+<li><p><strong>D.</strong> <code>&quot;Suppressed: Close Exception&quot;</code> is printed.</p>
+<ul>
+<li>This option is correct. The <code>RuntimeException</code> thrown in the <code>try</code> block is the main exception, and the <code>RuntimeException</code> from the <code>close</code> method is suppressed. The <code>catch</code> block prints the suppressed exception message, <code>&quot;Suppressed: Close Exception&quot;</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart book practice</button></div>
+    </form>
+  </section><section class="chapter-quiz" id="chapter-quiz" aria-labelledby="quiz-title">
+    <h2 id="quiz-title">Extra quiz</h2>
+    <p class="quiz-intro">Choose an answer to see its explanation immediately. Correct choices appear in green; incorrect selections appear in red. For checkbox questions, select your answers, then choose Check answer.</p>
+    <details class="practice-context"><summary>About these questions</summary><p>11 original learning exercises, not official exam questions. Use Java 21 without preview features. Assume standard imports and a valid enclosing class or method, which may declare checked exceptions.</p></details>
+    <p class="quiz-saving">Your selections and feedback are saved in this browser.</p>
+    <noscript><p>Enable JavaScript for scoring. The book’s practice questions and separate answer sheet remain available without it.</p></noscript>
+    <form class="quiz-form" data-quiz="ch07">
+      <p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="quiz-q1" data-answer="1" aria-describedby="quiz-q1-feedback">
+          <legend><span class="quiz-number">1.</span> Which exception is checked?</legend>
+          <div class="quiz-question-meta">Checked exceptions · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q1" value="0"><span class="option-letter">A</span><span>NullPointerException</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="1"><span class="option-letter">B</span><span>IOException</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="2"><span class="option-letter">C</span><span>IllegalArgumentException</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="3"><span class="option-letter">D</span><span>ArithmeticException</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">IOException is checked. The other options extend RuntimeException and do not require catch-or-declare.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q2" data-answer="2" aria-describedby="quiz-q2-feedback">
+          <legend><span class="quiz-number">2.</span> A method calls an operation declared to throw IOException. What normally satisfies the compiler?</legend>
+          <div class="quiz-question-meta">Handling checked exceptions · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q2" value="0"><span class="option-letter">A</span><span>Ignore it because IOException is unchecked</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="1"><span class="option-letter">B</span><span>Use final on the method</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="2"><span class="option-letter">C</span><span>Catch it or declare it in throws</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="3"><span class="option-letter">D</span><span>Only use a synchronized block</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">A checked exception that can escape an operation must normally be handled or declared by the calling method.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q3" data-answer="3" aria-describedby="quiz-q3-feedback">
+          <legend><span class="quiz-number">3.</span> Why does this fail to compile?</legend>
+          <div class="quiz-question-meta">Catch ordering · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">java</span>.io.IOException();
+} <span class="hljs-keyword">catch</span> (Exception e) {
+} <span class="hljs-keyword">catch</span> (java.io.IOException e) {
+}</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q3" value="0"><span class="option-letter">A</span><span>IOException cannot be thrown explicitly</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="1"><span class="option-letter">B</span><span>Every catch needs finally</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="2"><span class="option-letter">C</span><span>Exception is not throwable</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="3"><span class="option-letter">D</span><span>The first catch already handles IOException</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">A subtype catch cannot follow a catch for a supertype that already handles it.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q4" data-answer="0" aria-describedby="quiz-q4-feedback">
+          <legend><span class="quiz-number">4.</span> What is returned by f()?</legend>
+          <div class="quiz-question-meta">Finally · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">f</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">try</span> { <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; }
+    <span class="hljs-keyword">finally</span> { <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>; }
+}</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q4" value="0"><span class="option-letter">A</span><span>2</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="1"><span class="option-letter">B</span><span>1</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="2"><span class="option-letter">C</span><span>0</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="3"><span class="option-letter">D</span><span>It throws an exception</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The return from finally overrides the pending return from try. Avoid returning from finally because it hides prior results and exceptions.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q5" data-answer="1" aria-describedby="quiz-q5-feedback">
+          <legend><span class="quiz-number">5.</span> Two resources are declared as <code>try (var a = openA(); var b = openB())</code>. How are they normally closed?</legend>
+          <div class="quiz-question-meta">Resource order · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q5" value="0"><span class="option-letter">A</span><span>a, then b</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="1"><span class="option-letter">B</span><span>b, then a</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="2"><span class="option-letter">C</span><span>In arbitrary order</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="3"><span class="option-letter">D</span><span>Neither is closed automatically</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Resources close in reverse declaration order, including when the try body throws.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q6" data-answer="2" aria-describedby="quiz-q6-feedback">
+          <legend><span class="quiz-number">6.</span> The try body throws A and resource.close() throws B. Which normally escapes?</legend>
+          <div class="quiz-question-meta">Suppressed exceptions · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q6" value="0"><span class="option-letter">A</span><span>Only B, with A suppressed</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="1"><span class="option-letter">B</span><span>An arbitrary one</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="2"><span class="option-letter">C</span><span>A, with B suppressed</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="3"><span class="option-letter">D</span><span>Neither; they cancel</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The body’s exception remains primary. Closing failures are recorded as suppressed exceptions on it.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q7" data-answer="3" aria-describedby="quiz-q7-feedback">
+          <legend><span class="quiz-number">7.</span> Which multi-catch is invalid?</legend>
+          <div class="quiz-question-meta">Multi-catch · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q7" value="0"><span class="option-letter">A</span><span>IOException | SQLException</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="1"><span class="option-letter">B</span><span>NullPointerException | IllegalArgumentException</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="2"><span class="option-letter">C</span><span>IOException | IllegalArgumentException</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="3"><span class="option-letter">D</span><span>IOException | FileNotFoundException</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The alternatives cannot have a subtype relationship. FileNotFoundException already extends IOException.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q8" data-answer="0" aria-describedby="quiz-q8-feedback">
+          <legend><span class="quiz-number">8.</span> Which superclass makes a custom exception unchecked?</legend>
+          <div class="quiz-question-meta">Custom exceptions · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q8" value="0"><span class="option-letter">A</span><span>RuntimeException</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="1"><span class="option-letter">B</span><span>IOException</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="2"><span class="option-letter">C</span><span>Exception directly</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="3"><span class="option-letter">D</span><span>ReflectiveOperationException</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">RuntimeException subclasses are unchecked. Extending Exception directly normally creates a checked exception.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q9" data-answer="1" aria-describedby="quiz-q9-feedback">
+          <legend><span class="quiz-number">9.</span> What must be true for a local variable used as <code>try (resource)</code>?</legend>
+          <div class="quiz-question-meta">Existing resource variables · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q9" value="0"><span class="option-letter">A</span><span>It must be static</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="1"><span class="option-letter">B</span><span>It must be final or effectively final</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="2"><span class="option-letter">C</span><span>It must implement Serializable</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="3"><span class="option-letter">D</span><span>It must be declared inside the try header</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">An existing local resource variable must be final or effectively final, as well as having a compatible AutoCloseable type.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q10" data-answer="2" aria-describedby="quiz-q10-feedback">
+          <legend><span class="quiz-number">10.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Null resources · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java">java.io.<span class="hljs-type">StringReader</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;
+<span class="hljs-keyword">try</span> (r) {
+    System.out.print(<span class="hljs-string">&quot;ok&quot;</span>);
+}</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q10" value="0"><span class="option-letter">A</span><span>Nothing</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="1"><span class="option-letter">B</span><span>It throws NullPointerException</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="2"><span class="option-letter">C</span><span>ok</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q10-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">A null resource is allowed. The try body runs, and the generated closing logic skips a null resource.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q11" data-answer="1,2" aria-describedby="quiz-q11-feedback">
+          <legend><span class="quiz-number">11.</span> Which two types are unchecked?</legend>
+          <div class="quiz-question-meta">Unchecked exceptions · Select 2 answers</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="0"><span class="option-letter">A</span><span>IOException</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="1"><span class="option-letter">B</span><span>IllegalStateException</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="2"><span class="option-letter">C</span><span>AssertionError</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="3"><span class="option-letter">D</span><span>SQLException</span></label></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="quiz-q11-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">RuntimeException subclasses and Error subclasses are unchecked. IOException and SQLException are checked exception types.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart extra quiz</button></div>
+    </form>
+  </section>
+  <section class="study-resources" id="free-resources" aria-labelledby="resources-title"><h2 id="resources-title">Free resources</h2><p>Use these to revisit the rules or try more examples. Links open in a new tab and need an internet connection. Some tutorials also cover Java versions newer than 21.</p>
+    <ul><li><a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-11.html" target="_blank" rel="noopener noreferrer">Java 21 exception rules<span class="sr-only"> (opens in a new tab)</span></a><p>Checked and unchecked exception classification.</p></li><li><a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-14.html" target="_blank" rel="noopener noreferrer">Try statements and resource handling<span class="sr-only"> (opens in a new tab)</span></a><p>See try statements for closing order and suppressed exceptions.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/AutoCloseable.html" target="_blank" rel="noopener noreferrer">AutoCloseable API<span class="sr-only"> (opens in a new tab)</span></a><p>The resource contract used by try-with-resources.</p></li></ul>
+    <p class="resource-date">Links reviewed 31 October 2026.</p>
+  </section></article><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch07.html"><small>Previous · Chapter 7</small>Error Handling and Exceptions</a><a href="ch08.html"><small>Next · Chapter 8</small>Functional Interfaces and Lambda Expressions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>Practice sections</summary><nav aria-label="On this page"><a class="toc-link" href="#book-practice">Book questions · 8</a><a class="toc-link" href="#chapter-quiz">Extra quiz · 11</a><a class="toc-link" href="#free-resources">Free resources</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

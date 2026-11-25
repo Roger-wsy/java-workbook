@@ -1,0 +1,594 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Chapter 9.1 Practice</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch09-practice"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link selected" href="ch09-practice.html" aria-current="page"><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Chapter 9.1 Practice</h1><p class="practice-subtitle">Streams</p><div class="document-meta">9 book questions <span>·</span> 11 extra quiz questions</div><div class="chapter-actions"><a href="ch09.html">Read chapter 9</a><a class="active" aria-current="page" href="ch09-practice.html">Practice 9.1</a><a href="ch09a.html">Original answers</a></div></div><nav class="practice-section-nav" aria-label="Practice sections"><a href="#book-practice">Book questions</a><a href="#chapter-quiz">Extra quiz</a><button type="button" class="reset-all-quizzes">Reset all questions</button></nav><article class="prose practice-prose"><section class="chapter-quiz book-practice" id="book-practice" aria-labelledby="book-practice-title">
+    <h2 id="book-practice-title">Book practice questions</h2>
+    <p class="quiz-intro">9 questions from the chapter, with the book’s explanations. Single-answer questions show immediate feedback. For checkbox questions, select your answers, then choose Check answer. Reviewed corrections and clarifications are identified beside the question.</p>
+    <form class="quiz-form" data-quiz="book-ch09"><p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="book-q1" data-answer="2" aria-describedby="book-q1-feedback">
+          <legend>Question 1</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following lines of code demonstrates the use of the <code>Optional</code> class to handle a potentially <code>null</code> value to avoid an exception?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.Optional;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">String</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> getValue();
+        <span class="hljs-comment">// Insert code here</span>
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-title function_">getValue</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// This method may return null</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q1-option-0" type="radio" name="book-q1" value="0" aria-labelledby="book-q1-option-0-letter book-q1-option-0-text"><span class="option-letter" id="book-q1-option-0-letter">A</span><div class="quiz-option-content" id="book-q1-option-0-text"><p><code>Optional&lt;String&gt; optional = new Optional&lt;&gt;(value);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-1" type="radio" name="book-q1" value="1" aria-labelledby="book-q1-option-1-letter book-q1-option-1-text"><span class="option-letter" id="book-q1-option-1-letter">B</span><div class="quiz-option-content" id="book-q1-option-1-text"><p><code>Optional&lt;String&gt; optional = Optional.of(value);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-2" type="radio" name="book-q1" value="2" aria-labelledby="book-q1-option-2-letter book-q1-option-2-text"><span class="option-letter" id="book-q1-option-2-letter">C</span><div class="quiz-option-content" id="book-q1-option-2-text"><p><code>Optional&lt;String&gt; optional = Optional.ofNullable(value);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-3" type="radio" name="book-q1" value="3" aria-labelledby="book-q1-option-3-letter book-q1-option-3-text"><span class="option-letter" id="book-q1-option-3-letter">D</span><div class="quiz-option-content" id="book-q1-option-3-text"><p><code>Optional&lt;String&gt; optional = Optional.empty(value);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-4" type="radio" name="book-q1" value="4" aria-labelledby="book-q1-option-4-letter book-q1-option-4-text"><span class="option-letter" id="book-q1-option-4-letter">E</span><div class="quiz-option-content" id="book-q1-option-4-text"><p><code>Optional&lt;String&gt; optional = Optional.nullable(value);</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>Optional&lt;String&gt; optional = new Optional&lt;&gt;(value);</code></p>
+<ul>
+<li>This option is incorrect because <code>Optional</code> does not have a public constructor. Instead, static factory methods like <code>of</code> and <code>ofNullable</code> should be used.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Optional&lt;String&gt; optional = Optional.of(value);</code></p>
+<ul>
+<li>This option is incorrect because <code>Optional.of(value)</code> throws a <code>NullPointerException</code> if <code>value</code> is <code>null</code>. In this scenario, since <code>getValue()</code> can return <code>null</code>, this line could lead to an exception.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Optional&lt;String&gt; optional = Optional.ofNullable(value);</code></p>
+<ul>
+<li>This option is correct because <code>Optional.ofNullable(value)</code> will return an <code>Optional</code> describing the specified value if non-null, or an empty <code>Optional</code> if the value is <code>null</code>. This is the appropriate way to handle a potentially <code>null</code> value.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Optional&lt;String&gt; optional = Optional.empty(value);</code></p>
+<ul>
+<li>This option is incorrect because <code>Optional.empty()</code> does not accept any arguments. It simply returns an empty <code>Optional</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Optional&lt;String&gt; optional = Optional.nullable(value);</code></p>
+<ul>
+<li>This option is incorrect because there is no method <code>nullable</code> in the <code>Optional</code> class. The correct method for this purpose is <code>ofNullable</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q2" data-answer="4" aria-describedby="book-q2-feedback">
+          <legend>Question 2</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following lines of code correctly demonstrates the use of a terminal operation?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.stream.Collectors;
+<span class="hljs-keyword">import</span> java.util.stream.Stream;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> List.of(<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-string">&quot;cherry&quot;</span>, <span class="hljs-string">&quot;date&quot;</span>);
+
+        <span class="hljs-type">Stream</span>&lt;String&gt; <span class="hljs-variable">stream</span> <span class="hljs-operator">=</span> list.stream()
+                                    .filter(s -&gt; s.length() &gt; <span class="hljs-number">5</span>)
+                                    .peek(System.out::println)
+                                    .map(String::toUpperCase);
+
+        <span class="hljs-comment">// Insert terminal operation here</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q2-option-0" type="radio" name="book-q2" value="0" aria-labelledby="book-q2-option-0-letter book-q2-option-0-text"><span class="option-letter" id="book-q2-option-0-letter">A</span><div class="quiz-option-content" id="book-q2-option-0-text"><p><code>stream.filter(s -&gt; s.contains(&quot;A&quot;));</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-1" type="radio" name="book-q2" value="1" aria-labelledby="book-q2-option-1-letter book-q2-option-1-text"><span class="option-letter" id="book-q2-option-1-letter">B</span><div class="quiz-option-content" id="book-q2-option-1-text"><p><code>stream.map(String::toLowerCase);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-2" type="radio" name="book-q2" value="2" aria-labelledby="book-q2-option-2-letter book-q2-option-2-text"><span class="option-letter" id="book-q2-option-2-letter">C</span><div class="quiz-option-content" id="book-q2-option-2-text"><p><code>stream.distinct();</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-3" type="radio" name="book-q2" value="3" aria-labelledby="book-q2-option-3-letter book-q2-option-3-text"><span class="option-letter" id="book-q2-option-3-letter">D</span><div class="quiz-option-content" id="book-q2-option-3-text"><p><code>stream.limit(2);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-4" type="radio" name="book-q2" value="4" aria-labelledby="book-q2-option-4-letter book-q2-option-4-text"><span class="option-letter" id="book-q2-option-4-letter">E</span><div class="quiz-option-content" id="book-q2-option-4-text"><p><code>stream.collect(Collectors.toList());</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>stream.filter(s -&gt; s.contains(&quot;A&quot;));</code> </p>
+<ul>
+<li>This option is incorrect because <code>filter</code> is an intermediate operation. It returns a new stream with elements that match the given predicate.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>stream.map(String::toLowerCase);</code></p>
+<ul>
+<li>This option is incorrect because <code>map</code> is an intermediate operation. It returns a new stream with elements that are the results of applying the given function.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>stream.distinct();</code></p>
+<ul>
+<li>This option is incorrect because <code>distinct</code> is an intermediate operation. It returns a new stream with distinct elements.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>stream.limit(2);</code></p>
+<ul>
+<li>This option is incorrect because <code>limit</code> is an intermediate operation. It returns a new stream that is truncated to be no longer than the given size.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>stream.collect(Collectors.toList());</code></p>
+<ul>
+<li>This option is correct because <code>collect</code> is a terminal operation. It triggers the processing of the stream and collects the elements into a <code>List</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q3" data-answer="3" aria-describedby="book-q3-feedback">
+          <legend>Question 3</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following lines of code correctly uses a primitive stream to calculate the sum of an array of integers?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.stream.IntStream;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">int</span>[] <span class="hljs-variable">numbers</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+
+        <span class="hljs-comment">// Insert code here to calculate sum</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q3-option-0" type="radio" name="book-q3" value="0" aria-labelledby="book-q3-option-0-letter book-q3-option-0-text"><span class="option-letter" id="book-q3-option-0-letter">A</span><div class="quiz-option-content" id="book-q3-option-0-text"><p><code>int sum = numbers.stream().sum();</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-1" type="radio" name="book-q3" value="1" aria-labelledby="book-q3-option-1-letter book-q3-option-1-text"><span class="option-letter" id="book-q3-option-1-letter">B</span><div class="quiz-option-content" id="book-q3-option-1-text"><p><code>int sum = IntStream.range(0, numbers.length).sum();</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-2" type="radio" name="book-q3" value="2" aria-labelledby="book-q3-option-2-letter book-q3-option-2-text"><span class="option-letter" id="book-q3-option-2-letter">C</span><div class="quiz-option-content" id="book-q3-option-2-text"><p><code>int sum = IntStream.from(numbers).sum();</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-3" type="radio" name="book-q3" value="3" aria-labelledby="book-q3-option-3-letter book-q3-option-3-text"><span class="option-letter" id="book-q3-option-3-letter">D</span><div class="quiz-option-content" id="book-q3-option-3-text"><p><code>int sum = IntStream.of(numbers).sum();</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-4" type="radio" name="book-q3" value="4" aria-labelledby="book-q3-option-4-letter book-q3-option-4-text"><span class="option-letter" id="book-q3-option-4-letter">E</span><div class="quiz-option-content" id="book-q3-option-4-text"><p><code>int sum = IntStream.range(numbers).sum();</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>int sum = numbers.stream().sum();</code> </p>
+<ul>
+<li>This option is incorrect because arrays do not have a <code>stream</code> method directly on them. You need to use a method from a utility class like <code>IntStream</code> to create a stream.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>int sum = IntStream.range(0, numbers.length).sum();</code> </p>
+<ul>
+<li>This option is incorrect because <code>IntStream.range(0, numbers.length)</code> generates a stream of integers from 0 to the length of the array, not the elements of the array itself.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>int sum = IntStream.from(numbers).sum();</code></p>
+<ul>
+<li>This option is incorrect because <code>IntStream</code> does not have a <code>from</code> method. The correct method is <code>of</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>int sum = IntStream.of(numbers).sum();</code></p>
+<ul>
+<li>This option is correct because <code>IntStream.of(numbers).sum()</code> correctly creates an <code>IntStream</code> from the array and calculates the sum of its elements.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>int sum = IntStream.range(numbers).sum();</code></p>
+<ul>
+<li>This option is incorrect because <code>IntStream.range</code> requires two arguments (a start and an end index) and is used to generate a stream of numbers within a range, not to sum an array.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q4" data-answer="0" aria-describedby="book-q4-feedback">
+          <legend>Question 4</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following lines of code correctly filters a stream to include only strings with a length greater than 3?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.stream.Collectors;
+<span class="hljs-keyword">import</span> java.util.stream.Stream;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> List.of(<span class="hljs-string">&quot;one&quot;</span>, <span class="hljs-string">&quot;two&quot;</span>, <span class="hljs-string">&quot;three&quot;</span>, <span class="hljs-string">&quot;four&quot;</span>);
+
+        <span class="hljs-type">Stream</span>&lt;String&gt; <span class="hljs-variable">stream</span> <span class="hljs-operator">=</span> list.stream();
+
+        <span class="hljs-comment">// Insert code here to filter the stream</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q4-option-0" type="radio" name="book-q4" value="0" aria-labelledby="book-q4-option-0-letter book-q4-option-0-text"><span class="option-letter" id="book-q4-option-0-letter">A</span><div class="quiz-option-content" id="book-q4-option-0-text"><p><code>Stream&lt;String&gt; filteredStream = stream.filter(s -&gt; s.length() &gt; 3);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-1" type="radio" name="book-q4" value="1" aria-labelledby="book-q4-option-1-letter book-q4-option-1-text"><span class="option-letter" id="book-q4-option-1-letter">B</span><div class="quiz-option-content" id="book-q4-option-1-text"><p><code>Stream&lt;String&gt; filteredStream = stream.map(s -&gt; s.length() &gt; 3);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-2" type="radio" name="book-q4" value="2" aria-labelledby="book-q4-option-2-letter book-q4-option-2-text"><span class="option-letter" id="book-q4-option-2-letter">C</span><div class="quiz-option-content" id="book-q4-option-2-text"><p><code>Stream&lt;String&gt; filteredStream = stream.collect(Collectors.filtering(s -&gt; s.length() &gt; 3));</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-3" type="radio" name="book-q4" value="3" aria-labelledby="book-q4-option-3-letter book-q4-option-3-text"><span class="option-letter" id="book-q4-option-3-letter">D</span><div class="quiz-option-content" id="book-q4-option-3-text"><p><code>Stream&lt;String&gt; filteredStream = stream.filtering(s -&gt; s.length() &gt; 3);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-4" type="radio" name="book-q4" value="4" aria-labelledby="book-q4-option-4-letter book-q4-option-4-text"><span class="option-letter" id="book-q4-option-4-letter">E</span><div class="quiz-option-content" id="book-q4-option-4-text"><p><code>Stream&lt;String&gt; filteredStream = stream.filterByLength(3);</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>Stream&lt;String&gt; filteredStream = stream.filter(s -&gt; s.length() &gt; 3);</code>  </p>
+<ul>
+<li>This option is correct because <code>filter</code> is the correct intermediate operation to apply a predicate to each element of the stream and return a new stream containing only elements that match the predicate.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Stream&lt;String&gt; filteredStream = stream.map(s -&gt; s.length() &gt; 3);</code> </p>
+<ul>
+<li>This option is incorrect because <code>map</code> is used to transform elements of the stream and does not filter them. The result would be a stream of <code>Boolean</code> values instead of the original strings.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Stream&lt;String&gt; filteredStream = stream.collect(Collectors.filtering(s -&gt; s.length() &gt; 3));</code> </p>
+<ul>
+<li>This option is incorrect because <code>Collectors.filtering</code> is not a valid method. Filtering is done through the <code>filter</code> method on the stream itself, not via collectors.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Stream&lt;String&gt; filteredStream = stream.filtering(s -&gt; s.length() &gt; 3);</code> </p>
+<ul>
+<li>This option is incorrect because there is no <code>filtering</code> method on the stream. The correct method is <code>filter</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Stream&lt;String&gt; filteredStream = stream.filterByLength(3);</code></p>
+<ul>
+<li>This option is incorrect because there is no <code>filterByLength</code> method on the stream. The correct method to use is <code>filter</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q5" data-answer="2" aria-describedby="book-q5-feedback">
+          <legend>Question 5</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following lines of code correctly maps a stream of strings to their lengths?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.stream.Collectors;
+<span class="hljs-keyword">import</span> java.util.stream.Stream;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> List.of(<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-string">&quot;cherry&quot;</span>, <span class="hljs-string">&quot;date&quot;</span>);
+
+        <span class="hljs-type">Stream</span>&lt;String&gt; <span class="hljs-variable">stream</span> <span class="hljs-operator">=</span> list.stream();
+
+        <span class="hljs-comment">// Insert code here to map the stream</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q5-option-0" type="radio" name="book-q5" value="0" aria-labelledby="book-q5-option-0-letter book-q5-option-0-text"><span class="option-letter" id="book-q5-option-0-letter">A</span><div class="quiz-option-content" id="book-q5-option-0-text"><p><code>Stream&lt;String&gt; lengthStream = stream.map(s -&gt; s.length());</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-1" type="radio" name="book-q5" value="1" aria-labelledby="book-q5-option-1-letter book-q5-option-1-text"><span class="option-letter" id="book-q5-option-1-letter">B</span><div class="quiz-option-content" id="book-q5-option-1-text"><p><code>Stream&lt;String&gt; lengthStream = stream.mapToInt(s -&gt; s.length());</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-2" type="radio" name="book-q5" value="2" aria-labelledby="book-q5-option-2-letter book-q5-option-2-text"><span class="option-letter" id="book-q5-option-2-letter">C</span><div class="quiz-option-content" id="book-q5-option-2-text"><p><code>Stream&lt;Integer&gt; lengthStream = stream.map(s -&gt; s.length());</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-3" type="radio" name="book-q5" value="3" aria-labelledby="book-q5-option-3-letter book-q5-option-3-text"><span class="option-letter" id="book-q5-option-3-letter">D</span><div class="quiz-option-content" id="book-q5-option-3-text"><p><code>IntStream lengthStream = stream.map(s -&gt; s.length());</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-4" type="radio" name="book-q5" value="4" aria-labelledby="book-q5-option-4-letter book-q5-option-4-text"><span class="option-letter" id="book-q5-option-4-letter">E</span><div class="quiz-option-content" id="book-q5-option-4-text"><p><code>Stream&lt;String&gt; lengthStream = stream.flatMap(s -&gt; Stream.of(s.length()));</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>Stream&lt;String&gt; lengthStream = stream.map(s -&gt; s.length());</code></p>
+<ul>
+<li>This option is incorrect because the <code>map</code> method will transform the elements to <code>Integer</code>, not <code>String</code>. The correct type for the resulting stream should be <code>Stream&lt;Integer&gt;</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Stream&lt;String&gt; lengthStream = stream.mapToInt(s -&gt; s.length());</code></p>
+<ul>
+<li>This option is incorrect because <code>mapToInt</code> produces an <code>IntStream</code>, not a <code>Stream&lt;String&gt;</code>. Additionally, the resulting stream type would not be <code>Stream&lt;String&gt;</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Stream&lt;Integer&gt; lengthStream = stream.map(s -&gt; s.length());</code></p>
+<ul>
+<li>This option is correct because <code>map</code> transforms each string in the stream to its length, resulting in a <code>Stream&lt;Integer&gt;</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>IntStream lengthStream = stream.map(s -&gt; s.length());</code> </p>
+<ul>
+<li>This option is incorrect because <code>map</code> produces a <code>Stream&lt;R&gt;</code>, not an <code>IntStream</code>. The correct method for producing an <code>IntStream</code> would be <code>mapToInt</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Stream&lt;String&gt; lengthStream = stream.flatMap(s -&gt; Stream.of(s.length()));</code></p>
+<ul>
+<li>This option is incorrect because <code>flatMap</code> is used to flatten nested streams and not simply map to another type. Additionally, the resulting stream type would not be <code>Stream&lt;String&gt;</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q6" data-answer="0" aria-describedby="book-q6-feedback">
+          <legend>Question 6</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following lines of code correctly limits the stream to the first 3 elements after skipping the first 2 elements?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.stream.Collectors;
+<span class="hljs-keyword">import</span> java.util.stream.Stream;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> List.of(<span class="hljs-string">&quot;one&quot;</span>, <span class="hljs-string">&quot;two&quot;</span>, <span class="hljs-string">&quot;three&quot;</span>, <span class="hljs-string">&quot;four&quot;</span>, <span class="hljs-string">&quot;five&quot;</span>, <span class="hljs-string">&quot;six&quot;</span>);
+
+        <span class="hljs-type">Stream</span>&lt;String&gt; <span class="hljs-variable">stream</span> <span class="hljs-operator">=</span> list.stream();
+
+        <span class="hljs-comment">// Insert code here to skip and limit the stream</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q6-option-0" type="radio" name="book-q6" value="0" aria-labelledby="book-q6-option-0-letter book-q6-option-0-text"><span class="option-letter" id="book-q6-option-0-letter">A</span><div class="quiz-option-content" id="book-q6-option-0-text"><p><code>Stream&lt;String&gt; resultStream = stream.skip(2).limit(3);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-1" type="radio" name="book-q6" value="1" aria-labelledby="book-q6-option-1-letter book-q6-option-1-text"><span class="option-letter" id="book-q6-option-1-letter">B</span><div class="quiz-option-content" id="book-q6-option-1-text"><p><code>Stream&lt;String&gt; resultStream = stream.limit(3).skip(2);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-2" type="radio" name="book-q6" value="2" aria-labelledby="book-q6-option-2-letter book-q6-option-2-text"><span class="option-letter" id="book-q6-option-2-letter">C</span><div class="quiz-option-content" id="book-q6-option-2-text"><p><code>Stream&lt;String&gt; resultStream = stream.skip(3).limit(2);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-3" type="radio" name="book-q6" value="3" aria-labelledby="book-q6-option-3-letter book-q6-option-3-text"><span class="option-letter" id="book-q6-option-3-letter">D</span><div class="quiz-option-content" id="book-q6-option-3-text"><p><code>Stream&lt;String&gt; resultStream = stream.limit(2).skip(3);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-4" type="radio" name="book-q6" value="4" aria-labelledby="book-q6-option-4-letter book-q6-option-4-text"><span class="option-letter" id="book-q6-option-4-letter">E</span><div class="quiz-option-content" id="book-q6-option-4-text"><p><code>Stream&lt;String&gt; resultStream = stream.slice(2, 5);</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>Stream&lt;String&gt; resultStream = stream.skip(2).limit(3);</code></p>
+<ul>
+<li>This option is correct because <code>skip(2)</code> skips the first 2 elements of the stream, and <code>limit(3)</code> limits the stream to the next 3 elements. Therefore, the resulting stream will contain the 3rd, 4th, and 5th elements of the original list.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Stream&lt;String&gt; resultStream = stream.limit(3).skip(2);</code></p>
+<ul>
+<li>This option is incorrect because <code>limit(3)</code> first limits the stream to the first 3 elements, and then <code>skip(2)</code> skips 2 of those elements, resulting in a stream with only the 3rd element.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Stream&lt;String&gt; resultStream = stream.skip(3).limit(2);</code></p>
+<ul>
+<li>This option is incorrect because <code>skip(3)</code> skips the first 3 elements, and <code>limit(2)</code> then limits the stream to the next 2 elements, resulting in a stream with the 4th and 5th elements.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Stream&lt;String&gt; resultStream = stream.limit(2).skip(3);</code></p>
+<ul>
+<li>This option is incorrect because <code>limit(2)</code> first limits the stream to the first 2 elements, and then <code>skip(3)</code> would attempt to skip more elements than are available, resulting in an empty stream.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Stream&lt;String&gt; resultStream = stream.slice(2, 5);</code></p>
+<ul>
+<li>This option is incorrect because there is no <code>slice</code> method in the Stream API. The correct methods to achieve the desired result are <code>skip</code> and <code>limit</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q7" data-answer="1" aria-describedby="book-q7-feedback">
+          <legend>Question 7</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following lines of code correctly concatenates two streams?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.stream.Collectors;
+<span class="hljs-keyword">import</span> java.util.stream.Stream;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> List.of(<span class="hljs-string">&quot;one&quot;</span>, <span class="hljs-string">&quot;two&quot;</span>, <span class="hljs-string">&quot;three&quot;</span>);
+        <span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">list2</span> <span class="hljs-operator">=</span> List.of(<span class="hljs-string">&quot;four&quot;</span>, <span class="hljs-string">&quot;five&quot;</span>, <span class="hljs-string">&quot;six&quot;</span>);
+
+        <span class="hljs-type">Stream</span>&lt;String&gt; <span class="hljs-variable">stream1</span> <span class="hljs-operator">=</span> list1.stream();
+        <span class="hljs-type">Stream</span>&lt;String&gt; <span class="hljs-variable">stream2</span> <span class="hljs-operator">=</span> list2.stream();
+
+        <span class="hljs-comment">// Insert code here to concatenate the streams</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q7-option-0" type="radio" name="book-q7" value="0" aria-labelledby="book-q7-option-0-letter book-q7-option-0-text"><span class="option-letter" id="book-q7-option-0-letter">A</span><div class="quiz-option-content" id="book-q7-option-0-text"><p><code>Stream&lt;String&gt; resultStream = Stream.concat(stream1, stream2.collect(Collectors.toList()));</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-1" type="radio" name="book-q7" value="1" aria-labelledby="book-q7-option-1-letter book-q7-option-1-text"><span class="option-letter" id="book-q7-option-1-letter">B</span><div class="quiz-option-content" id="book-q7-option-1-text"><p><code>Stream&lt;String&gt; resultStream = Stream.concat(stream1, stream2);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-2" type="radio" name="book-q7" value="2" aria-labelledby="book-q7-option-2-letter book-q7-option-2-text"><span class="option-letter" id="book-q7-option-2-letter">C</span><div class="quiz-option-content" id="book-q7-option-2-text"><p><code>Stream&lt;String&gt; resultStream = stream1.concat(stream2);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-3" type="radio" name="book-q7" value="3" aria-labelledby="book-q7-option-3-letter book-q7-option-3-text"><span class="option-letter" id="book-q7-option-3-letter">D</span><div class="quiz-option-content" id="book-q7-option-3-text"><p><code>Stream&lt;String&gt; resultStream = stream1.merge(stream2);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-4" type="radio" name="book-q7" value="4" aria-labelledby="book-q7-option-4-letter book-q7-option-4-text"><span class="option-letter" id="book-q7-option-4-letter">E</span><div class="quiz-option-content" id="book-q7-option-4-text"><p><code>Stream&lt;String&gt; resultStream = Stream.of(stream1, stream2);</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>Stream&lt;String&gt; resultStream = Stream.concat(stream1, stream2.collect(Collectors.toList()));</code></p>
+<ul>
+<li>This option is incorrect because <code>Stream.concat</code> expects two streams as arguments. <code>stream2.collect(Collectors.toList())</code> converts <code>stream2</code> into a <code>List</code>, not a <code>Stream</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Stream&lt;String&gt; resultStream = Stream.concat(stream1, stream2);</code></p>
+<ul>
+<li>This option is correct because <code>Stream.concat(stream1, stream2)</code> correctly concatenates the two streams into a single stream containing all elements from both streams.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Stream&lt;String&gt; resultStream = stream1.concat(stream2);</code></p>
+<ul>
+<li>This option is incorrect because <code>Stream</code> does not have an instance method <code>concat</code>. The <code>concat</code> method is a static method of the <code>Stream</code> class.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Stream&lt;String&gt; resultStream = stream1.merge(stream2);</code></p>
+<ul>
+<li>This option is incorrect because there is no <code>merge</code> method in the <code>Stream</code> API. The correct method for concatenating streams is <code>Stream.concat</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Stream&lt;String&gt; resultStream = Stream.of(stream1, stream2);</code></p>
+<ul>
+<li>This option is incorrect because <code>Stream.of(stream1, stream2)</code> creates a stream of streams, resulting in <code>Stream&lt;Stream&lt;String&gt;&gt;</code> rather than a single concatenated <code>Stream&lt;String&gt;</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q8" data-answer="4" aria-describedby="book-q8-feedback">
+          <legend>Question 8</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following lines of code uses the reduce method to correctly calculate the product of all elements in a stream of integers?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.stream.Stream;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">List</span>&lt;Integer&gt; <span class="hljs-variable">numbers</span> <span class="hljs-operator">=</span> List.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>);
+
+        <span class="hljs-type">Stream</span>&lt;Integer&gt; <span class="hljs-variable">stream</span> <span class="hljs-operator">=</span> numbers.stream();
+
+        <span class="hljs-comment">// Insert code here to calculate the product</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q8-option-0" type="radio" name="book-q8" value="0" aria-labelledby="book-q8-option-0-letter book-q8-option-0-text"><span class="option-letter" id="book-q8-option-0-letter">A</span><div class="quiz-option-content" id="book-q8-option-0-text"><p><code>int product = stream.reduce(1, (a, b) -&gt; a + b);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-1" type="radio" name="book-q8" value="1" aria-labelledby="book-q8-option-1-letter book-q8-option-1-text"><span class="option-letter" id="book-q8-option-1-letter">B</span><div class="quiz-option-content" id="book-q8-option-1-text"><p><code>int product = stream.reduce((a, b) -&gt; a * b);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-2" type="radio" name="book-q8" value="2" aria-labelledby="book-q8-option-2-letter book-q8-option-2-text"><span class="option-letter" id="book-q8-option-2-letter">C</span><div class="quiz-option-content" id="book-q8-option-2-text"><p><code>int product = stream.reduce(0, (a, b) -&gt; a * b);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-3" type="radio" name="book-q8" value="3" aria-labelledby="book-q8-option-3-letter book-q8-option-3-text"><span class="option-letter" id="book-q8-option-3-letter">D</span><div class="quiz-option-content" id="book-q8-option-3-text"><p><code>Optional&lt;Integer&gt; product = stream.reduce(1, (a, b) -&gt; a * b);</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-4" type="radio" name="book-q8" value="4" aria-labelledby="book-q8-option-4-letter book-q8-option-4-text"><span class="option-letter" id="book-q8-option-4-letter">E</span><div class="quiz-option-content" id="book-q8-option-4-text"><p><code>int product = stream.reduce(1, (a, b) -&gt; a * b, (a, b) -&gt; a * b);</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>int product = stream.reduce(1, (a, b) -&gt; a + b);</code></p>
+<ul>
+<li>This option is incorrect because the reduction operation is using addition instead of multiplication. The correct operation for calculating the product should be <code>(a, b) -&gt; a * b</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>int product = stream.reduce((a, b) -&gt; a * b);</code></p>
+<ul>
+<li>This option is incorrect because it does not provide an identity value, which is necessary for the reduction operation when dealing with an empty stream. Without an identity value, the result is an <code>Optional&lt;Integer&gt;</code> rather than an <code>int</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>int product = stream.reduce(0, (a, b) -&gt; a * b);</code></p>
+<ul>
+<li>This option is incorrect because the identity value for multiplication should be <code>1</code>, not <code>0</code>. Using <code>0</code> as the identity value would result in a product of <code>0</code> regardless of the stream elements.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Optional&lt;Integer&gt; product = stream.reduce(1, (a, b) -&gt; a * b);</code></p>
+<ul>
+<li>This option is incorrect because the correct use of the <code>reduce</code> method with an identity value does not return an <code>Optional</code>. It should return the result directly as <code>int</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>int product = stream.reduce(1, (a, b) -&gt; a * b, (a, b) -&gt; a * b);</code></p>
+<ul>
+<li>This option is correct because it correctly uses the <code>reduce</code> method with an identity value of <code>1</code> and a combiner function that multiplies the results. This form of <code>reduce</code> is suitable for parallel processing as well, ensuring the product is correctly calculated across multiple segments of the stream.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q9" data-answer="1" aria-describedby="book-q9-feedback">
+          <legend>Question 9</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following lines of code correctly collects the elements of a stream into a <code>Set</code> and also ensures that the original order of the elements is maintained?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.Set;
+<span class="hljs-keyword">import</span> java.util.stream.Collectors;
+<span class="hljs-keyword">import</span> java.util.stream.Stream;
+<span class="hljs-keyword">import</span> java.util.LinkedHashSet;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> List.of(<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-string">&quot;cherry&quot;</span>, <span class="hljs-string">&quot;date&quot;</span>);
+
+        <span class="hljs-type">Stream</span>&lt;String&gt; <span class="hljs-variable">stream</span> <span class="hljs-operator">=</span> list.stream();
+
+        <span class="hljs-comment">// Insert code here to collect the elements into a Set while maintaining order</span>
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q9-option-0" type="radio" name="book-q9" value="0" aria-labelledby="book-q9-option-0-letter book-q9-option-0-text"><span class="option-letter" id="book-q9-option-0-letter">A</span><div class="quiz-option-content" id="book-q9-option-0-text"><p><code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toSet());</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q9-option-1" type="radio" name="book-q9" value="1" aria-labelledby="book-q9-option-1-letter book-q9-option-1-text"><span class="option-letter" id="book-q9-option-1-letter">B</span><div class="quiz-option-content" id="book-q9-option-1-text"><p><code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toCollection(LinkedHashSet::new));</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q9-option-2" type="radio" name="book-q9" value="2" aria-labelledby="book-q9-option-2-letter book-q9-option-2-text"><span class="option-letter" id="book-q9-option-2-letter">C</span><div class="quiz-option-content" id="book-q9-option-2-text"><p><code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toCollection(TreeSet::new));</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q9-option-3" type="radio" name="book-q9" value="3" aria-labelledby="book-q9-option-3-letter book-q9-option-3-text"><span class="option-letter" id="book-q9-option-3-letter">D</span><div class="quiz-option-content" id="book-q9-option-3-text"><p><code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toList());</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q9-option-4" type="radio" name="book-q9" value="4" aria-labelledby="book-q9-option-4-letter book-q9-option-4-text"><span class="option-letter" id="book-q9-option-4-letter">E</span><div class="quiz-option-content" id="book-q9-option-4-text"><p><code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toMap());</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toSet());</code> </p>
+<ul>
+<li>This option is incorrect because <code>Collectors.toSet()</code> does not guarantee the order of the elements. The implementation returned by this collector does not preserve the order of insertion.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toCollection(LinkedHashSet::new));</code></p>
+<ul>
+<li>This option is correct because <code>Collectors.toCollection(LinkedHashSet::new)</code> collects the elements into a <code>LinkedHashSet</code>, which maintains the order of insertion.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toCollection(TreeSet::new));</code> </p>
+<ul>
+<li>This option is incorrect because <code>TreeSet</code> sorts the elements according to their natural ordering (or by a comparator, if provided). This does not necessarily preserve the original order of the stream elements.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toList());</code> </p>
+<ul>
+<li>This option is incorrect because <code>Collectors.toList()</code> collects the elements into a <code>List</code>, not a <code>Set</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toMap());</code></p>
+<ul>
+<li>This option is incorrect because <code>Collectors.toMap()</code> is used to collect the elements into a <code>Map</code>, not a <code>Set</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart book practice</button></div>
+    </form>
+  </section><section class="chapter-quiz" id="chapter-quiz" aria-labelledby="quiz-title">
+    <h2 id="quiz-title">Extra quiz</h2>
+    <p class="quiz-intro">Choose an answer to see its explanation immediately. Correct choices appear in green; incorrect selections appear in red. For checkbox questions, select your answers, then choose Check answer.</p>
+    <details class="practice-context"><summary>About these questions</summary><p>11 original learning exercises, not official exam questions. Use Java 21 without preview features. Assume standard imports and a valid enclosing class or method, which may declare checked exceptions.</p></details>
+    <p class="quiz-saving">Your selections and feedback are saved in this browser.</p>
+    <noscript><p>Enable JavaScript for scoring. The book’s practice questions and separate answer sheet remain available without it.</p></noscript>
+    <form class="quiz-form" data-quiz="ch09">
+      <p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="quiz-q1" data-answer="2" aria-describedby="quiz-q1-feedback">
+          <legend><span class="quiz-number">1.</span> Before any terminal operation, what does this print?</legend>
+          <div class="quiz-question-meta">Laziness · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">stream</span> <span class="hljs-operator">=</span> java.util.stream.Stream.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+    .peek(System.out::print);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q1" value="0"><span class="option-letter">A</span><span>12</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="1"><span class="option-letter">B</span><span>1</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="2"><span class="option-letter">C</span><span>Nothing</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">peek is an intermediate operation. Without a terminal operation, this pipeline is not executed.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q2" data-answer="1" aria-describedby="quiz-q2-feedback">
+          <legend><span class="quiz-number">2.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Filter and map · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java">System.out.println(java.util.stream.Stream.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    .filter(x -&gt; x &gt; <span class="hljs-number">1</span>).map(x -&gt; x * <span class="hljs-number">2</span>).toList());</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q2" value="0"><span class="option-letter">A</span><span>[2, 4, 6]</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="1"><span class="option-letter">B</span><span>[4, 6]</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="2"><span class="option-letter">C</span><span>[2, 3]</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="3"><span class="option-letter">D</span><span>[1, 2, 3]</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">filter removes 1, then map doubles 2 and 3. toList triggers the pipeline and collects the results.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q3" data-answer="3" aria-describedby="quiz-q3-feedback">
+          <legend><span class="quiz-number">3.</span> What normally happens on the second count()?</legend>
+          <div class="quiz-question-meta">Reusing a stream · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> java.util.stream.Stream.of(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>);
+s.count();
+s.count();</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q3" value="0"><span class="option-letter">A</span><span>It returns 0</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="1"><span class="option-letter">B</span><span>It returns 2 again</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="2"><span class="option-letter">C</span><span>It creates a new stream</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="3"><span class="option-letter">D</span><span>It throws IllegalStateException</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Streams are single-use. A terminal operation consumes the stream; create a new stream to run another pipeline.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q4" data-answer="0" aria-describedby="quiz-q4-feedback">
+          <legend><span class="quiz-number">4.</span> What does <code>Optional.empty().get()</code> do?</legend>
+          <div class="quiz-question-meta">Empty optional · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q4" value="0"><span class="option-letter">A</span><span>Throws NoSuchElementException</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="1"><span class="option-letter">B</span><span>Returns null</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="2"><span class="option-letter">C</span><span>Returns an empty String</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="3"><span class="option-letter">D</span><span>Returns Optional.empty()</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">get requires a present value. For an empty Optional it throws NoSuchElementException.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q5" data-answer="2" aria-describedby="quiz-q5-feedback">
+          <legend><span class="quiz-number">5.</span> Which fallback is evaluated only when the Optional is empty?</legend>
+          <div class="quiz-question-meta">Lazy fallback · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q5" value="0"><span class="option-letter">A</span><span>orElse(expensive())</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="1"><span class="option-letter">B</span><span>get()</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="2"><span class="option-letter">C</span><span>orElseGet(() -&gt; expensive())</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="3"><span class="option-letter">D</span><span>isPresent()</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">orElseGet takes a supplier invoked only when needed. An argument passed to orElse is evaluated before the method call.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q6" data-answer="0" aria-describedby="quiz-q6-feedback">
+          <legend><span class="quiz-number">6.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Reduction · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java">System.out.println(java.util.stream.Stream.of(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+    .reduce(<span class="hljs-number">1</span>, (a, b) -&gt; a * b));</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q6" value="0"><span class="option-letter">A</span><span>6</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="1"><span class="option-letter">B</span><span>7</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="2"><span class="option-letter">C</span><span>5</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The identity 1 is multiplied by each element: 1 * 2 * 3 = 6.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q7" data-answer="1" aria-describedby="quiz-q7-feedback">
+          <legend><span class="quiz-number">7.</span> Which operation turns <code>Stream&lt;List&lt;String&gt;&gt;</code> into <code>Stream&lt;String&gt;</code>?</legend>
+          <div class="quiz-question-meta">Flattening · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q7" value="0"><span class="option-letter">A</span><span>map(List::size)</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="1"><span class="option-letter">B</span><span>flatMap(List::stream)</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="2"><span class="option-letter">C</span><span>filter(List::isEmpty)</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="3"><span class="option-letter">D</span><span>distinct()</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">flatMap replaces each list with its element stream and flattens those streams into one pipeline.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q8" data-answer="3" aria-describedby="quiz-q8-feedback">
+          <legend><span class="quiz-number">8.</span> What does an empty stream’s <code>allMatch(x -&gt; false)</code> return?</legend>
+          <div class="quiz-question-meta">Empty matching · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q8" value="0"><span class="option-letter">A</span><span>false</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="1"><span class="option-letter">B</span><span>null</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="2"><span class="option-letter">C</span><span>It throws an exception</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="3"><span class="option-letter">D</span><span>true</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">allMatch is true for an empty stream: there is no element that violates the predicate.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q9" data-answer="2" aria-describedby="quiz-q9-feedback">
+          <legend><span class="quiz-number">9.</span> What happens?</legend>
+          <div class="quiz-question-meta">Result mutability · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> java.util.stream.Stream.of(<span class="hljs-number">1</span>).toList();
+list.add(<span class="hljs-number">2</span>);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q9" value="0"><span class="option-letter">A</span><span>The list becomes [1, 2]</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="1"><span class="option-letter">B</span><span>It does not compile</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="2"><span class="option-letter">C</span><span>It throws UnsupportedOperationException</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="3"><span class="option-letter">D</span><span>It returns false</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Stream.toList returns an unmodifiable list. It does not promise an ArrayList implementation.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q10" data-answer="1" aria-describedby="quiz-q10-feedback">
+          <legend><span class="quiz-number">10.</span> What list is produced?</legend>
+          <div class="quiz-question-meta">Encounter order · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> java.util.stream.Stream.of(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+    .sorted().limit(<span class="hljs-number">2</span>).toList();</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q10" value="0"><span class="option-letter">A</span><span>[3, 1]</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="1"><span class="option-letter">B</span><span>[1, 2]</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="2"><span class="option-letter">C</span><span>[1, 3]</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="3"><span class="option-letter">D</span><span>[2, 3]</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q10-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">sorted establishes ascending order first, then limit retains the first two values.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q11" data-answer="1,3" aria-describedby="quiz-q11-feedback">
+          <legend><span class="quiz-number">11.</span> Which two are terminal stream operations?</legend>
+          <div class="quiz-question-meta">Terminal operations · Select 2 answers</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="0"><span class="option-letter">A</span><span>filter</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="1"><span class="option-letter">B</span><span>count</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="2"><span class="option-letter">C</span><span>sorted</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="3"><span class="option-letter">D</span><span>toList</span></label></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="quiz-q11-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">count and toList execute and consume the stream pipeline. filter and sorted are intermediate operations.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart extra quiz</button></div>
+    </form>
+  </section>
+  <section class="study-resources" id="free-resources" aria-labelledby="resources-title"><h2 id="resources-title">Free resources</h2><p>Use these to revisit the rules or try more examples. Links open in a new tab and need an internet connection. Some tutorials also cover Java versions newer than 21.</p>
+    <ul><li><a href="https://dev.java/learn/api/collections-and-streams/" target="_blank" rel="noopener noreferrer">Collections and streams — Dev.java<span class="sr-only"> (opens in a new tab)</span></a><p>Free guides to pipelines and reductions.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" target="_blank" rel="noopener noreferrer">Stream API — Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>Intermediate operations, terminal operations, and collection results.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html" target="_blank" rel="noopener noreferrer">Optional API — Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>Empty values and fallback behavior.</p></li></ul>
+    <p class="resource-date">Links reviewed 31 October 2026.</p>
+  </section></article><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch09.html"><small>Previous · Chapter 9</small>Streams</a><a href="ch10.html"><small>Next · Chapter 10</small>Concurrency and Multithreading <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>Practice sections</summary><nav aria-label="On this page"><a class="toc-link" href="#book-practice">Book questions · 9</a><a class="toc-link" href="#chapter-quiz">Extra quiz · 11</a><a class="toc-link" href="#free-resources">Free resources</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

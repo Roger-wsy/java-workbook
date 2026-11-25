@@ -1,0 +1,872 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Controlling Program Flow</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch05"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch05.html" aria-current="page" data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Controlling Program Flow</h1><div class="document-meta">Chapter 05<span>·</span>24 min read</div><div class="chapter-actions"><a class="active" href="ch05.html">Read chapter</a><a href="ch05.html#key-points">Key points</a><a href="ch05-practice.html#book-practice">Book questions</a><a href="ch05-practice.html#chapter-quiz">Extra quiz</a><a class="" href="ch05a.html">Original answers</a></div></div><details class="objectives" open><summary>Exam objectives</summary><ul><li>Create program flow control constructs including if/else, switch statements and expressions, loops, and break and continue statements.</li><li>Implement inheritance, including abstract and sealed types as well as record classes. Override methods, including that of the Object class. Implement polymorphism and differentiate between object type and reference type. Perform reference type casting, identify object types using the instanceof operator, and pattern matching with the instanceof operator and the switch construct.</li></ul></details><article class="prose"><h2 id="the-if-statement">The <code>if</code> Statement<a class="heading-anchor" href="#the-if-statement" aria-label="Link to The if Statement">#</a></h2><p>One of the most fundamental control flow statements in Java and many other programming languages is the <code>if</code> statement. It allows your program to make decisions and execute different code paths based on whether certain conditions are met.  </p>
+<p>In essence, the purpose of an <code>if</code> statement is to conditionally execute a block of code. If the specified condition evaluates to <code>true</code>, the code block will run. If not, that block is skipped over and the program continues with the next statement after the if block.</p>
+<p>Here&#39;s the flowchart diagram for the <code>if</code> statement:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">          ┌─────────┐
+          │  Start  │
+          └────┬────┘
+               │
+         ┌─────┴─────┐
+         │ Condition │
+         └─────┬─────┘
+               │
+        ┌──────┴──────┐
+   ┌────┤  Is true?   ├────┐
+   │    └─────────────┘    │
+   │                       │
+┌──┴──┐                 ┌──┴──┐
+│ Yes │                 │ No  │
+│     │                 │     │
+│─────┴──────────┐   ┌──┴─────┴─────┐
+│    Execute     │   │  Execute     │
+│    if block    │   │  else block  │
+└─────────┬──────┘   └──────┬───────┘
+          │                 │
+          └────────┬────────┘
+                   │
+             ┌─────┴─────┐
+             │   End     │
+             └───────────┘</code></pre></div><p>The basic syntax of an <code>if</code> statement looks like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (condition) {
+    <span class="hljs-comment">// Code to execute if condition is true</span>
+}</code></pre></div><p>The condition goes inside parentheses and must evaluate to a boolean value, either <code>true</code> or <code>false</code>. The code to conditionally execute goes between curly braces. If the code block contains only a single statement, you can omit the curly braces:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">10</span>) 
+    System.out.println(<span class="hljs-string">&quot;x is greater than 10&quot;</span>);</code></pre></div><p>However, using curly braces is considered good practice even for single statements, as it makes your code clearer and less prone to errors if you later add more statements to the block.</p>
+<p>You can chain multiple conditions together using the <code>else if</code> construct:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (condition1) {
+    <span class="hljs-comment">// Code to execute if condition1 is true</span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (condition2) {  
+    <span class="hljs-comment">// Code to execute if condition1 is false and condition2 is true</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Code to execute if both condition1 and condition2 are false</span>
+}</code></pre></div><p>Here, each <code>else if</code> condition will only be checked if all the prior <code>if</code>/<code>else if</code> conditions evaluated to <code>false</code>. As soon as one condition is found to be <code>true</code>, its corresponding block executes and the rest of the <code>if</code>/<code>else if</code>/<code>else</code> chain is skipped. The final <code>else</code> block runs if none of the conditions were <code>true</code>.</p>
+<p>There&#39;s no hard limit to how many <code>else if</code> statements you can have, but if you find yourself with very long <code>if</code>/<code>else if</code> chains, you may want to consider refactoring to a cleaner approach, such as a <code>switch</code> statement or polymorphism.</p>
+<p>A common point of confusion is attempting to access variables declared inside an <code>if</code> block from the corresponding <code>else</code> block:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (condition) {
+    <span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+} <span class="hljs-keyword">else</span> {
+    System.out.println(x); <span class="hljs-comment">// Compile error - x is not in scope! </span>
+}</code></pre></div><p>This fails because variables declared inside an <code>if</code> or <code>else</code> block are only in scope within that block. To use a variable in both the <code>if</code> and <code>else</code> sections, you must declare it outside (before) the <code>if</code> statement.</p>
+<h3 id="pattern-matching-in-if-statements">Pattern Matching in <code>if</code> Statements<a class="heading-anchor" href="#pattern-matching-in-if-statements" aria-label="Link to Pattern Matching in if Statements">#</a></h3><p>Java has been expanding its pattern matching capabilities, making it easier to work with complex data structures. Let&#39;s explore how pattern matching works with <code>if</code> statements.</p>
+<h4 id="type-patterns">Type Patterns<a class="heading-anchor" href="#type-patterns" aria-label="Link to Type Patterns">#</a></h4><p>Type patterns allow you to test if an object is an instance of a particular type and, if so, create a variable of that type in one step:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> String s) {
+    System.out.println(s.toUpperCase());
+}</code></pre></div><p>Here, <code>obj</code> is tested to see if it&#39;s an instance of <code>String</code>. If so, it&#39;s cast to <code>String</code> and assigned to the pattern variable <code>s</code>, which can then be used in the <code>if</code> block.</p>
+<p>There are a few rules when using type patterns in <code>if</code> statements:</p>
+<ul>
+<li>The type of the pattern variable must be a subtype of the variable on the left side of <code>instanceof</code>.</li>
+<li>The pattern variable is only usable when the compiler can definitively say its type, if there&#39;s ambiguity, it may not be considered initialized.</li>
+<li>Pattern matching can use any valid expression, even method calls, not just simple variable checks.</li>
+</ul>
+<p>For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (getObject() <span class="hljs-keyword">instanceof</span> String s) {
+    System.out.println(s); <span class="hljs-comment">// s in scope here</span>
+} <span class="hljs-keyword">else</span> {
+    System.out.println(s); <span class="hljs-comment">//Compile error! s is definitely not a String</span>
+}
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-type">Object</span> <span class="hljs-title function_">getObject</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hi&quot;</span>;
+}</code></pre></div><h4 id="record-patterns">Record Patterns<a class="heading-anchor" href="#record-patterns" aria-label="Link to Record Patterns">#</a></h4><p>Java 21 introduced record patterns, which allow you to destructure record instances directly in the if statement. This provides a more declarative and composable way to work with data. Here&#39;s an example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Book</span><span class="hljs-params">(String title, String author)</span> {}
+
+<span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">printDetails</span><span class="hljs-params">(Object obj)</span> {
+    <span class="hljs-keyword">if</span> (obj <span class="hljs-type">instanceof</span> <span class="hljs-title function_">Book</span><span class="hljs-params">(String title, String author)</span>) {
+        System.out.println(<span class="hljs-string">&quot;Title: &quot;</span> + title);
+        System.out.println(<span class="hljs-string">&quot;Author: &quot;</span> + author);
+    }
+}</code></pre></div><p>In this code, <code>Book(String title, String author)</code> is a record pattern. It not only checks if <code>obj</code> is an instance of <code>Book</code>, but also extracts the <code>title</code> and <code>author</code> components directly into pattern variables. This eliminates the need for separate accessor method calls.</p>
+<p>Record patterns can also be nested, allowing you to destructure complex object graphs in a single step:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Book</span><span class="hljs-params">(String title, String author)</span> {}
+<span class="hljs-keyword">record</span> <span class="hljs-title class_">Library</span><span class="hljs-params">(String name, Book bestSeller)</span> {}
+
+<span class="hljs-type">Library</span> <span class="hljs-variable">myLibrary</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Library</span>(<span class="hljs-string">&quot;City Library&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Book</span>(<span class="hljs-string">&quot;Java Programming&quot;</span>, <span class="hljs-string">&quot;John Doe&quot;</span>));
+
+<span class="hljs-keyword">if</span> (myLibrary <span class="hljs-type">instanceof</span> <span class="hljs-title function_">Library</span><span class="hljs-params">(<span class="hljs-keyword">var</span> name, Book(<span class="hljs-keyword">var</span> title, <span class="hljs-keyword">var</span> author)</span>)) {
+    System.out.println(<span class="hljs-string">&quot;Best seller at &quot;</span> + name + <span class="hljs-string">&quot; is &#x27;&quot;</span> + title + <span class="hljs-string">&quot;&#x27; by &quot;</span> + author);
+}</code></pre></div><p>In this example, we&#39;re using a nested record pattern to match against the <code>Library</code> record and its <code>Book</code> component simultaneously. If the pattern matches, we get direct access to the <code>name</code>, <code>title</code>, and <code>author</code> components without needing to use accessor methods.</p>
+<p>Record patterns also work with generic records. The compiler will infer the type arguments when possible:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Box</span>&lt;T&gt;(T t) {}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GenericRecord</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">unbox</span><span class="hljs-params">(Box&lt;Box&lt;Integer&gt;&gt; box)</span> {
+        <span class="hljs-keyword">if</span> (box <span class="hljs-type">instanceof</span> <span class="hljs-title function_">Box</span><span class="hljs-params">(Box(<span class="hljs-keyword">var</span> u)</span>)) {
+            System.out.println(<span class="hljs-string">&quot;Unboxed Integer: &quot;</span> + u);
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        unbox(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Box</span>&lt;&gt;(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Box</span>&lt;&gt;(<span class="hljs-number">8</span>))); <span class="hljs-comment">// Prints Unboxed Integer: 8</span>
+    }
+}</code></pre></div><p>Here, the compiler infers that <code>u</code> is an <code>Integer</code>, based on the type of <code>box</code>.</p>
+<p>It&#39;s important to note that record patterns don&#39;t match against <code>null</code>. If you need to handle potential <code>null</code> values, you should do so before the pattern matching:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (obj != <span class="hljs-literal">null</span> &amp;&amp; obj <span class="hljs-type">instanceof</span> <span class="hljs-title function_">Book</span><span class="hljs-params">(String title, String author)</span>) {
+    System.out.println(<span class="hljs-string">&quot;Title: &quot;</span> + title);
+    System.out.println(<span class="hljs-string">&quot;Author: &quot;</span> + author);
+}</code></pre></div><p>In summary, here are some key points about record patterns:</p>
+<ol>
+<li>They consist of a record class type followed by a parenthesized list of patterns for each component.</li>
+<li>They can be nested, allowing you to destructure complex record hierarchies in a single pattern.</li>
+<li>The <code>var</code> keyword can be used to infer the type of a component.</li>
+<li><code>null</code> values do not match any record pattern.</li>
+<li>For generic record classes, type arguments are inferred if not explicitly provided.</li>
+</ol>
+<h3 id="flow-scoping">Flow Scoping<a class="heading-anchor" href="#flow-scoping" aria-label="Link to Flow Scoping">#</a></h3><p>An important concept to understand when using pattern matching in <code>if</code> statements is flow scoping. This refers to how the compiler reasons about the scope and availability of pattern variables based on the flow of control through your code.</p>
+<p>Consider this example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> String s) {
+    System.out.println(s); <span class="hljs-comment">// s is definitely a String here</span>
+} <span class="hljs-keyword">else</span> {
+    System.out.println(s); <span class="hljs-comment">// Compiler error: s might not be initialized</span>
+}
+System.out.println(s); <span class="hljs-comment">// Compiler error: s is not in scope here</span></code></pre></div><p>Inside the <code>if</code> block, s is definitely a <code>String</code>, the compiler knows this because the <code>instanceof</code> check must have succeeded for that block to execute. Therefore, it&#39;s safe to use <code>s</code> as a <code>String</code> within this scope.</p>
+<p>However, in the corresponding <code>else</code> block, <code>s</code> is not considered initialized. The compiler doesn&#39;t assume the opposite of the <code>if</code> condition, it reasons that if the <code>else</code> block is executing, the <code>instanceof</code> check must have failed, and so <code>s</code> was never assigned a value. Attempting to use <code>s</code> here results in a compile error.</p>
+<p>Outside the <code>if-else</code> statement entirely, <code>s</code> is not in scope at all. Pattern variables are only accessible within the <code>if</code> block where they&#39;re declared, and in subsequent <code>else if</code> or <code>else</code> blocks if the compiler can prove they were definitely assigned.</p>
+<p>Flow scoping becomes more complex when you have multiple pattern variables in play:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> String s || obj <span class="hljs-keyword">instanceof</span> Integer i) {
+    <span class="hljs-comment">// s or i is in scope, but not both </span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// neither s nor i are in scope</span>
+}</code></pre></div><p>In this case, inside the <code>if</code> block, only one of <code>s</code> or <code>i</code> will be in scope, depending on which instanceof check succeeded. The compiler doesn&#39;t let you use a pattern variable unless it can definitively say it was assigned.</p>
+<p>If you need to use a pattern variable in multiple scopes, you must assign it separately:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;
+<span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> String temp) {
+    s = temp;
+}
+<span class="hljs-comment">// s is now in scope, but may be null if the if block didn&#x27;t execute</span></code></pre></div><p>This may feel like a limitation, but it is actually a powerful safety feature. By tightly controlling the scope of pattern variables, Java helps prevent common bugs and makes your code more robust.</p>
+<p>It&#39;s worth noting that flow scoping only applies to the declared pattern variables themselves, not the original variables. In the example above, <code>obj</code> remains in scope throughout, because it was declared before the <code>if</code> statement.</p>
+<h2 id="the-switch-statement">The <code>switch</code> Statement<a class="heading-anchor" href="#the-switch-statement" aria-label="Link to The switch Statement">#</a></h2><p>Sometimes, you need to check the value of a variable or expression and execute different code depending on what that value is. If there are only a couple of options, an <code>if-else</code> statement works fine:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;cat&quot;</span>;
+<span class="hljs-keyword">if</span>(animal.equals(<span class="hljs-string">&quot;dog&quot;</span>)) {
+    System.out.println(<span class="hljs-string">&quot;Woof!&quot;</span>);
+} <span class="hljs-keyword">else</span> {
+    System.out.println(<span class="hljs-string">&quot;Meow!&quot;</span>);
+}</code></pre></div><p>But what if there are many possible values to check? You could chain a bunch of <code>if-else</code> statements together:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;horse&quot;</span>;
+<span class="hljs-keyword">if</span>(animal.equals(<span class="hljs-string">&quot;dog&quot;</span>)) {
+    System.out.println(<span class="hljs-string">&quot;Woof!&quot;</span>); 
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(animal.equals(<span class="hljs-string">&quot;cat&quot;</span>)) {
+    System.out.println(<span class="hljs-string">&quot;Meow!&quot;</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(animal.equals(<span class="hljs-string">&quot;pig&quot;</span>)) {
+    System.out.println(<span class="hljs-string">&quot;Oink!&quot;</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(animal.equals(<span class="hljs-string">&quot;horse&quot;</span>)) {
+    System.out.println(<span class="hljs-string">&quot;Neigh!&quot;</span>);
+} <span class="hljs-keyword">else</span> {
+    System.out.println(<span class="hljs-string">&quot;Unknown animal!&quot;</span>);
+}</code></pre></div><p>However, this can get cumbersome and messy fast. That&#39;s where the <code>switch</code> statement comes in. It allows you to define separate code blocks for different values of a variable or expression. </p>
+<p>Here&#39;s the diagram for the <code>switch</code> statement:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">┌─────────────────────────────────────┐
+│          switch (variable)          │
+│   ┌───────────────────────────────┐ │
+│   │         case value1:          │ │
+│   │           // code block       │ │
+│   │           break;              │ │
+│   ├───────────────────────────────┤ │
+│   │         case value2:          │ │
+│   │           // code block       │ │
+│   │           break;              │ │
+│   ├───────────────────────────────┤ │
+│   │         case value3:          │ │
+│   │           // code block       │ │
+│   │           break;              │ │
+│   ├───────────────────────────────┤ │
+│   │         default:              │ │
+│   │           // code block       │ │
+│   └───────────────────────────────┘ │
+└─────────────────────────────────────┘</code></pre></div><p>And this is its basic syntax:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">switch</span>(variable) {
+    <span class="hljs-keyword">case</span> value1:
+        <span class="hljs-comment">// code to run if variable == value1</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> value2: 
+        <span class="hljs-comment">// code to run if variable == value2</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+        <span class="hljs-comment">// code to run if no case matches</span>
+}</code></pre></div><p>So the animal example could be rewritten more cleanly as:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;horse&quot;</span>;
+<span class="hljs-keyword">switch</span>(animal) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;dog&quot;</span>:
+        System.out.println(<span class="hljs-string">&quot;Woof!&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;cat&quot;</span>:
+        System.out.println(<span class="hljs-string">&quot;Meow!&quot;</span>);
+        <span class="hljs-keyword">break</span>; 
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;pig&quot;</span>:
+        System.out.println(<span class="hljs-string">&quot;Oink!&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;horse&quot;</span>:
+        System.out.println(<span class="hljs-string">&quot;Neigh!&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+        System.out.println(<span class="hljs-string">&quot;Unknown animal!&quot;</span>);
+}</code></pre></div><p>Each <code>case</code> defines a value to compare the switch variable against. If there&#39;s a match, the code for that case executes. The <code>break</code> causes execution to jump to the end of the <code>switch</code> block. If no case matches, the <code>default</code> block runs. </p>
+<p>It&#39;s important to include a <code>break</code> (or <code>return</code>) statement for each case, otherwise execution <em>falls through</em> to the next case, which is rarely what you want. The default case doesn&#39;t need an explicit <code>break</code> since it&#39;s the last one.</p>
+<h3 id="types-in-case-statements">Types in <code>case</code> Statements<a class="heading-anchor" href="#types-in-case-statements" aria-label="Link to Types in case Statements">#</a></h3><p>Not just any type can be used in a <code>switch</code>. Historically, switches could only work with these integral types and their wrapper classes:</p>
+<ul>
+<li><code>int</code>/<code>Integer</code> </li>
+<li><code>byte</code>/<code>Byte</code></li>
+<li><code>short</code>/<code>Short</code></li>
+<li><code>char</code>/<code>Character</code></li>
+</ul>
+<p>Then, in later versions of Java, <code>String</code>, records, and the constants of an <code>enum</code> were added as an option.</p>
+<p>Also, you can use <code>var</code> in a <code>switch</code> statement as long as the type resolves to one of the other permitted types:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;horse&quot;</span>;
+<span class="hljs-keyword">switch</span>(animal) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;dog&quot;</span>:
+        System.out.println(<span class="hljs-string">&quot;Woof!&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;cat&quot;</span>:
+        System.out.println(<span class="hljs-string">&quot;Meow!&quot;</span>);
+        <span class="hljs-keyword">break</span>; 
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;pig&quot;</span>:
+        System.out.println(<span class="hljs-string">&quot;Oink!&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;horse&quot;</span>:
+        System.out.println(<span class="hljs-string">&quot;Neigh!&quot;</span>);
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+        System.out.println(<span class="hljs-string">&quot;Unknown animal!&quot;</span>);
+}</code></pre></div><p>In this case, <code>animal</code> is inferred to be a <code>String</code> based on the value assigned to it. Since <code>String</code> is a valid type for a switch, using <code>var</code> here is perfectly fine.</p>
+<p>However, if you try to do something like this:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">data</span> <span class="hljs-operator">=</span> <span class="hljs-number">3.14</span>;
+<span class="hljs-keyword">switch</span>(data) {
+    <span class="hljs-comment">// ...</span>
+}</code></pre></div><p>You will get a compilation error because <code>data</code> is inferred to be a <code>double</code>, which is not a permitted type for <code>switch</code> statements.</p>
+<p>About enums, let&#39;s consider an interface <code>Season</code> and an enum <code>Weather</code> that implements this interface:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">sealed</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Season</span> <span class="hljs-keyword">permits</span> Weather {}
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">Weather</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Season</span> { SPRING, SUMMER, FALL, WINTER }</code></pre></div><p>In older versions of Java, the switch statement required you to use only the simple names of the enum constants:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">void</span> <span class="hljs-title function_">oldEnumSwitch</span><span class="hljs-params">(Weather w)</span> {
+    <span class="hljs-keyword">switch</span> (w) {
+        <span class="hljs-keyword">case</span> SPRING -&gt; {
+            System.out.println(<span class="hljs-string">&quot;It&#x27;s spring!&quot;</span>);
+        }
+        <span class="hljs-keyword">case</span> SUMMER -&gt; {
+            System.out.println(<span class="hljs-string">&quot;It&#x27;s summer!&quot;</span>);
+        }
+        <span class="hljs-keyword">case</span> FALL -&gt; {
+            System.out.println(<span class="hljs-string">&quot;It&#x27;s fall!&quot;</span>);
+        }
+        <span class="hljs-keyword">case</span> WINTER -&gt; {
+            System.out.println(<span class="hljs-string">&quot;It&#x27;s winter!&quot;</span>);
+        }
+    }
+}</code></pre></div><p>This restriction worked fine for basic use cases but became cumbersome when dealing with more complex scenarios, such as combining enum types or using sealed interfaces.</p>
+<p>In Java 21, you can now use fully qualified names of enum constants and mix them with other case labels, providing greater flexibility and allowing for more complex switch expressions:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">void</span> <span class="hljs-title function_">newEnumSwitch1</span><span class="hljs-params">(Season s)</span> {
+    <span class="hljs-keyword">switch</span> (s) {
+        <span class="hljs-keyword">case</span> Weather.SPRING -&gt; {  <span class="hljs-comment">// Qualified name of enum constant</span>
+            System.out.println(<span class="hljs-string">&quot;It&#x27;s spring!&quot;</span>);
+        }
+        <span class="hljs-keyword">case</span> Weather.SUMMER -&gt; {
+            System.out.println(<span class="hljs-string">&quot;It&#x27;s summer!&quot;</span>);
+        }
+        <span class="hljs-keyword">case</span> Weather.FALL -&gt; {
+            System.out.println(<span class="hljs-string">&quot;It&#x27;s fall!&quot;</span>);
+        }
+        <span class="hljs-keyword">case</span> Weather.WINTER -&gt; {
+            System.out.println(<span class="hljs-string">&quot;It&#x27;s winter!&quot;</span>);
+        }
+    }
+}</code></pre></div><p>Additionally, the requirement that the selector expression be of an enum type is relaxed, allowing you to use qualified names of enum constants even if the selector expression is not of the enum type, as long as it is assignment compatible, like in the above example.</p>
+<p>However, an invalid use case would be when the enum constant is not fully qualified:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">void</span> <span class="hljs-title function_">invalidEnumSwitch</span><span class="hljs-params">(Season s)</span> {
+    <span class="hljs-keyword">switch</span> (s) {
+        <span class="hljs-keyword">case</span> SPRING -&gt; { <span class="hljs-comment">// Error: SPRING must be qualified as Weather.SPRING</span>
+            System.out.println(<span class="hljs-string">&quot;It&#x27;s spring!&quot;</span>);
+        }
+        <span class="hljs-keyword">case</span> Weather.SUMMER -&gt; {
+            System.out.println(<span class="hljs-string">&quot;It&#x27;s summer!&quot;</span>);
+        }
+        <span class="hljs-keyword">case</span> Weather.FALL -&gt; {
+            System.out.println(<span class="hljs-string">&quot;It&#x27;s fall!&quot;</span>);
+        }
+        <span class="hljs-keyword">case</span> Weather.WINTER -&gt; {
+            System.out.println(<span class="hljs-string">&quot;It&#x27;s winter!&quot;</span>);
+        }
+        <span class="hljs-keyword">default</span> -&gt; {
+            System.out.println(<span class="hljs-string">&quot;Unknown season&quot;</span>);
+        }
+    }
+}</code></pre></div><h3 id="values-in-case-statements">Values in <code>case</code> Statements<a class="heading-anchor" href="#values-in-case-statements" aria-label="Link to Values in case Statements">#</a></h3><p>When defining the values for each <code>case</code>, there are some important rules to keep in mind. The value must be a compile-time constant, meaning it has to be known at the time the code is compiled, not determined at runtime.</p>
+<p>So you can use literal values like <code>&quot;dog&quot;</code> or <code>3</code>, <code>final</code> variables (as long as they&#39;re initialized with a constant value), and <code>enum</code> constants. But you can&#39;t use a regular variable or a method call, even if the method always returns the same value. For example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">NUMBER</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;
+
+<span class="hljs-type">int</span> <span class="hljs-title function_">getSome</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+}
+
+<span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span>;
+
+<span class="hljs-keyword">switch</span>(value) {
+    <span class="hljs-keyword">case</span> NUMBER: <span class="hljs-comment">// OK, NUMBER is final and initialized with a constant</span>
+    <span class="hljs-type">case</span> <span class="hljs-title function_">getSome</span><span class="hljs-params">()</span>: <span class="hljs-comment">// Error! Method calls aren&#x27;t allowed</span>
+    <span class="hljs-keyword">case</span> x: <span class="hljs-comment">// Error! x is not final</span>
+    ...
+}</code></pre></div><p>Sometimes, you might want to run the same code for multiple <code>case</code> values. Rather than duplicating the code, you can simply list the values together for a single case:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> dayNumber;
+<span class="hljs-keyword">switch</span>(dayName) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;Monday&quot;</span>:
+        dayNumber = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;Tuesday&quot;</span>:
+        dayNumber = <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;Saturday&quot;</span>, <span class="hljs-string">&quot;Sunday&quot;</span>: <span class="hljs-comment">// Runs the same code for &quot;Saturday&quot; and &quot;Sunday&quot;</span>
+        dayNumber = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;Invalid day: &quot;</span> + dayName);
+}</code></pre></div><p>I mentioned this earlier, but it&#39;s worth reiterating, don&#39;t forget to <code>break</code> out of each case block (or use <code>return</code>), unless you specifically want execution to fall through to the next case. Forgetting a <code>break</code> is a common source of bugs in switch statements.</p>
+<h3 id="the-switch-expression">The <code>switch</code> Expression<a class="heading-anchor" href="#the-switch-expression" aria-label="Link to The switch Expression">#</a></h3><p>Java 14 officially introduced a new form of <code>switch</code>, known as the <code>switch</code> expression. It has a few key differences from the traditional <code>switch</code> statement. First, here&#39;s the syntax:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">variable = <span class="hljs-keyword">switch</span>(anotherVariable) {
+    <span class="hljs-keyword">case</span> value1 -&gt; expression1;
+    <span class="hljs-keyword">case</span> value2 -&gt; { statements; <span class="hljs-keyword">yield</span> expression2; }
+    <span class="hljs-keyword">default</span> -&gt; expression3;
+};</code></pre></div><p>Instead of <code>case:</code> and <code>break</code>, the switch expression uses <code>-&gt;</code> to map each case to a value or block of code. If you need multiple statements for a case, use curly braces and the <code>yield</code> keyword to specify the value to return.</p>
+<p>Note the semicolons. Each case needs one at the end, as does the entire <code>switch</code> expression.</p>
+<p>The <code>switch</code> expression must always return a value, and each case must cover all possibilities (either explicitly or with a <code>default</code>). The data types of all the <code>case</code> results must also be consistent with each other.</p>
+<p>Here&#39;s a more concrete example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">animal</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;horse&quot;</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">sound</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span>(animal) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;dog&quot;</span> -&gt; <span class="hljs-string">&quot;Woof!&quot;</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;cat&quot;</span> -&gt; <span class="hljs-string">&quot;Meow!&quot;</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;pig&quot;</span> -&gt; <span class="hljs-string">&quot;Oink!&quot;</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;horse&quot;</span> -&gt; <span class="hljs-string">&quot;Neigh!&quot;</span>;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;human&quot;</span> -&gt; {
+        <span class="hljs-type">String</span> <span class="hljs-variable">greeting</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello!&quot;</span>;
+        <span class="hljs-keyword">yield</span> greeting; <span class="hljs-comment">// Use yield when there are multiple statements</span>
+    }
+    <span class="hljs-keyword">default</span> -&gt; <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;Unknown animal: &quot;</span> + animal);
+};</code></pre></div><p>In this case, each animal is mapped directly to the sound it makes, except for <code>human</code> which has a block of code. The <code>default</code> case throws an exception since the <code>switch</code> expression must cover all possible input values.</p>
+<h3 id="pattern-matching-in-switch-statements">Pattern Matching in <code>switch</code> Statements<a class="heading-anchor" href="#pattern-matching-in-switch-statements" aria-label="Link to Pattern Matching in switch Statements">#</a></h3><p>Java 21 introduced a powerful new feature: pattern matching in <code>switch</code> statements and expressions. This allows you to test the structure of an object directly in the <code>switch</code>, making your code more expressive and less error-prone.</p>
+<p>Let&#39;s start with a simple example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello, World!&quot;</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (obj) {
+    <span class="hljs-keyword">case</span> Integer i -&gt; <span class="hljs-string">&quot;It&#x27;s an integer: &quot;</span> + i;
+    <span class="hljs-keyword">case</span> String s -&gt; <span class="hljs-string">&quot;It&#x27;s a string: &quot;</span> + s;
+    <span class="hljs-keyword">case</span> Double d -&gt; <span class="hljs-string">&quot;It&#x27;s a double: &quot;</span> + d;
+    <span class="hljs-keyword">default</span> -&gt; <span class="hljs-string">&quot;It&#x27;s something else&quot;</span>;
+};
+System.out.println(result); <span class="hljs-comment">// Outputs: It&#x27;s a string: Hello, World!</span></code></pre></div><p>In this example, we&#39;re switching on an <code>Object</code>, and each case checks if the object is of a specific type. If it matches, we can use the variable declared in the pattern (like <code>s</code> for String) directly in the case body.</p>
+<p>We can add guards to our case labels for even more precise matching:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> <span class="hljs-number">42</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">category</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (obj) {
+    <span class="hljs-keyword">case</span> Integer i <span class="hljs-keyword">when</span> i &lt; <span class="hljs-number">0</span> -&gt; <span class="hljs-string">&quot;Negative integer&quot;</span>;
+    <span class="hljs-keyword">case</span> Integer i <span class="hljs-keyword">when</span> i &gt; <span class="hljs-number">0</span> -&gt; <span class="hljs-string">&quot;Positive integer&quot;</span>;
+    <span class="hljs-keyword">case</span> Integer i -&gt; <span class="hljs-string">&quot;Zero&quot;</span>;
+    <span class="hljs-keyword">case</span> String s <span class="hljs-keyword">when</span> s.length() &gt; <span class="hljs-number">5</span> -&gt; <span class="hljs-string">&quot;Long string&quot;</span>;
+    <span class="hljs-keyword">case</span> String s -&gt; <span class="hljs-string">&quot;Short string&quot;</span>;
+    <span class="hljs-keyword">default</span> -&gt; <span class="hljs-string">&quot;Something else&quot;</span>;
+};
+System.out.println(category); <span class="hljs-comment">// Outputs: Positive integer</span></code></pre></div><p>The <code>when</code> clause allows us to add additional conditions to our pattern matching.</p>
+<p>However, when using pattern matching, the order of cases matters. More specific patterns should come before more general ones:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello&quot;</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (obj) {
+    <span class="hljs-keyword">case</span> String s <span class="hljs-keyword">when</span> s.length() &gt; <span class="hljs-number">5</span> -&gt; <span class="hljs-string">&quot;Long string&quot;</span>;
+    <span class="hljs-keyword">case</span> String s -&gt; <span class="hljs-string">&quot;Short string&quot;</span>;
+    <span class="hljs-keyword">case</span> CharSequence cs -&gt; <span class="hljs-string">&quot;Some other CharSequence&quot;</span>;
+    <span class="hljs-keyword">default</span> -&gt; <span class="hljs-string">&quot;Not a CharSequence&quot;</span>;
+};
+System.out.println(result); <span class="hljs-comment">// Outputs: Short string</span></code></pre></div><p>If we were to put the <code>case String s</code> before <code>case String s when s.length() &gt; 5</code>, the guard would never be reached, and the compiler would report a compile-time error about an unreachable case.</p>
+<p>Pattern matching in switch also introduces a more elegant way to handle <code>null</code> values:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">description</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (str) {
+    <span class="hljs-keyword">case</span> <span class="hljs-literal">null</span> -&gt; <span class="hljs-string">&quot;It&#x27;s null!&quot;</span>;
+    <span class="hljs-keyword">case</span> String s -&gt; <span class="hljs-string">&quot;It&#x27;s a string of length &quot;</span> + s.length();
+};
+System.out.println(description); <span class="hljs-comment">// Outputs: It&#x27;s null!</span></code></pre></div><p>In traditional switches, a <code>null</code> value would throw a <code>NullPointerException</code>. With pattern matching, we can explicitly handle the <code>null</code> case.</p>
+<p>However, you have to be careful about having only one match-all case label in a <code>switch</code> block. If, for example, you add a <code>default</code> case to the above example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">description</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (str) {
+    <span class="hljs-keyword">case</span> <span class="hljs-literal">null</span> -&gt; <span class="hljs-string">&quot;It&#x27;s null!&quot;</span>;
+    <span class="hljs-keyword">case</span> String s -&gt; <span class="hljs-string">&quot;It&#x27;s a string of length &quot;</span> + s.length();
+    <span class="hljs-keyword">default</span> -&gt; <span class="hljs-string">&quot;default&quot;</span>;
+};
+System.out.println(description); <span class="hljs-comment">// Outputs: It&#x27;s null!</span></code></pre></div><p>You&#39;ll get a compilation error: <code>switch has both an unconditional pattern and a default label</code>.</p>
+<p>Having more than one match-all case labels in a <code>switch</code> statement or expression generates a compile-time error. The match-all case labels are:</p>
+<ul>
+<li>A case label with a pattern that unconditionally matches the selector expression</li>
+<li>The <code>default</code> case label</li>
+</ul>
+<p>However, the following compiles:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>; <span class="hljs-comment">// Notice the Object type</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">description</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (obj) {
+    <span class="hljs-keyword">case</span> String s -&gt; <span class="hljs-string">&quot;It&#x27;s a string of length &quot;</span> + s.length();
+    <span class="hljs-keyword">case</span> <span class="hljs-literal">null</span>, <span class="hljs-keyword">default</span>  -&gt; <span class="hljs-string">&quot;It&#x27;s null or not a string!&quot;</span>;
+};
+System.out.println(description); <span class="hljs-comment">// Outputs: It&#x27;s null or not a string!</span></code></pre></div><p>If a selector expression evaluates to <code>null</code> and the switch block does not have <code>null</code> case label, like in the following case:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">description</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (obj) { <span class="hljs-comment">// Throws NullPointerException</span>
+    <span class="hljs-keyword">case</span> String s -&gt; <span class="hljs-string">&quot;It&#x27;s a string of length &quot;</span> + s.length();
+    <span class="hljs-keyword">default</span>  -&gt; <span class="hljs-string">&quot;It&#x27;s null or not a string&quot;</span>;
+};
+System.out.println(description); </code></pre></div><p>Then a <code>NullPointerException</code> is thrown. </p>
+<p>Another key benefits of pattern matching in <code>switch</code> is exhaustiveness checking. The compiler ensures that all possible cases are covered:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">sealed</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Shape</span> <span class="hljs-keyword">permits</span> Circle, Rectangle, Triangle {}
+<span class="hljs-keyword">record</span> <span class="hljs-title class_">Circle</span><span class="hljs-params">(<span class="hljs-type">double</span> radius)</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Shape</span> {}
+<span class="hljs-keyword">record</span> <span class="hljs-title class_">Rectangle</span><span class="hljs-params">(<span class="hljs-type">double</span> width, <span class="hljs-type">double</span> height)</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Shape</span> {}
+<span class="hljs-keyword">record</span> <span class="hljs-title class_">Triangle</span><span class="hljs-params">(<span class="hljs-type">double</span> base, <span class="hljs-type">double</span> height)</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Shape</span> {}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SwitchExhaustiveness</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">Shape</span> <span class="hljs-variable">shape</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Circle</span>(<span class="hljs-number">5</span>);
+        <span class="hljs-type">double</span> <span class="hljs-variable">area</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (shape) {
+            <span class="hljs-keyword">case</span> Circle c -&gt; Math.PI * c.radius() * c.radius();
+            <span class="hljs-keyword">case</span> Rectangle r -&gt; r.width() * r.height();
+            <span class="hljs-keyword">case</span> Triangle t -&gt; <span class="hljs-number">0.5</span> * t.base() * t.height();
+        };
+        System.out.println(<span class="hljs-string">&quot;Area: &quot;</span> + area);
+    }
+}</code></pre></div><p>In this example, because <code>Shape</code> is a sealed interface and we&#39;ve covered all its permitted subclasses, the compiler knows we&#39;ve exhaustively covered all possibilities. If the expression is a <code>sealed</code> type, only the classes declared in the <code>permits</code> clause of the <code>sealed</code> type need to be handled by the <code>switch</code>.</p>
+<p>However, if you don&#39;t cover all the possibilities:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">double</span> <span class="hljs-variable">area</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (shape) {
+    <span class="hljs-keyword">case</span> Circle c -&gt; Math.PI * c.radius() * c.radius();
+    <span class="hljs-keyword">case</span> Rectangle r -&gt; r.width() * r.height();
+};</code></pre></div><p>A compile-time error is generated: <code>switch expression does not cover all possible input values</code>.</p>
+<p>The issue can be fixed simply by adding a <code>default</code> case:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">double</span> <span class="hljs-variable">area</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (shape) {
+    <span class="hljs-keyword">case</span> Circle c -&gt; Math.PI * c.radius() * c.radius();
+    <span class="hljs-keyword">case</span> Rectangle r -&gt; r.width() * r.height();
+    <span class="hljs-keyword">default</span> -&gt; <span class="hljs-number">0</span>;
+};</code></pre></div><p>Finally, in a <code>switch</code> statement, the compiler can also infer the type arguments for a generic record pattern. For example, taking into account the following record declaration:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">record</span> <span class="hljs-title class_">Point</span>&lt;T, U&gt;(T x, U y) { }</code></pre></div><p>The compiler can infer <code>Point(var x, var y)</code> as <code>Point&lt;Long, Long&gt;(Long x, Long x)</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Point</span>&lt;Long, Long&gt; <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Point</span>(<span class="hljs-number">1L</span>, <span class="hljs-number">2L</span>);
+
+<span class="hljs-keyword">switch</span> (p) {
+    <span class="hljs-type">case</span> <span class="hljs-title function_">Point</span><span class="hljs-params">(<span class="hljs-keyword">var</span> x, <span class="hljs-keyword">var</span> y)</span> -&gt; 
+        System.out.println(x + <span class="hljs-string">&quot;, &quot;</span> + y);
+}</code></pre></div><h2 id="the-while-loop">The <code>while</code> Loop<a class="heading-anchor" href="#the-while-loop" aria-label="Link to The while Loop">#</a></h2><p>A <code>while</code> loop allows you to repeatedly execute a block of code as long as a specified <code>boolean</code> condition remains <code>true</code>.</p>
+<p>Here&#39;s the flowchart diagram for the <code>while</code> statement:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">          ┌─────────┐
+          │  Start  │
+          └────┬────┘
+               │
+         ┌─────┴─────┐
+    ┌────┤ Condition │
+    │    └─────┬─────┘
+    │          │
+    │    ┌─────┴─────┐
+    │    │  Is true? ├───────┐
+    │    └─────┬─────┘       │
+    │          │             │
+    │    ┌─────┴─────┐ ┌─────┴─────┐
+    │    │    Yes    │ │    No     │
+    │    └─────┬─────┘ └─────┬─────┘
+    │          │             │
+    │    ┌─────┴─────┐       │
+    │    │  Execute  │       │
+    │    │   Loop    │       │
+    │    │   Body    │       │
+    │    └─────┬─────┘       │
+    │          │             │
+    └──────────┘             │
+                             │
+                        ┌────┴────┐
+                        │  End    │
+                        └─────────┘</code></pre></div><p>There are actually two variants of the <code>while</code> loop in Java:</p>
+<ol>
+<li>The standard <code>while</code> loop </li>
+<li>The <code>do-while</code> loop</li>
+</ol>
+<p>The standard <code>while</code> loop has the following structure:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">while</span>(condition) {
+    <span class="hljs-comment">// code block to be executed</span>
+}</code></pre></div><p>The condition is a <code>boolean</code> expression that is evaluated before each iteration of the loop. If the condition is <code>true</code>, the code block is executed. This process repeats until the condition becomes <code>false</code>. </p>
+<p>It&#39;s important to note that if the condition is false when the loop is first reached, the code block will not be executed at all. The loop will be skipped entirely.</p>
+<p>Here&#39;s an example that prints the numbers 0 through 9:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+<span class="hljs-keyword">while</span>(count &lt; <span class="hljs-number">10</span>) {
+    System.out.println(count);
+    count++;
+}</code></pre></div><p>The loop will continue executing until count is no longer less than 10.</p>
+<p>The <code>do-while</code> loop is similar to the standard <code>while</code> loop but with one key difference: the condition is evaluated after the code block has executed. This means the code block will always execute at least once, even if the condition is initially false.</p>
+<p>Here&#39;s the syntax of a <code>do-while</code> loop:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">do</span> {
+    <span class="hljs-comment">// code block to be executed</span>
+} <span class="hljs-keyword">while</span>(condition);</code></pre></div><p>As you can see, the code block comes before the <code>while</code> keyword and condition. The condition is checked after each iteration, determining whether the loop should continue or terminate.</p>
+<p>The following example is functionally equivalent to the previous <code>while</code> loop example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; 
+<span class="hljs-keyword">do</span> {
+    System.out.println(count);
+    count++;
+} <span class="hljs-keyword">while</span>(count &lt; <span class="hljs-number">10</span>);</code></pre></div><p>Even though the structure is different, this <code>do-while</code> loop achieves the same result as the standard <code>while</code> loop, printing the numbers 0 through 9.</p>
+<p>So why would you choose a <code>do-while</code> loop over a standard <code>while</code> loop? It really depends on the specific problem you&#39;re trying to solve. If you know you always want the code block to execute at least once regardless of the initial condition state, a <code>do-while</code> can be a good choice and can make your intention clearer. However, in many cases, a standard <code>while</code> loop is sufficient and more commonly used.</p>
+<h3 id="nested-loops">Nested Loops<a class="heading-anchor" href="#nested-loops" aria-label="Link to Nested Loops">#</a></h3><p>It&#39;s possible to place one loop inside the body of another loop. This is known as loop nesting. Nested loops allow you to iterate over multiple dimensions, such as the rows and columns of a 2D array.</p>
+<p>Here&#39;s an example that uses nested <code>while</code> loops to print out a multiplication table:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+<span class="hljs-keyword">while</span>(i &lt;= <span class="hljs-number">10</span>) {
+    <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span>(j &lt;= <span class="hljs-number">10</span>) {
+        System.out.print(i * j + <span class="hljs-string">&quot;\t&quot;</span>);
+        j++;
+    }
+    System.out.println();
+    i++;
+}</code></pre></div><p>The outer loop iterates from 1 to 10, representing the rows of the multiplication table. For each iteration of the outer loop, the inner loop also iterates from 1 to 10, representing the columns. The product of the current row and column values is printed, followed by a tab (<code>\t</code>) character for formatting. After each row is complete, a newline is printed to move to the next row.</p>
+<p>While this example uses <code>while</code> loops, you can also nest <code>do-while</code> loops in a similar manner. The choice of loop type depends on the specific requirements of your use case.</p>
+<h3 id="the-break-and-continue-statements">The <code>break</code> and <code>continue</code> Statements<a class="heading-anchor" href="#the-break-and-continue-statements" aria-label="Link to The break and continue Statements">#</a></h3><p>The <code>break</code> statement is used to immediately terminate a loop or switch statement. When encountered inside a loop, <code>break</code> causes program control to transfer to the next statement after the loop.</p>
+<p>Here&#39;s an example of using <code>break</code> in a <code>while</code> loop:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+<span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) {
+    System.out.println(count);
+    count++;
+    <span class="hljs-keyword">if</span>(count &gt;= <span class="hljs-number">5</span>) {
+        <span class="hljs-keyword">break</span>;
+    }
+}</code></pre></div><p>This loop will continue infinitely because the condition is always true. However, the <code>break</code> statement inside the loop will cause it to terminate once count reaches 5.</p>
+<p>On the other hand, the <code>continue</code> statement is used to skip the rest of the current loop iteration and immediately move on to the next iteration. </p>
+<p>Here&#39;s an example that uses <code>continue</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+<span class="hljs-keyword">while</span>(i &lt; <span class="hljs-number">10</span>) {
+    <span class="hljs-keyword">if</span>(i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+        i++;
+        <span class="hljs-keyword">continue</span>;
+    }
+    System.out.println(i);
+    i++;
+}</code></pre></div><p>This loop iterates from 0 to 9. However, when <code>i</code> is even (divisible by 2), the <code>continue</code> statement is executed, causing the rest of the iteration to be skipped. As a result, only the odd numbers are printed.</p>
+<p>However, it&#39;s important to note that using <code>break</code> or <code>continue</code> can sometimes lead to unreachable code, which will cause a compilation error.</p>
+<p>Consider this example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">while</span>(condition) {
+    <span class="hljs-comment">// code block</span>
+    <span class="hljs-keyword">break</span>;
+    <span class="hljs-comment">// more code</span>
+}</code></pre></div><p>The code after the <code>break</code> statement will never be executed because <code>break</code> always causes the loop to terminate. The Java compiler will detect this and raise an &quot;unreachable code&quot; compilation error.</p>
+<p>The same applies to <code>continue</code>. Any code placed after a <code>continue</code> statement in the same loop iteration will be unreachable.</p>
+<p>To avoid these errors, make sure that any code placed after a <code>break</code> or <code>continue</code> has a chance to execute under some condition.</p>
+<h3 id="adding-labels">Adding Labels<a class="heading-anchor" href="#adding-labels" aria-label="Link to Adding Labels">#</a></h3><p>Finally, you can associate a label with a loop. Labels provide a way to break out of or continue a specific outer loop from within a nested loop. Here&#39;s the syntax for adding a label to a loop:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java">label: 
+<span class="hljs-keyword">while</span>(condition) {
+    <span class="hljs-comment">// code block</span>
+}</code></pre></div><p>The label is an identifier followed by a colon. It&#39;s placed just before the loop declaration.</p>
+<p>Here&#39;s an example that demonstrates the use of labels:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+outerLoop:
+<span class="hljs-keyword">while</span>(i &lt; <span class="hljs-number">10</span>) {
+    <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>(j &lt; <span class="hljs-number">10</span>) {
+        <span class="hljs-keyword">if</span>(j == <span class="hljs-number">5</span>) {
+            <span class="hljs-keyword">break</span> outerLoop;
+        }
+        System.out.println(<span class="hljs-string">&quot;i: &quot;</span> + i + <span class="hljs-string">&quot;, j: &quot;</span> + j);
+        j++;
+    }
+    i++;
+}</code></pre></div><p>In this case, the outer loop is labeled <code>outerLoop</code>. Inside the nested loop, there&#39;s a condition that checks if <code>j</code> is equal to 5. When this condition is met, the <code>break</code> statement is used with the <code>outerLoop</code> label, causing execution to jump out of both the inner and outer loops. Without the label, the break would only exit the inner loop.</p>
+<p>Like <code>break</code>, <code>continue</code> can also be used with a label to skip to the next iteration of an outer loop.</p>
+<p>Here&#39;s an example that demonstrates this:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+outerLoop:
+<span class="hljs-keyword">while</span>(i &lt; <span class="hljs-number">3</span>) {
+    <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>(j &lt; <span class="hljs-number">3</span>) {
+        <span class="hljs-keyword">if</span>(i == <span class="hljs-number">1</span> &amp;&amp; j == <span class="hljs-number">1</span>) {
+            i++;
+            <span class="hljs-keyword">continue</span> outerLoop;
+        }
+        System.out.println(<span class="hljs-string">&quot;i: &quot;</span> + i + <span class="hljs-string">&quot;, j: &quot;</span> + j);
+        j++;
+    }
+    i++;
+}</code></pre></div><p>In this example, the outer loop is labeled <code>outerLoop</code>. The outer loop iterates over the values of <code>i</code> from 0 to 2, and the inner loop iterates over the values of <code>j</code> from 0 to 2.</p>
+<p>Inside the nested loops, there&#39;s a condition that checks if both <code>i</code> and <code>j</code> are equal to 1. When this condition is met, the <code>continue</code> statement is used with the <code>outerLoop</code> label. This causes the program control to immediately jump to the next iteration of the outer loop, skipping the rest of the inner loop.</p>
+<p>As a result, the output of this code will be:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">i: 0, j: 0
+i: 0, j: 1
+i: 0, j: 2
+i: 1, j: 0
+i: 2, j: 0
+i: 2, j: 1
+i: 2, j: 2</code></pre></div><p>Notice that the output <code>i: 1, j: 1</code> is missing because when <code>i</code> and <code>j</code> are both 1, the <code>continue outerLoop</code> statement is executed, causing the program to skip to the next iteration of the outer loop, bypassing the print statement.</p>
+<p>Using <code>continue</code> with a label is less common than using <code>break</code> with a label, but it can be useful in situations where you want to skip multiple levels of nested loops based on a certain condition.</p>
+<h2 id="the-for-loop">The <code>for</code> Loop<a class="heading-anchor" href="#the-for-loop" aria-label="Link to The for Loop">#</a></h2><p>Like <code>while</code> loops, <code>for</code> loops are used to repeatedly execute a block of code. However, <code>for</code> loops provide a more concise syntax for iterating over a range of values or elements in a collection.</p>
+<p>In Java, there are two types of <code>for</code> loops:</p>
+<ul>
+<li>The traditional <code>for</code> loop</li>
+<li>The <code>for-each</code> loop (also known as the enhanced <code>for</code> loop)</li>
+</ul>
+<p>Here&#39;s a diagram with the key points of the <code>for</code> loops:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">┌─────────────────────────────────────────────────────────────┐
+│                     Java for Loops                          │
+│                                                             │
+│  Traditional for Loop        │     for-each Loop            │
+│                              │                              │
+│  for (int i = 0; i &lt; 5; i++) │  for (int num : numbers) {   │
+│  {                           │      // code block           │
+│      // code block           │  }                           │
+│  }                           │                              │
+│                              │                              │
+│  Components:                 │  Components:                 │
+│  1. Initialization           │  1. Element variable         │
+│  2. Condition                │  2. Collection to iterate    │
+│  3. Update statement         │                              │
+│                              │                              │
+│  Use when:                   │  Use when:                   │
+│  - Need index                │  - Don&#x27;t need index          │
+│  - Custom increments         │  - Iterating full collection │
+│  - Multiple counters         │  - Simpler syntax preferred  │
+└─────────────────────────────────────────────────────────────┘</code></pre></div><p>Let&#39;s start by examining in more detail the traditional <code>for</code> loop.</p>
+<h3 id="the-traditional-for-loop">The Traditional <code>for</code> Loop<a class="heading-anchor" href="#the-traditional-for-loop" aria-label="Link to The Traditional for Loop">#</a></h3><p>The traditional <code>for</code> loop has the following structure:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">for</span>(initialization; booleanExpression; updateStatement) {
+    <span class="hljs-comment">// code block to be executed</span>
+}</code></pre></div><p>The loop consists of three parts separated by semicolons:</p>
+<ol>
+<li><p><strong>Initialization:</strong> This is where you initialize the loop variable(s). It&#39;s executed only once at the beginning of the loop.</p>
+</li>
+<li><p><strong>Boolean Expression:</strong> This is the condition that&#39;s checked before each iteration. If it evaluates to <code>true</code>, the loop continues. If it&#39;s <code>false</code>, the loop terminates.</p>
+</li>
+<li><p><strong>Update Statement:</strong> This is where you specify how the loop variable(s) should be updated after each iteration. It&#39;s executed at the end of each iteration.</p>
+</li>
+</ol>
+<p>Here&#39;s a simple example that prints the numbers 0 to 4:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+    System.out.println(i);
+}</code></pre></div><p>The loop initializes <code>i</code> to 0, checks if <code>i</code> is less than 5, and if so, executes the code block (printing the value of <code>i</code>). After each iteration, <code>i</code> is incremented by 1. The loop continues until <code>i</code> is no longer less than 5.</p>
+<p>You can also use the <code>var</code> keyword in the initialization part:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">for</span>(<span class="hljs-type">var</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+    System.out.println(i);
+}</code></pre></div><p>If you omit the boolean expression, it defaults to <code>true</code>, creating an infinite loop:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; ; i++) {
+    System.out.println(i);
+}</code></pre></div><p>This loop will continue indefinitely because there&#39;s no condition to make it <code>false</code>. To stop an infinite loop, you&#39;d need to use a <code>break</code> statement or some other means of interrupting the loop.</p>
+<p>You can initialize multiple variables and include multiple update statements in a <code>for</code> loop by separating them with commas:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, j = <span class="hljs-number">10</span>; i &lt; j; i++, j--) {
+    System.out.println(<span class="hljs-string">&quot;i: &quot;</span> + i + <span class="hljs-string">&quot;, j: &quot;</span> + j);
+}</code></pre></div><p>This loop initializes <code>i</code> to 0 and <code>j</code> to 10, checks if <code>i</code> is less than <code>j</code>, and if so, executes the code block. After each iteration, <code>i</code> is incremented, and <code>j</code> is decremented.</p>
+<p>It&#39;s important to note that you cannot redeclare a variable in the initialization block of a <code>for</code> loop:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) { <span class="hljs-comment">// Doesn&#x27;t compile</span>
+    System.out.println(i);
+}</code></pre></div><p>This code will not compile because <code>i</code> is declared twice. If you need to use a variable that&#39;s already declared, simply omit the data type in the initialization block:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+<span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) { <span class="hljs-comment">// OK</span>
+    System.out.println(i);
+}</code></pre></div><p>Also, all variables declared in the initialization block must be of the same data type or compatible types:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, <span class="hljs-type">long</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>; i &lt; j; i++, j--) { <span class="hljs-comment">// Doesn&#x27;t compile</span>
+    System.out.println(<span class="hljs-string">&quot;i: &quot;</span> + i + <span class="hljs-string">&quot;, j: &quot;</span> + j);
+}</code></pre></div><p>This code will not compile because <code>i</code> is of type <code>int</code>, and <code>j</code> is of type <code>long</code>. Here is the corrected example:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, j = <span class="hljs-number">10</span>; i &lt; j; i++, j--) {
+    System.out.println(<span class="hljs-string">&quot;i: &quot;</span> + i + <span class="hljs-string">&quot;, j: &quot;</span> + j);
+}</code></pre></div><p>Alternatively, if you need to use different data types, you should declare them before the loop:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+<span class="hljs-type">long</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+<span class="hljs-keyword">for</span>(; i &lt; j; i++, j--) {
+    System.out.println(<span class="hljs-string">&quot;i: &quot;</span> + i + <span class="hljs-string">&quot;, j: &quot;</span> + j);
+}</code></pre></div><p>Regarding the scope of a variable declared in the initialization block, it is limited to the <code>for</code> loop. You cannot use it outside the loop:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+    System.out.println(i);
+}
+System.out.println(i); <span class="hljs-comment">// Doesn&#x27;t compile</span></code></pre></div><p>Once again, if you need to use the final value of the loop variable after the loop, you must declare it before the loop:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> i;
+<span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+    System.out.println(i);
+}
+System.out.println(i); <span class="hljs-comment">// OK, prints 5</span></code></pre></div><p>In many cases, you may need to compare the current loop variable with other elements in the loop. The traditional <code>for</code> loop makes this possible by allowing you to read elements forward or backward:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">arr</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>};
+<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; arr.length; i++) {
+    <span class="hljs-comment">// Read forward</span>
+    <span class="hljs-keyword">if</span>(i &lt; arr.length - <span class="hljs-number">1</span>) {
+        System.out.println(<span class="hljs-string">&quot;Current: &quot;</span> + arr[i] + <span class="hljs-string">&quot;, Next: &quot;</span> + arr[i+<span class="hljs-number">1</span>]);
+    }
+ 
+    <span class="hljs-comment">// Read backward</span>
+    <span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span>) {
+        System.out.println(<span class="hljs-string">&quot;Current: &quot;</span> + arr[i] + <span class="hljs-string">&quot;, Previous: &quot;</span> + arr[i-<span class="hljs-number">1</span>]);
+    }
+}</code></pre></div><p>The forward reading if condition checks if the current element is not the last one and if so, it prints the current element and the next one.</p>
+<p>The backward reading if condition checks if the current element is not the first one and if so, it prints the current element and the previous one.</p>
+<h3 id="the-for-each-loop">The <code>for-each</code> Loop<a class="heading-anchor" href="#the-for-each-loop" aria-label="Link to The for-each Loop">#</a></h3><p>The <code>for-each</code> loop, also known as the enhanced <code>for</code> loop, provides a simpler way to iterate over arrays and collections. It eliminates the need to explicitly declare and update loop variables.</p>
+<p>The structure of a <code>for-each</code> loop is as follows:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">for</span>(dataType item : collection) {
+    <span class="hljs-comment">// code block to be executed</span>
+}</code></pre></div><p>The loop consists of two parts with three elements:</p>
+<ol>
+<li><p><strong>dataType:</strong> The data type of the elements in the collection.</p>
+</li>
+<li><p><strong>item:</strong> A variable that will hold the current element during each iteration.</p>
+</li>
+<li><p><strong>collection:</strong> The array or collection to be iterated over.</p>
+</li>
+</ol>
+<p>Here&#39;s an example that prints the elements of an array using a <code>for-each</code> loop:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">numbers</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> num : numbers) {
+    System.out.println(num);
+}</code></pre></div><p>In each iteration, the loop assigns the next element of the numbers array to the <code>num</code> variable and executes the code block.</p>
+<p>The <code>for-each</code> loop can be used with with arrays and with any object that implements the <code>Iterable</code> interface, which includes most collection classes, such as <code>ArrayList</code> and <code>HashSet</code>.</p>
+<p>If you&#39;re wondering if everything that applies to <code>for</code> loops applies to <code>for-each</code> loops, the answer is not quite. While <code>for</code> loops and <code>for-each</code> loops share some similarities, there are a few key differences in how they behave and what they can do:</p>
+<ol>
+<li><p><strong>Iteration</strong>: A <code>for-each</code> loop automatically iterates over all elements in an array or collection, from the first to the last. You don&#39;t have control over the index or the order of iteration. A traditional <code>for</code> loop, on the other hand, gives you full control over the initialization, condition, and update statements, allowing you to iterate in any order or skip elements.</p>
+</li>
+<li><p><strong>Modification</strong>: A <code>for-each</code> loop does not prevent you from modifying the elements of the array or collection within the loop, but it does not provide direct access to the index. You can modify the elements if the underlying collection supports modification. In contrast, a traditional <code>for</code> loop allows you to modify elements by accessing them via their index.</p>
+</li>
+<li><p><strong>Iterating over arrays and collections</strong>: A <code>for-each</code> loop can be used to iterate over arrays and any object that implements the <code>Iterable</code> interface, which includes most collection classes. A traditional <code>for</code> loop can be used to iterate over arrays and collections, but you need to use an explicit index or iterator.</p>
+</li>
+<li><p><strong>Accessing index</strong>: In a <code>for-each</code> loop, you don&#39;t have direct access to the index of the current element. If you need the index, you&#39;ll have to use a traditional <code>for</code> loop, which gives you access to the index through the loop variable.</p>
+</li>
+<li><p><strong>Performance</strong>: For arrays, the performance difference between a <code>for-each</code> loop and a traditional for loop is generally negligible. For collections, the performance is similar as a <code>for-each loop</code> is syntactic sugar for using an iterator.</p>
+</li>
+</ol>
+<p>Here&#39;s an example that demonstrates a situation where a <code>for-each</code> loop cannot be used:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">numbers</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; numbers.length; i++) {
+    <span class="hljs-keyword">if</span>(numbers[i] % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+        numbers[i] *= <span class="hljs-number">2</span>; <span class="hljs-comment">// Double even numbers</span>
+    }
+}</code></pre></div><p>In this case, we need to modify the elements of the array based on a condition. We also need access to the index to perform the modification. This cannot be done with a <code>for-each</code> loop.</p>
+<p>However, if we just needed to print the doubled even numbers, a <code>for-each</code> loop would be suitable:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">numbers</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> num : numbers) {
+    <span class="hljs-keyword">if</span>(num % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+        System.out.println(num * <span class="hljs-number">2</span>); <span class="hljs-comment">// Print doubled even numbers</span>
+    }
+}</code></pre></div><p>In summary, <code>for-each</code> loops provide a concise syntax for iterating over all elements, while for loops offer more control and flexibility, allowing you to access indexes and iterate in custom ways.</p>
+<h3 id="nested-for-loops">Nested for Loops<a class="heading-anchor" href="#nested-for-loops" aria-label="Link to Nested for Loops">#</a></h3><p>Just like <code>while</code> loops, <code>for</code> loops can also be nested. This allows you to iterate over multidimensional arrays or perform complex iterations.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[][] <span class="hljs-variable">matrix</span> <span class="hljs-operator">=</span> { {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>}, {<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>}, {<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>} };
+<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span>[] row : matrix) {
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> cell : row) {
+        System.out.print(cell + <span class="hljs-string">&quot; &quot;</span>);
+    }
+    System.out.println();
+}</code></pre></div><p>This code uses two nested <code>for-each</code> loops to iterate through a 2D array. The outer loop iterates over each row, and the inner loop iterates over each cell in the current row.</p>
+<h3 id="the-break-and-continue-statements-1">The <code>break</code> and <code>continue</code> Statements<a class="heading-anchor" href="#the-break-and-continue-statements-1" aria-label="Link to The break and continue Statements">#</a></h3><p>The <code>break</code> statement can be used in <code>for</code> loops to prematurely terminate the loop.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">numbers</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> num : numbers) {
+    <span class="hljs-keyword">if</span>(num == <span class="hljs-number">3</span>) {
+        <span class="hljs-keyword">break</span>;
+    }
+    System.out.println(num);
+}</code></pre></div><p>In this example, the loop will terminate when <code>num</code> is equal to 3. The output will be:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">1
+2</code></pre></div><p>On the other hand, the <code>continue</code> statement can be used in <code>for</code> loops to skip the rest of the current iteration and move on to the next one.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">numbers</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> num : numbers) {
+    <span class="hljs-keyword">if</span>(num % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">continue</span>;
+    }
+    System.out.println(num);
+}</code></pre></div><p>This loop will print only the odd numbers in the array. When <code>num</code> is even, the <code>continue</code> statement is executed, and the rest of the iteration is skipped.</p>
+<p>Also, using <code>break</code> or <code>continue</code> in <code>for</code> loops can sometimes lead to unreachable code, resulting in compilation errors.</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+    System.out.println(i);
+    <span class="hljs-keyword">break</span>;
+    System.out.println(<span class="hljs-string">&quot;Unreachable&quot;</span>); <span class="hljs-comment">// Unreachable code</span>
+}</code></pre></div><p>In this example, the code after the <code>break</code> statement is unreachable because <code>break</code> always causes the loop to terminate. The Java compiler will detect this and throw a compilation error.</p>
+<p>The same principle applies to <code>continue</code>. Any code after a <code>continue</code> statement in the same iteration will be unreachable.</p>
+<p>To avoid these errors, ensure that any code placed after a <code>break</code> or <code>continue</code> statement has a chance to execute under some condition.</p>
+<h3 id="adding-labels-1">Adding Labels<a class="heading-anchor" href="#adding-labels-1" aria-label="Link to Adding Labels">#</a></h3><p>Labels can be added to <code>for</code> loops in the same way as <code>while</code> loops. They are useful for breaking out of or continuing outer loops from within nested loops:</p>
+<div class="code-block"><div class="code-toolbar"><span>Java</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[][] <span class="hljs-variable">matrix</span> <span class="hljs-operator">=</span> { {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>}, {<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>}, {<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>} };
+outerLoop:
+<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span>[] row : matrix) {
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> cell : row) {
+        <span class="hljs-keyword">if</span>(cell == <span class="hljs-number">5</span>) {
+            <span class="hljs-keyword">break</span> outerLoop;
+        }
+        System.out.print(cell + <span class="hljs-string">&quot; &quot;</span>);
+    }
+    System.out.println();
+}</code></pre></div><p>In this example, the outer loop is labeled as <code>outerLoop</code>. When the value of <code>cell</code> is 5, the <code>break</code> statement is used with the <code>outerLoop</code> label, causing the program to terminate both the inner and outer loops. This is what happens:</p>
+<ol>
+<li><p>The outer loop starts with the first row <code>(1, 2, 3)</code> of <code>matrix</code>.</p>
+<ul>
+<li>The inner loop prints &quot;1 &quot;, then &quot;2 &quot;, then &quot;3 &quot;.</li>
+<li>The inner loop completes, and a newline is printed.</li>
+</ul>
+</li>
+<li><p>The outer loop moves to the second row <code>(4, 5, 6)</code>.</p>
+<ul>
+<li>The inner loop prints &quot;4 &quot;.</li>
+<li>The inner loop encounters 5, and <code>break outerLoop;</code> is executed.</li>
+<li>Both the inner and outer loops are terminated.</li>
+</ul>
+</li>
+</ol>
+<p>The program ends at this point. The output is:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">1 2 3
+4</code></pre></div><p>The third row <code>(7, 8, 9)</code> is never processed because the loops were terminated early.</p>
+<h2 id="key-points">Key Points<a class="heading-anchor" href="#key-points" aria-label="Link to Key Points">#</a></h2><ul>
+<li><p>The <code>if</code> statement allows your program to conditionally execute a block of code based on a boolean condition.</p>
+</li>
+<li><p>The basic syntax of an <code>if</code> statement is: <code>if (condition) { code }</code>. The code block executes if the condition is true.</p>
+</li>
+<li><p>You can chain multiple conditions using <code>else if</code>. The conditions are checked in order until one is true or the <code>else</code> block is reached.</p>
+</li>
+<li><p>Variables declared inside an <code>if</code> or <code>else</code> block are only in scope within that block.</p>
+</li>
+<li><p><code>if</code> statements can use pattern matching with the <code>instanceof</code> operator, assigning the matched object to a pattern variable for use in the <code>if</code> block.</p>
+</li>
+<li><p>Java 21 introduced record patterns, allowing destructuring of record instances directly in <code>if</code> statements.</p>
+</li>
+<li><p>Record patterns can be nested, enabling the destructuring of complex object graphs in a single step.</p>
+</li>
+<li><p>Pattern matching doesn&#39;t match against <code>null</code> values.</p>
+</li>
+<li><p>The scope of pattern variables is tightly controlled by the compiler based on flow scoping rules to prevent bugs.</p>
+</li>
+<li><p>The <code>switch</code> statement allows executing different code blocks based on the value of a variable or expression.</p>
+</li>
+<li><p>Java 21 allows the use of fully qualified names of enum constants in <code>switch</code> statements.</p>
+</li>
+<li><p>Enum constants can now be mixed with other case labels in the same <code>switch</code>.</p>
+</li>
+<li><p>The requirement for the selector expression to be of an enum type is relaxed, allowing use of qualified names of enum constants even if the selector is not of the enum type (but is assignment compatible).</p>
+</li>
+<li><p>Each <code>case</code> in a <code>switch</code> defines a value to compare against. If there&#39;s a match, that case&#39;s code block executes. </p>
+</li>
+<li><p>Include a <code>break</code> statement at the end of each case block to prevent fall-through, unless fall-through is desired.</p>
+</li>
+<li><p><code>switch</code> statements can work with <code>String</code>, <code>enum</code> constants, and integral types like <code>int</code>, <code>char</code>, etc.</p>
+</li>
+<li><p>Case values must be compile-time constants.</p>
+</li>
+<li><p>Java 14 officially introduced <code>switch</code> expressions, which use <code>-&gt;</code> to map cases to result values and must cover all input possibilities.</p>
+</li>
+<li><p>Java 21 introduced pattern matching in <code>switch</code> statements and expressions. This allows testing the structure of an object directly in the <code>switch</code>.</p>
+</li>
+<li><p>You can use type patterns, record patterns, and add guards with <code>when</code> clauses for more precise matching.</p>
+</li>
+<li><p>The order of cases matters; more specific patterns should come before more general ones.</p>
+</li>
+<li><p>Pattern matching in <code>switch</code> introduces a way to handle <code>null</code> values explicitly.</p>
+</li>
+<li><p>The compiler ensures exhaustiveness in <code>switch</code> statements and expressions: The <code>switch</code> block must have clauses that deal with all possible values of the selector expression.</p>
+</li>
+<li><p>The <code>while</code> loop repeatedly executes a code block as long as its boolean condition remains true.</p>
+</li>
+<li><p>If the condition is initially <code>false</code>, the code block will not execute at all.</p>
+</li>
+<li><p>The <code>do-while</code> loop is similar but the condition is checked after each iteration, so the code block always executes at least once.</p>
+</li>
+<li><p>You can nest one loop inside another to iterate over multiple dimensions.</p>
+</li>
+<li><p>The <code>break</code> statement immediately terminates a loop, while <code>continue</code> skips to the next iteration.</p>
+</li>
+<li><p>You can give a loop a label and then use <code>break</code> or <code>continue</code> with that label to break out of or continue an outer labeled loop.</p>
+</li>
+<li><p>The <code>for</code> loop provides a concise syntax for iterating over a range of values.</p>
+</li>
+<li><p>The traditional <code>for</code> loop has an initialization, condition, and update statement. The code block executes repeatedly until the condition is <code>false</code>.</p>
+</li>
+<li><p>Variables declared in the initialization block are limited in scope to the <code>for</code> loop.</p>
+</li>
+<li><p>The <code>for-each</code> loop (enhanced <code>for</code> loop) simplifies iterating over arrays/collections, eliminating the need for explicit indexing.</p>
+</li>
+<li><p><code>for-each</code> can&#39;t be used if you need the index or want to iterate in a custom order. Use a traditional <code>for</code> loop in those cases.</p>
+</li>
+<li><p>You can use <code>break</code>/<code>continue</code> and labels with <code>for</code> loops just like with <code>while</code> loops.</p>
+</li>
+<li><p>Avoid unreachable code after <code>break</code> or <code>continue</code> statements.</p>
+</li>
+</ul>
+<h2 id="practice-questions">Practice Questions<a class="heading-anchor" href="#practice-questions" aria-label="Link to Practice Questions">#</a></h2><p><a href="ch05-practice.html#book-practice">Open the interactive book questions on the Chapter 5.1 Practice page</a>.</p>
+</article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this chapter.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><div class="finish-chapter"><button class="primary-button" id="complete-chapter" data-id="ch05" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg><span>Mark chapter complete</span></button><a href="ch05a.html">Review the answers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch04-practice.html"><small>Previous</small>Chapter 4.1 Practice</a><a href="ch05-practice.html"><small>Next chapter</small>Chapter 5.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#the-if-statement">The if Statement</a><a class="toc-link" href="#the-switch-statement">The switch Statement</a><a class="toc-link" href="#the-while-loop">The while Loop</a><a class="toc-link" href="#the-for-loop">The for Loop</a><a class="toc-link" href="#key-points">Key Points</a><a class="toc-link" href="#practice-questions">Practice Questions</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

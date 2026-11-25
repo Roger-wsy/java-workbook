@@ -1,0 +1,271 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Streams</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch09a"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link selected" href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Streams<span class="answer-title">Answers & explanations</span></h1><div class="document-meta">Chapter 09 / Answer sheet<span>·</span>8 min read</div><div class="chapter-actions"><a class="" href="ch09.html">Read chapter</a><a href="ch09.html#key-points">Key points</a><a href="ch09-practice.html#book-practice">Book questions</a><a href="ch09-practice.html#chapter-quiz">Extra quiz</a><a class="active" href="ch09a.html">Original answers</a></div></div><article class="prose"><h2 id="answers">Answers<a class="heading-anchor" href="#answers" aria-label="Link to Answers">#</a></h2><details class="answer-item" id="answer-1"><summary><span>Question 1</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>Optional&lt;String&gt; optional = new Optional&lt;&gt;(value);</code></p>
+<ul>
+<li>This option is incorrect because <code>Optional</code> does not have a public constructor. Instead, static factory methods like <code>of</code> and <code>ofNullable</code> should be used.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Optional&lt;String&gt; optional = Optional.of(value);</code></p>
+<ul>
+<li>This option is incorrect because <code>Optional.of(value)</code> throws a <code>NullPointerException</code> if <code>value</code> is <code>null</code>. In this scenario, since <code>getValue()</code> can return <code>null</code>, this line could lead to an exception.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Optional&lt;String&gt; optional = Optional.ofNullable(value);</code></p>
+<ul>
+<li>This option is correct because <code>Optional.ofNullable(value)</code> will return an <code>Optional</code> describing the specified value if non-null, or an empty <code>Optional</code> if the value is <code>null</code>. This is the appropriate way to handle a potentially <code>null</code> value.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Optional&lt;String&gt; optional = Optional.empty(value);</code></p>
+<ul>
+<li>This option is incorrect because <code>Optional.empty()</code> does not accept any arguments. It simply returns an empty <code>Optional</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Optional&lt;String&gt; optional = Optional.nullable(value);</code></p>
+<ul>
+<li>This option is incorrect because there is no method <code>nullable</code> in the <code>Optional</code> class. The correct method for this purpose is <code>ofNullable</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-2"><summary><span>Question 2</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is E.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>stream.filter(s -&gt; s.contains(&quot;A&quot;));</code> </p>
+<ul>
+<li>This option is incorrect because <code>filter</code> is an intermediate operation. It returns a new stream with elements that match the given predicate.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>stream.map(String::toLowerCase);</code></p>
+<ul>
+<li>This option is incorrect because <code>map</code> is an intermediate operation. It returns a new stream with elements that are the results of applying the given function.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>stream.distinct();</code></p>
+<ul>
+<li>This option is incorrect because <code>distinct</code> is an intermediate operation. It returns a new stream with distinct elements.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>stream.limit(2);</code></p>
+<ul>
+<li>This option is incorrect because <code>limit</code> is an intermediate operation. It returns a new stream that is truncated to be no longer than the given size.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>stream.collect(Collectors.toList());</code></p>
+<ul>
+<li>This option is correct because <code>collect</code> is a terminal operation. It triggers the processing of the stream and collects the elements into a <code>List</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-3"><summary><span>Question 3</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>int sum = numbers.stream().sum();</code> </p>
+<ul>
+<li>This option is incorrect because arrays do not have a <code>stream</code> method directly on them. You need to use a method from a utility class like <code>IntStream</code> to create a stream.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>int sum = IntStream.range(0, numbers.length).sum();</code> </p>
+<ul>
+<li>This option is incorrect because <code>IntStream.range(0, numbers.length)</code> generates a stream of integers from 0 to the length of the array, not the elements of the array itself.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>int sum = IntStream.from(numbers).sum();</code></p>
+<ul>
+<li>This option is incorrect because <code>IntStream</code> does not have a <code>from</code> method. The correct method is <code>of</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>int sum = IntStream.of(numbers).sum();</code></p>
+<ul>
+<li>This option is correct because <code>IntStream.of(numbers).sum()</code> correctly creates an <code>IntStream</code> from the array and calculates the sum of its elements.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>int sum = IntStream.range(numbers).sum();</code></p>
+<ul>
+<li>This option is incorrect because <code>IntStream.range</code> requires two arguments (a start and an end index) and is used to generate a stream of numbers within a range, not to sum an array.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-4"><summary><span>Question 4</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>Stream&lt;String&gt; filteredStream = stream.filter(s -&gt; s.length() &gt; 3);</code>  </p>
+<ul>
+<li>This option is correct because <code>filter</code> is the correct intermediate operation to apply a predicate to each element of the stream and return a new stream containing only elements that match the predicate.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Stream&lt;String&gt; filteredStream = stream.map(s -&gt; s.length() &gt; 3);</code> </p>
+<ul>
+<li>This option is incorrect because <code>map</code> is used to transform elements of the stream and does not filter them. The result would be a stream of <code>Boolean</code> values instead of the original strings.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Stream&lt;String&gt; filteredStream = stream.collect(Collectors.filtering(s -&gt; s.length() &gt; 3));</code> </p>
+<ul>
+<li>This option is incorrect because <code>Collectors.filtering</code> is not a valid method. Filtering is done through the <code>filter</code> method on the stream itself, not via collectors.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Stream&lt;String&gt; filteredStream = stream.filtering(s -&gt; s.length() &gt; 3);</code> </p>
+<ul>
+<li>This option is incorrect because there is no <code>filtering</code> method on the stream. The correct method is <code>filter</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Stream&lt;String&gt; filteredStream = stream.filterByLength(3);</code></p>
+<ul>
+<li>This option is incorrect because there is no <code>filterByLength</code> method on the stream. The correct method to use is <code>filter</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-5"><summary><span>Question 5</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>Stream&lt;String&gt; lengthStream = stream.map(s -&gt; s.length());</code></p>
+<ul>
+<li>This option is incorrect because the <code>map</code> method will transform the elements to <code>Integer</code>, not <code>String</code>. The correct type for the resulting stream should be <code>Stream&lt;Integer&gt;</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Stream&lt;String&gt; lengthStream = stream.mapToInt(s -&gt; s.length());</code></p>
+<ul>
+<li>This option is incorrect because <code>mapToInt</code> produces an <code>IntStream</code>, not a <code>Stream&lt;String&gt;</code>. Additionally, the resulting stream type would not be <code>Stream&lt;String&gt;</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Stream&lt;Integer&gt; lengthStream = stream.map(s -&gt; s.length());</code></p>
+<ul>
+<li>This option is correct because <code>map</code> transforms each string in the stream to its length, resulting in a <code>Stream&lt;Integer&gt;</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>IntStream lengthStream = stream.map(s -&gt; s.length());</code> </p>
+<ul>
+<li>This option is incorrect because <code>map</code> produces a <code>Stream&lt;R&gt;</code>, not an <code>IntStream</code>. The correct method for producing an <code>IntStream</code> would be <code>mapToInt</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Stream&lt;String&gt; lengthStream = stream.flatMap(s -&gt; Stream.of(s.length()));</code></p>
+<ul>
+<li>This option is incorrect because <code>flatMap</code> is used to flatten nested streams and not simply map to another type. Additionally, the resulting stream type would not be <code>Stream&lt;String&gt;</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-6"><summary><span>Question 6</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>Stream&lt;String&gt; resultStream = stream.skip(2).limit(3);</code></p>
+<ul>
+<li>This option is correct because <code>skip(2)</code> skips the first 2 elements of the stream, and <code>limit(3)</code> limits the stream to the next 3 elements. Therefore, the resulting stream will contain the 3rd, 4th, and 5th elements of the original list.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Stream&lt;String&gt; resultStream = stream.limit(3).skip(2);</code></p>
+<ul>
+<li>This option is incorrect because <code>limit(3)</code> first limits the stream to the first 3 elements, and then <code>skip(2)</code> skips 2 of those elements, resulting in a stream with only the 3rd element.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Stream&lt;String&gt; resultStream = stream.skip(3).limit(2);</code></p>
+<ul>
+<li>This option is incorrect because <code>skip(3)</code> skips the first 3 elements, and <code>limit(2)</code> then limits the stream to the next 2 elements, resulting in a stream with the 4th and 5th elements.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Stream&lt;String&gt; resultStream = stream.limit(2).skip(3);</code></p>
+<ul>
+<li>This option is incorrect because <code>limit(2)</code> first limits the stream to the first 2 elements, and then <code>skip(3)</code> would attempt to skip more elements than are available, resulting in an empty stream.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Stream&lt;String&gt; resultStream = stream.slice(2, 5);</code></p>
+<ul>
+<li>This option is incorrect because there is no <code>slice</code> method in the Stream API. The correct methods to achieve the desired result are <code>skip</code> and <code>limit</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-7"><summary><span>Question 7</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>Stream&lt;String&gt; resultStream = Stream.concat(stream1, stream2.collect(Collectors.toList()));</code></p>
+<ul>
+<li>This option is incorrect because <code>Stream.concat</code> expects two streams as arguments. <code>stream2.collect(Collectors.toList())</code> converts <code>stream2</code> into a <code>List</code>, not a <code>Stream</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Stream&lt;String&gt; resultStream = Stream.concat(stream1, stream2);</code></p>
+<ul>
+<li>This option is correct because <code>Stream.concat(stream1, stream2)</code> correctly concatenates the two streams into a single stream containing all elements from both streams.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Stream&lt;String&gt; resultStream = stream1.concat(stream2);</code></p>
+<ul>
+<li>This option is incorrect because <code>Stream</code> does not have an instance method <code>concat</code>. The <code>concat</code> method is a static method of the <code>Stream</code> class.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Stream&lt;String&gt; resultStream = stream1.merge(stream2);</code></p>
+<ul>
+<li>This option is incorrect because there is no <code>merge</code> method in the <code>Stream</code> API. The correct method for concatenating streams is <code>Stream.concat</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Stream&lt;String&gt; resultStream = Stream.of(stream1, stream2);</code></p>
+<ul>
+<li>This option is incorrect because <code>Stream.of(stream1, stream2)</code> creates a stream of streams, resulting in <code>Stream&lt;Stream&lt;String&gt;&gt;</code> rather than a single concatenated <code>Stream&lt;String&gt;</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-8"><summary><span>Question 8</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is E.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>int product = stream.reduce(1, (a, b) -&gt; a + b);</code></p>
+<ul>
+<li>This option is incorrect because the reduction operation is using addition instead of multiplication. The correct operation for calculating the product should be <code>(a, b) -&gt; a * b</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>int product = stream.reduce((a, b) -&gt; a * b);</code></p>
+<ul>
+<li>This option is incorrect because it does not provide an identity value, which is necessary for the reduction operation when dealing with an empty stream. Without an identity value, the result is an <code>Optional&lt;Integer&gt;</code> rather than an <code>int</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>int product = stream.reduce(0, (a, b) -&gt; a * b);</code></p>
+<ul>
+<li>This option is incorrect because the identity value for multiplication should be <code>1</code>, not <code>0</code>. Using <code>0</code> as the identity value would result in a product of <code>0</code> regardless of the stream elements.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Optional&lt;Integer&gt; product = stream.reduce(1, (a, b) -&gt; a * b);</code></p>
+<ul>
+<li>This option is incorrect because the correct use of the <code>reduce</code> method with an identity value does not return an <code>Optional</code>. It should return the result directly as <code>int</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>int product = stream.reduce(1, (a, b) -&gt; a * b, (a, b) -&gt; a * b);</code></p>
+<ul>
+<li>This option is correct because it correctly uses the <code>reduce</code> method with an identity value of <code>1</code> and a combiner function that multiplies the results. This form of <code>reduce</code> is suitable for parallel processing as well, ensuring the product is correctly calculated across multiple segments of the stream.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-9"><summary><span>Question 9</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toSet());</code> </p>
+<ul>
+<li>This option is incorrect because <code>Collectors.toSet()</code> does not guarantee the order of the elements. The implementation returned by this collector does not preserve the order of insertion.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toCollection(LinkedHashSet::new));</code></p>
+<ul>
+<li>This option is correct because <code>Collectors.toCollection(LinkedHashSet::new)</code> collects the elements into a <code>LinkedHashSet</code>, which maintains the order of insertion.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toCollection(TreeSet::new));</code> </p>
+<ul>
+<li>This option is incorrect because <code>TreeSet</code> sorts the elements according to their natural ordering (or by a comparator, if provided). This does not necessarily preserve the original order of the stream elements.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toList());</code> </p>
+<ul>
+<li>This option is incorrect because <code>Collectors.toList()</code> collects the elements into a <code>List</code>, not a <code>Set</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>Set&lt;String&gt; resultSet = stream.collect(Collectors.toMap());</code></p>
+<ul>
+<li>This option is incorrect because <code>Collectors.toMap()</code> is used to collect the elements into a <code>Map</code>, not a <code>Set</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details></article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this answer sheet.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch09.html"><small>Previous</small>Streams</a><a href="ch09-practice.html"><small>Next chapter</small>Chapter 9.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#answers">Answers</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

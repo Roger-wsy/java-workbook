@@ -1,0 +1,314 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Chapter 4.1 Practice</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch04-practice"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link selected" href="ch04-practice.html" aria-current="page"><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Chapter 4.1 Practice</h1><p class="practice-subtitle">Working with Data</p><div class="document-meta">5 book questions <span>·</span> 11 extra quiz questions</div><div class="chapter-actions"><a href="ch04.html">Read chapter 4</a><a class="active" aria-current="page" href="ch04-practice.html">Practice 4.1</a><a href="ch04a.html">Original answers</a></div></div><nav class="practice-section-nav" aria-label="Practice sections"><a href="#book-practice">Book questions</a><a href="#chapter-quiz">Extra quiz</a><button type="button" class="reset-all-quizzes">Reset all questions</button></nav><article class="prose practice-prose"><section class="chapter-quiz book-practice" id="book-practice" aria-labelledby="book-practice-title">
+    <h2 id="book-practice-title">Book practice questions</h2>
+    <p class="quiz-intro">5 questions from the chapter, with the book’s explanations. Single-answer questions show immediate feedback. For checkbox questions, select your answers, then choose Check answer. Reviewed corrections and clarifications are identified beside the question.</p>
+    <form class="quiz-form" data-quiz="book-ch04"><p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="book-q1" data-answer="2" aria-describedby="book-q1-feedback">
+          <legend>Question 1</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following statements about Java primitive and reference data types is true?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q1-option-0" type="radio" name="book-q1" value="0" aria-labelledby="book-q1-option-0-letter book-q1-option-0-text"><span class="option-letter" id="book-q1-option-0-letter">A</span><div class="quiz-option-content" id="book-q1-option-0-text"><p>A <code>double</code> can be directly assigned to a <code>float</code> without casting.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-1" type="radio" name="book-q1" value="1" aria-labelledby="book-q1-option-1-letter book-q1-option-1-text"><span class="option-letter" id="book-q1-option-1-letter">B</span><div class="quiz-option-content" id="book-q1-option-1-text"><p>A <code>boolean</code> can be cast to an <code>int</code>.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-2" type="radio" name="book-q1" value="2" aria-labelledby="book-q1-option-2-letter book-q1-option-2-text"><span class="option-letter" id="book-q1-option-2-letter">C</span><div class="quiz-option-content" id="book-q1-option-2-text"><p>A <code>String</code> can be assigned to an <code>Object</code> reference variable.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-3" type="radio" name="book-q1" value="3" aria-labelledby="book-q1-option-3-letter book-q1-option-3-text"><span class="option-letter" id="book-q1-option-3-letter">D</span><div class="quiz-option-content" id="book-q1-option-3-text"><p>A <code>char</code> is a reference data type.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-4" type="radio" name="book-q1" value="4" aria-labelledby="book-q1-option-4-letter book-q1-option-4-text"><span class="option-letter" id="book-q1-option-4-letter">E</span><div class="quiz-option-content" id="book-q1-option-4-text"><p>An <code>int</code> can store a <code>long</code> value without any explicit casting.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> A <code>double</code> can be directly assigned to a <code>float</code> without casting. </p>
+<ul>
+<li>This option is incorrect. A <code>double</code> cannot be directly assigned to a <code>float</code> without casting because <code>double</code> has a larger range and precision than a <code>float</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> A <code>boolean</code> can be cast to an <code>int</code>.</p>
+<ul>
+<li>This option is incorrect. <code>boolean</code> values cannot be cast to <code>int</code> in Java. They are not compatible types.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> A <code>String</code> can be assigned to an <code>Object</code> reference variable.</p>
+<ul>
+<li>This option is correct. A <code>String</code> is an instance of the <code>Object</code> class, and hence it can be assigned to an <code>Object</code> reference variable.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> A <code>char</code> is a reference data type. </p>
+<ul>
+<li>This option is incorrect. <code>char</code> is a primitive data type, not a reference data type.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> An <code>int</code> can store a <code>long</code> value without any explicit casting.</p>
+<ul>
+<li>This option is incorrect. an <code>int</code> cannot store a <code>long</code> value without explicit casting because <code>long</code> has a larger range than <code>int</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q2" data-answer="0" aria-describedby="book-q2-feedback">
+          <legend>Question 2</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>What is the output of the following code snippet?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OperatorTest</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-number">5</span>;
+        <span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+        <span class="hljs-type">int</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-number">15</span>;
+        <span class="hljs-type">int</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> a + b * c / a - b;
+        System.out.println(result);
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q2-option-0" type="radio" name="book-q2" value="0" aria-labelledby="book-q2-option-0-letter book-q2-option-0-text"><span class="option-letter" id="book-q2-option-0-letter">A</span><div class="quiz-option-content" id="book-q2-option-0-text"><p><code>25</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-1" type="radio" name="book-q2" value="1" aria-labelledby="book-q2-option-1-letter book-q2-option-1-text"><span class="option-letter" id="book-q2-option-1-letter">B</span><div class="quiz-option-content" id="book-q2-option-1-text"><p><code>35</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-2" type="radio" name="book-q2" value="2" aria-labelledby="book-q2-option-2-letter book-q2-option-2-text"><span class="option-letter" id="book-q2-option-2-letter">C</span><div class="quiz-option-content" id="book-q2-option-2-text"><p><code>20</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-3" type="radio" name="book-q2" value="3" aria-labelledby="book-q2-option-3-letter book-q2-option-3-text"><span class="option-letter" id="book-q2-option-3-letter">D</span><div class="quiz-option-content" id="book-q2-option-3-text"><p><code>15</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><p>Let&#39;s break down the expression <code>a + b * c / a - b</code> step-by-step according to the order of operations:</p>
+<ol>
+<li><p><strong>Multiplication and Division</strong> are performed first from left to right:</p>
+<ul>
+<li><code>b * c</code> = <code>10 * 15</code> = <code>150</code></li>
+<li><code>150 / a</code> = <code>150 / 5</code> = <code>30</code></li>
+</ul>
+</li>
+<li><p><strong>Addition and Subtraction</strong> are performed next from left to right:</p>
+<ul>
+<li><code>a + 30</code> = <code>5 + 30</code> = <code>35</code></li>
+<li><code>35 - b</code> = <code>35 - 10</code> = <code>25</code></li>
+</ul>
+</li>
+</ol>
+<p>So, the value of <code>result</code> is <code>25</code>, and the program prints <code>25</code>.</p>
+<ul>
+<li><p><strong>A)</strong> <code>25</code></p>
+<ul>
+<li>This option is correct.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>35</code></p>
+<ul>
+<li>This option is incorrect.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>20</code> </p>
+<ul>
+<li>This option is incorrect.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>15</code> </p>
+<ul>
+<li>This option is incorrect.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q3" data-answer="3" aria-describedby="book-q3-feedback">
+          <legend>Question 3</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following statements about <code>String</code> and <code>StringBuilder</code> is true?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q3-option-0" type="radio" name="book-q3" value="0" aria-labelledby="book-q3-option-0-letter book-q3-option-0-text"><span class="option-letter" id="book-q3-option-0-letter">A</span><div class="quiz-option-content" id="book-q3-option-0-text"><p><code>StringBuilder</code> objects are immutable.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-1" type="radio" name="book-q3" value="1" aria-labelledby="book-q3-option-1-letter book-q3-option-1-text"><span class="option-letter" id="book-q3-option-1-letter">B</span><div class="quiz-option-content" id="book-q3-option-1-text"><p><code>String</code> objects can be modified after they are created.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-2" type="radio" name="book-q3" value="2" aria-labelledby="book-q3-option-2-letter book-q3-option-2-text"><span class="option-letter" id="book-q3-option-2-letter">C</span><div class="quiz-option-content" id="book-q3-option-2-text"><p><code>StringBuilder</code> is synchronized and thread-safe.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-3" type="radio" name="book-q3" value="3" aria-labelledby="book-q3-option-3-letter book-q3-option-3-text"><span class="option-letter" id="book-q3-option-3-letter">D</span><div class="quiz-option-content" id="book-q3-option-3-text"><p><code>StringBuilder</code> provides methods for mutable sequence of characters.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-4" type="radio" name="book-q3" value="4" aria-labelledby="book-q3-option-4-letter book-q3-option-4-text"><span class="option-letter" id="book-q3-option-4-letter">E</span><div class="quiz-option-content" id="book-q3-option-4-text"><p><code>String</code> and <code>StringBuilder</code> have the same performance characteristics for string manipulation.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>StringBuilder</code> objects are immutable.</p>
+<ul>
+<li>This option is incorrect. <code>StringBuilder</code> objects are mutable, meaning they can be changed after they are created.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>String</code> objects can be modified after they are created. </p>
+<ul>
+<li>This option is incorrect. <code>String</code> objects are immutable, meaning once a <code>String</code> object is created, it cannot be modified. Any modification results in a new <code>String</code> object.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>StringBuilder</code> is synchronized and thread-safe.</p>
+<ul>
+<li>This option is incorrect. <code>StringBuilder</code> is not synchronized and is not thread-safe. If synchronization is required, <code>StringBuffer</code> should be used instead.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>StringBuilder</code> provides methods for mutable sequence of characters.</p>
+<ul>
+<li>This option is correct. <code>StringBuilder</code> provides methods for a mutable sequence of characters, allowing for modification of the object without creating new instances.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>String</code> and <code>StringBuilder</code> have the same performance characteristics for string manipulation.</p>
+<ul>
+<li>This option is incorrect. <code>String</code> and <code>StringBuilder</code> do not have the same performance characteristics for string manipulation. <code>StringBuilder</code> is generally more efficient for such operations because it is mutable and does not create new instances with each modification.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q4" data-answer="0" aria-describedby="book-q4-feedback">
+          <legend>Question 4</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following statements about text blocks are true? (Choose all that apply.)</p>
+</div>
+          <p class="question-review-note"><strong>Reviewed note:</strong> The book also marks B correct, but text blocks do not preserve all source whitespace exactly.</p>
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q4-option-0" type="radio" name="book-q4" value="0" aria-labelledby="book-q4-option-0-letter book-q4-option-0-text"><span class="option-letter" id="book-q4-option-0-letter">A</span><div class="quiz-option-content" id="book-q4-option-0-text"><p>Text blocks can span multiple lines without needing escape sequences for new lines.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-1" type="radio" name="book-q4" value="1" aria-labelledby="book-q4-option-1-letter book-q4-option-1-text"><span class="option-letter" id="book-q4-option-1-letter">B</span><div class="quiz-option-content" id="book-q4-option-1-text"><p>Text blocks preserve the exact format, including whitespace, of the code as written.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-2" type="radio" name="book-q4" value="2" aria-labelledby="book-q4-option-2-letter book-q4-option-2-text"><span class="option-letter" id="book-q4-option-2-letter">C</span><div class="quiz-option-content" id="book-q4-option-2-text"><p>Text blocks can only be used within methods.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-3" type="radio" name="book-q4" value="3" aria-labelledby="book-q4-option-3-letter book-q4-option-3-text"><span class="option-letter" id="book-q4-option-3-letter">D</span><div class="quiz-option-content" id="book-q4-option-3-text"><p>Text blocks automatically trim leading and trailing whitespace from each line.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-4" type="radio" name="book-q4" value="4" aria-labelledby="book-q4-option-4-letter book-q4-option-4-text"><span class="option-letter" id="book-q4-option-4-letter">E</span><div class="quiz-option-content" id="book-q4-option-4-text"><p>Text blocks require a minimum indentation level of one space.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><p><strong>A is correct.</strong> Text blocks support embedded newlines. <strong>B is false</strong> because line endings are normalized, incidental indentation is removed, and trailing whitespace is processed. C is false: text blocks are not restricted to methods. D is too broad: meaningful leading spaces can remain. E is false: no minimum one-space indentation is required.</p>
+</div><p class="answer-origin">Includes a reviewed clarification or correction. <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-3.10.6" target="_blank" rel="noopener noreferrer">Check the Java reference<span class="sr-only"> (opens in a new tab)</span></a></p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q5" data-answer="3" aria-describedby="book-q5-feedback">
+          <legend>Question 5</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following statements about the <code>Math</code> class is true?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q5-option-0" type="radio" name="book-q5" value="0" aria-labelledby="book-q5-option-0-letter book-q5-option-0-text"><span class="option-letter" id="book-q5-option-0-letter">A</span><div class="quiz-option-content" id="book-q5-option-0-text"><p>The <code>Math.round()</code> method returns a <code>double</code>.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-1" type="radio" name="book-q5" value="1" aria-labelledby="book-q5-option-1-letter book-q5-option-1-text"><span class="option-letter" id="book-q5-option-1-letter">B</span><div class="quiz-option-content" id="book-q5-option-1-text"><p>The <code>Math.random()</code> method returns a random integer.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-2" type="radio" name="book-q5" value="2" aria-labelledby="book-q5-option-2-letter book-q5-option-2-text"><span class="option-letter" id="book-q5-option-2-letter">C</span><div class="quiz-option-content" id="book-q5-option-2-text"><p>The <code>Math.max()</code> method can only be used with integers.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-3" type="radio" name="book-q5" value="3" aria-labelledby="book-q5-option-3-letter book-q5-option-3-text"><span class="option-letter" id="book-q5-option-3-letter">D</span><div class="quiz-option-content" id="book-q5-option-3-text"><p>The <code>Math.pow()</code> method returns the result of raising the first argument to the power of the second argument.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-4" type="radio" name="book-q5" value="4" aria-labelledby="book-q5-option-4-letter book-q5-option-4-text"><span class="option-letter" id="book-q5-option-4-letter">E</span><div class="quiz-option-content" id="book-q5-option-4-text"><p>The <code>Math.abs()</code> method can only be used with positive numbers.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> The <code>Math.round()</code> method returns a <code>double</code>.</p>
+<ul>
+<li>This option is incorrect. The <code>Math.round()</code> method returns a <code>long</code> when given a <code>double</code> argument and an <code>int</code> when given a <code>float</code> argument.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>Math.random()</code> method returns a random integer.</p>
+<ul>
+<li>This option is incorrect. The <code>Math.random()</code> method returns a <code>double</code> value between 0.0 (inclusive) and 1.0 (exclusive).</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>Math.max()</code> method can only be used with integers.</p>
+<ul>
+<li>This option is incorrect. The <code>Math.max()</code> method can be used with various numeric types, including <code>int</code>, <code>long</code>, <code>float</code>, and <code>double</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>Math.pow()</code> method returns the result of raising the first argument to the power of the second argument.</p>
+<ul>
+<li>This option is correct. The <code>Math.pow()</code> method returns the result of raising the first argument to the power of the second argument. Both arguments are of type <code>double</code>.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> The <code>Math.abs()</code> method can only be used with positive numbers.</p>
+<ul>
+<li>This option is incorrect. The <code>Math.abs()</code> method can be used with negative numbers to return their absolute value, and it works with various numeric types including <code>int</code>, <code>long</code>, <code>float</code>, and <code>double</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart book practice</button></div>
+    </form>
+  </section><section class="chapter-quiz" id="chapter-quiz" aria-labelledby="quiz-title">
+    <h2 id="quiz-title">Extra quiz</h2>
+    <p class="quiz-intro">Choose an answer to see its explanation immediately. Correct choices appear in green; incorrect selections appear in red. For checkbox questions, select your answers, then choose Check answer.</p>
+    <details class="practice-context"><summary>About these questions</summary><p>11 original learning exercises, not official exam questions. Use Java 21 without preview features. Assume standard imports and a valid enclosing class or method, which may declare checked exceptions.</p></details>
+    <p class="quiz-saving">Your selections and feedback are saved in this browser.</p>
+    <noscript><p>Enable JavaScript for scoring. The book’s practice questions and separate answer sheet remain available without it.</p></noscript>
+    <form class="quiz-form" data-quiz="ch04">
+      <p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="quiz-q1" data-answer="1" aria-describedby="quiz-q1-feedback">
+          <legend><span class="quiz-number">1.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Integer division · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java">System.out.println(<span class="hljs-number">5</span> / <span class="hljs-number">2.0</span>);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q1" value="0"><span class="option-letter">A</span><span>2</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="1"><span class="option-letter">B</span><span>2.5</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="2"><span class="option-letter">C</span><span>3</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The double operand causes floating-point division rather than integer division.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q2" data-answer="3" aria-describedby="quiz-q2-feedback">
+          <legend><span class="quiz-number">2.</span> Which declaration compiles without a cast?</legend>
+          <div class="quiz-question-meta">Narrowing · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q2" value="0"><span class="option-letter">A</span><span>byte b = 128;</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="1"><span class="option-letter">B</span><span>int n = 3.5;</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="2"><span class="option-letter">C</span><span>float f = 2.5;</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="3"><span class="option-letter">D</span><span>byte b = 127;</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The constant 127 fits in byte. The other declarations require narrowing conversions that are not implicit here.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q3" data-answer="0" aria-describedby="quiz-q3-feedback">
+          <legend><span class="quiz-number">3.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Short circuit · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+<span class="hljs-type">boolean</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span> &amp;&amp; ++x &gt; <span class="hljs-number">0</span>;
+System.out.println(result + <span class="hljs-string">&quot;:&quot;</span> + x);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q3" value="0"><span class="option-letter">A</span><span>false:0</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="1"><span class="option-letter">B</span><span>false:1</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="2"><span class="option-letter">C</span><span>true:0</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="3"><span class="option-letter">D</span><span>It throws an exception</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The left operand of &amp;&amp; is false, so its right operand is not evaluated and x stays zero.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q4" data-answer="2" aria-describedby="quiz-q4-feedback">
+          <legend><span class="quiz-number">4.</span> What is printed?</legend>
+          <div class="quiz-question-meta">String equality · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;java&quot;</span>;
+<span class="hljs-type">String</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;java&quot;</span>);
+System.out.println((a == b) + <span class="hljs-string">&quot;:&quot;</span> + a.equals(b));</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q4" value="0"><span class="option-letter">A</span><span>true:true</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="1"><span class="option-letter">B</span><span>false:false</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="2"><span class="option-letter">C</span><span>false:true</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="3"><span class="option-letter">D</span><span>true:false</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">new creates a distinct object. == compares references; String.equals compares text content.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q5" data-answer="1" aria-describedby="quiz-q5-feedback">
+          <legend><span class="quiz-number">5.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Immutability · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;java&quot;</span>;
+s.toUpperCase(java.util.Locale.ROOT);
+System.out.println(s);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q5" value="0"><span class="option-letter">A</span><span>JAVA</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="1"><span class="option-letter">B</span><span>java</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="2"><span class="option-letter">C</span><span>null</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">toUpperCase returns a String; it does not mutate s. This code discards the returned value.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q6" data-answer="3" aria-describedby="quiz-q6-feedback">
+          <legend><span class="quiz-number">6.</span> What does <code>&quot;abcdef&quot;.substring(1, 4)</code> return?</legend>
+          <div class="quiz-question-meta">Substring · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q6" value="0"><span class="option-letter">A</span><span>&quot;abcd&quot;</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="1"><span class="option-letter">B</span><span>&quot;cde&quot;</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="2"><span class="option-letter">C</span><span>&quot;bcde&quot;</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="3"><span class="option-letter">D</span><span>&quot;bcd&quot;</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The starting index is inclusive and the ending index is exclusive. Indexes 1, 2, and 3 are selected.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q7" data-answer="0" aria-describedby="quiz-q7-feedback">
+          <legend><span class="quiz-number">7.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Mutable text · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(<span class="hljs-string">&quot;abc&quot;</span>);
+b.delete(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+System.out.println(b);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q7" value="0"><span class="option-letter">A</span><span>ac</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="1"><span class="option-letter">B</span><span>abc</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="2"><span class="option-letter">C</span><span>ab</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="3"><span class="option-letter">D</span><span>It throws an exception</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">delete uses an exclusive ending index, so only the character at index 1 is removed.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q8" data-answer="0" aria-describedby="quiz-q8-feedback">
+          <legend><span class="quiz-number">8.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Concatenation · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java">System.out.println(<span class="hljs-number">1</span> + <span class="hljs-number">2</span> + <span class="hljs-string">&quot;x&quot;</span> + <span class="hljs-number">3</span> + <span class="hljs-number">4</span>);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q8" value="0"><span class="option-letter">A</span><span>3x34</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="1"><span class="option-letter">B</span><span>12x7</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="2"><span class="option-letter">C</span><span>3x7</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="3"><span class="option-letter">D</span><span>12x34</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The first addition is numeric. Once a String is reached, subsequent + operations concatenate left to right.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q9" data-answer="2" aria-describedby="quiz-q9-feedback">
+          <legend><span class="quiz-number">9.</span> Which line compiles when x is a byte?</legend>
+          <div class="quiz-question-meta">Compound assignment · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">byte</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q9" value="0"><span class="option-letter">A</span><span>x = x + 1;</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="1"><span class="option-letter">B</span><span>x = 200;</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="2"><span class="option-letter">C</span><span>x += 1;</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="3"><span class="option-letter">D</span><span>x = 1.0;</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Compound assignment includes an implicit cast back to the left operand’s type; ordinary addition promotes byte to int.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q10" data-answer="1" aria-describedby="quiz-q10-feedback">
+          <legend><span class="quiz-number">10.</span> Which statement about a Java text block is correct?</legend>
+          <div class="quiz-question-meta">Text blocks · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q10" value="0"><span class="option-letter">A</span><span>It creates a StringBuilder</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="1"><span class="option-letter">B</span><span>Its value is a String</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="2"><span class="option-letter">C</span><span>It disables all escape sequences</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="3"><span class="option-letter">D</span><span>It requires preview features in Java 21</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q10-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">A text block is a String literal form, finalized before Java 21. Escape sequences and indentation processing still apply.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q11" data-answer="0,3" aria-describedby="quiz-q11-feedback">
+          <legend><span class="quiz-number">11.</span> Which two primitive types are integral types?</legend>
+          <div class="quiz-question-meta">Primitive types · Select 2 answers</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="0"><span class="option-letter">A</span><span>char</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="1"><span class="option-letter">B</span><span>float</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="2"><span class="option-letter">C</span><span>boolean</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="3"><span class="option-letter">D</span><span>long</span></label></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="quiz-q11-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">char and long are integral types. float is floating-point, and boolean is a distinct non-numeric primitive type.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart extra quiz</button></div>
+    </form>
+  </section>
+  <section class="study-resources" id="free-resources" aria-labelledby="resources-title"><h2 id="resources-title">Free resources</h2><p>Use these to revisit the rules or try more examples. Links open in a new tab and need an internet connection. Some tutorials also cover Java versions newer than 21.</p>
+    <ul><li><a href="https://dev.java/learn/language/constructs/" target="_blank" rel="noopener noreferrer">Java language basics<span class="sr-only"> (opens in a new tab)</span></a><p>Free lessons for types and expressions.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" target="_blank" rel="noopener noreferrer">String API — Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>Immutability, substring, equality, and string methods.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/StringBuilder.html" target="_blank" rel="noopener noreferrer">StringBuilder API — Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>Mutable text operations.</p></li><li><a href="https://codingbat.com/java" target="_blank" rel="noopener noreferrer">CodingBat string exercises<span class="sr-only"> (opens in a new tab)</span></a><p>Choose String-1 or String-2 for free foundational coding practice; not a Java 21 mock exam.</p></li></ul>
+    <p class="resource-date">Links reviewed 31 October 2026.</p>
+  </section></article><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch04.html"><small>Previous · Chapter 4</small>Working with Data</a><a href="ch05.html"><small>Next · Chapter 5</small>Controlling Program Flow <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>Practice sections</summary><nav aria-label="On this page"><a class="toc-link" href="#book-practice">Book questions · 5</a><a class="toc-link" href="#chapter-quiz">Extra quiz · 11</a><a class="toc-link" href="#free-resources">Free resources</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

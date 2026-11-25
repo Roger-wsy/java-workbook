@@ -1,0 +1,611 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Chapter 6.1 Practice</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch06-practice"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link selected" href="ch06-practice.html" aria-current="page"><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Chapter 6.1 Practice</h1><p class="practice-subtitle">Arrays, Generics, and Collections</p><div class="document-meta">9 book questions <span>·</span> 11 extra quiz questions</div><div class="chapter-actions"><a href="ch06.html">Read chapter 6</a><a class="active" aria-current="page" href="ch06-practice.html">Practice 6.1</a><a href="ch06a.html">Original answers</a></div></div><nav class="practice-section-nav" aria-label="Practice sections"><a href="#book-practice">Book questions</a><a href="#chapter-quiz">Extra quiz</a><button type="button" class="reset-all-quizzes">Reset all questions</button></nav><article class="prose practice-prose"><section class="chapter-quiz book-practice" id="book-practice" aria-labelledby="book-practice-title">
+    <h2 id="book-practice-title">Book practice questions</h2>
+    <p class="quiz-intro">9 questions from the chapter, with the book’s explanations. Single-answer questions show immediate feedback. For checkbox questions, select your answers, then choose Check answer. Reviewed corrections and clarifications are identified beside the question.</p>
+    <form class="quiz-form" data-quiz="book-ch06"><p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="book-q1" data-answer="3" aria-describedby="book-q1-feedback">
+          <legend>Question 1</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>What is the output of the following program?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MultiDimArray</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">int</span>[][] <span class="hljs-variable">arr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>];
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; arr.length; i++) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; arr[i].length; j++) {
+                arr[i][j] = i + j;
+            }
+        }
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; arr.length; i++) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; arr[i].length; j++) {
+                System.out.print(arr[i][j] + <span class="hljs-string">&quot; &quot;</span>);
+            }
+            System.out.println();
+        }
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q1-option-0" type="radio" name="book-q1" value="0" aria-labelledby="book-q1-option-0-letter book-q1-option-0-text"><span class="option-letter" id="book-q1-option-0-letter">A</span><div class="quiz-option-content" id="book-q1-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs">0 0 0 
+0 0 0 </code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q1-option-1" type="radio" name="book-q1" value="1" aria-labelledby="book-q1-option-1-letter book-q1-option-1-text"><span class="option-letter" id="book-q1-option-1-letter">B</span><div class="quiz-option-content" id="book-q1-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs">0 1 2 
+0 1 2 </code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q1-option-2" type="radio" name="book-q1" value="2" aria-labelledby="book-q1-option-2-letter book-q1-option-2-text"><span class="option-letter" id="book-q1-option-2-letter">C</span><div class="quiz-option-content" id="book-q1-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs">0 0 0 
+1 1 1 </code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q1-option-3" type="radio" name="book-q1" value="3" aria-labelledby="book-q1-option-3-letter book-q1-option-3-text"><span class="option-letter" id="book-q1-option-3-letter">D</span><div class="quiz-option-content" id="book-q1-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs">0 1 2 
+1 2 3 </code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">0 0 0 
+0 0 0 </code></pre></div><ul>
+<li><p>This option is incorrect because the array elements are initialized and modified within the loops. The values are not all zeros.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">0 1 2 
+0 1 2 </code></pre></div><ul>
+<li><p>This option is incorrect because each row is initialized with incremental values based on the sum of indices, not identical for both rows.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">0 0 0 
+1 1 1 </code></pre></div><ul>
+<li><p>This option is incorrect because the values should be the sum of the row index and the column index, not all zeros or all ones for the second row.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">0 1 2 
+1 2 3 </code></pre></div><ul>
+<li>This is the correct answer. Each element of the array is set to the sum of its indices. So, <code>arr[0][0] = 0 + 0 = 0</code>, <code>arr[0][1] = 0 + 1 = 1</code>, <code>arr[0][2] = 0 + 2 = 2</code>, <code>arr[1][0] = 1 + 0 = 1</code>, <code>arr[1][1] = 1 + 1 = 2</code>, <code>arr[1][2] = 1 + 2 = 3</code>.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q2" data-answer="1" aria-describedby="book-q2-feedback">
+          <legend>Question 2</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following generic method definitions correctly declares a method that returns the first element of a given array?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q2-option-0" type="radio" name="book-q2" value="0" aria-labelledby="book-q2-option-0-letter book-q2-option-0-text"><span class="option-letter" id="book-q2-option-0-letter">A</span><div class="quiz-option-content" id="book-q2-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">T</span> <span class="hljs-title function_">getFirstElement</span><span class="hljs-params">(T[] array)</span> {
+    <span class="hljs-keyword">return</span> array[<span class="hljs-number">0</span>];
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q2-option-1" type="radio" name="book-q2" value="1" aria-labelledby="book-q2-option-1-letter book-q2-option-1-text"><span class="option-letter" id="book-q2-option-1-letter">B</span><div class="quiz-option-content" id="book-q2-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-type">T</span> <span class="hljs-title function_">getFirstElement</span><span class="hljs-params">(T[] array)</span> {
+    <span class="hljs-keyword">return</span> array[<span class="hljs-number">0</span>];
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q2-option-2" type="radio" name="book-q2" value="2" aria-labelledby="book-q2-option-2-letter book-q2-option-2-text"><span class="option-letter" id="book-q2-option-2-letter">C</span><div class="quiz-option-content" id="book-q2-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-type">static</span> &lt;T&gt; <span class="hljs-title function_">getFirstElement</span><span class="hljs-params">(T[] array)</span> {
+    <span class="hljs-keyword">return</span> array[<span class="hljs-number">0</span>];
+}</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q2-option-3" type="radio" name="book-q2" value="3" aria-labelledby="book-q2-option-3-letter book-q2-option-3-text"><span class="option-letter" id="book-q2-option-3-letter">D</span><div class="quiz-option-content" id="book-q2-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-type">T</span>[] <span class="hljs-title function_">getFirstElement</span><span class="hljs-params">(T[] array)</span> {
+    <span class="hljs-keyword">return</span> array[<span class="hljs-number">0</span>];
+}</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">T</span> <span class="hljs-title function_">getFirstElement</span><span class="hljs-params">(T[] array)</span> {
+    <span class="hljs-keyword">return</span> array[<span class="hljs-number">0</span>];
+}</code></pre></div><ul>
+<li><p>This option is incorrect because the generic type <code>&lt;T&gt;</code> is missing before the return type <code>T</code>.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-type">T</span> <span class="hljs-title function_">getFirstElement</span><span class="hljs-params">(T[] array)</span> {
+    <span class="hljs-keyword">return</span> array[<span class="hljs-number">0</span>];
+}</code></pre></div><ul>
+<li><p>This is the correct answer. The generic type <code>&lt;T&gt;</code> is correctly declared before the return type <code>T</code>.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-type">static</span> &lt;T&gt; <span class="hljs-title function_">getFirstElement</span><span class="hljs-params">(T[] array)</span> {
+    <span class="hljs-keyword">return</span> array[<span class="hljs-number">0</span>];
+}</code></pre></div><ul>
+<li><p>This option is incorrect because the return type <code>T</code> is missing.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-type">T</span>[] <span class="hljs-title function_">getFirstElement</span><span class="hljs-params">(T[] array)</span> {
+    <span class="hljs-keyword">return</span> array[<span class="hljs-number">0</span>];
+}</code></pre></div><ul>
+<li>This option is incorrect because the return type is <code>T[]</code>, which does not match the intended method return type.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q3" data-answer="3" aria-describedby="book-q3-feedback">
+          <legend>Question 3</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>What is the result of compiling and running the following code?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WildcardTest</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">printList</span><span class="hljs-params">(List&lt;? extends Number&gt; list)</span> {
+        <span class="hljs-keyword">for</span> (Number n : list) {
+            System.out.print(n + <span class="hljs-string">&quot; &quot;</span>);
+        }
+        System.out.println();
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">List</span>&lt;Integer&gt; <span class="hljs-variable">ints</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+        <span class="hljs-type">List</span>&lt;Double&gt; <span class="hljs-variable">doubles</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-number">1.1</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">3.3</span>);
+        <span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">strings</span> <span class="hljs-operator">=</span> Arrays.asList(<span class="hljs-string">&quot;one&quot;</span>, <span class="hljs-string">&quot;two&quot;</span>, <span class="hljs-string">&quot;three&quot;</span>);
+        
+        printList(ints);
+        printList(doubles);
+        printList(strings);
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q3-option-0" type="radio" name="book-q3" value="0" aria-labelledby="book-q3-option-0-letter book-q3-option-0-text"><span class="option-letter" id="book-q3-option-0-letter">A</span><div class="quiz-option-content" id="book-q3-option-0-text"><p>The code compiles and prints:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs">1 2 3
+1.1 2.2 3.3
+one two three</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q3-option-1" type="radio" name="book-q3" value="1" aria-labelledby="book-q3-option-1-letter book-q3-option-1-text"><span class="option-letter" id="book-q3-option-1-letter">B</span><div class="quiz-option-content" id="book-q3-option-1-text"><p>The code compiles and prints:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs">1 2 3
+1.1 2.2 3.3</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q3-option-2" type="radio" name="book-q3" value="2" aria-labelledby="book-q3-option-2-letter book-q3-option-2-text"><span class="option-letter" id="book-q3-option-2-letter">C</span><div class="quiz-option-content" id="book-q3-option-2-text"><p>The code does not compile due to an error in the <code>printList</code> method.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-3" type="radio" name="book-q3" value="3" aria-labelledby="book-q3-option-3-letter book-q3-option-3-text"><span class="option-letter" id="book-q3-option-3-letter">D</span><div class="quiz-option-content" id="book-q3-option-3-text"><p>The code does not compile due to an error in the <code>main</code> method.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-4" type="radio" name="book-q3" value="4" aria-labelledby="book-q3-option-4-letter book-q3-option-4-text"><span class="option-letter" id="book-q3-option-4-letter">E</span><div class="quiz-option-content" id="book-q3-option-4-text"><p>The code compiles but throws a runtime exception when executed.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><p><strong>A)</strong> The code compiles and prints:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs">1 2 3
+1.1 2.2 3.3
+one two three</code></pre></div><ul>
+<li>This option is incorrect. The code does not compile, so it cannot produce any output.</li>
+</ul>
+<p><strong>B)</strong> The code compiles and prints:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs">1 2 3
+1.1 2.2 3.3</code></pre></div><ul>
+<li>This option is incorrect. While this would be the output if the <code>printList(strings)</code> line were removed, the code as written does not compile.</li>
+</ul>
+<p><strong>C)</strong> The code does not compile due to an error in the <code>printList</code> method.</p>
+<ul>
+<li>This option is incorrect. The <code>printList</code> method is correctly defined using an upper bound wildcard <code>&lt;? extends Number&gt;</code>.</li>
+</ul>
+<p><strong>D)</strong> The code does not compile due to an error in the <code>main</code> method.</p>
+<ul>
+<li>This option is correct. The code fails to compile due to an error in the <code>main</code> method. <code>printList(strings)</code> causes a compilation error because <code>String</code> is not a subclass of <code>Number</code>.</li>
+</ul>
+<p><strong>E)</strong> The code compiles but throws a runtime exception when executed.</p>
+<ul>
+<li>This option is incorrect. The code fails to compile so it cannot be executed.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q4" data-answer="0" aria-describedby="book-q4-feedback">
+          <legend>Question 4</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>What is the output of the following program?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ListExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(Arrays.asList(<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>));
+        list.add(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;E&quot;</span>);
+        System.out.println(list);
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q4-option-0" type="radio" name="book-q4" value="0" aria-labelledby="book-q4-option-0-letter book-q4-option-0-text"><span class="option-letter" id="book-q4-option-0-letter">A</span><div class="quiz-option-content" id="book-q4-option-0-text"><p><code>[A, B, E, C, D]</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-1" type="radio" name="book-q4" value="1" aria-labelledby="book-q4-option-1-letter book-q4-option-1-text"><span class="option-letter" id="book-q4-option-1-letter">B</span><div class="quiz-option-content" id="book-q4-option-1-text"><p><code>[A, E, B, C, D]</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-2" type="radio" name="book-q4" value="2" aria-labelledby="book-q4-option-2-letter book-q4-option-2-text"><span class="option-letter" id="book-q4-option-2-letter">C</span><div class="quiz-option-content" id="book-q4-option-2-text"><p><code>[A, B, C, E, D]</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-3" type="radio" name="book-q4" value="3" aria-labelledby="book-q4-option-3-letter book-q4-option-3-text"><span class="option-letter" id="book-q4-option-3-letter">D</span><div class="quiz-option-content" id="book-q4-option-3-text"><p><code>[A, B, C, D, E]</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-4" type="radio" name="book-q4" value="4" aria-labelledby="book-q4-option-4-letter book-q4-option-4-text"><span class="option-letter" id="book-q4-option-4-letter">E</span><div class="quiz-option-content" id="book-q4-option-4-text"><p><code>[A, C, B, E, D]</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>[A, B, E, C, D]</code></p>
+<ul>
+<li>This option is correct. The <code>add</code> method with an index parameter inserts the specified element at the specified position in the list. All elements after the specified position are shifted to the right. Hence, <code>&quot;E&quot;</code> is inserted at index 2, pushing <code>&quot;C&quot;</code> and <code>&quot;D&quot;</code> to the right.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>[A, E, B, C, D]</code></p>
+<ul>
+<li>This option is incorrect. This would be the result if <code>&quot;E&quot;</code> were added at index 1, not index 2.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>[A, B, C, E, D]</code></p>
+<ul>
+<li>This option is incorrect. This would be the result if <code>&quot;E&quot;</code> were added at index 3, not index 2.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>[A, B, C, D, E]</code></p>
+<ul>
+<li>This option is incorrect. This would be the result if <code>&quot;E&quot;</code> were added at the end of the list, not at index 2.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>[A, C, B, E, D]</code></p>
+<ul>
+<li>This option is incorrect. This sequence does not follow the proper behavior of the <code>add</code> method with index 2. It seems like a random shuffle and doesn&#39;t correspond to how elements are shifted when a new element is added.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q5" data-answer="2,3" aria-describedby="book-q5-feedback">
+          <legend>Question 5</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Which of the following statements about the <code>Set</code> interface are true? (Choose all that apply.)</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q5-option-0" type="checkbox" name="book-q5" value="0" aria-labelledby="book-q5-option-0-letter book-q5-option-0-text"><span class="option-letter" id="book-q5-option-0-letter">A</span><div class="quiz-option-content" id="book-q5-option-0-text"><p>A <code>Set</code> allows duplicate elements.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-1" type="checkbox" name="book-q5" value="1" aria-labelledby="book-q5-option-1-letter book-q5-option-1-text"><span class="option-letter" id="book-q5-option-1-letter">B</span><div class="quiz-option-content" id="book-q5-option-1-text"><p>Elements in a <code>Set</code> are maintained in the order they were inserted.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-2" type="checkbox" name="book-q5" value="2" aria-labelledby="book-q5-option-2-letter book-q5-option-2-text"><span class="option-letter" id="book-q5-option-2-letter">C</span><div class="quiz-option-content" id="book-q5-option-2-text"><p>The <code>Set</code> interface includes methods for adding, removing, and checking the presence of elements.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-3" type="checkbox" name="book-q5" value="3" aria-labelledby="book-q5-option-3-letter book-q5-option-3-text"><span class="option-letter" id="book-q5-option-3-letter">D</span><div class="quiz-option-content" id="book-q5-option-3-text"><p>The <code>Set</code> interface is implemented by classes like <code>HashSet</code>, <code>LinkedHashSet</code>, and <code>TreeSet</code>.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-4" type="checkbox" name="book-q5" value="4" aria-labelledby="book-q5-option-4-letter book-q5-option-4-text"><span class="option-letter" id="book-q5-option-4-letter">E</span><div class="quiz-option-content" id="book-q5-option-4-text"><p>A <code>Set</code> guarantees constant-time performance for the basic operations (add, remove, contains).</p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><p>.</p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> A <code>Set</code> allows duplicate elements.</p>
+<ul>
+<li>This option is incorrect. One of the primary characteristics of a <code>Set</code> is that it does not allow duplicate elements. Each element must be unique.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Elements in a <code>Set</code> are maintained in the order they were inserted.</p>
+<ul>
+<li>This option is incorrect. The ordering of elements depends on the specific implementation of the <code>Set</code> interface. For example, <code>HashSet</code> does not maintain any order, while <code>LinkedHashSet</code> maintains insertion order, and <code>TreeSet</code> maintains a sorted order.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>Set</code> interface includes methods for adding, removing, and checking the presence of elements.</p>
+<ul>
+<li>This option is correct. The <code>Set</code> interface provides methods such as <code>add()</code>, <code>remove()</code>, and <code>contains()</code> to manage its elements.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>Set</code> interface is implemented by classes like <code>HashSet</code>, <code>LinkedHashSet</code>, and <code>TreeSet</code>.</p>
+<ul>
+<li>This option is correct. <code>HashSet</code>, <code>LinkedHashSet</code>, and <code>TreeSet</code> are all concrete implementations of the <code>Set</code> interface, each with different characteristics regarding order and performance.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> A <code>Set</code> guarantees constant-time performance for the basic operations (add, remove, contains).</p>
+<ul>
+<li>This option is incorrect. This statement is true for <code>HashSet</code> specifically, which provides average constant-time performance for these operations. However, it is not true for all <code>Set</code> implementations. For example, <code>TreeSet</code> provides logarithmic time performance for these operations because it is based on a Red-Black tree.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q6" data-answer="2" aria-describedby="book-q6-feedback">
+          <legend>Question 6</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>What will be the output of the following program?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DequeExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">Deque</span>&lt;String&gt; <span class="hljs-variable">deque</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayDeque</span>&lt;&gt;();
+        deque.addFirst(<span class="hljs-string">&quot;A&quot;</span>);
+        deque.addLast(<span class="hljs-string">&quot;B&quot;</span>);
+        deque.addFirst(<span class="hljs-string">&quot;C&quot;</span>);
+        deque.addLast(<span class="hljs-string">&quot;D&quot;</span>);
+
+        System.out.println(deque);
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q6-option-0" type="radio" name="book-q6" value="0" aria-labelledby="book-q6-option-0-letter book-q6-option-0-text"><span class="option-letter" id="book-q6-option-0-letter">A</span><div class="quiz-option-content" id="book-q6-option-0-text"><p><code>[A, B, C, D]</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-1" type="radio" name="book-q6" value="1" aria-labelledby="book-q6-option-1-letter book-q6-option-1-text"><span class="option-letter" id="book-q6-option-1-letter">B</span><div class="quiz-option-content" id="book-q6-option-1-text"><p><code>[C, B, A, D]</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-2" type="radio" name="book-q6" value="2" aria-labelledby="book-q6-option-2-letter book-q6-option-2-text"><span class="option-letter" id="book-q6-option-2-letter">C</span><div class="quiz-option-content" id="book-q6-option-2-text"><p><code>[C, A, B, D]</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-3" type="radio" name="book-q6" value="3" aria-labelledby="book-q6-option-3-letter book-q6-option-3-text"><span class="option-letter" id="book-q6-option-3-letter">D</span><div class="quiz-option-content" id="book-q6-option-3-text"><p><code>[D, B, A, C]</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-4" type="radio" name="book-q6" value="4" aria-labelledby="book-q6-option-4-letter book-q6-option-4-text"><span class="option-letter" id="book-q6-option-4-letter">E</span><div class="quiz-option-content" id="book-q6-option-4-text"><p><code>[A, C, B, D]</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>[A, B, C, D]</code></p>
+<ul>
+<li>This option is incorrect.This option ignores the order in which elements are added to the deque. It simply lists elements in the order they appear to be added without considering the <code>addFirst</code> and <code>addLast</code> methods.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>[C, B, A, D]</code></p>
+<ul>
+<li>This option is incorrect. This option incorrectly assumes <code>&quot;A&quot;</code> is added after <code>&quot;B&quot;</code>, howerver, <code>addFirst(&quot;A&quot;)</code> puts <code>&quot;A&quot;</code> at the second position.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>[C, A, B, D]</code></p>
+<ul>
+<li>This option is correct. This is indeed the correct output. The method <code>addFirst(&quot;C&quot;)</code> puts &quot;C&quot; at the front, <code>addFirst(&quot;A&quot;)</code> puts <code>&quot;A&quot;</code> at the second position, <code>addLast(&quot;B&quot;)</code> adds <code>&quot;B&quot;</code> after <code>&quot;A&quot;</code>, and <code>addLast(&quot;D&quot;)</code> adds <code>&quot;D&quot;</code> at the end. Thus, the final order is <code>[C, A, B, D]</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>[D, B, A, C]</code></p>
+<ul>
+<li>This option is incorrect. This option shows the reverse order, which does not match how elements are actually added to the deque.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>[A, C, B, D]</code></p>
+<ul>
+<li>This option is incorrect. This option incorrectly assumes <code>&quot;A&quot;</code> is added before <code>&quot;C&quot;</code> despite <code>addFirst(&quot;C&quot;)</code> being called after <code>addFirst(&quot;A&quot;)</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q7" data-answer="3" aria-describedby="book-q7-feedback">
+          <legend>Question 7</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>What will be the output of the following program?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MapExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">Map</span>&lt;Integer, String&gt; <span class="hljs-variable">map</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();
+        map.put(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;A&quot;</span>);
+        map.put(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;B&quot;</span>);
+        map.put(<span class="hljs-number">3</span>, <span class="hljs-string">&quot;C&quot;</span>);
+        map.put(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;D&quot;</span>);
+
+        System.out.println(map);
+    }
+}</code></pre></div></div>
+          <p class="question-review-note"><strong>Reviewed note:</strong> Compare the map contents in the choices, not a guaranteed iteration order. HashMap does not promise the printed key order.</p>
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q7-option-0" type="radio" name="book-q7" value="0" aria-labelledby="book-q7-option-0-letter book-q7-option-0-text"><span class="option-letter" id="book-q7-option-0-letter">A</span><div class="quiz-option-content" id="book-q7-option-0-text"><p><code>{1=A, 2=B, 3=C, 2=D}</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-1" type="radio" name="book-q7" value="1" aria-labelledby="book-q7-option-1-letter book-q7-option-1-text"><span class="option-letter" id="book-q7-option-1-letter">B</span><div class="quiz-option-content" id="book-q7-option-1-text"><p><code>{1=A, 2=B, 3=C}</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-2" type="radio" name="book-q7" value="2" aria-labelledby="book-q7-option-2-letter book-q7-option-2-text"><span class="option-letter" id="book-q7-option-2-letter">C</span><div class="quiz-option-content" id="book-q7-option-2-text"><p><code>{1=A, 2=D, 3=C, 2=D}</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-3" type="radio" name="book-q7" value="3" aria-labelledby="book-q7-option-3-letter book-q7-option-3-text"><span class="option-letter" id="book-q7-option-3-letter">D</span><div class="quiz-option-content" id="book-q7-option-3-text"><p><code>{1=A, 2=D, 3=C}</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-4" type="radio" name="book-q7" value="4" aria-labelledby="book-q7-option-4-letter book-q7-option-4-text"><span class="option-letter" id="book-q7-option-4-letter">E</span><div class="quiz-option-content" id="book-q7-option-4-text"><p><code>{1=A, 3=C, 2=B}</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><p><strong>D has the correct mappings:</strong> 1 maps to A, 2 maps to D, and 3 maps to C. The second put for key 2 replaces B. HashMap forbids duplicate keys but does not guarantee the order in which those entries are printed.</p>
+</div><p class="answer-origin">Includes a reviewed clarification or correction. <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html" target="_blank" rel="noopener noreferrer">Check the Java reference<span class="sr-only"> (opens in a new tab)</span></a></p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q8" data-answer="2" aria-describedby="book-q8-feedback">
+          <legend>Question 8</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>What is the result of running the following program?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ComparableExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">List</span>&lt;Person&gt; <span class="hljs-variable">people</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
+        people.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-number">30</span>));
+        people.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-number">25</span>));
+        people.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;Charlie&quot;</span>, <span class="hljs-number">35</span>));
+
+        Collections.sort(people);
+
+        <span class="hljs-keyword">for</span> (Person p : people) {
+            System.out.println(p.getName() + <span class="hljs-string">&quot; &quot;</span> + p.getAge());
+        }
+    }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Comparable</span>&lt;Person&gt; {
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Person</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.name = name;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">String</span> <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> name;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAge</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> age;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compareTo</span><span class="hljs-params">(Person other)</span> {
+        <span class="hljs-keyword">return</span> Integer.compare(<span class="hljs-built_in">this</span>.age, other.age);
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q8-option-0" type="radio" name="book-q8" value="0" aria-labelledby="book-q8-option-0-letter book-q8-option-0-text"><span class="option-letter" id="book-q8-option-0-letter">A</span><div class="quiz-option-content" id="book-q8-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Alice 30  
+Bob 25  
+Charlie 35</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q8-option-1" type="radio" name="book-q8" value="1" aria-labelledby="book-q8-option-1-letter book-q8-option-1-text"><span class="option-letter" id="book-q8-option-1-letter">B</span><div class="quiz-option-content" id="book-q8-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Charlie 35  
+Alice 30  
+Bob 25</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q8-option-2" type="radio" name="book-q8" value="2" aria-labelledby="book-q8-option-2-letter book-q8-option-2-text"><span class="option-letter" id="book-q8-option-2-letter">C</span><div class="quiz-option-content" id="book-q8-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Bob 25  
+Alice 30  
+Charlie 35</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q8-option-3" type="radio" name="book-q8" value="3" aria-labelledby="book-q8-option-3-letter book-q8-option-3-text"><span class="option-letter" id="book-q8-option-3-letter">D</span><div class="quiz-option-content" id="book-q8-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Bob 25  
+Charlie 35  
+Alice 30</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q8-option-4" type="radio" name="book-q8" value="4" aria-labelledby="book-q8-option-4-letter book-q8-option-4-text"><span class="option-letter" id="book-q8-option-4-letter">E</span><div class="quiz-option-content" id="book-q8-option-4-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Alice 30  
+Charlie 35  
+Bob 25</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">Alice 30  
+Bob 25  
+Charlie 35</code></pre></div><ul>
+<li><p>This option is incorrect. This option lists the elements in their original order, not the sorted order based on age.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">Charlie 35  
+Alice 30  
+Bob 25</code></pre></div><ul>
+<li><p>This option is incorrect. This option lists the elements in descending order of age, but the <code>compareTo</code> method sorts in ascending order of age.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">Bob 25  
+Alice 30  
+Charlie 35</code></pre></div><ul>
+<li><p>This option is correct. The <code>compareTo</code> method sorts the <code>Person</code> objects in ascending order based on their age. Hence, the sorted order is <code>Bob (25)</code>, <code>Alice (30)</code>, and <code>Charlie (35)</code>.</p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">Bob 25  
+Charlie 35  
+Alice 30</code></pre></div><ul>
+<li><p>This option is incorrect. This option does not correctly follow the ascending order of age.</p>
+</li>
+<li><p><strong>E)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">Alice 30  
+Charlie 35  
+Bob 25</code></pre></div><ul>
+<li>This option is incorrect. This option does not correctly follow the ascending order of age.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q9" data-answer="0" aria-describedby="book-q9-feedback">
+          <legend>Question 9</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>What will be the output of the following program when using the provided <code>Comparator</code>?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">import</span> java.util.*;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ComparatorExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">List</span>&lt;Person&gt; <span class="hljs-variable">people</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
+        people.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-number">30</span>));
+        people.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-number">25</span>));
+        people.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;Charlie&quot;</span>, <span class="hljs-number">35</span>));
+
+        Collections.sort(people, <span class="hljs-keyword">new</span> <span class="hljs-title class_">AgeComparator</span>());
+
+        <span class="hljs-keyword">for</span> (Person p : people) {
+            System.out.println(p.getName() + <span class="hljs-string">&quot; &quot;</span> + p.getAge());
+        }
+    }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> {
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> age;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Person</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age)</span> {
+        <span class="hljs-built_in">this</span>.name = name;
+        <span class="hljs-built_in">this</span>.age = age;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">String</span> <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> name;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getAge</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> age;
+    }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">AgeComparator</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Comparator</span>&lt;Person&gt; {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(Person p1, Person p2)</span> {
+        <span class="hljs-keyword">return</span> Integer.compare(p1.getAge(), p2.getAge());
+    }
+}</code></pre></div></div>
+          <p class="question-review-note"><strong>Reviewed note:</strong> The answer key says A, but its explanation mistakenly calls A incorrect. The reviewed explanation below fixes that contradiction.</p>
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q9-option-0" type="radio" name="book-q9" value="0" aria-labelledby="book-q9-option-0-letter book-q9-option-0-text"><span class="option-letter" id="book-q9-option-0-letter">A</span><div class="quiz-option-content" id="book-q9-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Bob 25  
+Alice 30  
+Charlie 35</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q9-option-1" type="radio" name="book-q9" value="1" aria-labelledby="book-q9-option-1-letter book-q9-option-1-text"><span class="option-letter" id="book-q9-option-1-letter">B</span><div class="quiz-option-content" id="book-q9-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Charlie 35  
+Alice 30  
+Bob 25</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q9-option-2" type="radio" name="book-q9" value="2" aria-labelledby="book-q9-option-2-letter book-q9-option-2-text"><span class="option-letter" id="book-q9-option-2-letter">C</span><div class="quiz-option-content" id="book-q9-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Alice 30  
+Bob 25  
+Charlie 35</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q9-option-3" type="radio" name="book-q9" value="3" aria-labelledby="book-q9-option-3-letter book-q9-option-3-text"><span class="option-letter" id="book-q9-option-3-letter">D</span><div class="quiz-option-content" id="book-q9-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Bob 25  
+Charlie 35  
+Alice 30</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q9-option-4" type="radio" name="book-q9" value="4" aria-labelledby="book-q9-option-4-letter book-q9-option-4-text"><span class="option-letter" id="book-q9-option-4-letter">E</span><div class="quiz-option-content" id="book-q9-option-4-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Alice 30  
+Charlie 35  
+Bob 25</code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><p><strong>A is correct:</strong> the comparator sorts by age in ascending order, so the output is Bob (25), Alice (30), then Charlie (35). The other options use a different order.</p>
+</div><p class="answer-origin">Includes a reviewed clarification or correction. <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html" target="_blank" rel="noopener noreferrer">Check the Java reference<span class="sr-only"> (opens in a new tab)</span></a></p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart book practice</button></div>
+    </form>
+  </section><section class="chapter-quiz" id="chapter-quiz" aria-labelledby="quiz-title">
+    <h2 id="quiz-title">Extra quiz</h2>
+    <p class="quiz-intro">Choose an answer to see its explanation immediately. Correct choices appear in green; incorrect selections appear in red. For checkbox questions, select your answers, then choose Check answer.</p>
+    <details class="practice-context"><summary>About these questions</summary><p>11 original learning exercises, not official exam questions. Use Java 21 without preview features. Assume standard imports and a valid enclosing class or method, which may declare checked exceptions.</p></details>
+    <p class="quiz-saving">Your selections and feedback are saved in this browser.</p>
+    <noscript><p>Enable JavaScript for scoring. The book’s practice questions and separate answer sheet remain available without it.</p></noscript>
+    <form class="quiz-form" data-quiz="ch06">
+      <p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="quiz-q1" data-answer="0" aria-describedby="quiz-q1-feedback">
+          <legend><span class="quiz-number">1.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Array defaults · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">int</span>[] <span class="hljs-variable">values</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">3</span>];
+System.out.println(values[<span class="hljs-number">1</span>]);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q1" value="0"><span class="option-letter">A</span><span>0</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="1"><span class="option-letter">B</span><span>null</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="2"><span class="option-letter">C</span><span>An arbitrary number</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Each element of a newly created int array starts at zero.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q2" data-answer="2" aria-describedby="quiz-q2-feedback">
+          <legend><span class="quiz-number">2.</span> What happens?</legend>
+          <div class="quiz-question-meta">Array covariance · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Object</span>[] <span class="hljs-variable">items</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[<span class="hljs-number">1</span>];
+items[<span class="hljs-number">0</span>] = <span class="hljs-number">42</span>;</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q2" value="0"><span class="option-letter">A</span><span>It stores the integer</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="1"><span class="option-letter">B</span><span>It does not compile</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="2"><span class="option-letter">C</span><span>It throws ArrayStoreException</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="3"><span class="option-letter">D</span><span>It changes the array type</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The reference assignment is legal, but the runtime array still accepts only Strings. Storing an Integer fails.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q3" data-answer="1" aria-describedby="quiz-q3-feedback">
+          <legend><span class="quiz-number">3.</span> Which assignment compiles?</legend>
+          <div class="quiz-question-meta">Generic invariance · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q3" value="0"><span class="option-letter">A</span><span>List&lt;Number&gt; x = new ArrayList&lt;Integer&gt;();</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="1"><span class="option-letter">B</span><span>List&lt;? extends Number&gt; x = new ArrayList&lt;Integer&gt;();</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="2"><span class="option-letter">C</span><span>List&lt;Object&gt; x = new ArrayList&lt;String&gt;();</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="3"><span class="option-letter">D</span><span>List&lt;int&gt; x = new ArrayList&lt;int&gt;();</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">A wildcard permits this subtype view. Ordinary generic type arguments are invariant, and primitive types cannot be type arguments.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q4" data-answer="3" aria-describedby="quiz-q4-feedback">
+          <legend><span class="quiz-number">4.</span> For <code>List&lt;? extends Number&gt; values</code>, which operation is guaranteed to compile?</legend>
+          <div class="quiz-question-meta">Upper bounds · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q4" value="0"><span class="option-letter">A</span><span>values.add(1)</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="1"><span class="option-letter">B</span><span>values.add(2.0)</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="2"><span class="option-letter">C</span><span>Integer n = values.get(0)</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="3"><span class="option-letter">D</span><span>Number n = values.get(0)</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The elements can be read as Number. The specific element subtype is unknown, so adding an Integer or Double is unsafe.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q5" data-answer="0" aria-describedby="quiz-q5-feedback">
+          <legend><span class="quiz-number">5.</span> For <code>List&lt;? super Integer&gt; values</code>, which operation is guaranteed to compile?</legend>
+          <div class="quiz-question-meta">Lower bounds · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q5" value="0"><span class="option-letter">A</span><span>values.add(3)</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="1"><span class="option-letter">B</span><span>Integer n = values.get(0)</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="2"><span class="option-letter">C</span><span>values.add(3.5)</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="3"><span class="option-letter">D</span><span>values.add(new Object())</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Integer values can be added through this lower-bounded wildcard. Reads are only guaranteed to have type Object.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q6" data-answer="2" aria-describedby="quiz-q6-feedback">
+          <legend><span class="quiz-number">6.</span> What happens?</legend>
+          <div class="quiz-question-meta">Unmodifiable lists · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">values</span> <span class="hljs-operator">=</span> java.util.List.of(<span class="hljs-string">&quot;a&quot;</span>);
+values.add(<span class="hljs-string">&quot;b&quot;</span>);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q6" value="0"><span class="option-letter">A</span><span>The list becomes [a, b]</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="1"><span class="option-letter">B</span><span>It returns false</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="2"><span class="option-letter">C</span><span>It throws UnsupportedOperationException</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">List.of creates an unmodifiable list. Its add operation is unsupported.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q7" data-answer="0" aria-describedby="quiz-q7-feedback">
+          <legend><span class="quiz-number">7.</span> What is printed? Assume <code>java.util</code> is imported.</legend>
+          <div class="quiz-question-meta">Removal overload · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">values</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(List.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>));
+values.remove(<span class="hljs-number">1</span>);
+System.out.println(values);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q7" value="0"><span class="option-letter">A</span><span>[1, 3]</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="1"><span class="option-letter">B</span><span>[2, 3]</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="2"><span class="option-letter">C</span><span>[1, 2]</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="3"><span class="option-letter">D</span><span>It throws an exception</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The primitive int argument selects remove(int index), so the element at index 1 is removed.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q8" data-answer="3" aria-describedby="quiz-q8-feedback">
+          <legend><span class="quiz-number">8.</span> What is the size of <code>new HashSet&lt;&gt;(List.of(&quot;a&quot;, &quot;a&quot;, &quot;b&quot;))</code>?</legend>
+          <div class="quiz-question-meta">Set uniqueness · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q8" value="0"><span class="option-letter">A</span><span>3</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="1"><span class="option-letter">B</span><span>1</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="2"><span class="option-letter">C</span><span>It throws an exception</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="3"><span class="option-letter">D</span><span>2</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">HashSet eliminates duplicate elements according to equality, so only a and b remain.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q9" data-answer="1" aria-describedby="quiz-q9-feedback">
+          <legend><span class="quiz-number">9.</span> What is printed? Assume <code>java.util</code> is imported.</legend>
+          <div class="quiz-question-meta">Map replacement · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">map</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;String, Integer&gt;();
+map.put(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-number">1</span>);
+map.put(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-number">2</span>);
+System.out.println(map.size() + <span class="hljs-string">&quot;:&quot;</span> + map.get(<span class="hljs-string">&quot;a&quot;</span>));</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q9" value="0"><span class="option-letter">A</span><span>2:2</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="1"><span class="option-letter">B</span><span>1:2</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="2"><span class="option-letter">C</span><span>1:1</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">put replaces the value for an existing key instead of adding a second entry with that key.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q10" data-answer="2" aria-describedby="quiz-q10-feedback">
+          <legend><span class="quiz-number">10.</span> What is printed in Java 21? Assume <code>java.util</code> is imported.</legend>
+          <div class="quiz-question-meta">Sequenced collections · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">var</span> <span class="hljs-variable">values</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(List.of(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>));
+System.out.println(values.reversed().getFirst());</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q10" value="0"><span class="option-letter">A</span><span>a</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="1"><span class="option-letter">B</span><span>It does not compile</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="2"><span class="option-letter">C</span><span>b</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="3"><span class="option-letter">D</span><span>It requires preview features</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q10-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">List gained sequenced operations including getFirst, getLast, and reversed in Java 21. reversed views the opposite encounter order.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q11" data-answer="1,3" aria-describedby="quiz-q11-feedback">
+          <legend><span class="quiz-number">11.</span> Which two statements about <code>List.of(&quot;a&quot;, &quot;b&quot;)</code> are correct in Java 21?</legend>
+          <div class="quiz-question-meta">List factories · Select 2 answers</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="0"><span class="option-letter">A</span><span>Its elements can be replaced with set</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="1"><span class="option-letter">B</span><span>It is unmodifiable</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="2"><span class="option-letter">C</span><span>It accepts null elements</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="3"><span class="option-letter">D</span><span>Its first element can be read with getFirst()</span></label></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="quiz-q11-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">List.of is unmodifiable and rejects nulls. The List interface supports getFirst in Java 21.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart extra quiz</button></div>
+    </form>
+  </section>
+  <section class="study-resources" id="free-resources" aria-labelledby="resources-title"><h2 id="resources-title">Free resources</h2><p>Use these to revisit the rules or try more examples. Links open in a new tab and need an internet connection. Some tutorials also cover Java versions newer than 21.</p>
+    <ul><li><a href="https://dev.java/learn/api/collections-and-streams/" target="_blank" rel="noopener noreferrer">Collections and streams — Dev.java<span class="sr-only"> (opens in a new tab)</span></a><p>Free guides to collection types and operations.</p></li><li><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" target="_blank" rel="noopener noreferrer">List API — Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>Includes sequenced operations added in Java 21.</p></li><li><a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-4.html" target="_blank" rel="noopener noreferrer">Generic types in Java 21<span class="sr-only"> (opens in a new tab)</span></a><p>Type arguments, subtyping, and type variables.</p></li><li><a href="https://codingbat.com/java" target="_blank" rel="noopener noreferrer">CodingBat arrays and maps<span class="sr-only"> (opens in a new tab)</span></a><p>Choose Array-2 or Map-1 for free coding exercises.</p></li></ul>
+    <p class="resource-date">Links reviewed 31 October 2026.</p>
+  </section></article><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch06.html"><small>Previous · Chapter 6</small>Arrays, Generics, and Collections</a><a href="ch07.html"><small>Next · Chapter 7</small>Error Handling and Exceptions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>Practice sections</summary><nav aria-label="On this page"><a class="toc-link" href="#book-practice">Book questions · 9</a><a class="toc-link" href="#chapter-quiz">Extra quiz · 11</a><a class="toc-link" href="#free-resources">Free resources</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

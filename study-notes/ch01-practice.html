@@ -1,0 +1,1241 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Chapter 1.1 Practice</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch01-practice"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link " href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link selected" href="ch01-practice.html" aria-current="page"><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Chapter 1.1 Practice</h1><p class="practice-subtitle">Utilizing Java Object-Oriented Approach - Part 1</p><div class="document-meta">24 book questions <span>·</span> 11 extra quiz questions</div><div class="chapter-actions"><a href="ch01.html">Read chapter 1</a><a class="active" aria-current="page" href="ch01-practice.html">Practice 1.1</a><a href="ch01a.html">Original answers</a></div></div><nav class="practice-section-nav" aria-label="Practice sections"><a href="#book-practice">Book questions</a><a href="#chapter-quiz">Extra quiz</a><button type="button" class="reset-all-quizzes">Reset all questions</button></nav><article class="prose practice-prose"><section class="chapter-quiz book-practice" id="book-practice" aria-labelledby="book-practice-title">
+    <h2 id="book-practice-title">Book practice questions</h2>
+    <p class="quiz-intro">24 questions from the chapter, with the book’s explanations. Single-answer questions show immediate feedback. For checkbox questions, select your answers, then choose Check answer. Reviewed corrections and clarifications are identified beside the question.</p>
+    <form class="quiz-form" data-quiz="book-ch01"><p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="book-q1" data-answer="1" aria-describedby="book-q1-feedback">
+          <legend>Question 1</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Consider the following code snippet:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(<span class="hljs-string">&quot;Java&quot;</span>);
+        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(<span class="hljs-string">&quot;Python&quot;</span>);
+        sb1 = sb2;
+        <span class="hljs-comment">// More code here</span>
+    }
+}</code></pre></div><p>After the execution of the above code, which of the following statements is true regarding garbage collection?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q1-option-0" type="radio" name="book-q1" value="0" aria-labelledby="book-q1-option-0-letter book-q1-option-0-text"><span class="option-letter" id="book-q1-option-0-letter">A</span><div class="quiz-option-content" id="book-q1-option-0-text"><p>Both <code>sb1</code> and <code>sb2</code> are eligible for garbage collection.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-1" type="radio" name="book-q1" value="1" aria-labelledby="book-q1-option-1-letter book-q1-option-1-text"><span class="option-letter" id="book-q1-option-1-letter">B</span><div class="quiz-option-content" id="book-q1-option-1-text"><p>Only the <code>StringBuilder</code> object initially referenced by <code>sb1</code> is eligible for garbage collection.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-2" type="radio" name="book-q1" value="2" aria-labelledby="book-q1-option-2-letter book-q1-option-2-text"><span class="option-letter" id="book-q1-option-2-letter">C</span><div class="quiz-option-content" id="book-q1-option-2-text"><p>Only the <code>StringBuilder</code> object initially referenced by <code>sb2</code> is eligible for garbage collection.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q1-option-3" type="radio" name="book-q1" value="3" aria-labelledby="book-q1-option-3-letter book-q1-option-3-text"><span class="option-letter" id="book-q1-option-3-letter">D</span><div class="quiz-option-content" id="book-q1-option-3-text"><p>Neither of the <code>StringBuilder</code> objects are eligible for garbage collection.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> Both <code>sb1</code> and <code>sb2</code> are eligible for garbage collection.</p>
+<ul>
+<li>This option is incorrect because <code>sb2</code> still holds a reference to the <code>StringBuilder</code> object it was initially assigned. Therefore, it is not eligible for garbage collection.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Only the <code>StringBuilder</code> object initially referenced by <code>sb1</code> is eligible for garbage collection.</p>
+<ul>
+<li>This option is correct. After <code>sb1</code> is reassigned to reference the same object as <code>sb2</code>, the original <code>StringBuilder</code> object created with <code>new StringBuilder(&quot;Java&quot;)</code> and initially referenced by <code>sb1</code> is no longer accessible. Since there are no references pointing to it, it becomes eligible for garbage collection.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Only the <code>StringBuilder</code> object initially referenced by <code>sb2</code> is eligible for garbage collection.</p>
+<ul>
+<li>This option is incorrect because after the assignment <code>sb1 = sb2;</code>, both <code>sb1</code> and <code>sb2</code> reference the same object (<code>new StringBuilder(&quot;Python&quot;)</code>). This object is still accessible through <code>sb2</code> (and now <code>sb1</code> as well), so it is not eligible for garbage collection.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Neither of the <code>StringBuilder</code> objects are eligible for garbage collection.</p>
+<ul>
+<li>This option is incorrect because, as explained, the object initially referenced by <code>sb1</code> becomes eligible for garbage collection after <code>sb1</code> is reassigned to <code>sb2</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q2" data-answer="2,3" aria-describedby="book-q2-feedback">
+          <legend>Question 2</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Which of the following are reserved keywords in Java? (Choose all that apply.)</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q2-option-0" type="checkbox" name="book-q2" value="0" aria-labelledby="book-q2-option-0-letter book-q2-option-0-text"><span class="option-letter" id="book-q2-option-0-letter">A</span><div class="quiz-option-content" id="book-q2-option-0-text"><p><code>implement</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-1" type="checkbox" name="book-q2" value="1" aria-labelledby="book-q2-option-1-letter book-q2-option-1-text"><span class="option-letter" id="book-q2-option-1-letter">B</span><div class="quiz-option-content" id="book-q2-option-1-text"><p><code>array</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-2" type="checkbox" name="book-q2" value="2" aria-labelledby="book-q2-option-2-letter book-q2-option-2-text"><span class="option-letter" id="book-q2-option-2-letter">C</span><div class="quiz-option-content" id="book-q2-option-2-text"><p><code>volatile</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q2-option-3" type="checkbox" name="book-q2" value="3" aria-labelledby="book-q2-option-3-letter book-q2-option-3-text"><span class="option-letter" id="book-q2-option-3-letter">D</span><div class="quiz-option-content" id="book-q2-option-3-text"><p><code>extends</code></p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>implement</code> is incorrect. The correct keyword for implementing an interface in Java is <code>implements</code>.</p>
+</li>
+<li><p><strong>B)</strong> <code>array</code> is incorrect. Java does not have a reserved keyword named <code>array</code>. Arrays are declared with square brackets <code>[ ]</code>.</p>
+</li>
+<li><p><strong>C)</strong> <code>volatile</code> is correct. <code>volatile</code> is a reserved keyword that is used to indicate that a variable&#39;s value will be modified by different threads.</p>
+</li>
+<li><p><strong>D)</strong> <code>extends</code> is correct. <code>extends</code> is a reserved keyword used in class declarations to inherit from a superclass.</p>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q3" data-answer="0,4" aria-describedby="book-q3-feedback">
+          <legend>Question 3</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Consider the following code snippet:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-number">1.</span> <span class="hljs-comment">// calculates the sum of numbers</span>
+<span class="hljs-number">2.</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Calculator</span> {
+<span class="hljs-number">3.</span>     <span class="hljs-comment">/* Adds two numbers
+4.      * @param a the first number
+5.      * @param b the second number
+6.      * @return the sum of a and b
+7.      */</span>
+<span class="hljs-number">8.</span>     <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> {
+<span class="hljs-number">9.</span>         <span class="hljs-comment">// return the sum</span>
+<span class="hljs-number">10.</span>        <span class="hljs-keyword">return</span> a + b;
+<span class="hljs-number">11.</span>    }
+<span class="hljs-number">12.</span>    <span class="hljs-comment">//<span class="hljs-doctag">TODO:</span> Implement subtract method</span>
+<span class="hljs-number">13.</span>}</code></pre></div><p>Which of the following statements are true about the comments in the above code? (Choose all that apply.)</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q3-option-0" type="checkbox" name="book-q3" value="0" aria-labelledby="book-q3-option-0-letter book-q3-option-0-text"><span class="option-letter" id="book-q3-option-0-letter">A</span><div class="quiz-option-content" id="book-q3-option-0-text"><p>Line 1 is an example of a single-line comment.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-1" type="checkbox" name="book-q3" value="1" aria-labelledby="book-q3-option-1-letter book-q3-option-1-text"><span class="option-letter" id="book-q3-option-1-letter">B</span><div class="quiz-option-content" id="book-q3-option-1-text"><p>Lines 3-7 demonstrate the use of a javadoc comment.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-2" type="checkbox" name="book-q3" value="2" aria-labelledby="book-q3-option-2-letter book-q3-option-2-text"><span class="option-letter" id="book-q3-option-2-letter">C</span><div class="quiz-option-content" id="book-q3-option-2-text"><p>Line 9 uses a javadoc comment to explain the <code>add</code> method.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-3" type="checkbox" name="book-q3" value="3" aria-labelledby="book-q3-option-3-letter book-q3-option-3-text"><span class="option-letter" id="book-q3-option-3-letter">D</span><div class="quiz-option-content" id="book-q3-option-3-text"><p>Line 12 uses a special <code>TODO</code> comment, different from a single-line comment.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q3-option-4" type="checkbox" name="book-q3" value="4" aria-labelledby="book-q3-option-4-letter book-q3-option-4-text"><span class="option-letter" id="book-q3-option-4-letter">E</span><div class="quiz-option-content" id="book-q3-option-4-text"><p>Lines 3-7 is a block comment that is used as if it were a javadoc comment.</p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> Line 1 is an example of a single-line comment.</p>
+<ul>
+<li>This option is correct. Line 1 uses <code>//</code> to start a single-line comment, which is a common way to add notes or explain a part of code that does not affect the execution.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Lines 3-7 demonstrate the use of a javadoc comment.</p>
+<ul>
+<li>This option is incorrect. Lines 3-7 use a block comment. Javadoc comments start with <code>/**</code> and end with <code>*/</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Line 9 uses a javadoc comment to explain the <code>add</code> method.</p>
+<ul>
+<li>This option is incorrect. Line 9 is a single-line comment, not a javadoc comment. Javadoc comments in Java are defined with <code>/**</code> at the beginning and <code>*/</code> at the end, and are specifically used to describe classes, methods, and fields.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Line 12 uses a special <code>TODO</code> comment, different from a single-line comment.</p>
+<ul>
+<li>This option is incorrect. Line 12 uses a <code>TODO</code> comment, which is a convention many developers follow to mark parts of the code that require further development or attention but is still a single-line comment.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> Lines 3-7 is a block comment that is used as if it were a javadoc comment.</p>
+<ul>
+<li>This option is correct. Lines 3-7 use a block comment, which is not processed by javadoc tools and therefore not suitable for generating official documentation.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q4" data-answer="1,3" aria-describedby="book-q4-feedback">
+          <legend>Question 4</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Consider you have the following two Java files located in the same directory:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-comment">// File 1: Calculator.java</span>
+<span class="hljs-keyword">package</span> math;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Calculator</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> {
+        <span class="hljs-keyword">return</span> a + b;
+    }
+}
+
+<span class="hljs-comment">// File 2: Application.java</span>
+<span class="hljs-keyword">package</span> app;
+
+<span class="hljs-keyword">import</span> math.Calculator;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Application</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">Calculator</span> <span class="hljs-variable">calc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Calculator</span>();
+        System.out.println(calc.add(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>));
+    }
+}</code></pre></div><p>Which of the following statements is true regarding the <code>package</code> and <code>import</code> statements in Java?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q4-option-0" type="checkbox" name="book-q4" value="0" aria-labelledby="book-q4-option-0-letter book-q4-option-0-text"><span class="option-letter" id="book-q4-option-0-letter">A</span><div class="quiz-option-content" id="book-q4-option-0-text"><p>The <code>import</code> statement in <code>Application.java</code> is unnecessary because both classes are in the same directory.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-1" type="checkbox" name="book-q4" value="1" aria-labelledby="book-q4-option-1-letter book-q4-option-1-text"><span class="option-letter" id="book-q4-option-1-letter">B</span><div class="quiz-option-content" id="book-q4-option-1-text"><p>The <code>import</code> statement in <code>Application.java</code> is necessary for using the <code>Calculator</code> class because they belong to different packages.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-2" type="checkbox" name="book-q4" value="2" aria-labelledby="book-q4-option-2-letter book-q4-option-2-text"><span class="option-letter" id="book-q4-option-2-letter">C</span><div class="quiz-option-content" id="book-q4-option-2-text"><p>The <code>Calculator</code> class will not be accessible in <code>Application.java</code> due to being in a different directory.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q4-option-3" type="checkbox" name="book-q4" value="3" aria-labelledby="book-q4-option-3-letter book-q4-option-3-text"><span class="option-letter" id="book-q4-option-3-letter">D</span><div class="quiz-option-content" id="book-q4-option-3-text"><p>Removing the <code>package</code> statement from both files will allow <code>Application.java</code> to use <code>Calculator</code> without an <code>import</code> statement, regardless of directory structure.</p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> The <code>import</code> statement in <code>Application.java</code> is unnecessary because both classes are in the same directory.</p>
+<ul>
+<li>This option is incorrect. In Java, the <code>import</code> statement is used to bring a class or an entire package into visibility, and its necessity is determined by the package membership of the classes, not their directory location. Even if classes are in the same directory, if they belong to different packages, the <code>import</code> statement is required to use one in the other.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>import</code> statement in <code>Application.java</code> is necessary for using the <code>Calculator</code> class because they belong to different packages.</p>
+<ul>
+<li>This is the correct answer. The <code>Calculator</code> class is in the <code>math</code> package, and the <code>Application</code> class is in the <code>app</code> package. Despite being in the same directory, the different packages require an <code>import</code> statement to use <code>Calculator</code> in <code>Application</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>Calculator</code> class will not be accessible in <code>Application.java</code> due to being in a different directory.</p>
+<ul>
+<li>This option is incorrect. Java&#39;s access control is not based on the directory structure but on the <code>package</code> and <code>import</code> declarations. As long as the classes are correctly packaged and imported, they can be accessed across different directories.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Removing the <code>package</code> statement from both files will allow <code>Application.java</code> to use <code>Calculator</code> without an <code>import</code> statement, regardless of directory structure.</p>
+<ul>
+<li>This option is correct. Removing the <code>package</code> statement from both files will place them in the default package, and they will be able to access each other without an <code>import</code> statement. However, this is not recommended for anything beyond very simple or temporary code due to namespace management and readability concerns.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q5" data-answer="0,1,2" aria-describedby="book-q5-feedback">
+          <legend>Question 5</legend>
+          <div class="quiz-question-meta">Select 3 answers</div>
+          <div class="book-question-prompt"><p>Consider the default access levels provided by Java&#39;s four access modifiers: <code>public</code>, <code>protected</code>, <code>default</code> (no modifier), and <code>private</code>. Which of the following statements correctly describe the access levels granted by these modifiers? (Choose all that apply.)</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q5-option-0" type="checkbox" name="book-q5" value="0" aria-labelledby="book-q5-option-0-letter book-q5-option-0-text"><span class="option-letter" id="book-q5-option-0-letter">A</span><div class="quiz-option-content" id="book-q5-option-0-text"><p>A <code>public</code> class or member can be accessed by any other class in the same package or in any other package.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-1" type="checkbox" name="book-q5" value="1" aria-labelledby="book-q5-option-1-letter book-q5-option-1-text"><span class="option-letter" id="book-q5-option-1-letter">B</span><div class="quiz-option-content" id="book-q5-option-1-text"><p>A <code>protected</code> member can be accessed by any class in its own package, but from outside the package, only by classes that extend the class containing the <code>protected</code> member.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-2" type="checkbox" name="book-q5" value="2" aria-labelledby="book-q5-option-2-letter book-q5-option-2-text"><span class="option-letter" id="book-q5-option-2-letter">C</span><div class="quiz-option-content" id="book-q5-option-2-text"><p>A member with <code>default</code> (no modifier) access can be accessed by any class in the same package but not from a class in a different package.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-3" type="checkbox" name="book-q5" value="3" aria-labelledby="book-q5-option-3-letter book-q5-option-3-text"><span class="option-letter" id="book-q5-option-3-letter">D</span><div class="quiz-option-content" id="book-q5-option-3-text"><p>A <code>private</code> member can be accessed only by methods that are members of the same class or within the same file.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q5-option-4" type="checkbox" name="book-q5" value="4" aria-labelledby="book-q5-option-4-letter book-q5-option-4-text"><span class="option-letter" id="book-q5-option-4-letter">E</span><div class="quiz-option-content" id="book-q5-option-4-text"><p>A <code>protected</code> member can be accessed by any class in the Java program, regardless of package.</p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> A <code>public</code> class or member can be accessed by any other class in the same package or in any other package.</p>
+<ul>
+<li>This is correct. The <code>public</code> modifier grants the highest level of access. A <code>public</code> class or member is accessible from any other class, regardless of the packages they belong to.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> A <code>protected</code> member can be accessed by any class in its own package, but from outside the package, only by classes that extend the class containing the protected member.</p>
+<ul>
+<li>This is correct. The <code>protected</code> access level allows a member to be accessed within its own package and by subclasses in any package. It offers a more restrictive level of access than <code>public</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> A member with <code>default</code> (no modifier) access can be accessed by any class in the same package but not from a class in a different package.</p>
+<ul>
+<li>This is correct. If no access modifier (also known as <code>default</code> access level) is specified, the member is accessible only within classes in the same package. This is more restrictive than <code>protected</code> and <code>public</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> A <code>private</code> member can be accessed only by methods that are members of the same class or within the same file.</p>
+<ul>
+<li>This option is incorrect because <code>private</code> members can be accessed only within the same class. It&#39;s not about being within the same file, as Java allows only one public top-level class per file.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> A <code>protected</code> member can be accessed by any class in the Java program, regardless of package.</p>
+<ul>
+<li>This is incorrect. <code>Protected</code> access does not grant universal access across all classes in a program. Access from outside the package is limited to subclasses only.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q6" data-answer="3" aria-describedby="book-q6-feedback">
+          <legend>Question 6</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following class declarations correctly demonstrates the use of access modifiers, <code>class</code> keyword, and class naming conventions in Java?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q6-option-0" type="radio" name="book-q6" value="0" aria-labelledby="book-q6-option-0-letter book-q6-option-0-text"><span class="option-letter" id="book-q6-option-0-letter">A</span><div class="quiz-option-content" id="book-q6-option-0-text"><p><code>class public Vehicle { }</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-1" type="radio" name="book-q6" value="1" aria-labelledby="book-q6-option-1-letter book-q6-option-1-text"><span class="option-letter" id="book-q6-option-1-letter">B</span><div class="quiz-option-content" id="book-q6-option-1-text"><p><code>public class vehicle { }</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-2" type="radio" name="book-q6" value="2" aria-labelledby="book-q6-option-2-letter book-q6-option-2-text"><span class="option-letter" id="book-q6-option-2-letter">C</span><div class="quiz-option-content" id="book-q6-option-2-text"><p><code>Public class Vehicle { }</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-3" type="radio" name="book-q6" value="3" aria-labelledby="book-q6-option-3-letter book-q6-option-3-text"><span class="option-letter" id="book-q6-option-3-letter">D</span><div class="quiz-option-content" id="book-q6-option-3-text"><p><code>public class Vehicle { }</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q6-option-4" type="radio" name="book-q6" value="4" aria-labelledby="book-q6-option-4-letter book-q6-option-4-text"><span class="option-letter" id="book-q6-option-4-letter">E</span><div class="quiz-option-content" id="book-q6-option-4-text"><p><code>classVehicle public { }</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>class public Vehicle { }</code></p>
+<ul>
+<li>This option is incorrect because the syntax is wrong. The correct order is the access modifier followed by the <code>class</code> keyword, and then the class name.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>public class vehicle { }</code></p>
+<ul>
+<li>This option is incorrect mainly due to the class naming convention. In Java, class names should start with an uppercase letter, so <code>vehicle</code> should be <code>Vehicle</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Public class Vehicle { }</code></p>
+<ul>
+<li>This option is incorrect because <code>Public</code> is incorrectly capitalized. Java is case-sensitive, and the correct keyword is <code>public</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>public class Vehicle { }</code></p>
+<ul>
+<li>This is the correct answer. The syntax follows the proper order: the access modifier (<code>public</code>), followed by the <code>class</code> keyword, and then the class name (<code>Vehicle</code>), which correctly starts with an uppercase letter as per Java naming conventions.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>classVehicle public { }</code></p>
+<ul>
+<li>This option is incorrect due to several reasons: the syntax order is wrong, there is no space between <code>class</code> and the class name, and the access modifier&#39;s position is incorrect.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q7" data-answer="0,2,3" aria-describedby="book-q7-feedback">
+          <legend>Question 7</legend>
+          <div class="quiz-question-meta">Select 3 answers</div>
+          <div class="book-question-prompt"><p>Consider the following code snippet:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Counter</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-variable">COUNT</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;
+    
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Counter</span><span class="hljs-params">()</span> {
+        COUNT++;
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">resetCount</span><span class="hljs-params">()</span> {
+        COUNT = <span class="hljs-number">0</span>;
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getCount</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> COUNT;
+    }
+}</code></pre></div><p>Which of the following statements are true about <code>static</code> and instance members within the <code>Counter</code> class? (Choose all that apply.)</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q7-option-0" type="checkbox" name="book-q7" value="0" aria-labelledby="book-q7-option-0-letter book-q7-option-0-text"><span class="option-letter" id="book-q7-option-0-letter">A</span><div class="quiz-option-content" id="book-q7-option-0-text"><p>The <code>COUNT</code> variable can be accessed directly using the class name without creating an instance of <code>Counter</code>.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-1" type="checkbox" name="book-q7" value="1" aria-labelledby="book-q7-option-1-letter book-q7-option-1-text"><span class="option-letter" id="book-q7-option-1-letter">B</span><div class="quiz-option-content" id="book-q7-option-1-text"><p>The <code>getCount()</code> method is an example of a static method because it returns the value of a static variable.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-2" type="checkbox" name="book-q7" value="2" aria-labelledby="book-q7-option-2-letter book-q7-option-2-text"><span class="option-letter" id="book-q7-option-2-letter">C</span><div class="quiz-option-content" id="book-q7-option-2-text"><p>Every time a new instance of <code>Counter</code> is created, the <code>COUNT</code> variable is incremented.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q7-option-3" type="checkbox" name="book-q7" value="3" aria-labelledby="book-q7-option-3-letter book-q7-option-3-text"><span class="option-letter" id="book-q7-option-3-letter">D</span><div class="quiz-option-content" id="book-q7-option-3-text"><p>The <code>resetCount()</code> method resets the <code>COUNT</code> variable to 0 for all instances of <code>Counter</code>.</p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> The <code>COUNT</code> variable can be accessed directly using the class name without creating an instance of <code>Counter</code>.</p>
+<ul>
+<li>This option is correct. Static variables belong to the class and can be accessed directly with the class name, such as <code>Counter.COUNT</code>, without needing to instantiate the class.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>getCount()</code> method is an example of a static method because it returns the value of a static variable.</p>
+<ul>
+<li>This option is incorrect. Although <code>getCount()</code> returns a static variable&#39;s value, it is not defined as a static method. Static methods are declared using the <code>static</code> modifier. The method&#39;s instance or non-static nature does not change based on the variables it accesses or returns.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Every time a new instance of <code>Counter</code> is created, the <code>COUNT</code> variable is incremented.</p>
+<ul>
+<li>This option is correct. The constructor increments the <code>COUNT</code> variable by 1 each time a new instance of <code>Counter</code> is created, demonstrating the shared nature of static variables across all instances.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>resetCount()</code> method resets the <code>COUNT</code> variable to 0 for all instances of <code>Counter</code>.</p>
+<ul>
+<li>This option is correct. The <code>resetCount()</code> static method sets the <code>COUNT</code> variable to zero. Since <code>COUNT</code> is static, this change affects all instances of the class, as there is only one <code>COUNT</code> variable shared among them.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q8" data-answer="0,2,3" aria-describedby="book-q8-feedback">
+          <legend>Question 8</legend>
+          <div class="quiz-question-meta">Select 3 answers</div>
+          <div class="book-question-prompt"><p>Which of the following are valid field name identifiers in Java? (Choose all that apply.)</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q8-option-0" type="checkbox" name="book-q8" value="0" aria-labelledby="book-q8-option-0-letter book-q8-option-0-text"><span class="option-letter" id="book-q8-option-0-letter">A</span><div class="quiz-option-content" id="book-q8-option-0-text"><p><code>int _age;</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-1" type="checkbox" name="book-q8" value="1" aria-labelledby="book-q8-option-1-letter book-q8-option-1-text"><span class="option-letter" id="book-q8-option-1-letter">B</span><div class="quiz-option-content" id="book-q8-option-1-text"><p><code>double 2ndValue;</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-2" type="checkbox" name="book-q8" value="2" aria-labelledby="book-q8-option-2-letter book-q8-option-2-text"><span class="option-letter" id="book-q8-option-2-letter">C</span><div class="quiz-option-content" id="book-q8-option-2-text"><p><code>boolean is_valid;</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-3" type="checkbox" name="book-q8" value="3" aria-labelledby="book-q8-option-3-letter book-q8-option-3-text"><span class="option-letter" id="book-q8-option-3-letter">D</span><div class="quiz-option-content" id="book-q8-option-3-text"><p><code>String $name;</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q8-option-4" type="checkbox" name="book-q8" value="4" aria-labelledby="book-q8-option-4-letter book-q8-option-4-text"><span class="option-letter" id="book-q8-option-4-letter">E</span><div class="quiz-option-content" id="book-q8-option-4-text"><p><code>char #char;</code></p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>int _age;</code> is correct. Identifiers in Java can begin with a letter, an underscore (_), or a dollar sign ($). Therefore, <code>_age</code> is a valid identifier.</p>
+</li>
+<li><p><strong>B)</strong> <code>double 2ndValue;</code> is incorrect. Identifiers cannot start with a digit. The correct format would be to start with a letter or a non-digit character such as an underscore or a dollar sign.</p>
+</li>
+<li><p><strong>C)</strong> <code>boolean is_valid;</code> is correct. Similar to <code>_age</code>, <code>is_valid</code> is a valid identifier because it starts with a letter and can contain underscores.</p>
+</li>
+<li><p><strong>D)</strong> <code>String $name;</code> is correct. Identifiers can also start with a dollar sign ($), making <code>$name</code> a valid identifier.</p>
+</li>
+<li><p><strong>E)</strong> <code>char #char;</code> is incorrect. The hash (#) character is not allowed as a starting character in identifiers. Identifiers can only start with letters, <code>$</code>, or <code>_</code>.</p>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q9" data-answer="1" aria-describedby="book-q9-feedback">
+          <legend>Question 9</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Consider the syntax used to declare methods in a class. Which of the following method declarations is correct according to Java syntax rules?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q9-option-0" type="radio" name="book-q9" value="0" aria-labelledby="book-q9-option-0-letter book-q9-option-0-text"><span class="option-letter" id="book-q9-option-0-letter">A</span><div class="quiz-option-content" id="book-q9-option-0-text"><p><code>int public static final computeSum(int num1, int num2) { return num1 + num2 }</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q9-option-1" type="radio" name="book-q9" value="1" aria-labelledby="book-q9-option-1-letter book-q9-option-1-text"><span class="option-letter" id="book-q9-option-1-letter">B</span><div class="quiz-option-content" id="book-q9-option-1-text"><p><code>private void updateRecord(int id) throws IOException {}</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q9-option-2" type="radio" name="book-q9" value="2" aria-labelledby="book-q9-option-2-letter book-q9-option-2-text"><span class="option-letter" id="book-q9-option-2-letter">C</span><div class="quiz-option-content" id="book-q9-option-2-text"><p><code>synchronized boolean checkStatus [int status] { return status == 1; }</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q9-option-3" type="radio" name="book-q9" value="3" aria-labelledby="book-q9-option-3-letter book-q9-option-3-text"><span class="option-letter" id="book-q9-option-3-letter">D</span><div class="quiz-option-content" id="book-q9-option-3-text"><p><code>float calculateArea() {}</code></p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>int public static final computeSum(int num1, int num2)  { return num1 + num2 }</code> is incorrect because the return type in method declarations goes right before the name of the method, not at the beginning.</p>
+</li>
+<li><p><strong>B)</strong> <code>private void updateRecord(int id) throws IOException {}</code> is correct. This method declaration is syntactically correct in Java. It uses the <code>private</code> access modifier, specifies a return type (<code>void</code>), includes an exception (<code>IOException</code>) that this method might throw, and correctly defines the parameter list.</p>
+</li>
+<li><p><strong>C)</strong> <code>synchronized boolean checkStatus [int status] { return status == 1; }</code> Correct syntax requires parentheses for the parameter list, even when there are no parameters, making the correct declaration <code>synchronized boolean checkStatus(int status)</code>.</p>
+</li>
+<li><p><strong>D)</strong> <code>float calculateArea() {}</code> is incorrect because a method that returns <code>float</code> cannot have an empty method body.</p>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q10" data-answer="0,1,2,3" aria-describedby="book-q10-feedback">
+          <legend>Question 10</legend>
+          <div class="quiz-question-meta">Select 4 answers</div>
+          <div class="book-question-prompt"><p>Given the method declarations below, which of them have the same method signature?</p>
+</div>
+          <p class="question-review-note"><strong>Reviewed note:</strong> Select all methods belonging to either matching pair; the two pairs do not share one signature.</p>
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q10-option-0" type="checkbox" name="book-q10" value="0" aria-labelledby="book-q10-option-0-letter book-q10-option-0-text"><span class="option-letter" id="book-q10-option-0-letter">A</span><div class="quiz-option-content" id="book-q10-option-0-text"><p><code>public void update(int id, String value)</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q10-option-1" type="checkbox" name="book-q10" value="1" aria-labelledby="book-q10-option-1-letter book-q10-option-1-text"><span class="option-letter" id="book-q10-option-1-letter">B</span><div class="quiz-option-content" id="book-q10-option-1-text"><p><code>private void update(int identifier, String data)</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q10-option-2" type="checkbox" name="book-q10" value="2" aria-labelledby="book-q10-option-2-letter book-q10-option-2-text"><span class="option-letter" id="book-q10-option-2-letter">C</span><div class="quiz-option-content" id="book-q10-option-2-text"><p><code>public boolean update(String value, int id)</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q10-option-3" type="checkbox" name="book-q10" value="3" aria-labelledby="book-q10-option-3-letter book-q10-option-3-text"><span class="option-letter" id="book-q10-option-3-letter">D</span><div class="quiz-option-content" id="book-q10-option-3-text"><p><code>void update(String value, int id)</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q10-option-4" type="checkbox" name="book-q10" value="4" aria-labelledby="book-q10-option-4-letter book-q10-option-4-text"><span class="option-letter" id="book-q10-option-4-letter">E</span><div class="quiz-option-content" id="book-q10-option-4-text"><p><code>protected void update(int id, int value) throws IOException</code></p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q10-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><p><strong>A and B</strong> both have the signature <code>update(int, String)</code>. <strong>C and D</strong> both have <code>update(String, int)</code>. Parameter names, access modifiers, return types, and throws clauses do not distinguish these signatures. E has a different second parameter type.</p>
+</div><p class="answer-origin">Includes a reviewed clarification or correction. <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html#jls-8.4.2" target="_blank" rel="noopener noreferrer">Check the Java reference<span class="sr-only"> (opens in a new tab)</span></a></p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q11" data-answer="2,3" aria-describedby="book-q11-feedback">
+          <legend>Question 11</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Given this class:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AccountManager</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-type">void</span> <span class="hljs-title function_">resetAccountPassword</span><span class="hljs-params">(String accountId)</span> {
+        <span class="hljs-comment">// Implementation code here</span>
+    }
+    
+    <span class="hljs-type">void</span> <span class="hljs-title function_">auditTrail</span><span class="hljs-params">(String accountId)</span> {
+        <span class="hljs-comment">// Implementation code here</span>
+    }
+    
+    <span class="hljs-keyword">protected</span> <span class="hljs-type">void</span> <span class="hljs-title function_">notifyAccountChanges</span><span class="hljs-params">(String accountId)</span> {
+        <span class="hljs-comment">// Implementation code here</span>
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">updateAccountInformation</span><span class="hljs-params">(String accountId)</span> {
+        <span class="hljs-comment">// Implementation code here</span>
+    }
+}</code></pre></div><p>Which of the following statements correctly describe the accessibility of the methods within the <code>AccountManager</code> class from a class in the same package and from a class in a different package?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q11-option-0" type="checkbox" name="book-q11" value="0" aria-labelledby="book-q11-option-0-letter book-q11-option-0-text"><span class="option-letter" id="book-q11-option-0-letter">A</span><div class="quiz-option-content" id="book-q11-option-0-text"><p>The <code>resetAccountPassword</code> method can be accessed from any class within the same package but not from a class in a different package.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q11-option-1" type="checkbox" name="book-q11" value="1" aria-labelledby="book-q11-option-1-letter book-q11-option-1-text"><span class="option-letter" id="book-q11-option-1-letter">B</span><div class="quiz-option-content" id="book-q11-option-1-text"><p>The <code>auditTrail</code> method can be accessed from any class within the same package and from subclasses in different packages.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q11-option-2" type="checkbox" name="book-q11" value="2" aria-labelledby="book-q11-option-2-letter book-q11-option-2-text"><span class="option-letter" id="book-q11-option-2-letter">C</span><div class="quiz-option-content" id="book-q11-option-2-text"><p>The <code>notifyAccountChanges</code> method can be accessed from any class within the same package and from subclasses in different packages.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q11-option-3" type="checkbox" name="book-q11" value="3" aria-labelledby="book-q11-option-3-letter book-q11-option-3-text"><span class="option-letter" id="book-q11-option-3-letter">D</span><div class="quiz-option-content" id="book-q11-option-3-text"><p>The <code>updateAccountInformation</code> method can be accessed from any class, regardless of its package.</p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q11-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> The <code>resetAccountPassword</code> method can be accessed from any class within the same package but not from a class in a different package.</p>
+<ul>
+<li>This option is incorrect. The <code>resetAccountPassword</code> method has <code>private</code> access, which means it is accessible only within the <code>AccountManager</code> class itself, not from any class, even within the same package. The initial statement was slightly incorrect in suggesting package-level access for a <code>private</code> method.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>auditTrail</code> method can be accessed from any class within the same package and from subclasses in different packages.</p>
+<ul>
+<li>This option is incorrect because the <code>auditTrail</code> method has package-private access (no access modifier), which means it is accessible from any class within the same package but not from subclasses in different packages unless they are also within the same package.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>notifyAccountChanges</code> method can be accessed from any class within the same package and from subclasses in different packages.</p>
+<ul>
+<li>This option is correct. The <code>notifyAccountChanges</code> method has <code>protected</code> access, meaning it can be accessed within the same package and by subclasses, even if the subclasses are in different packages.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>updateAccountInformation</code> method can be accessed from any class, regardless of its package.</p>
+<ul>
+<li>This option is correct. The <code>updateAccountInformation</code> method is <code>public</code>, so it can be accessed from any class, regardless of the package it belongs to.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q12" data-answer="1" aria-describedby="book-q12-feedback">
+          <legend>Question 12</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>What will be the output of this program?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestPassByValue</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">int</span> <span class="hljs-variable">originalValue</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;
+        <span class="hljs-type">TestPassByValue</span> <span class="hljs-variable">test</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TestPassByValue</span>();
+        System.out.println(<span class="hljs-string">&quot;Before calling changeValue: &quot;</span> + originalValue);
+        test.changeValue(originalValue);
+        System.out.println(<span class="hljs-string">&quot;After calling changeValue: &quot;</span> + originalValue);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">changeValue</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span> {
+        value = <span class="hljs-number">20</span>;
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q12-option-0" type="radio" name="book-q12" value="0" aria-labelledby="book-q12-option-0-letter book-q12-option-0-text"><span class="option-letter" id="book-q12-option-0-letter">A</span><div class="quiz-option-content" id="book-q12-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Before calling changeValue: 10  
+After calling changeValue: 20  </code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q12-option-1" type="radio" name="book-q12" value="1" aria-labelledby="book-q12-option-1-letter book-q12-option-1-text"><span class="option-letter" id="book-q12-option-1-letter">B</span><div class="quiz-option-content" id="book-q12-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Before calling changeValue: 10  
+After calling changeValue: 10  </code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q12-option-2" type="radio" name="book-q12" value="2" aria-labelledby="book-q12-option-2-letter book-q12-option-2-text"><span class="option-letter" id="book-q12-option-2-letter">C</span><div class="quiz-option-content" id="book-q12-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Before calling changeValue: 20  
+After calling changeValue: 20  </code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q12-option-3" type="radio" name="book-q12" value="3" aria-labelledby="book-q12-option-3-letter book-q12-option-3-text"><span class="option-letter" id="book-q12-option-3-letter">D</span><div class="quiz-option-content" id="book-q12-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs">Before calling changeValue: 20  
+After calling changeValue: 10  </code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q12-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><p>Java is strictly pass-by-value. This means that when passing a variable to a method, Java passes a copy of the variable&#39;s value, not the variable itself. Changes to the parameter inside the method do not affect the original variable.</p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">Before calling changeValue: 10  
+After calling changeValue: 20  </code></pre></div><ul>
+<li><p>This option is incorrect because, although the <code>changeValue</code> method changes the <code>value</code> parameter to 20, this change does not affect the original variable <code>originalValue</code> outside the method. The change to <code>value</code> is made on its copy, not on <code>originalValue</code> itself.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">Before calling changeValue: 10  
+After calling changeValue: 10  </code></pre></div><ul>
+<li><p>This is the correct answer. <code>originalValue</code> is passed by value to the <code>changeValue</code> method. Thus, modifications to <code>value</code> inside <code>changeValue</code> do not affect <code>originalValue</code>. The output confirms that <code>originalValue</code> remains unchanged after the method call.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">Before calling changeValue: 20  
+After calling changeValue: 20  </code></pre></div><ul>
+<li><strong>D)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">Before calling changeValue: 20  
+After calling changeValue: 10  </code></pre></div><ul>
+<li>These options are incorrect as they suggest changes to the method parameters can affect the original variables, which is not how Java&#39;s pass-by-value semantics work.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q13" data-answer="1" aria-describedby="book-q13-feedback">
+          <legend>Question 13</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>What will be the output of the following program?</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        print(<span class="hljs-literal">null</span>);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">(Object o)</span> {
+        System.out.println(<span class="hljs-string">&quot;Object&quot;</span>);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">(String s)</span> {
+        System.out.println(<span class="hljs-string">&quot;String&quot;</span>);
+    }
+}</code></pre></div></div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q13-option-0" type="radio" name="book-q13" value="0" aria-labelledby="book-q13-option-0-letter book-q13-option-0-text"><span class="option-letter" id="book-q13-option-0-letter">A</span><div class="quiz-option-content" id="book-q13-option-0-text"><p><code>Object</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q13-option-1" type="radio" name="book-q13" value="1" aria-labelledby="book-q13-option-1-letter book-q13-option-1-text"><span class="option-letter" id="book-q13-option-1-letter">B</span><div class="quiz-option-content" id="book-q13-option-1-text"><p><code>String</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q13-option-2" type="radio" name="book-q13" value="2" aria-labelledby="book-q13-option-2-letter book-q13-option-2-text"><span class="option-letter" id="book-q13-option-2-letter">C</span><div class="quiz-option-content" id="book-q13-option-2-text"><p>Compilation fails</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q13-option-3" type="radio" name="book-q13" value="3" aria-labelledby="book-q13-option-3-letter book-q13-option-3-text"><span class="option-letter" id="book-q13-option-3-letter">D</span><div class="quiz-option-content" id="book-q13-option-3-text"><p>A runtime exception is thrown</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q13-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>Object</code></p>
+<ul>
+<li>This option is incorrect because Java uses the most specific method that is applicable to the parameters. In this case, <code>String</code> is more specific than <code>Object</code>, so the <code>print(String s)</code> method is called.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>String</code></p>
+<ul>
+<li>This option is correct. Even though <code>null</code> can be assigned to any reference type, Java prefers the most specific method applicable to the method parameters. Since <code>String</code> is a more specific type than <code>Object</code>, the <code>print(String s)</code> method is chosen over the <code>print(Object o)</code> method.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Compilation fails</p>
+<ul>
+<li>Compilation does not fail because both <code>print</code> methods are correctly defined and can potentially match the call <code>print(null)</code>. Java&#39;s method overloading mechanism allows this to compile without any issues.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> A runtime exception is thrown</p>
+<ul>
+<li>No runtime exception is thrown because the method call to <code>print</code> successfully resolves to the <code>print(String s)</code> method at compile time. Since the method is correctly invoked, and there is no other code that could cause a runtime exception, this program runs successfully.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q14" data-answer="1,3" aria-describedby="book-q14-feedback">
+          <legend>Question 14</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Which of the following method declarations correctly uses varargs? Choose all that apply.</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q14-option-0" type="checkbox" name="book-q14" value="0" aria-labelledby="book-q14-option-0-letter book-q14-option-0-text"><span class="option-letter" id="book-q14-option-0-letter">A</span><div class="quiz-option-content" id="book-q14-option-0-text"><p><code>public void print(String... messages, int count)</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q14-option-1" type="checkbox" name="book-q14" value="1" aria-labelledby="book-q14-option-1-letter book-q14-option-1-text"><span class="option-letter" id="book-q14-option-1-letter">B</span><div class="quiz-option-content" id="book-q14-option-1-text"><p><code>public void print(int count, String... messages)</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q14-option-2" type="checkbox" name="book-q14" value="2" aria-labelledby="book-q14-option-2-letter book-q14-option-2-text"><span class="option-letter" id="book-q14-option-2-letter">C</span><div class="quiz-option-content" id="book-q14-option-2-text"><p><code>public void print(String messages...)</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q14-option-3" type="checkbox" name="book-q14" value="3" aria-labelledby="book-q14-option-3-letter book-q14-option-3-text"><span class="option-letter" id="book-q14-option-3-letter">D</span><div class="quiz-option-content" id="book-q14-option-3-text"><p><code>public void print(String[]... messages)</code></p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q14-option-4" type="checkbox" name="book-q14" value="4" aria-labelledby="book-q14-option-4-letter book-q14-option-4-text"><span class="option-letter" id="book-q14-option-4-letter">E</span><div class="quiz-option-content" id="book-q14-option-4-text"><p><code>public void print(String... messages, String lastMessage)</code></p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q14-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> <code>public void print(String... messages, int count)</code></p>
+<ul>
+<li>This option is incorrect because varargs (variable arguments) must be the last parameter in a method&#39;s parameter list. Having <code>int count</code> after <code>String... messages</code> violates this rule.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>public void print(int count, String... messages)</code></p>
+<ul>
+<li>This option is correct. It correctly places the varargs parameter <code>String... messages</code> at the end of the method&#39;s parameter list, which is the required syntax for using varargs.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>public void print(String messages...)</code></p>
+<ul>
+<li>This option is incorrect because the syntax <code>String messages...</code> is invalid. The correct syntax for varargs is to place the ellipsis (<code>...</code>) after the type and before the variable name, like <code>String... messages</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>public void print(String[]... messages)</code></p>
+<ul>
+<li>This option is correct. It demonstrates the use of varargs with an array type, which is allowed. Here, each argument passed to <code>messages</code> can itself be an array of <code>String</code>, and <code>messages</code> will be treated as an array of arrays (<code>String[][]</code>).</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>public void print(String... messages, String lastMessage)</code></p>
+<ul>
+<li>This option is incorrect, similar to option A, because varargs must be the last parameter in the method&#39;s parameter list. Having another parameter after the varargs parameter is not allowed.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q15" data-answer="0" aria-describedby="book-q15-feedback">
+          <legend>Question 15</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Given the class <code>Vehicle</code>:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Vehicle</span> {
+    <span class="hljs-keyword">private</span> String type;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> maxSpeed;
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Vehicle</span><span class="hljs-params">(String type)</span> {
+        <span class="hljs-built_in">this</span>.type = type;
+    }
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Vehicle</span><span class="hljs-params">(<span class="hljs-type">int</span> maxSpeed)</span> {
+        <span class="hljs-built_in">this</span>.maxSpeed = maxSpeed;
+    }
+
+    <span class="hljs-comment">// Additional methods here</span>
+}</code></pre></div><p>Which of the following statements is true regarding its constructors?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q15-option-0" type="radio" name="book-q15" value="0" aria-labelledby="book-q15-option-0-letter book-q15-option-0-text"><span class="option-letter" id="book-q15-option-0-letter">A</span><div class="quiz-option-content" id="book-q15-option-0-text"><p>The class <code>Vehicle</code> demonstrates constructor overloading by having multiple constructors with different parameter lists.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q15-option-1" type="radio" name="book-q15" value="1" aria-labelledby="book-q15-option-1-letter book-q15-option-1-text"><span class="option-letter" id="book-q15-option-1-letter">B</span><div class="quiz-option-content" id="book-q15-option-1-text"><p>The class <code>Vehicle</code> will compile with an error because it does not provide a default constructor.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q15-option-2" type="radio" name="book-q15" value="2" aria-labelledby="book-q15-option-2-letter book-q15-option-2-text"><span class="option-letter" id="book-q15-option-2-letter">C</span><div class="quiz-option-content" id="book-q15-option-2-text"><p>It is possible to create an instance of <code>Vehicle</code> with both <code>type</code> and <code>maxSpeed</code> set to specific values through a single constructor call.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q15-option-3" type="radio" name="book-q15" value="3" aria-labelledby="book-q15-option-3-letter book-q15-option-3-text"><span class="option-letter" id="book-q15-option-3-letter">D</span><div class="quiz-option-content" id="book-q15-option-3-text"><p>Calling either constructor will initialize both <code>type</code> and <code>maxSpeed</code> fields of the <code>Vehicle</code> class.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q15-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> The class <code>Vehicle</code> demonstrates constructor overloading by having multiple constructors with different parameter lists.</p>
+<ul>
+<li>This option is correct. Constructor overloading in Java is a technique of having more than one constructor with different parameter lists in the same class. It allows objects of the class to be initialized in different ways. The <code>Vehicle</code> class has two constructors, one that takes a <code>String</code> (for the vehicle type) and another that takes an <code>int</code> (for the max speed), which is a perfect example of constructor overloading.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The class <code>Vehicle</code> will compile with an error because it does not provide a default constructor.</p>
+<ul>
+<li>This option is incorrect. Java does not require an explicit default constructor if the class provides any other constructors. The absence of a default constructor (one that takes no arguments) is not a compilation error; it simply means that the programmer cannot instantiate the class using a no-argument constructor unless it&#39;s explicitly defined.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> It is possible to create an instance of <code>Vehicle</code> with both <code>type</code> and <code>maxSpeed</code> set to specific values through a single constructor call.</p>
+<ul>
+<li>This option is incorrect because none of the existing constructors accept both a <code>String</code> and an <code>int</code> parameter. Each constructor only sets one field to a caller-specified value; the other field retains its default value (<code>null</code> or <code>0</code>).</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Calling either constructor will initialize both <code>type</code> and <code>maxSpeed</code> fields of the <code>Vehicle</code> class.</p>
+<ul>
+<li>This option is incorrect. Calling either constructor only initializes the parameter that is provided to it. The first constructor initializes the <code>type</code>, and the second initializes the <code>maxSpeed</code>. Without additional code, such as a constructor that accepts both parameters or setter methods, there&#39;s no way for either constructor alone to initialize both fields.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q16" data-answer="0,3" aria-describedby="book-q16-feedback">
+          <legend>Question 16</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Consider the following class with an instance initializer block:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Library</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> bookCount;
+    <span class="hljs-keyword">private</span> List&lt;String&gt; books;
+
+    {
+        books = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
+        books.add(<span class="hljs-string">&quot;Book 1&quot;</span>);
+        books.add(<span class="hljs-string">&quot;Book 2&quot;</span>);
+        <span class="hljs-comment">// Instance initializer block</span>
+    }
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">Library</span><span class="hljs-params">(<span class="hljs-type">int</span> bookCount)</span> {
+        <span class="hljs-built_in">this</span>.bookCount = bookCount + books.size();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getBookCount</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> bookCount;
+    }
+
+    <span class="hljs-comment">// Additional methods here</span>
+}</code></pre></div><p>Given the <code>Library</code> class above, which of the following statements accurately describe the role and effect of the instance initializer block?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q16-option-0" type="checkbox" name="book-q16" value="0" aria-labelledby="book-q16-option-0-letter book-q16-option-0-text"><span class="option-letter" id="book-q16-option-0-letter">A</span><div class="quiz-option-content" id="book-q16-option-0-text"><p>The instance initializer block is executed before the constructor, initializing the <code>books</code> list and adding two books to it.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q16-option-1" type="checkbox" name="book-q16" value="1" aria-labelledby="book-q16-option-1-letter book-q16-option-1-text"><span class="option-letter" id="book-q16-option-1-letter">B</span><div class="quiz-option-content" id="book-q16-option-1-text"><p>The instance initializer block replaces the need for a constructor in the <code>Library</code> class.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q16-option-2" type="checkbox" name="book-q16" value="2" aria-labelledby="book-q16-option-2-letter book-q16-option-2-text"><span class="option-letter" id="book-q16-option-2-letter">C</span><div class="quiz-option-content" id="book-q16-option-2-text"><p>Instance initializer blocks cannot initialize instance variables like <code>books</code>.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q16-option-3" type="checkbox" name="book-q16" value="3" aria-labelledby="book-q16-option-3-letter book-q16-option-3-text"><span class="option-letter" id="book-q16-option-3-letter">D</span><div class="quiz-option-content" id="book-q16-option-3-text"><p>If multiple instances of <code>Library</code> are created, the instance initializer block will execute each time before the constructor, ensuring the <code>books</code> list is initialized and populated for each object.</p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q16-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> The instance initializer block is executed before the constructor, initializing the <code>books</code> list and adding two books to it.</p>
+<ul>
+<li>This option is correct. The instance initializer block is executed each time an instance of the class is created, before the constructor code runs. It initializes the <code>books</code> list and adds two books to it.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The instance initializer block replaces the need for a constructor in the <code>Library</code> class.</p>
+<ul>
+<li>This option is incorrect. The instance initializer block does not replace the need for a constructor. It is used in addition to constructors, often to initialize common parts of various constructors in a class.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Instance initializer blocks cannot initialize instance variables like <code>books</code>. </p>
+<ul>
+<li>This option is incorrect. Instance initializer blocks can indeed initialize instance variables. In this case, the <code>books</code> list is an instance variable that is being initialized and populated within the instance initializer block.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> If multiple instances of <code>Library</code> are created, the instance initializer block will execute each time before the constructor, ensuring the <code>books</code> list is initialized and populated for each object.</p>
+<ul>
+<li>This option is correct. For each new instance of the <code>Library</code> class, the instance initializer block runs before the constructor is invoked. This ensures that the <code>books</code> list is initialized and populated with <code>&quot;Book 1&quot;</code> and <code>&quot;Book 2&quot;</code> for every <code>Library</code> object created.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q17" data-answer="0" aria-describedby="book-q17-feedback">
+          <legend>Question 17</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Consider the following Java class with a <code>static</code> initializer block:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Configuration</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Map&lt;String, String&gt; settings;
+    
+    <span class="hljs-keyword">static</span> {
+        settings = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();
+        settings.put(<span class="hljs-string">&quot;url&quot;</span>, <span class="hljs-string">&quot;https://eherrera.net&quot;</span>);
+        settings.put(<span class="hljs-string">&quot;timeout&quot;</span>, <span class="hljs-string">&quot;30&quot;</span>);
+        <span class="hljs-comment">// Static initializer block</span>
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-title function_">getSetting</span><span class="hljs-params">(String key)</span> {
+        <span class="hljs-keyword">return</span> settings.get(key);
+    }
+
+    <span class="hljs-comment">// Additional methods here</span>
+}</code></pre></div><p>Given the <code>Configuration</code> class above, which of the following statements accurately describe the role and effect of the <code>static</code> initializer block?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q17-option-0" type="radio" name="book-q17" value="0" aria-labelledby="book-q17-option-0-letter book-q17-option-0-text"><span class="option-letter" id="book-q17-option-0-letter">A</span><div class="quiz-option-content" id="book-q17-option-0-text"><p>The <code>static</code> initializer block is executed only once when the class is first loaded into memory, initializing the <code>settings</code> map with default values.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q17-option-1" type="radio" name="book-q17" value="1" aria-labelledby="book-q17-option-1-letter book-q17-option-1-text"><span class="option-letter" id="book-q17-option-1-letter">B</span><div class="quiz-option-content" id="book-q17-option-1-text"><p>The <code>static</code> initializer block allows instance methods to modify the <code>settings</code> map without creating an instance of the <code>Configuration</code> class.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q17-option-2" type="radio" name="book-q17" value="2" aria-labelledby="book-q17-option-2-letter book-q17-option-2-text"><span class="option-letter" id="book-q17-option-2-letter">C</span><div class="quiz-option-content" id="book-q17-option-2-text"><p><code>static</code> initializer blocks are executed each time a new instance of the <code>Configuration</code> class is created.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q17-option-3" type="radio" name="book-q17" value="3" aria-labelledby="book-q17-option-3-letter book-q17-option-3-text"><span class="option-letter" id="book-q17-option-3-letter">D</span><div class="quiz-option-content" id="book-q17-option-3-text"><p>The <code>static</code> initializer block is executed before any instance initializer blocks or constructors, when an instance of the class is created.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q17-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> The <code>static</code> initializer block is executed only once when the class is first loaded into memory, initializing the <code>settings</code> map with default values.</p>
+<ul>
+<li>This option is correct. Static initializer blocks are executed a single time, when the class is first loaded into the JVM memory. In this case, it initializes the <code>settings</code> map with default configuration values.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>static</code> initializer block allows instance methods to modify the <code>settings</code> map without creating an instance of the <code>Configuration</code> class.</p>
+<ul>
+<li>This option is misleading. While static methods like <code>getSetting</code> can access and modify static fields like <code>settings</code> without needing an instance of the class, this capability is not due to the static initializer block itself but rather the nature of static fields and methods.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>static</code> initializer blocks are executed each time a new instance of the <code>Configuration</code> class is created.</p>
+<ul>
+<li>This option is incorrect. Static initializer blocks are not executed each time a new instance of the class is created. They are executed only once: when the class is first loaded.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>static</code> initializer block is executed before any instance initializer blocks or constructors, when an instance of the class is created.</p>
+<ul>
+<li>This statement is partially correct in that static initializer blocks are executed before any instance initializer blocks or constructors, but it&#39;s misleading as it implies a sequence with instance creation. The key point is that static initializer blocks run once upon class loading, irrespective of the creation of any instances.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q18" data-answer="1" aria-describedby="book-q18-feedback">
+          <legend>Question 18</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Consider the following class definition:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">InitializationOrder</span> {
+    <span class="hljs-keyword">static</span> {
+        System.out.println(<span class="hljs-string">&quot;1. Static initializer&quot;</span>);
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-variable">staticValue</span> <span class="hljs-operator">=</span> initializeStaticValue();
+
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">instanceValue</span> <span class="hljs-operator">=</span> initializeInstanceValue();
+
+    {
+        System.out.println(<span class="hljs-string">&quot;3. Instance initializer&quot;</span>);
+    }
+
+    <span class="hljs-type">public</span> <span class="hljs-title function_">InitializationOrder</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;4. Constructor&quot;</span>);
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">initializeStaticValue</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;2. Static value initializer&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-title function_">initializeInstanceValue</span><span class="hljs-params">()</span> {
+        System.out.println(<span class="hljs-string">&quot;3. Instance value initializer&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">InitializationOrder</span>();
+    }
+}</code></pre></div><p>When the <code>main</code> method of the <code>InitializationOrder</code> class is executed, what is the correct order of execution for the initialization blocks, method calls, and constructor?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q18-option-0" type="radio" name="book-q18" value="0" aria-labelledby="book-q18-option-0-letter book-q18-option-0-text"><span class="option-letter" id="book-q18-option-0-letter">A</span><div class="quiz-option-content" id="book-q18-option-0-text"><div class="code-block"><pre tabindex="0"><code class="hljs">   1. Static initializer
+   2. Static value initializer
+   3. Instance initializer
+   3. Instance value initializer
+   4. Constructor </code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q18-option-1" type="radio" name="book-q18" value="1" aria-labelledby="book-q18-option-1-letter book-q18-option-1-text"><span class="option-letter" id="book-q18-option-1-letter">B</span><div class="quiz-option-content" id="book-q18-option-1-text"><div class="code-block"><pre tabindex="0"><code class="hljs">   1. Static initializer
+   2. Static value initializer
+   3. Instance value initializer
+   3. Instance initializer
+   4. Constructor </code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q18-option-2" type="radio" name="book-q18" value="2" aria-labelledby="book-q18-option-2-letter book-q18-option-2-text"><span class="option-letter" id="book-q18-option-2-letter">C</span><div class="quiz-option-content" id="book-q18-option-2-text"><div class="code-block"><pre tabindex="0"><code class="hljs">   1. Static initializer
+   3. Instance initializer
+   2. Static value initializer
+   3. Instance value initializer
+   4. Constructor</code></pre></div></div></div><div class="quiz-option" data-selectable><input id="book-q18-option-3" type="radio" name="book-q18" value="3" aria-labelledby="book-q18-option-3-letter book-q18-option-3-text"><span class="option-letter" id="book-q18-option-3-letter">D</span><div class="quiz-option-content" id="book-q18-option-3-text"><div class="code-block"><pre tabindex="0"><code class="hljs">   2. Static value initializer
+   1. Static initializer
+   3. Instance value initializer
+   3. Instance initializer
+   4. Constructor </code></pre></div></div></div></div>
+          
+          <div class="quiz-feedback" id="book-q18-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><p>In Java, the order of initialization when a class is loaded and an instance of that class is created is as follows:</p>
+<ol>
+<li><p><strong>Static fields and static initializers</strong> are processed in the order they appear in the class definition. First, the static initializer block prints <code>&quot;1. Static initializer&quot;</code>. Then, the static field <code>staticValue</code> is initialized by calling <code>initializeStaticValue()</code>, which prints <code>&quot;2. Static value initializer&quot;.</code></p>
+</li>
+<li><p><strong>Instance fields and instance initializers</strong> are processed in the order they appear when an instance of the class is created. First, the instance field <code>instanceValue</code> is initialized by calling <code>initializeInstanceValue()</code>, which prints <code>&quot;3. Instance value initializer&quot;</code>. Then, the instance initializer block prints <code>&quot;3. Instance initializer&quot;</code>.</p>
+</li>
+<li><p><strong>Constructors</strong> are executed after all fields and instance initializers have been processed. The constructor in this case prints <code>&quot;4. Constructor&quot;</code>.</p>
+</li>
+</ol>
+<p>The numbering of the output for <code>&quot;3. Instance initializer&quot;</code> and <code>&quot;3. Instance value initializer&quot;</code> in the question might seem to suggest they are executed simultaneously or out of order, but it&#39;s important to remember that instance fields and instance initializers execute in the order they appear in the class, before the constructor is executed. The duplicate numbering means that instance field initializers run first, followed by instance initializers, and finally, the constructor runs.</p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">1. Static initializer
+2. Static value initializer
+3. Instance initializer
+3. Instance value initializer
+4. Constructor </code></pre></div><ul>
+<li><p>This option is incorrect.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">1. Static initializer
+2. Static value initializer
+3. Instance value initializer
+3. Instance initializer
+4. Constructor</code></pre></div><ul>
+<li><p>This option is correct.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">1. Static initializer
+3. Instance initializer
+2. Static value initializer
+3. Instance value initializer
+4. Constructor</code></pre></div><ul>
+<li><p>This option is incorrect. </p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><pre tabindex="0"><code class="hljs">2. Static value initializer
+1. Static initializer
+3. Instance value initializer
+3. Instance initializer
+4. Constructor </code></pre></div><ul>
+<li>This option is incorrect.</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q19" data-answer="0,2" aria-describedby="book-q19-feedback">
+          <legend>Question 19</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Consider a class <code>CustomObject</code> that does not explicitly override any methods from <code>java.lang.Object</code>:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomObject</span> {
+    <span class="hljs-comment">// Class implementation goes here</span>
+}</code></pre></div><p>Which of the following statements correctly reflect the outcomes when methods from <code>java.lang.Object</code> are used with instances of <code>CustomObject</code>? (Choose all that apply.)</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q19-option-0" type="checkbox" name="book-q19" value="0" aria-labelledby="book-q19-option-0-letter book-q19-option-0-text"><span class="option-letter" id="book-q19-option-0-letter">A</span><div class="quiz-option-content" id="book-q19-option-0-text"><p>Invoking <code>toString()</code> on an instance of <code>CustomObject</code> will return a <code>String</code> that includes the class name followed by the <code>@</code> symbol and the object&#39;s hashcode.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q19-option-1" type="checkbox" name="book-q19" value="1" aria-labelledby="book-q19-option-1-letter book-q19-option-1-text"><span class="option-letter" id="book-q19-option-1-letter">B</span><div class="quiz-option-content" id="book-q19-option-1-text"><p>Calling <code>equals(Object obj)</code> on two different instances of <code>CustomObject</code> that have identical content will return <code>true</code> because they are instances of the same class.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q19-option-2" type="checkbox" name="book-q19" value="2" aria-labelledby="book-q19-option-2-letter book-q19-option-2-text"><span class="option-letter" id="book-q19-option-2-letter">C</span><div class="quiz-option-content" id="book-q19-option-2-text"><p>Using <code>hashCode()</code> on any instance of <code>CustomObject</code> will generate a unique integer that remains consistent across multiple invocations within the same execution of a program.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q19-option-3" type="checkbox" name="book-q19" value="3" aria-labelledby="book-q19-option-3-letter book-q19-option-3-text"><span class="option-letter" id="book-q19-option-3-letter">D</span><div class="quiz-option-content" id="book-q19-option-3-text"><p>The <code>clone()</code> method can be used to create a shallow copy of an instance of <code>CustomObject</code> without the need for <code>CustomObject</code> to implement the <code>Cloneable</code> interface.</p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q19-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> Invoking <code>toString()</code> on an instance of <code>CustomObject</code> will return a <code>String</code> that includes the class name followed by the <code>@</code> symbol and the object&#39;s hashcode.</p>
+<ul>
+<li>This option is correct. The <code>toString()</code> method in <code>java.lang.Object</code> returns a string that includes the class name, the <code>@</code> symbol, and the object&#39;s hashcode in hexadecimal. If <code>CustomObject</code> does not override <code>toString()</code>, this default format is used.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Calling <code>equals(Object obj)</code> on two different instances of <code>CustomObject</code> that have identical content will return <code>true</code> because they are instances of the same class. </p>
+<ul>
+<li>This option is incorrect. The default implementation of <code>equals(Object obj)</code> in <code>java.lang.Object</code> checks for reference equality, meaning it returns <code>true</code> only if both references point to the exact same object. Without overriding <code>equals</code>, two different instances of <code>CustomObject</code>, even with identical content, would not be considered equal.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Using <code>hashCode()</code> on any instance of <code>CustomObject</code> will generate a unique integer that remains consistent across multiple invocations within the same execution of a program.  </p>
+<ul>
+<li>This option is correct. The <code>hashCode()</code> method is designed to return an integer representation of the object&#39;s memory address or a value derived from it. While the exact implementation is not specified and can vary, it is consistent during the execution of a program for any given object.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>clone()</code> method can be used to create a shallow copy of an instance of <code>CustomObject</code> without the need for <code>CustomObject</code> to implement the <code>Cloneable</code> interface. </p>
+<ul>
+<li>This option is incorrect. The <code>clone()</code> method in <code>java.lang.Object</code> is protected, and it throws a <code>CloneNotSupportedException</code> unless the class implements the <code>Cloneable</code> interface. Without <code>CustomObject</code> explicitly implementing <code>Cloneable</code> and overriding <code>clone()</code> to make it <code>public</code>, it cannot be used to clone instances of <code>CustomObject</code>.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q20" data-answer="1" aria-describedby="book-q20-feedback">
+          <legend>Question 20</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Consider the code snippet below that demonstrates the use of a static nested class:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OuterClass</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">String</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello, World!&quot;</span>;
+
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">NestedClass</span> {
+        <span class="hljs-type">void</span> <span class="hljs-title function_">printMessage</span><span class="hljs-params">()</span> {
+            <span class="hljs-comment">// Note: A static nested class can access the static members of its outer class.</span>
+            System.out.println(message);
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        OuterClass.<span class="hljs-type">NestedClass</span> <span class="hljs-variable">nested</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OuterClass</span>.NestedClass();
+        nested.printMessage();
+    }
+}</code></pre></div><p>Which of the following statements is true regarding static nested classes in Java?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q20-option-0" type="radio" name="book-q20" value="0" aria-labelledby="book-q20-option-0-letter book-q20-option-0-text"><span class="option-letter" id="book-q20-option-0-letter">A</span><div class="quiz-option-content" id="book-q20-option-0-text"><p>A static nested class can access both static and non-static members of its enclosing class directly.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q20-option-1" type="radio" name="book-q20" value="1" aria-labelledby="book-q20-option-1-letter book-q20-option-1-text"><span class="option-letter" id="book-q20-option-1-letter">B</span><div class="quiz-option-content" id="book-q20-option-1-text"><p>Instances of a static nested class can exist without an instance of its enclosing class.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q20-option-2" type="radio" name="book-q20" value="2" aria-labelledby="book-q20-option-2-letter book-q20-option-2-text"><span class="option-letter" id="book-q20-option-2-letter">C</span><div class="quiz-option-content" id="book-q20-option-2-text"><p>A static nested class can only be instantiated within the static method of its enclosing class.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q20-option-3" type="radio" name="book-q20" value="3" aria-labelledby="book-q20-option-3-letter book-q20-option-3-text"><span class="option-letter" id="book-q20-option-3-letter">D</span><div class="quiz-option-content" id="book-q20-option-3-text"><p>Static nested classes are not considered members of their enclosing class and cannot access any members of the enclosing class.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q20-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> A static nested class can access both static and non-static members of its enclosing class directly. </p>
+<ul>
+<li>This option is incorrect because a static nested class cannot directly access non-static members of its enclosing class. It can only access static members directly.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Instances of a static nested class can exist without an instance of its enclosing class.</p>
+<ul>
+<li>This is the correct answer. A static nested class is associated with its outer class, and unlike inner classes, it does not need an instance of the outer class to be instantiated. This makes it useful for grouping classes that will be used in a static context.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> A static nested class can only be instantiated within the static method of its enclosing class.</p>
+<ul>
+<li>This option is incorrect. A static nested class can be instantiated from any context (static or non-static) as long as it is accessible (i.e., visibility allows it).</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Static nested classes are not considered members of their enclosing class and cannot access any members of the enclosing class.</p>
+<ul>
+<li>This option is incorrect. Static nested classes are indeed considered members of their enclosing class and can access its static members and static methods. However, they do not have access to non-static members of the enclosing class unless they instantiate the enclosing class.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q21" data-answer="0" aria-describedby="book-q21-feedback">
+          <legend>Question 21</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Consider the following code snippet that demonstrates the use of a non-static nested (inner) class:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OuterClass</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-type">String</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello, World!&quot;</span>;
+
+    <span class="hljs-keyword">class</span> <span class="hljs-title class_">InnerClass</span> {
+        <span class="hljs-type">void</span> <span class="hljs-title function_">printMessage</span><span class="hljs-params">()</span> {
+            System.out.println(message);
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">OuterClass</span> <span class="hljs-variable">outer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OuterClass</span>();
+        OuterClass.<span class="hljs-type">InnerClass</span> <span class="hljs-variable">inner</span> <span class="hljs-operator">=</span> outer.<span class="hljs-keyword">new</span> <span class="hljs-title class_">InnerClass</span>();
+        inner.printMessage();
+    }
+}</code></pre></div><p>Which of the following statements is true regarding non-static nested (inner) classes in Java?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q21-option-0" type="radio" name="book-q21" value="0" aria-labelledby="book-q21-option-0-letter book-q21-option-0-text"><span class="option-letter" id="book-q21-option-0-letter">A</span><div class="quiz-option-content" id="book-q21-option-0-text"><p>A non-static nested class can directly access both static and non-static members of its enclosing class.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q21-option-1" type="radio" name="book-q21" value="1" aria-labelledby="book-q21-option-1-letter book-q21-option-1-text"><span class="option-letter" id="book-q21-option-1-letter">B</span><div class="quiz-option-content" id="book-q21-option-1-text"><p>Instances of a non-static nested class can exist independently of an instance of its enclosing class.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q21-option-2" type="radio" name="book-q21" value="2" aria-labelledby="book-q21-option-2-letter book-q21-option-2-text"><span class="option-letter" id="book-q21-option-2-letter">C</span><div class="quiz-option-content" id="book-q21-option-2-text"><p>A non-static nested class cannot access the non-static members of its enclosing class directly.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q21-option-3" type="radio" name="book-q21" value="3" aria-labelledby="book-q21-option-3-letter book-q21-option-3-text"><span class="option-letter" id="book-q21-option-3-letter">D</span><div class="quiz-option-content" id="book-q21-option-3-text"><p>Non-static nested classes must be declared static to access the static members of their enclosing class.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q21-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> A non-static nested class can directly access both static and non-static members of its enclosing clas</p>
+<ul>
+<li>This option is correct. A non-static nested class, or inner class, has access to all members (including both static and non-static) of its enclosing class, as demonstrated in the code snippet where <code>InnerClass</code> accesses the non-static <code>message</code> field of <code>OuterClass</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Instances of a non-static nested class can exist independently of an instance of its enclosing class. </p>
+<ul>
+<li>This option is incorrect. Instances of a non-static nested class (inner class) are implicitly associated with an instance of the enclosing class. Therefore, they cannot exist independently of an instance of the enclosing class. In the provided code snippet, the <code>InnerClass</code> instance is created through an instance of <code>OuterClass</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> A non-static nested class cannot access the non-static members of its enclosing class directly.</p>
+<ul>
+<li>This option is incorrect. As stated above, an inner class can directly access both static and non-static members of its enclosing class.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Non-static nested classes must be declared static to access the static members of their enclosing class.</p>
+<ul>
+<li>This option is incorrect. Non-static nested classes (inner classes) are designed to access members of their enclosing class directly without needing to be declared static. Declaring a nested class as static changes its type to a static nested class, which has different access properties from an inner class.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q22" data-answer="0,3" aria-describedby="book-q22-feedback">
+          <legend>Question 22</legend>
+          <div class="quiz-question-meta">Select 2 answers</div>
+          <div class="book-question-prompt"><p>Consider the following code snippet demonstrating the use of a local class within a method:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LocalClassExample</span> {
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">printEvenNumbers</span><span class="hljs-params">(<span class="hljs-type">int</span>[] numbers, <span class="hljs-type">int</span> max)</span> {
+        <span class="hljs-keyword">class</span> <span class="hljs-title class_">EvenNumberPrinter</span> {
+            <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">print</span><span class="hljs-params">()</span> {
+                <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> number : numbers) {
+                    <span class="hljs-keyword">if</span> (number % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> &amp;&amp; number &lt;= max) {
+                        System.out.println(number);
+                    }
+                }
+            }
+        }
+        <span class="hljs-type">EvenNumberPrinter</span> <span class="hljs-variable">printer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">EvenNumberPrinter</span>();
+        printer.print();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-type">LocalClassExample</span> <span class="hljs-variable">example</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LocalClassExample</span>();
+        <span class="hljs-type">int</span>[] <span class="hljs-variable">numbers</span> <span class="hljs-operator">=</span> {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>};
+        example.printEvenNumbers(numbers, <span class="hljs-number">6</span>);
+    }
+}</code></pre></div><p>Which of the following statements correctly describe local classes in Java, based on the example provided?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q22-option-0" type="checkbox" name="book-q22" value="0" aria-labelledby="book-q22-option-0-letter book-q22-option-0-text"><span class="option-letter" id="book-q22-option-0-letter">A</span><div class="quiz-option-content" id="book-q22-option-0-text"><p>Local classes can be declared within any block that precedes a statement.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q22-option-1" type="checkbox" name="book-q22" value="1" aria-labelledby="book-q22-option-1-letter book-q22-option-1-text"><span class="option-letter" id="book-q22-option-1-letter">B</span><div class="quiz-option-content" id="book-q22-option-1-text"><p>Instances of a local class can be created and used outside of the block where the local class is defined.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q22-option-2" type="checkbox" name="book-q22" value="2" aria-labelledby="book-q22-option-2-letter book-q22-option-2-text"><span class="option-letter" id="book-q22-option-2-letter">C</span><div class="quiz-option-content" id="book-q22-option-2-text"><p>Local classes are a type of static nested class and can access both static and non-static members of the enclosing class directly.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q22-option-3" type="checkbox" name="book-q22" value="3" aria-labelledby="book-q22-option-3-letter book-q22-option-3-text"><span class="option-letter" id="book-q22-option-3-letter">D</span><div class="quiz-option-content" id="book-q22-option-3-text"><p>Local classes can access local variables and parameters of the enclosing block only if they are declared <code>final</code> or effectively final.</p>
+</div></div></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="book-q22-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> Local classes can be declared within any block that precedes a statement.</p>
+<ul>
+<li>This option is correct. Local classes in Java can indeed be declared within any block that precedes a statement, such as a method body, a <code>for</code> loop, or an <code>if</code> statement.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Instances of a local class can be created and used outside of the block where the local class is defined.</p>
+<ul>
+<li>This option is incorrect. Instances of local classes cannot be created and used outside the block where they are defined. Their scope is limited to the block in which they are declared.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Local classes are a type of static nested class and can access both static and non-static members of the enclosing class directly.</p>
+<ul>
+<li>This option is incorrect. Local classes are not static; they are associated with an instance of the enclosing class and have access to its instance members. They do not have the static context that static nested classes have, and thus they can access both static and non-static members of the enclosing class.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Local classes can access local variables and parameters of the enclosing block only if they are declared <code>final</code> or effectively final.</p>
+<ul>
+<li>This is correct. Local classes can access local variables and parameters of the method (or any enclosing block) in which they are defined, but those variables must be declared <code>final</code> or effectively final (which means their values do not change after they are initialized).</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q23" data-answer="0" aria-describedby="book-q23-feedback">
+          <legend>Question 23</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Consider the following Java code snippet demonstrating the use of an anonymous class:</p>
+<div class="code-block"><pre tabindex="0"><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloWorld</span> {
+    <span class="hljs-keyword">interface</span> <span class="hljs-title class_">HelloWorldInterface</span> {
+        <span class="hljs-type">void</span> <span class="hljs-title function_">greet</span><span class="hljs-params">()</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">sayHello</span><span class="hljs-params">()</span> {
+        <span class="hljs-type">HelloWorldInterface</span> <span class="hljs-variable">myGreeting</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HelloWorldInterface</span>() {
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">greet</span><span class="hljs-params">()</span> {
+                System.out.println(<span class="hljs-string">&quot;Hello, world!&quot;</span>);
+            }
+        };
+        myGreeting.greet();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> {
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">HelloWorld</span>().sayHello();
+    }
+}</code></pre></div><p>Which of the following statements is true about anonymous classes in Java?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q23-option-0" type="radio" name="book-q23" value="0" aria-labelledby="book-q23-option-0-letter book-q23-option-0-text"><span class="option-letter" id="book-q23-option-0-letter">A</span><div class="quiz-option-content" id="book-q23-option-0-text"><p>Anonymous classes can implement interfaces and extend classes without the need to declare a named class.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q23-option-1" type="radio" name="book-q23" value="1" aria-labelledby="book-q23-option-1-letter book-q23-option-1-text"><span class="option-letter" id="book-q23-option-1-letter">B</span><div class="quiz-option-content" id="book-q23-option-1-text"><p>An anonymous class must override all methods in the superclass or interface it declares it is implementing or extending.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q23-option-2" type="radio" name="book-q23" value="2" aria-labelledby="book-q23-option-2-letter book-q23-option-2-text"><span class="option-letter" id="book-q23-option-2-letter">C</span><div class="quiz-option-content" id="book-q23-option-2-text"><p>Anonymous classes can have constructors as named classes do.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q23-option-3" type="radio" name="book-q23" value="3" aria-labelledby="book-q23-option-3-letter book-q23-option-3-text"><span class="option-letter" id="book-q23-option-3-letter">D</span><div class="quiz-option-content" id="book-q23-option-3-text"><p>Instances of anonymous classes cannot be passed as arguments to methods.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q23-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> Anonymous classes can implement interfaces and extend classes without the need to declare a named class.</p>
+<ul>
+<li>This option is correct. Anonymous classes are a way to extend existing classes or implement interfaces on the spot without the need for a formal class declaration. This makes them useful for creating quick, one-off implementations.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> An anonymous class must override all methods in the superclass or interface it declares it is implementing or extending.</p>
+<ul>
+<li>This option is incorrect. An anonymous class only needs to override abstract methods of the superclass or interface it extends or implements. If the superclass or interface has no abstract methods, then the anonymous class does not need to override any methods.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Anonymous classes can have constructors as named classes do.</p>
+<ul>
+<li>This option is incorrect. Anonymous classes do not have named constructors because they do not have names themselves. Instead, any initialization is done through an instance initializer block.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Instances of anonymous classes cannot be passed as arguments to methods.</p>
+<ul>
+<li>This option is incorrect. Instances of anonymous classes can indeed be passed as arguments to methods. They are useful for creating on-the-fly implementations for interfaces or subclasses that are required for a method call.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="book-q24" data-answer="2" aria-describedby="book-q24-feedback">
+          <legend>Question 24</legend>
+          <div class="quiz-question-meta">Select one answer</div>
+          <div class="book-question-prompt"><p>Which of the following statements accurately reflects a valid rule regarding how classes and source files are organized?</p>
+</div>
+          
+          <div class="quiz-options"><div class="quiz-option" data-selectable><input id="book-q24-option-0" type="radio" name="book-q24" value="0" aria-labelledby="book-q24-option-0-letter book-q24-option-0-text"><span class="option-letter" id="book-q24-option-0-letter">A</span><div class="quiz-option-content" id="book-q24-option-0-text"><p>A source file can contain multiple public classes.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q24-option-1" type="radio" name="book-q24" value="1" aria-labelledby="book-q24-option-1-letter book-q24-option-1-text"><span class="option-letter" id="book-q24-option-1-letter">B</span><div class="quiz-option-content" id="book-q24-option-1-text"><p>Private classes can be declared at the top level in a source file.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q24-option-2" type="radio" name="book-q24" value="2" aria-labelledby="book-q24-option-2-letter book-q24-option-2-text"><span class="option-letter" id="book-q24-option-2-letter">C</span><div class="quiz-option-content" id="book-q24-option-2-text"><p>A <code>public</code> class must be declared in a source file that has the same name as the class.</p>
+</div></div><div class="quiz-option" data-selectable><input id="book-q24-option-3" type="radio" name="book-q24" value="3" aria-labelledby="book-q24-option-3-letter book-q24-option-3-text"><span class="option-letter" id="book-q24-option-3-letter">D</span><div class="quiz-option-content" id="book-q24-option-3-text"><p>If a source file contains more than one class, none of the classes can be <code>public</code>.</p>
+</div></div></div>
+          
+          <div class="quiz-feedback" id="book-q24-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation"><ul>
+<li><p><strong>A)</strong> A source file can contain multiple public classes.</p>
+<ul>
+<li>This option is incorrect. A Java source file cannot contain more than one <code>public</code> class. If a class is declared <code>public</code>, it must be the only <code>public</code> class in the file, and the file name must match the class name.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Private classes can be declared at the top level in a source file.</p>
+<ul>
+<li>This option is incorrect. Java does not allow classes to be declared as <code>private</code> at the top level. Only <code>public</code>, or package-private (no access modifier) classes can be defined at the top level. Inner classes can be <code>private</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> A <code>public</code> class must be declared in a source file that has the same name as the class.</p>
+<ul>
+<li>This is correct. According to Java&#39;s rules, if a class is declared <code>public</code>, the source file in which it is defined must have the same name as the class, followed by the <code>.java</code> extension. This is a strict rule that helps the Java compiler easily locate source files.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> If a source file contains more than one class, none of the classes can be <code>public</code>.</p>
+<ul>
+<li>This is incorrect. While it is true that if a source file contains a <code>public</code> class, the source file must be named after that <code>public</code> class, it is not true that none of the classes can be <code>public</code> if a source file contains more than one class. A source file can contain multiple classes, but only one of them can be <code>public</code>, and the source file must be named after that <code>public</code> class. The statement could imply that multiple non-public top-level classes are a common scenario without the context of the <code>public</code> class naming rule.</li>
+</ul>
+</li>
+</ul>
+</div><p class="answer-origin">Answer and explanation adapted from the book’s answer sheet. </p><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart book practice</button></div>
+    </form>
+  </section><section class="chapter-quiz" id="chapter-quiz" aria-labelledby="quiz-title">
+    <h2 id="quiz-title">Extra quiz</h2>
+    <p class="quiz-intro">Choose an answer to see its explanation immediately. Correct choices appear in green; incorrect selections appear in red. For checkbox questions, select your answers, then choose Check answer.</p>
+    <details class="practice-context"><summary>About these questions</summary><p>11 original learning exercises, not official exam questions. Use Java 21 without preview features. Assume standard imports and a valid enclosing class or method, which may declare checked exceptions.</p></details>
+    <p class="quiz-saving">Your selections and feedback are saved in this browser.</p>
+    <noscript><p>Enable JavaScript for scoring. The book’s practice questions and separate answer sheet remain available without it.</p></noscript>
+    <form class="quiz-form" data-quiz="ch01">
+      <p class="quiz-score"></p>
+      <fieldset class="quiz-question" id="quiz-q1" data-answer="0" aria-describedby="quiz-q1-feedback">
+          <legend><span class="quiz-number">1.</span> What does this method print?</legend>
+          <div class="quiz-question-meta">Default values · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Counter</span> {
+    <span class="hljs-type">int</span> value;
+    <span class="hljs-type">void</span> <span class="hljs-title function_">show</span><span class="hljs-params">()</span> { System.out.println(value); }
+} <span class="hljs-comment">// new Counter().show();</span></code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q1" value="0"><span class="option-letter">A</span><span>0</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="1"><span class="option-letter">B</span><span>null</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="2"><span class="option-letter">C</span><span>false</span></label><label class="quiz-option"><input type="radio" name="quiz-q1" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q1-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">An instance int field starts at 0. Local variables, unlike fields, need definite assignment before use.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q2" data-answer="1" aria-describedby="quiz-q2-feedback">
+          <legend><span class="quiz-number">2.</span> A class declares only <code>Box(int size)</code>. What happens with <code>new Box()</code>?</legend>
+          <div class="quiz-question-meta">Constructors · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q2" value="0"><span class="option-letter">A</span><span>It creates a zero-sized Box</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="1"><span class="option-letter">B</span><span>It does not compile</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="2"><span class="option-letter">C</span><span>It throws an exception</span></label><label class="quiz-option"><input type="radio" name="quiz-q2" value="3"><span class="option-letter">D</span><span>It calls Box(0)</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q2-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">A compiler-provided no-argument constructor is supplied only when the class declares no constructors.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q3" data-answer="2" aria-describedby="quiz-q3-feedback">
+          <legend><span class="quiz-number">3.</span> Which overload is chosen?</legend>
+          <div class="quiz-question-meta">Overloading · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">pick</span><span class="hljs-params">(<span class="hljs-type">long</span> x)</span> {}
+<span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">pick</span><span class="hljs-params">(Integer x)</span> {}
+<span class="hljs-comment">// inside a method:</span>
+pick(<span class="hljs-number">3</span>);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q3" value="0"><span class="option-letter">A</span><span>pick(Integer)</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="1"><span class="option-letter">B</span><span>pick(Object)</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="2"><span class="option-letter">C</span><span>pick(long)</span></label><label class="quiz-option"><input type="radio" name="quiz-q3" value="3"><span class="option-letter">D</span><span>The call is ambiguous</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q3-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Primitive widening to long is considered before boxing to Integer. The exact int overload is absent.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q4" data-answer="3" aria-describedby="quiz-q4-feedback">
+          <legend><span class="quiz-number">4.</span> Which parameter list is legal?</legend>
+          <div class="quiz-question-meta">Varargs · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q4" value="0"><span class="option-letter">A</span><span>(String... names, int count)</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="1"><span class="option-letter">B</span><span>(int... first, int... second)</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="2"><span class="option-letter">C</span><span>(...String names)</span></label><label class="quiz-option"><input type="radio" name="quiz-q4" value="3"><span class="option-letter">D</span><span>(int count, String... names)</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q4-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">A varargs parameter must be the last parameter. Only one is possible in a parameter list.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q5" data-answer="1" aria-describedby="quiz-q5-feedback">
+          <legend><span class="quiz-number">5.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Pass by value · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title function_">change</span><span class="hljs-params">(StringBuilder b)</span> {
+    b = <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(<span class="hljs-string">&quot;new&quot;</span>);
+}
+<span class="hljs-comment">// inside a method:</span>
+<span class="hljs-type">var</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(<span class="hljs-string">&quot;old&quot;</span>);
+change(b);
+System.out.println(b);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q5" value="0"><span class="option-letter">A</span><span>new</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="1"><span class="option-letter">B</span><span>old</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="2"><span class="option-letter">C</span><span>null</span></label><label class="quiz-option"><input type="radio" name="quiz-q5" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q5-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">The method receives a copy of the reference. Reassigning that copy leaves the caller’s reference unchanged.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q6" data-answer="2" aria-describedby="quiz-q6-feedback">
+          <legend><span class="quiz-number">6.</span> What is printed?</legend>
+          <div class="quiz-question-meta">Static members · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Ticket</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> count;
+    Ticket() { count++; }
+}
+<span class="hljs-comment">// inside a method:</span>
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Ticket</span>();
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Ticket</span>();
+System.out.println(Ticket.count);</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q6" value="0"><span class="option-letter">A</span><span>1</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="1"><span class="option-letter">B</span><span>0</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="2"><span class="option-letter">C</span><span>2</span></label><label class="quiz-option"><input type="radio" name="quiz-q6" value="3"><span class="option-letter">D</span><span>It does not compile</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q6-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Both objects share the same static field. Each constructor increments that one field.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q7" data-answer="0" aria-describedby="quiz-q7-feedback">
+          <legend><span class="quiz-number">7.</span> For the first <code>new Demo()</code>, what is printed?</legend>
+          <div class="quiz-question-meta">Initialization · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> {
+    <span class="hljs-keyword">static</span> { System.out.print(<span class="hljs-string">&quot;S&quot;</span>); }
+    { System.out.print(<span class="hljs-string">&quot;I&quot;</span>); }
+    Demo() { System.out.print(<span class="hljs-string">&quot;C&quot;</span>); }
+}</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q7" value="0"><span class="option-letter">A</span><span>SIC</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="1"><span class="option-letter">B</span><span>ISC</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="2"><span class="option-letter">C</span><span>CSI</span></label><label class="quiz-option"><input type="radio" name="quiz-q7" value="3"><span class="option-letter">D</span><span>S only</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q7-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Class initialization runs the static initializer first. Instance initialization then runs before the constructor body.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q8" data-answer="3" aria-describedby="quiz-q8-feedback">
+          <legend><span class="quiz-number">8.</span> Given <code>class Outer { class Inner {} }</code>, which creates an Inner from an unrelated class?</legend>
+          <div class="quiz-question-meta">Nested classes · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q8" value="0"><span class="option-letter">A</span><span>new Outer.Inner()</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="1"><span class="option-letter">B</span><span>Outer.new Inner()</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="2"><span class="option-letter">C</span><span>new Inner(new Outer())</span></label><label class="quiz-option"><input type="radio" name="quiz-q8" value="3"><span class="option-letter">D</span><span>new Outer().new Inner()</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q8-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">An instance of a non-static member class is associated with an enclosing instance, supplied here by new Outer().</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q9" data-answer="1" aria-describedby="quiz-q9-feedback">
+          <legend><span class="quiz-number">9.</span> After the last assignment, how many of the two created objects are reachable through a or b?</legend>
+          <div class="quiz-question-meta">Object lifecycle · Select one answer</div>
+          <div class="code-block quiz-code"><pre tabindex="0"><code class="hljs language-java"><span class="hljs-type">Object</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();
+<span class="hljs-type">Object</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();
+a = b;</code></pre></div>
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q9" value="0"><span class="option-letter">A</span><span>Zero</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="1"><span class="option-letter">B</span><span>One</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="2"><span class="option-letter">C</span><span>Two</span></label><label class="quiz-option"><input type="radio" name="quiz-q9" value="3"><span class="option-letter">D</span><span>Cannot be determined</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q9-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Both variables refer to the second object. The first has no remaining reference in this snippet; collection timing is not guaranteed.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q10" data-answer="2" aria-describedby="quiz-q10-feedback">
+          <legend><span class="quiz-number">10.</span> Which members are accessible from an unrelated class in another package?</legend>
+          <div class="quiz-question-meta">Access · Select one answer</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="radio" name="quiz-q10" value="0"><span class="option-letter">A</span><span>Every protected member</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="1"><span class="option-letter">B</span><span>Every package-private member</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="2"><span class="option-letter">C</span><span>Public members of an accessible public class</span></label><label class="quiz-option"><input type="radio" name="quiz-q10" value="3"><span class="option-letter">D</span><span>Private members via an import</span></label></div>
+          
+          <div class="quiz-feedback" id="quiz-q10-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Public access permits this, assuming the package is exported if modules are used. Importing a type does not change member access.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset><fieldset class="quiz-question" id="quiz-q11" data-answer="0,2" aria-describedby="quiz-q11-feedback">
+          <legend><span class="quiz-number">11.</span> Which two differences can distinguish overloaded method parameter lists?</legend>
+          <div class="quiz-question-meta">Overloading · Select 2 answers</div>
+          
+          <div class="quiz-options"><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="0"><span class="option-letter">A</span><span>Parameter types</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="1"><span class="option-letter">B</span><span>Parameter names alone</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="2"><span class="option-letter">C</span><span>Parameter count</span></label><label class="quiz-option"><input type="checkbox" name="quiz-q11" value="3"><span class="option-letter">D</span><span>Return type alone</span></label></div>
+          <button type="button" class="quiz-check primary-button" disabled>Check answer</button>
+          <div class="quiz-feedback" id="quiz-q11-feedback" role="status" aria-live="polite" hidden><p class="quiz-verdict"></p><div class="quiz-explanation">Overloading uses the parameter types and their order/count. Changing only names or return type does not create a distinct signature.</div><button type="button" class="quiz-retry">Try this question again</button></div>
+        </fieldset>
+      <div class="quiz-controls"><button type="reset" class="primary-button">Restart extra quiz</button></div>
+    </form>
+  </section>
+  <section class="study-resources" id="free-resources" aria-labelledby="resources-title"><h2 id="resources-title">Free resources</h2><p>Use these to revisit the rules or try more examples. Links open in a new tab and need an internet connection. Some tutorials also cover Java versions newer than 21.</p>
+    <ul><li><a href="https://dev.java/learn/language/oop/" target="_blank" rel="noopener noreferrer">Classes and objects — Dev.java<span class="sr-only"> (opens in a new tab)</span></a><p>Free tutorials on classes, objects, and object-oriented programming.</p></li><li><a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html" target="_blank" rel="noopener noreferrer">Java 21 language specification: classes<span class="sr-only"> (opens in a new tab)</span></a><p>Reference for constructors, members, overloading, and nested classes.</p></li></ul>
+    <p class="resource-date">Links reviewed 31 October 2026.</p>
+  </section></article><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch01.html"><small>Previous · Chapter 1</small>Utilizing Java Object-Oriented Approach - Part 1</a><a href="ch02.html"><small>Next · Chapter 2</small>Utilizing Java Object-Oriented Approach - Part 2 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>Practice sections</summary><nav aria-label="On this page"><a class="toc-link" href="#book-practice">Book questions · 24</a><a class="toc-link" href="#chapter-quiz">Extra quiz · 11</a><a class="toc-link" href="#free-resources">Free resources</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>

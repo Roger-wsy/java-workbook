@@ -1,0 +1,604 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="application-name" content="Java 21 Study Notes"><meta name="theme-color" content="#ffffff"><title>Java 21 Study Notes · Utilizing Java Object-Oriented Approach - Part 1</title><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preload" href="assets/fonts/source-sans-3-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+    <body data-page="ch01a"><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><aside class="sidebar" id="chapter-nav" role="dialog" aria-label="Chapter navigation" inert>
+    <div class="drawer-heading"><a class="brand" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21</a><button class="close-menu" aria-label="Close chapter navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <nav aria-label="Chapters"><a class="overview " href="index.html" >All chapters</a>
+    <a class="chapter-link " href="intro.html" ><span class="chapter-number">—</span><span>Introduction</span></a>
+    <a class="chapter-link selected" href="ch01.html"  data-chapter="ch01"><span class="chapter-number">01</span><span>Utilizing Java Object-Oriented Approach - Part 1</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch01-practice.html" ><span class="chapter-number">1.1</span><span>Practice</span></a><a class="chapter-link " href="ch02.html"  data-chapter="ch02"><span class="chapter-number">02</span><span>Utilizing Java Object-Oriented Approach - Part 2</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch02-practice.html" ><span class="chapter-number">2.1</span><span>Practice</span></a><a class="chapter-link " href="ch03.html"  data-chapter="ch03"><span class="chapter-number">03</span><span>Working with Records and Enums</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch03-practice.html" ><span class="chapter-number">3.1</span><span>Practice</span></a><a class="chapter-link " href="ch04.html"  data-chapter="ch04"><span class="chapter-number">04</span><span>Working with Data</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch04-practice.html" ><span class="chapter-number">4.1</span><span>Practice</span></a><a class="chapter-link " href="ch05.html"  data-chapter="ch05"><span class="chapter-number">05</span><span>Controlling Program Flow</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch05-practice.html" ><span class="chapter-number">5.1</span><span>Practice</span></a><a class="chapter-link " href="ch06.html"  data-chapter="ch06"><span class="chapter-number">06</span><span>Arrays, Generics, and Collections</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch06-practice.html" ><span class="chapter-number">6.1</span><span>Practice</span></a><a class="chapter-link " href="ch07.html"  data-chapter="ch07"><span class="chapter-number">07</span><span>Error Handling and Exceptions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch07-practice.html" ><span class="chapter-number">7.1</span><span>Practice</span></a><a class="chapter-link " href="ch08.html"  data-chapter="ch08"><span class="chapter-number">08</span><span>Functional Interfaces and Lambda Expressions</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch08-practice.html" ><span class="chapter-number">8.1</span><span>Practice</span></a><a class="chapter-link " href="ch09.html"  data-chapter="ch09"><span class="chapter-number">09</span><span>Streams</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch09-practice.html" ><span class="chapter-number">9.1</span><span>Practice</span></a><a class="chapter-link " href="ch10.html"  data-chapter="ch10"><span class="chapter-number">10</span><span>Concurrency and Multithreading</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch10-practice.html" ><span class="chapter-number">10.1</span><span>Practice</span></a><a class="chapter-link " href="ch11.html"  data-chapter="ch11"><span class="chapter-number">11</span><span>The Date/Time API</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch11-practice.html" ><span class="chapter-number">11.1</span><span>Practice</span></a><a class="chapter-link " href="ch12.html"  data-chapter="ch12"><span class="chapter-number">12</span><span>File I/O</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch12-practice.html" ><span class="chapter-number">12.1</span><span>Practice</span></a><a class="chapter-link " href="ch13.html"  data-chapter="ch13"><span class="chapter-number">13</span><span>The Java Platform Module System</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch13-practice.html" ><span class="chapter-number">13.1</span><span>Practice</span></a><a class="chapter-link " href="ch14.html"  data-chapter="ch14"><span class="chapter-number">14</span><span>Localization</span><span class="completion-dot" aria-hidden="true"></span></a><a class="chapter-link practice-link " href="ch14-practice.html" ><span class="chapter-number">14.1</span><span>Practice</span></a></nav>
+    <div class="rail-footer">Java SE 21 Developer · 1Z0-830</div></aside><div class="nav-scrim" hidden></div>
+    <div class="workspace"><header class="topbar"><div class="header-inner"><a class="masthead" href="index.html"><img class="site-logo" src="assets/favicon.svg" alt="" width="28" height="28">Java 21<span>Study notes</span></a><div class="header-actions"><button class="menu-button" aria-label="Open chapter navigation" aria-expanded="false" aria-controls="chapter-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg><span>Chapters</span></button><div class="reading-tools"><button id="text-size" title="Adjust reading text size" aria-label="Increase reading text size">Aa</button><button id="focus-mode" aria-pressed="false">Focus</button><button id="print-page" title="Print or save as PDF">Print</button></div></div></div></header>
+    <div class="page-grid "><main id="main" tabindex="-1"><div class="document-heading"><h1>Utilizing Java Object-Oriented Approach - Part 1<span class="answer-title">Answers & explanations</span></h1><div class="document-meta">Chapter 01 / Answer sheet<span>·</span>25 min read</div><div class="chapter-actions"><a class="" href="ch01.html">Read chapter</a><a href="ch01.html#key-points">Key points</a><a href="ch01-practice.html#book-practice">Book questions</a><a href="ch01-practice.html#chapter-quiz">Extra quiz</a><a class="active" href="ch01a.html">Original answers</a></div></div><article class="prose"><p class="question-review-note">This page preserves the original answer sheet. Reviewed corrections and clarifications appear beside the <a href="ch01-practice.html#book-practice">interactive book questions</a>.</p><h2 id="answers">Answers<a class="heading-anchor" href="#answers" aria-label="Link to Answers">#</a></h2><details class="answer-item" id="answer-1"><summary><span>Question 1</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> Both <code>sb1</code> and <code>sb2</code> are eligible for garbage collection.</p>
+<ul>
+<li>This option is incorrect because <code>sb2</code> still holds a reference to the <code>StringBuilder</code> object it was initially assigned. Therefore, it is not eligible for garbage collection.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Only the <code>StringBuilder</code> object initially referenced by <code>sb1</code> is eligible for garbage collection.</p>
+<ul>
+<li>This option is correct. After <code>sb1</code> is reassigned to reference the same object as <code>sb2</code>, the original <code>StringBuilder</code> object created with <code>new StringBuilder(&quot;Java&quot;)</code> and initially referenced by <code>sb1</code> is no longer accessible. Since there are no references pointing to it, it becomes eligible for garbage collection.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Only the <code>StringBuilder</code> object initially referenced by <code>sb2</code> is eligible for garbage collection.</p>
+<ul>
+<li>This option is incorrect because after the assignment <code>sb1 = sb2;</code>, both <code>sb1</code> and <code>sb2</code> reference the same object (<code>new StringBuilder(&quot;Python&quot;)</code>). This object is still accessible through <code>sb2</code> (and now <code>sb1</code> as well), so it is not eligible for garbage collection.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Neither of the <code>StringBuilder</code> objects are eligible for garbage collection.</p>
+<ul>
+<li>This option is incorrect because, as explained, the object initially referenced by <code>sb1</code> becomes eligible for garbage collection after <code>sb1</code> is reassigned to <code>sb2</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-2"><summary><span>Question 2</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are C and D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>implement</code> is incorrect. The correct keyword for implementing an interface in Java is <code>implements</code>.</p>
+</li>
+<li><p><strong>B)</strong> <code>array</code> is incorrect. Java does not have a reserved keyword named <code>array</code>. Arrays are declared with square brackets <code>[ ]</code>.</p>
+</li>
+<li><p><strong>C)</strong> <code>volatile</code> is correct. <code>volatile</code> is a reserved keyword that is used to indicate that a variable&#39;s value will be modified by different threads.</p>
+</li>
+<li><p><strong>D)</strong> <code>extends</code> is correct. <code>extends</code> is a reserved keyword used in class declarations to inherit from a superclass.</p>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-3"><summary><span>Question 3</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are A and E.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> Line 1 is an example of a single-line comment.</p>
+<ul>
+<li>This option is correct. Line 1 uses <code>//</code> to start a single-line comment, which is a common way to add notes or explain a part of code that does not affect the execution.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Lines 3-7 demonstrate the use of a javadoc comment.</p>
+<ul>
+<li>This option is incorrect. Lines 3-7 use a block comment. Javadoc comments start with <code>/**</code> and end with <code>*/</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Line 9 uses a javadoc comment to explain the <code>add</code> method.</p>
+<ul>
+<li>This option is incorrect. Line 9 is a single-line comment, not a javadoc comment. Javadoc comments in Java are defined with <code>/**</code> at the beginning and <code>*/</code> at the end, and are specifically used to describe classes, methods, and fields.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Line 12 uses a special <code>TODO</code> comment, different from a single-line comment.</p>
+<ul>
+<li>This option is incorrect. Line 12 uses a <code>TODO</code> comment, which is a convention many developers follow to mark parts of the code that require further development or attention but is still a single-line comment.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> Lines 3-7 is a block comment that is used as if it were a javadoc comment.</p>
+<ul>
+<li>This option is correct. Lines 3-7 use a block comment, which is not processed by javadoc tools and therefore not suitable for generating official documentation.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-4"><summary><span>Question 4</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are B and D.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>import</code> statement in <code>Application.java</code> is unnecessary because both classes are in the same directory.</p>
+<ul>
+<li>This option is incorrect. In Java, the <code>import</code> statement is used to bring a class or an entire package into visibility, and its necessity is determined by the package membership of the classes, not their directory location. Even if classes are in the same directory, if they belong to different packages, the <code>import</code> statement is required to use one in the other.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>import</code> statement in <code>Application.java</code> is necessary for using the <code>Calculator</code> class because they belong to different packages.</p>
+<ul>
+<li>This is the correct answer. The <code>Calculator</code> class is in the <code>math</code> package, and the <code>Application</code> class is in the <code>app</code> package. Despite being in the same directory, the different packages require an <code>import</code> statement to use <code>Calculator</code> in <code>Application</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>Calculator</code> class will not be accessible in <code>Application.java</code> due to being in a different directory.</p>
+<ul>
+<li>This option is incorrect. Java&#39;s access control is not based on the directory structure but on the <code>package</code> and <code>import</code> declarations. As long as the classes are correctly packaged and imported, they can be accessed across different directories.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Removing the <code>package</code> statement from both files will allow <code>Application.java</code> to use <code>Calculator</code> without an <code>import</code> statement, regardless of directory structure.</p>
+<ul>
+<li>This option is correct. Removing the <code>package</code> statement from both files will place them in the default package, and they will be able to access each other without an <code>import</code> statement. However, this is not recommended for anything beyond very simple or temporary code due to namespace management and readability concerns.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-5"><summary><span>Question 5</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are A, B, and C.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> A <code>public</code> class or member can be accessed by any other class in the same package or in any other package.</p>
+<ul>
+<li>This is correct. The <code>public</code> modifier grants the highest level of access. A <code>public</code> class or member is accessible from any other class, regardless of the packages they belong to.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> A <code>protected</code> member can be accessed by any class in its own package, but from outside the package, only by classes that extend the class containing the protected member.</p>
+<ul>
+<li>This is correct. The <code>protected</code> access level allows a member to be accessed within its own package and by subclasses in any package. It offers a more restrictive level of access than <code>public</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> A member with <code>default</code> (no modifier) access can be accessed by any class in the same package but not from a class in a different package.</p>
+<ul>
+<li>This is correct. If no access modifier (also known as <code>default</code> access level) is specified, the member is accessible only within classes in the same package. This is more restrictive than <code>protected</code> and <code>public</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> A <code>private</code> member can be accessed only by methods that are members of the same class or within the same file.</p>
+<ul>
+<li>This option is incorrect because <code>private</code> members can be accessed only within the same class. It&#39;s not about being within the same file, as Java allows only one public top-level class per file.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> A <code>protected</code> member can be accessed by any class in the Java program, regardless of package.</p>
+<ul>
+<li>This is incorrect. <code>Protected</code> access does not grant universal access across all classes in a program. Access from outside the package is limited to subclasses only.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-6"><summary><span>Question 6</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is D:</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>class public Vehicle { }</code></p>
+<ul>
+<li>This option is incorrect because the syntax is wrong. The correct order is the access modifier followed by the <code>class</code> keyword, and then the class name.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>public class vehicle { }</code></p>
+<ul>
+<li>This option is incorrect mainly due to the class naming convention. In Java, class names should start with an uppercase letter, so <code>vehicle</code> should be <code>Vehicle</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>Public class Vehicle { }</code></p>
+<ul>
+<li>This option is incorrect because <code>Public</code> is incorrectly capitalized. Java is case-sensitive, and the correct keyword is <code>public</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>public class Vehicle { }</code></p>
+<ul>
+<li>This is the correct answer. The syntax follows the proper order: the access modifier (<code>public</code>), followed by the <code>class</code> keyword, and then the class name (<code>Vehicle</code>), which correctly starts with an uppercase letter as per Java naming conventions.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>classVehicle public { }</code></p>
+<ul>
+<li>This option is incorrect due to several reasons: the syntax order is wrong, there is no space between <code>class</code> and the class name, and the access modifier&#39;s position is incorrect.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-7"><summary><span>Question 7</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are A, C, and D.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>COUNT</code> variable can be accessed directly using the class name without creating an instance of <code>Counter</code>.</p>
+<ul>
+<li>This option is correct. Static variables belong to the class and can be accessed directly with the class name, such as <code>Counter.COUNT</code>, without needing to instantiate the class.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>getCount()</code> method is an example of a static method because it returns the value of a static variable.</p>
+<ul>
+<li>This option is incorrect. Although <code>getCount()</code> returns a static variable&#39;s value, it is not defined as a static method. Static methods are declared using the <code>static</code> modifier. The method&#39;s instance or non-static nature does not change based on the variables it accesses or returns.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Every time a new instance of <code>Counter</code> is created, the <code>COUNT</code> variable is incremented.</p>
+<ul>
+<li>This option is correct. The constructor increments the <code>COUNT</code> variable by 1 each time a new instance of <code>Counter</code> is created, demonstrating the shared nature of static variables across all instances.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>resetCount()</code> method resets the <code>COUNT</code> variable to 0 for all instances of <code>Counter</code>.</p>
+<ul>
+<li>This option is correct. The <code>resetCount()</code> static method sets the <code>COUNT</code> variable to zero. Since <code>COUNT</code> is static, this change affects all instances of the class, as there is only one <code>COUNT</code> variable shared among them.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-8"><summary><span>Question 8</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are A, C, and D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>int _age;</code> is correct. Identifiers in Java can begin with a letter, an underscore (_), or a dollar sign ($). Therefore, <code>_age</code> is a valid identifier.</p>
+</li>
+<li><p><strong>B)</strong> <code>double 2ndValue;</code> is incorrect. Identifiers cannot start with a digit. The correct format would be to start with a letter or a non-digit character such as an underscore or a dollar sign.</p>
+</li>
+<li><p><strong>C)</strong> <code>boolean is_valid;</code> is correct. Similar to <code>_age</code>, <code>is_valid</code> is a valid identifier because it starts with a letter and can contain underscores.</p>
+</li>
+<li><p><strong>D)</strong> <code>String $name;</code> is correct. Identifiers can also start with a dollar sign ($), making <code>$name</code> a valid identifier.</p>
+</li>
+<li><p><strong>E)</strong> <code>char #char;</code> is incorrect. The hash (#) character is not allowed as a starting character in identifiers. Identifiers can only start with letters, <code>$</code>, or <code>_</code>.</p>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-9"><summary><span>Question 9</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>int public static final computeSum(int num1, int num2)  { return num1 + num2 }</code> is incorrect because the return type in method declarations goes right before the name of the method, not at the beginning.</p>
+</li>
+<li><p><strong>B)</strong> <code>private void updateRecord(int id) throws IOException {}</code> is correct. This method declaration is syntactically correct in Java. It uses the <code>private</code> access modifier, specifies a return type (<code>void</code>), includes an exception (<code>IOException</code>) that this method might throw, and correctly defines the parameter list.</p>
+</li>
+<li><p><strong>C)</strong> <code>synchronized boolean checkStatus [int status] { return status == 1; }</code> Correct syntax requires parentheses for the parameter list, even when there are no parameters, making the correct declaration <code>synchronized boolean checkStatus(int status)</code>.</p>
+</li>
+<li><p><strong>D)</strong> <code>float calculateArea() {}</code> is incorrect because a method that returns <code>float</code> cannot have an empty method body.</p>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-10"><summary><span>Question 10</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are (A and B) and (C and D).</strong></p>
+<p><strong>Explanation:</strong></p>
+<p>In Java, a method signature consists of the method name and the parameter list. The return type, access modifier, and exception list are not considered part of the method signature.</p>
+<ul>
+<li><p><strong>A)</strong> (<code>public void update(int id, String value)</code>) </p>
+</li>
+<li><p><strong>B)</strong> (<code>private void update(int identifier, String data)</code>) </p>
+<ul>
+<li>The above options have the same method signature (<code>update(int, String)</code>) because they both have the same method name and parameter list (an <code>int</code> and a <code>String</code>, in that order). The difference in parameter names (<code>id</code> vs. <code>identifier</code> and <code>value</code> vs. <code>data</code>) does not affect the method signature.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>public boolean update(String value, int id)</code> </p>
+</li>
+<li><p><strong>D)</strong> <code>void update(String value, int id)</code></p>
+<ul>
+<li>This option has the same method signature (<code>update(String, int)</code>) as C because they both have the same method name and parameter list (a <code>String</code> and an <code>int</code>, in that order). The different access modifier and return type does not affect the method signature.</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>protected void update(int id, int value) throws IOException</code></p>
+<ul>
+<li>This option also has a different parameter list (<code>update(int, int)</code>).</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-11"><summary><span>Question 11</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are C and D.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>resetAccountPassword</code> method can be accessed from any class within the same package but not from a class in a different package.</p>
+<ul>
+<li>This option is incorrect. The <code>resetAccountPassword</code> method has <code>private</code> access, which means it is accessible only within the <code>AccountManager</code> class itself, not from any class, even within the same package. The initial statement was slightly incorrect in suggesting package-level access for a <code>private</code> method.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>auditTrail</code> method can be accessed from any class within the same package and from subclasses in different packages.</p>
+<ul>
+<li>This option is incorrect because the <code>auditTrail</code> method has package-private access (no access modifier), which means it is accessible from any class within the same package but not from subclasses in different packages unless they are also within the same package.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> The <code>notifyAccountChanges</code> method can be accessed from any class within the same package and from subclasses in different packages.</p>
+<ul>
+<li>This option is correct. The <code>notifyAccountChanges</code> method has <code>protected</code> access, meaning it can be accessed within the same package and by subclasses, even if the subclasses are in different packages.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>updateAccountInformation</code> method can be accessed from any class, regardless of its package.</p>
+<ul>
+<li>This option is correct. The <code>updateAccountInformation</code> method is <code>public</code>, so it can be accessed from any class, regardless of the package it belongs to.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-12"><summary><span>Question 12</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<p>Java is strictly pass-by-value. This means that when passing a variable to a method, Java passes a copy of the variable&#39;s value, not the variable itself. Changes to the parameter inside the method do not affect the original variable.</p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Before calling changeValue: 10  
+After calling changeValue: 20  </code></pre></div><ul>
+<li><p>This option is incorrect because, although the <code>changeValue</code> method changes the <code>value</code> parameter to 20, this change does not affect the original variable <code>originalValue</code> outside the method. The change to <code>value</code> is made on its copy, not on <code>originalValue</code> itself.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Before calling changeValue: 10  
+After calling changeValue: 10  </code></pre></div><ul>
+<li><p>This is the correct answer. <code>originalValue</code> is passed by value to the <code>changeValue</code> method. Thus, modifications to <code>value</code> inside <code>changeValue</code> do not affect <code>originalValue</code>. The output confirms that <code>originalValue</code> remains unchanged after the method call.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Before calling changeValue: 20  
+After calling changeValue: 20  </code></pre></div><ul>
+<li><strong>D)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">Before calling changeValue: 20  
+After calling changeValue: 10  </code></pre></div><ul>
+<li>These options are incorrect as they suggest changes to the method parameters can affect the original variables, which is not how Java&#39;s pass-by-value semantics work.</li>
+</ul>
+</div></details><details class="answer-item" id="answer-13"><summary><span>Question 13</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>Object</code></p>
+<ul>
+<li>This option is incorrect because Java uses the most specific method that is applicable to the parameters. In this case, <code>String</code> is more specific than <code>Object</code>, so the <code>print(String s)</code> method is called.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>String</code></p>
+<ul>
+<li>This option is correct. Even though <code>null</code> can be assigned to any reference type, Java prefers the most specific method applicable to the method parameters. Since <code>String</code> is a more specific type than <code>Object</code>, the <code>print(String s)</code> method is chosen over the <code>print(Object o)</code> method.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Compilation fails</p>
+<ul>
+<li>Compilation does not fail because both <code>print</code> methods are correctly defined and can potentially match the call <code>print(null)</code>. Java&#39;s method overloading mechanism allows this to compile without any issues.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> A runtime exception is thrown</p>
+<ul>
+<li>No runtime exception is thrown because the method call to <code>print</code> successfully resolves to the <code>print(String s)</code> method at compile time. Since the method is correctly invoked, and there is no other code that could cause a runtime exception, this program runs successfully.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-14"><summary><span>Question 14</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are B and D.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> <code>public void print(String... messages, int count)</code></p>
+<ul>
+<li>This option is incorrect because varargs (variable arguments) must be the last parameter in a method&#39;s parameter list. Having <code>int count</code> after <code>String... messages</code> violates this rule.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> <code>public void print(int count, String... messages)</code></p>
+<ul>
+<li>This option is correct. It correctly places the varargs parameter <code>String... messages</code> at the end of the method&#39;s parameter list, which is the required syntax for using varargs.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>public void print(String messages...)</code></p>
+<ul>
+<li>This option is incorrect because the syntax <code>String messages...</code> is invalid. The correct syntax for varargs is to place the ellipsis (<code>...</code>) after the type and before the variable name, like <code>String... messages</code>.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> <code>public void print(String[]... messages)</code></p>
+<ul>
+<li>This option is correct. It demonstrates the use of varargs with an array type, which is allowed. Here, each argument passed to <code>messages</code> can itself be an array of <code>String</code>, and <code>messages</code> will be treated as an array of arrays (<code>String[][]</code>).</li>
+</ul>
+</li>
+<li><p><strong>E)</strong> <code>public void print(String... messages, String lastMessage)</code></p>
+<ul>
+<li>This option is incorrect, similar to option A, because varargs must be the last parameter in the method&#39;s parameter list. Having another parameter after the varargs parameter is not allowed.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-15"><summary><span>Question 15</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The class <code>Vehicle</code> demonstrates constructor overloading by having multiple constructors with different parameter lists.</p>
+<ul>
+<li>This option is correct. Constructor overloading in Java is a technique of having more than one constructor with different parameter lists in the same class. It allows objects of the class to be initialized in different ways. The <code>Vehicle</code> class has two constructors, one that takes a <code>String</code> (for the vehicle type) and another that takes an <code>int</code> (for the max speed), which is a perfect example of constructor overloading.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The class <code>Vehicle</code> will compile with an error because it does not provide a default constructor.</p>
+<ul>
+<li>This option is incorrect. Java does not require an explicit default constructor if the class provides any other constructors. The absence of a default constructor (one that takes no arguments) is not a compilation error; it simply means that the programmer cannot instantiate the class using a no-argument constructor unless it&#39;s explicitly defined.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> It is possible to create an instance of <code>Vehicle</code> with both <code>type</code> and <code>maxSpeed</code> set to specific values through a single constructor call.</p>
+<ul>
+<li>This option is incorrect because none of the existing constructors accept both a <code>String</code> and an <code>int</code> parameter. Each constructor only sets one field to a caller-specified value; the other field retains its default value (<code>null</code> or <code>0</code>).</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Calling either constructor will initialize both <code>type</code> and <code>maxSpeed</code> fields of the <code>Vehicle</code> class.</p>
+<ul>
+<li>This option is incorrect. Calling either constructor only initializes the parameter that is provided to it. The first constructor initializes the <code>type</code>, and the second initializes the <code>maxSpeed</code>. Without additional code, such as a constructor that accepts both parameters or setter methods, there&#39;s no way for either constructor alone to initialize both fields.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-16"><summary><span>Question 16</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer are A and D.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The instance initializer block is executed before the constructor, initializing the <code>books</code> list and adding two books to it.</p>
+<ul>
+<li>This option is correct. The instance initializer block is executed each time an instance of the class is created, before the constructor code runs. It initializes the <code>books</code> list and adds two books to it.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The instance initializer block replaces the need for a constructor in the <code>Library</code> class.</p>
+<ul>
+<li>This option is incorrect. The instance initializer block does not replace the need for a constructor. It is used in addition to constructors, often to initialize common parts of various constructors in a class.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Instance initializer blocks cannot initialize instance variables like <code>books</code>. </p>
+<ul>
+<li>This option is incorrect. Instance initializer blocks can indeed initialize instance variables. In this case, the <code>books</code> list is an instance variable that is being initialized and populated within the instance initializer block.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> If multiple instances of <code>Library</code> are created, the instance initializer block will execute each time before the constructor, ensuring the <code>books</code> list is initialized and populated for each object.</p>
+<ul>
+<li>This option is correct. For each new instance of the <code>Library</code> class, the instance initializer block runs before the constructor is invoked. This ensures that the <code>books</code> list is initialized and populated with <code>&quot;Book 1&quot;</code> and <code>&quot;Book 2&quot;</code> for every <code>Library</code> object created.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-17"><summary><span>Question 17</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> The <code>static</code> initializer block is executed only once when the class is first loaded into memory, initializing the <code>settings</code> map with default values.</p>
+<ul>
+<li>This option is correct. Static initializer blocks are executed a single time, when the class is first loaded into the JVM memory. In this case, it initializes the <code>settings</code> map with default configuration values.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> The <code>static</code> initializer block allows instance methods to modify the <code>settings</code> map without creating an instance of the <code>Configuration</code> class.</p>
+<ul>
+<li>This option is misleading. While static methods like <code>getSetting</code> can access and modify static fields like <code>settings</code> without needing an instance of the class, this capability is not due to the static initializer block itself but rather the nature of static fields and methods.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> <code>static</code> initializer blocks are executed each time a new instance of the <code>Configuration</code> class is created.</p>
+<ul>
+<li>This option is incorrect. Static initializer blocks are not executed each time a new instance of the class is created. They are executed only once: when the class is first loaded.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>static</code> initializer block is executed before any instance initializer blocks or constructors, when an instance of the class is created.</p>
+<ul>
+<li>This statement is partially correct in that static initializer blocks are executed before any instance initializer blocks or constructors, but it&#39;s misleading as it implies a sequence with instance creation. The key point is that static initializer blocks run once upon class loading, irrespective of the creation of any instances.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-18"><summary><span>Question 18</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<p>In Java, the order of initialization when a class is loaded and an instance of that class is created is as follows:</p>
+<ol>
+<li><p><strong>Static fields and static initializers</strong> are processed in the order they appear in the class definition. First, the static initializer block prints <code>&quot;1. Static initializer&quot;</code>. Then, the static field <code>staticValue</code> is initialized by calling <code>initializeStaticValue()</code>, which prints <code>&quot;2. Static value initializer&quot;.</code></p>
+</li>
+<li><p><strong>Instance fields and instance initializers</strong> are processed in the order they appear when an instance of the class is created. First, the instance field <code>instanceValue</code> is initialized by calling <code>initializeInstanceValue()</code>, which prints <code>&quot;3. Instance value initializer&quot;</code>. Then, the instance initializer block prints <code>&quot;3. Instance initializer&quot;</code>.</p>
+</li>
+<li><p><strong>Constructors</strong> are executed after all fields and instance initializers have been processed. The constructor in this case prints <code>&quot;4. Constructor&quot;</code>.</p>
+</li>
+</ol>
+<p>The numbering of the output for <code>&quot;3. Instance initializer&quot;</code> and <code>&quot;3. Instance value initializer&quot;</code> in the question might seem to suggest they are executed simultaneously or out of order, but it&#39;s important to remember that instance fields and instance initializers execute in the order they appear in the class, before the constructor is executed. The duplicate numbering means that instance field initializers run first, followed by instance initializers, and finally, the constructor runs.</p>
+<ul>
+<li><strong>A)</strong></li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">1. Static initializer
+2. Static value initializer
+3. Instance initializer
+3. Instance value initializer
+4. Constructor </code></pre></div><ul>
+<li><p>This option is incorrect.</p>
+</li>
+<li><p><strong>B)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">1. Static initializer
+2. Static value initializer
+3. Instance value initializer
+3. Instance initializer
+4. Constructor</code></pre></div><ul>
+<li><p>This option is correct.</p>
+</li>
+<li><p><strong>C)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">1. Static initializer
+3. Instance initializer
+2. Static value initializer
+3. Instance value initializer
+4. Constructor</code></pre></div><ul>
+<li><p>This option is incorrect. </p>
+</li>
+<li><p><strong>D)</strong></p>
+</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button class="copy-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9z"/><path d="M5 15H3V3h12v2"/></svg><span>Copy</span></button></div><pre tabindex="0"><code class="hljs language-text">2. Static value initializer
+1. Static initializer
+3. Instance value initializer
+3. Instance initializer
+4. Constructor </code></pre></div><ul>
+<li>This option is incorrect.</li>
+</ul>
+</div></details><details class="answer-item" id="answer-19"><summary><span>Question 19</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are A and C.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> Invoking <code>toString()</code> on an instance of <code>CustomObject</code> will return a <code>String</code> that includes the class name followed by the <code>@</code> symbol and the object&#39;s hashcode.</p>
+<ul>
+<li>This option is correct. The <code>toString()</code> method in <code>java.lang.Object</code> returns a string that includes the class name, the <code>@</code> symbol, and the object&#39;s hashcode in hexadecimal. If <code>CustomObject</code> does not override <code>toString()</code>, this default format is used.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Calling <code>equals(Object obj)</code> on two different instances of <code>CustomObject</code> that have identical content will return <code>true</code> because they are instances of the same class. </p>
+<ul>
+<li>This option is incorrect. The default implementation of <code>equals(Object obj)</code> in <code>java.lang.Object</code> checks for reference equality, meaning it returns <code>true</code> only if both references point to the exact same object. Without overriding <code>equals</code>, two different instances of <code>CustomObject</code>, even with identical content, would not be considered equal.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Using <code>hashCode()</code> on any instance of <code>CustomObject</code> will generate a unique integer that remains consistent across multiple invocations within the same execution of a program.  </p>
+<ul>
+<li>This option is correct. The <code>hashCode()</code> method is designed to return an integer representation of the object&#39;s memory address or a value derived from it. While the exact implementation is not specified and can vary, it is consistent during the execution of a program for any given object.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> The <code>clone()</code> method can be used to create a shallow copy of an instance of <code>CustomObject</code> without the need for <code>CustomObject</code> to implement the <code>Cloneable</code> interface. </p>
+<ul>
+<li>This option is incorrect. The <code>clone()</code> method in <code>java.lang.Object</code> is protected, and it throws a <code>CloneNotSupportedException</code> unless the class implements the <code>Cloneable</code> interface. Without <code>CustomObject</code> explicitly implementing <code>Cloneable</code> and overriding <code>clone()</code> to make it <code>public</code>, it cannot be used to clone instances of <code>CustomObject</code>.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-20"><summary><span>Question 20</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is B.</strong></p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> A static nested class can access both static and non-static members of its enclosing class directly. </p>
+<ul>
+<li>This option is incorrect because a static nested class cannot directly access non-static members of its enclosing class. It can only access static members directly.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Instances of a static nested class can exist without an instance of its enclosing class.</p>
+<ul>
+<li>This is the correct answer. A static nested class is associated with its outer class, and unlike inner classes, it does not need an instance of the outer class to be instantiated. This makes it useful for grouping classes that will be used in a static context.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> A static nested class can only be instantiated within the static method of its enclosing class.</p>
+<ul>
+<li>This option is incorrect. A static nested class can be instantiated from any context (static or non-static) as long as it is accessible (i.e., visibility allows it).</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Static nested classes are not considered members of their enclosing class and cannot access any members of the enclosing class.</p>
+<ul>
+<li>This option is incorrect. Static nested classes are indeed considered members of their enclosing class and can access its static members and static methods. However, they do not have access to non-static members of the enclosing class unless they instantiate the enclosing class.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-21"><summary><span>Question 21</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> A non-static nested class can directly access both static and non-static members of its enclosing clas</p>
+<ul>
+<li>This option is correct. A non-static nested class, or inner class, has access to all members (including both static and non-static) of its enclosing class, as demonstrated in the code snippet where <code>InnerClass</code> accesses the non-static <code>message</code> field of <code>OuterClass</code>.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Instances of a non-static nested class can exist independently of an instance of its enclosing class. </p>
+<ul>
+<li>This option is incorrect. Instances of a non-static nested class (inner class) are implicitly associated with an instance of the enclosing class. Therefore, they cannot exist independently of an instance of the enclosing class. In the provided code snippet, the <code>InnerClass</code> instance is created through an instance of <code>OuterClass</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> A non-static nested class cannot access the non-static members of its enclosing class directly.</p>
+<ul>
+<li>This option is incorrect. As stated above, an inner class can directly access both static and non-static members of its enclosing class.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Non-static nested classes must be declared static to access the static members of their enclosing class.</p>
+<ul>
+<li>This option is incorrect. Non-static nested classes (inner classes) are designed to access members of their enclosing class directly without needing to be declared static. Declaring a nested class as static changes its type to a static nested class, which has different access properties from an inner class.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-22"><summary><span>Question 22</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answers are A and D.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> Local classes can be declared within any block that precedes a statement.</p>
+<ul>
+<li>This option is correct. Local classes in Java can indeed be declared within any block that precedes a statement, such as a method body, a <code>for</code> loop, or an <code>if</code> statement.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Instances of a local class can be created and used outside of the block where the local class is defined.</p>
+<ul>
+<li>This option is incorrect. Instances of local classes cannot be created and used outside the block where they are defined. Their scope is limited to the block in which they are declared.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Local classes are a type of static nested class and can access both static and non-static members of the enclosing class directly.</p>
+<ul>
+<li>This option is incorrect. Local classes are not static; they are associated with an instance of the enclosing class and have access to its instance members. They do not have the static context that static nested classes have, and thus they can access both static and non-static members of the enclosing class.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Local classes can access local variables and parameters of the enclosing block only if they are declared <code>final</code> or effectively final.</p>
+<ul>
+<li>This is correct. Local classes can access local variables and parameters of the method (or any enclosing block) in which they are defined, but those variables must be declared <code>final</code> or effectively final (which means their values do not change after they are initialized).</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-23"><summary><span>Question 23</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is A.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> Anonymous classes can implement interfaces and extend classes without the need to declare a named class.</p>
+<ul>
+<li>This option is correct. Anonymous classes are a way to extend existing classes or implement interfaces on the spot without the need for a formal class declaration. This makes them useful for creating quick, one-off implementations.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> An anonymous class must override all methods in the superclass or interface it declares it is implementing or extending.</p>
+<ul>
+<li>This option is incorrect. An anonymous class only needs to override abstract methods of the superclass or interface it extends or implements. If the superclass or interface has no abstract methods, then the anonymous class does not need to override any methods.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> Anonymous classes can have constructors as named classes do.</p>
+<ul>
+<li>This option is incorrect. Anonymous classes do not have named constructors because they do not have names themselves. Instead, any initialization is done through an instance initializer block.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> Instances of anonymous classes cannot be passed as arguments to methods.</p>
+<ul>
+<li>This option is incorrect. Instances of anonymous classes can indeed be passed as arguments to methods. They are useful for creating on-the-fly implementations for interfaces or subclasses that are required for a method call.</li>
+</ul>
+</li>
+</ul>
+</div></details><details class="answer-item" id="answer-24"><summary><span>Question 24</span><span class="answer-reveal">Explanation</span></summary><div class="answer-body"><p><strong>The correct answer is C.</strong> </p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li><p><strong>A)</strong> A source file can contain multiple public classes.</p>
+<ul>
+<li>This option is incorrect. A Java source file cannot contain more than one <code>public</code> class. If a class is declared <code>public</code>, it must be the only <code>public</code> class in the file, and the file name must match the class name.</li>
+</ul>
+</li>
+<li><p><strong>B)</strong> Private classes can be declared at the top level in a source file.</p>
+<ul>
+<li>This option is incorrect. Java does not allow classes to be declared as <code>private</code> at the top level. Only <code>public</code>, or package-private (no access modifier) classes can be defined at the top level. Inner classes can be <code>private</code>.</li>
+</ul>
+</li>
+<li><p><strong>C)</strong> A <code>public</code> class must be declared in a source file that has the same name as the class.</p>
+<ul>
+<li>This is correct. According to Java&#39;s rules, if a class is declared <code>public</code>, the source file in which it is defined must have the same name as the class, followed by the <code>.java</code> extension. This is a strict rule that helps the Java compiler easily locate source files.</li>
+</ul>
+</li>
+<li><p><strong>D)</strong> If a source file contains more than one class, none of the classes can be <code>public</code>.</p>
+<ul>
+<li>This is incorrect. While it is true that if a source file contains a <code>public</code> class, the source file must be named after that <code>public</code> class, it is not true that none of the classes can be <code>public</code> if a source file contains more than one class. A source file can contain multiple classes, but only one of them can be <code>public</code>, and the source file must be named after that <code>public</code> class. The statement could imply that multiple non-public top-level classes are a common scenario without the context of the <code>public</code> class naming rule.</li>
+</ul>
+</li>
+</ul>
+</div></details></article><section class="personal-notes" aria-labelledby="notes-heading"><h2 id="notes-heading">Your notes</h2><p>Notes for this answer sheet.</p><label for="notes" class="sr-only">Your personal notes for this page</label><textarea id="notes" rows="5" placeholder="Add a note…"></textarea><span class="notes-status" role="status">Saved in this browser only.</span></section><nav class="chapter-pagination" aria-label="Previous and next chapters"><a href="ch01.html"><small>Previous</small>Utilizing Java Object-Oriented Approach - Part 1</a><a href="ch01-practice.html"><small>Next chapter</small>Chapter 1.1 Practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></nav><footer class="page-footer">Based on <a href="https://github.com/eh3rrera/ocpj21-book">Esteban Herrera’s Java SE 21 Developer Study Guide</a>.<br>© 2024 Esteban Herrera · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> · <a href="LICENSE.txt">Original license</a></footer></main><aside class="contents"><details open><summary>In this chapter</summary><nav aria-label="On this page"><a class="toc-link" href="#answers">Answers</a></nav></details><a class="back-top" href="#main">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></aside></div></div><div class="toast" role="status"></div></body></html>
